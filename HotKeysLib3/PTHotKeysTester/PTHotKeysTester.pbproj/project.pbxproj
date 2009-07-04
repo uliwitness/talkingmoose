@@ -1,0 +1,641 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 38;
+	objects = {
+		080E96DCFE201CFB7F000001 = {
+			fileRef = 29B97318FDCFA39411CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		080E96DDFE201D6D7F000001 = {
+			children = (
+				78E0466A06A50CCF00A800C9,
+				78E0466B06A50CCF00A800C9,
+			);
+			isa = PBXGroup;
+			name = PTHotKeysTester;
+			refType = 4;
+		};
+//080
+//081
+//082
+//083
+//084
+//100
+//101
+//102
+//103
+//104
+		1058C7A0FEA54F0111CA2CBB = {
+			children = (
+				1058C7A1FEA54F0111CA2CBB,
+				78E046CE06A5102400A800C9,
+			);
+			isa = PBXGroup;
+			name = "Linked Frameworks";
+			refType = 4;
+		};
+		1058C7A1FEA54F0111CA2CBB = {
+			isa = PBXFrameworkReference;
+			name = Cocoa.framework;
+			path = /System/Library/Frameworks/Cocoa.framework;
+			refType = 0;
+		};
+		1058C7A2FEA54F0111CA2CBB = {
+			children = (
+				29B97325FDCFA39411CA2CEA,
+				29B97324FDCFA39411CA2CEA,
+			);
+			isa = PBXGroup;
+			name = "Other Frameworks";
+			refType = 4;
+		};
+		1058C7A3FEA54F0111CA2CBB = {
+			fileRef = 1058C7A1FEA54F0111CA2CBB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//100
+//101
+//102
+//103
+//104
+//170
+//171
+//172
+//173
+//174
+		17587328FF379C6511CA2CBB = {
+			isa = PBXApplicationReference;
+			path = PTHotKeysTester.app;
+			refType = 3;
+		};
+//170
+//171
+//172
+//173
+//174
+//190
+//191
+//192
+//193
+//194
+		19C28FACFE9D520D11CA2CBB = {
+			children = (
+				17587328FF379C6511CA2CBB,
+			);
+			isa = PBXGroup;
+			name = Products;
+			refType = 4;
+		};
+//190
+//191
+//192
+//193
+//194
+//290
+//291
+//292
+//293
+//294
+		29B97313FDCFA39411CA2CEA = {
+			buildStyles = (
+				4A9504CCFFE6A4B311CA0CBA,
+				4A9504CDFFE6A4B311CA0CBA,
+			);
+			hasScannedForEncodings = 1;
+			isa = PBXProject;
+			mainGroup = 29B97314FDCFA39411CA2CEA;
+			projectDirPath = "";
+			targets = (
+				29B97326FDCFA39411CA2CEA,
+			);
+		};
+		29B97314FDCFA39411CA2CEA = {
+			children = (
+				080E96DDFE201D6D7F000001,
+				78E0469906A50D8100A800C9,
+				29B97317FDCFA39411CA2CEA,
+				29B97323FDCFA39411CA2CEA,
+				19C28FACFE9D520D11CA2CBB,
+			);
+			isa = PBXGroup;
+			name = PTHotKeysTester;
+			path = "";
+			refType = 4;
+		};
+		29B97317FDCFA39411CA2CEA = {
+			children = (
+				29B97318FDCFA39411CA2CEA,
+			);
+			isa = PBXGroup;
+			name = Resources;
+			path = "";
+			refType = 4;
+		};
+		29B97318FDCFA39411CA2CEA = {
+			children = (
+				29B97319FDCFA39411CA2CEA,
+			);
+			isa = PBXVariantGroup;
+			name = MainMenu.nib;
+			path = "";
+			refType = 4;
+		};
+		29B97319FDCFA39411CA2CEA = {
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/MainMenu.nib;
+			refType = 4;
+		};
+		29B97323FDCFA39411CA2CEA = {
+			children = (
+				1058C7A0FEA54F0111CA2CBB,
+				1058C7A2FEA54F0111CA2CBB,
+			);
+			isa = PBXGroup;
+			name = Frameworks;
+			path = "";
+			refType = 4;
+		};
+		29B97324FDCFA39411CA2CEA = {
+			isa = PBXFrameworkReference;
+			name = AppKit.framework;
+			path = /System/Library/Frameworks/AppKit.framework;
+			refType = 0;
+		};
+		29B97325FDCFA39411CA2CEA = {
+			isa = PBXFrameworkReference;
+			name = Foundation.framework;
+			path = /System/Library/Frameworks/Foundation.framework;
+			refType = 0;
+		};
+		29B97326FDCFA39411CA2CEA = {
+			buildPhases = (
+				29B97327FDCFA39411CA2CEA,
+				29B97328FDCFA39411CA2CEA,
+				29B9732BFDCFA39411CA2CEA,
+				29B9732DFDCFA39411CA2CEA,
+			);
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRECOMPILE_PREFIX_HEADER = YES;
+				PRODUCT_NAME = PTHotKeysTester;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+			);
+			isa = PBXApplicationTarget;
+			name = PTHotKeysTester;
+			productInstallPath = "$(HOME)/Applications";
+			productName = PTHotKeysTester;
+			productReference = 17587328FF379C6511CA2CBB;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>PTHotKeysTester</string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>com.rogueamoeba.PTHotKeysTester</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.1</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>TestApplication</string>
+</dict>
+</plist>
+";
+		};
+		29B97327FDCFA39411CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				78E0466C06A50CCF00A800C9,
+				78E046C206A50D8100A800C9,
+				78E046C406A50D8100A800C9,
+				78E046C606A50D8100A800C9,
+				78E046C806A50D8100A800C9,
+				78E046CA06A50D8100A800C9,
+				78E046CC06A50D8100A800C9,
+			);
+			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B97328FDCFA39411CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				080E96DCFE201CFB7F000001,
+				78E046BE06A50D8100A800C9,
+				78E046BF06A50D8100A800C9,
+				78E046C006A50D8100A800C9,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B9732BFDCFA39411CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				78E0466D06A50CCF00A800C9,
+				78E046C306A50D8100A800C9,
+				78E046C506A50D8100A800C9,
+				78E046C706A50D8100A800C9,
+				78E046C906A50D8100A800C9,
+				78E046CB06A50D8100A800C9,
+				78E046CD06A50D8100A800C9,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B9732DFDCFA39411CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				1058C7A3FEA54F0111CA2CBB,
+				78E046CF06A5102400A800C9,
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+//290
+//291
+//292
+//293
+//294
+//4A0
+//4A1
+//4A2
+//4A3
+//4A4
+		4A9504CCFFE6A4B311CA0CBA = {
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				OPTIMIZATION_CFLAGS = "-O0";
+			};
+			isa = PBXBuildStyle;
+			name = Development;
+		};
+		4A9504CDFFE6A4B311CA0CBA = {
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			isa = PBXBuildStyle;
+			name = Deployment;
+		};
+//4A0
+//4A1
+//4A2
+//4A3
+//4A4
+//780
+//781
+//782
+//783
+//784
+		78E0466A06A50CCF00A800C9 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = TestAppController.h;
+			refType = 4;
+		};
+		78E0466B06A50CCF00A800C9 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = TestAppController.m;
+			refType = 4;
+		};
+		78E0466C06A50CCF00A800C9 = {
+			fileRef = 78E0466A06A50CCF00A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E0466D06A50CCF00A800C9 = {
+			fileRef = 78E0466B06A50CCF00A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E0469906A50D8100A800C9 = {
+			children = (
+				78E046AD06A50D8100A800C9,
+				78E0469B06A50D8100A800C9,
+			);
+			isa = PBXGroup;
+			name = PTHotKeysLib;
+			path = ../PTHotKeysLib;
+			refType = 4;
+		};
+		78E0469B06A50D8100A800C9 = {
+			children = (
+				78E0469F06A50D8100A800C9,
+				78E046A106A50D8100A800C9,
+				78E046AC06A50D8100A800C9,
+			);
+			isa = PBXGroup;
+			path = res;
+			refType = 4;
+		};
+		78E0469F06A50D8100A800C9 = {
+			children = (
+				78E046A006A50D8100A800C9,
+				78E046A406A50D8100A800C9,
+				78E046A706A50D8100A800C9,
+				78E046AA06A50D8100A800C9,
+			);
+			isa = PBXVariantGroup;
+			name = PTKeyCodes.plist;
+			path = "";
+			refType = 4;
+		};
+		78E046A006A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/PTKeyCodes.plist;
+			refType = 4;
+		};
+		78E046A106A50D8100A800C9 = {
+			children = (
+				78E046A206A50D8100A800C9,
+				78E046A506A50D8100A800C9,
+				78E046A806A50D8100A800C9,
+				78E046AB06A50D8100A800C9,
+			);
+			isa = PBXVariantGroup;
+			name = PTKeyComboPanel.nib;
+			path = "";
+			refType = 4;
+		};
+		78E046A206A50D8100A800C9 = {
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/PTKeyComboPanel.nib;
+			refType = 4;
+		};
+		78E046A406A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = French;
+			path = French.lproj/PTKeyCodes.plist;
+			refType = 4;
+		};
+		78E046A506A50D8100A800C9 = {
+			isa = PBXFileReference;
+			name = French;
+			path = French.lproj/PTKeyComboPanel.nib;
+			refType = 4;
+		};
+		78E046A706A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = German;
+			path = German.lproj/PTKeyCodes.plist;
+			refType = 4;
+		};
+		78E046A806A50D8100A800C9 = {
+			isa = PBXFileReference;
+			name = German;
+			path = German.lproj/PTKeyComboPanel.nib;
+			refType = 4;
+		};
+		78E046AA06A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = Japanese;
+			path = Japanese.lproj/PTKeyCodes.plist;
+			refType = 4;
+		};
+		78E046AB06A50D8100A800C9 = {
+			isa = PBXFileReference;
+			name = Japanese;
+			path = Japanese.lproj/PTKeyComboPanel.nib;
+			refType = 4;
+		};
+		78E046AC06A50D8100A800C9 = {
+			isa = PBXFileReference;
+			path = PTKeyboardIcon.tiff;
+			refType = 4;
+		};
+		78E046AD06A50D8100A800C9 = {
+			children = (
+				78E046AF06A50D8100A800C9,
+				78E046B006A50D8100A800C9,
+				78E046B106A50D8100A800C9,
+				78E046B206A50D8100A800C9,
+				78E046B306A50D8100A800C9,
+				78E046B406A50D8100A800C9,
+				78E046B506A50D8100A800C9,
+				78E046B606A50D8100A800C9,
+				78E046B706A50D8100A800C9,
+				78E046B806A50D8100A800C9,
+				78E046B906A50D8100A800C9,
+				78E046BA06A50D8100A800C9,
+			);
+			isa = PBXGroup;
+			path = src;
+			refType = 4;
+		};
+		78E046AF06A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = PTHotKey.h;
+			refType = 4;
+		};
+		78E046B006A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = PTHotKey.m;
+			refType = 4;
+		};
+		78E046B106A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = PTHotKeyCenter.h;
+			refType = 4;
+		};
+		78E046B206A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = PTHotKeyCenter.m;
+			refType = 4;
+		};
+		78E046B306A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = PTKeyBroadcaster.h;
+			refType = 4;
+		};
+		78E046B406A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = PTKeyBroadcaster.m;
+			refType = 4;
+		};
+		78E046B506A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = PTKeyCodeTranslator.h;
+			refType = 4;
+		};
+		78E046B606A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = PTKeyCodeTranslator.m;
+			refType = 4;
+		};
+		78E046B706A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = PTKeyCombo.h;
+			refType = 4;
+		};
+		78E046B806A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = PTKeyCombo.m;
+			refType = 4;
+		};
+		78E046B906A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = PTKeyComboPanel.h;
+			refType = 4;
+		};
+		78E046BA06A50D8100A800C9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = PTKeyComboPanel.m;
+			refType = 4;
+		};
+		78E046BE06A50D8100A800C9 = {
+			fileRef = 78E0469F06A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046BF06A50D8100A800C9 = {
+			fileRef = 78E046A106A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046C006A50D8100A800C9 = {
+			fileRef = 78E046AC06A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046C206A50D8100A800C9 = {
+			fileRef = 78E046AF06A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046C306A50D8100A800C9 = {
+			fileRef = 78E046B006A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046C406A50D8100A800C9 = {
+			fileRef = 78E046B106A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046C506A50D8100A800C9 = {
+			fileRef = 78E046B206A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046C606A50D8100A800C9 = {
+			fileRef = 78E046B306A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046C706A50D8100A800C9 = {
+			fileRef = 78E046B406A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046C806A50D8100A800C9 = {
+			fileRef = 78E046B506A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046C906A50D8100A800C9 = {
+			fileRef = 78E046B606A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046CA06A50D8100A800C9 = {
+			fileRef = 78E046B706A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046CB06A50D8100A800C9 = {
+			fileRef = 78E046B806A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046CC06A50D8100A800C9 = {
+			fileRef = 78E046B906A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046CD06A50D8100A800C9 = {
+			fileRef = 78E046BA06A50D8100A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		78E046CE06A5102400A800C9 = {
+			isa = PBXFrameworkReference;
+			name = Carbon.framework;
+			path = /System/Library/Frameworks/Carbon.framework;
+			refType = 0;
+		};
+		78E046CF06A5102400A800C9 = {
+			fileRef = 78E046CE06A5102400A800C9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA;
+}

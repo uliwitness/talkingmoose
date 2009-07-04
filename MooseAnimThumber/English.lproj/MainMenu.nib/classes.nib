@@ -1,0 +1,12 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = MooseAnimThumberAppDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {preview = NSImageView; progress = NSProgressIndicator; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

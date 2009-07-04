@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Beer</string>
+	<string>Root Beer</string>
+	<string>Spruce Beer</string>
+	<string>Coke</string>
+	<string>Spring Water</string>
+	<string>Whiskey</string>
+	<string>Motor Oil</string>
+	<string>Scotch</string>
+	<string>Brandy</string>
+	<string>Soda</string>
+	<string>Cream Soda</string>
+	<string>Water</string>
+	<string>Hydraulic Fluid</string>
+	<string>Correction Fluid</string>
+	<string>Woodruff Syrup</string>
+	<string>Rain</string>
+	<string>Sea Water</string>
+	<string>Port</string>
+	<string>Cherry</string>
+	<string>Elbow Grease</string>
+	<string>Olive Oil</string>
+	<string>Sunflower Oil</string>
+	<string>Blood</string>
+	<string>Sweat</string>
+	<string>Tears</string>
+	<string>Coolant</string>
+	<string>Chicken Soup</string>
+	<string>Broth</string>
+	<string>Milk</string>
+	<string>Fanta</string>
+	<string>Rivella</string>
+	<string>Sun Block</string>
+	<string>Chlorox</string>
+</array>
+</plist>

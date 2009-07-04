@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Commands</key>
+	<dict>
+		<key>DisableSpeech</key>
+		<dict>
+			<key>Arguments</key>
+			<dict/>
+			<key>Description</key>
+			<string>Make the moose go completely quiet temporarily.</string>
+			<key>Name</key>
+			<string>disable speech</string>
+		</dict>
+		<key>EnableSpeech</key>
+		<dict>
+			<key>Arguments</key>
+			<dict/>
+			<key>Description</key>
+			<string>Re-activate the Moose after it has been disabled.</string>
+			<key>Name</key>
+			<string>enable speech</string>
+		</dict>
+		<key>SpeakRandomPhrase</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>category</key>
+				<dict>
+					<key>Description</key>
+					<string>An optional category to fetch the phrase from. Default is pause.</string>
+					<key>Name</key>
+					<string>from category</string>
+				</dict>
+				<key>filler</key>
+				<dict>
+					<key>Description</key>
+					<string>An optional string to be inserted into parameterized phrases.</string>
+					<key>Name</key>
+					<string>with filler</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Speak a random phrase from one of the Moose's phrase files.</string>
+			<key>Name</key>
+			<string>speak random phrase</string>
+		</dict>
+		<key>SpeakString</key>
+		<dict>
+			<key>Description</key>
+			<string>Request that the Moose read out loud a particular string.</string>
+			<key>Name</key>
+			<string>speak</string>
+			<key>UnnamedArgument</key>
+			<dict>
+				<key>Description</key>
+				<string>The text to be spoken out loud.</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>Name</key>
+	<string>Moose Suite</string>
+</dict>
+</plist>

@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {hitSetHotKey = id; }; 
+            CLASS = TestAppController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {mHotKeyDescriptionField = NSTextField; mResultsField = NSTextField; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

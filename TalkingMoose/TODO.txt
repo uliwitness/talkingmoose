@@ -1,0 +1,52 @@
+TO DO!
+-> Move area needs to be positioned more reliably, it disappears occasionally.
+-> More intuitive window widgets and drag areas. Maybe at top in regular OS X look?
+-> Detect printing and speak special phrases then.
+-> Adopt LSSharedList for login items setting.
+-> Watch certain folders (Trash, Downloads) with a kqueue so we can talk about what user's doing.
+-> Splotch needs to implement @response@ etc.
+-> Remove question marks etc. from wildcard matches.
+-> Add more stuff to Splotch.
+-> Make Splotch's @blah@ stuff more generic.
+-> Why does band-aid not disappear sometimes?
+-> When moose changes, try to detect whether it's in a corner or at an edge, and
+   try to resize relative to that (like Adium).
+-> Add a button to add a sentence as a phrase to a "User Phrases" phrase file
+   as a specific category.
+-> Still need a "keep awake sound" option?
+-> Pause speech until Moose has fully faded in, so it doesn't speak without showing on slow Macs.
+-> Make Moose use less CPU?
+-> AppleScript: Allow retrieving the options set for speech in the Moose panel.
+-> AppleScript: Allow changing what Moose, voice and what animation are used.
+-> Make Moose "scroll in" from screen edge like a popup folder?
+-> Make Moose "scroll in" upside-down from the top?
+-> Make edges of animations suitable for light *and* dark backgrounds.
+-> The moose might consider taking control of iTunes (or other audio) and lowering the volume on my blasting music before speaking.  I frequently can't really hear him over my tunes.
+
+ Ã app switch needs to say settings phrases when switching to Moose.
+ Ã Find crash in outline view for phrases.
+ Ã Why is quit speech interrupted?
+ Ã Why doesn't app switch work unless you turn it off and on after startup?
+ Ã Why does the moose disappear offscreen but the bubble view stays?
+ Ã Switch Login Item manipulation to Apple's new recommended AppleEvents-based
+   scheme (http://developer.apple.com/samplecode/LoginItemsAE/LoginItemsAE.html)
+ Ã Why does the text "tool tip" not show on Intel after the first time?
+ Ã Toggle certain notifications on/off?
+ Ã Make Moose do initial update even when silenced.
+ Ã Why does the moose visible count go out of sync when we change animations
+   while it's speaking? Workaround: Stop speech on animation switch.
+ Ã AppleScript: 'speak ""' causes empty "show spoken phrase" box and that's it.
+ Ã Why is speech bubble always on main screen?
+ Ã Why does Moose forget its position?
+ Ã Get rid of that crash in speakString:fromGroup: !!!
+ Ã More padding at top/bottom of speech bubble window.
+ Ã Add "exclude applications" section
+ Ã Write "fade in"/"fade out" category on NSWindow and use that for the Moose.
+ Ã Allow clicking the Moose to shut it up? Add a "title bar" for dragging instead?
+ Ã Remember Moose window size? Well, we remember the scale factor now.
+ Ã Improve randomizing
+ Ã Allow resizing the Moose window?
+ Ã Add hour/half hour announcements back in.
+ Ã Each time an item is selected in the background menu, the image gets smaller. Why?
+ Ã Find out why UKSpeechChannel doesn't save its volume, pitch and rate.
+ Ã Find out why Moose won't quit when it can't say bye (e.g. because it's disabled).

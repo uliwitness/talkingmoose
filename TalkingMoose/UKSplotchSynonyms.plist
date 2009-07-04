@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>have not</string>
+		<string>haven't</string>
+		<string>havent</string>
+	</array>
+	<array>
+		<string>had not</string>
+		<string>hadn't</string>
+		<string>hadnt</string>
+	</array>
+	<array>
+		<string>can not</string>
+		<string>can't</string>
+		<string>cant</string>
+		<string>cannot</string>
+	</array>
+	<array>
+		<string>will not</string>
+		<string>won't</string>
+		<string>wont</string>
+	</array>
+	<array>
+		<string>I have</string>
+		<string>I've</string>
+		<string>Ive</string>
+	</array>
+	<array>
+		<string>you have</string>
+		<string>you've</string>
+		<string>youve</string>
+	</array>
+	<array>
+		<string>they have</string>
+		<string>they've</string>
+		<string>theyve</string>
+	</array>
+	<array>
+		<string>we have</string>
+		<string>we've</string>
+		<string>weve</string>
+	</array>
+	<array>
+		<string>I will</string>
+		<string>I'll</string>
+	</array>
+	<array>
+		<string>he will</string>
+		<string>he'll</string>
+	</array>
+	<array>
+		<string>she will</string>
+		<string>she'll</string>
+	</array>
+	<array>
+		<string>it will</string>
+		<string>it'll</string>
+	</array>
+	<array>
+		<string>they will</string>
+		<string>they'll</string>
+		<string>theyll</string>
+	</array>
+	<array>
+		<string>we will</string>
+		<string>we'll</string>
+	</array>
+	<array>
+		<string>who is</string>
+		<string>who's</string>
+		<string>whos</string>
+	</array>
+	<array>
+		<string>he is</string>
+		<string>he's</string>
+		<string>hes</string>
+	</array>
+	<array>
+		<string>she is</string>
+		<string>she's</string>
+		<string>shes</string>
+	</array>
+	<array>
+		<string>they are</string>
+		<string>they're</string>
+		<string>theyre</string>
+	</array>
+	<array>
+		<string>I am</string>
+		<string>I'm</string>
+		<string>Im</string>
+	</array>
+	<array>
+		<string>I would</string>
+		<string>I'd</string>
+	</array>
+	<array>
+		<string>do not</string>
+		<string>don't</string>
+		<string>dont</string>
+	</array>
+	<array>
+		<string>have not</string>
+		<string>haven't</string>
+		<string>havent</string>
+	</array>
+	<array>
+		<string>would not</string>
+		<string>whouldn't</string>
+		<string>wouldnt</string>
+	</array>
+	<array>
+		<string>should not</string>
+		<string>shoudn't</string>
+		<string>shoudnt</string>
+	</array>
+	<array>
+		<string>could not</string>
+		<string>couldn't</string>
+		<string>couldnt</string>
+	</array>
+	<array>
+		<string>what is</string>
+		<string>what's</string>
+		<string>whats</string>
+	</array>
+	<array>
+		<string>how is</string>
+		<string>hows</string>
+		<string>how's</string>
+	</array>
+	<array>
+		<string>why is</string>
+		<string>why's</string>
+		<string>whys</string>
+	</array>
+	<array>
+		<string>you had</string>
+		<string>you'd</string>
+		<string>youd</string>
+	</array>
+	<array>
+		<string>she had</string>
+		<string>she'd</string>
+	</array>
+	<array>
+		<string>he had</string>
+		<string>he'd</string>
+		<string>hed</string>
+	</array>
+	<array>
+		<string>we had</string>
+		<string>we'd</string>
+	</array>
+	<array>
+		<string>got to</string>
+		<string>gotta</string>
+	</array>
+	<array>
+		<string>that is</string>
+		<string>that's</string>
+		<string>thats</string>
+	</array>
+	<array>
+		<string>
+going</string>
+		<string>goin</string>
+	</array>
+	<array>
+		<string>doing</string>
+		<string>doin</string>
+	</array>
+	<array>
+		<string>hanging</string>
+		<string>hangin</string>
+	</array>
+	<array>
+		<string>living</string>
+		<string>livin</string>
+	</array>
+	<array>
+		<string>
+cool</string>
+		<string>kool</string>
+	</array>
+	<array>
+		<string>you</string>
+		<string>ya</string>
+		<string>u</string>
+	</array>
+	<array>
+		<string>are</string>
+		<string>r</string>
+	</array>
+	<array>
+		<string>why</string>
+		<string>y</string>
+	</array>
+	<array>
+		<string>
+splotch</string>
+		<string>splatch</string>
+		<string>spletch</string>
+		<string>splot</string>
+		<string>splat</string>
+		<string>spl</string>
+		<string>spoltch</string>
+		<string>sploctch</string>
+		<string>spotch</string>
+	</array>
+	<array>
+		<string>yea</string>
+		<string>yeh</string>
+	</array>
+	<array>
+		<string>hugh</string>
+		<string>huh</string>
+	</array>
+	<array>
+		<string>shut up</string>
+		<string>shut-up</string>
+		<string>shaddup</string>
+	</array>
+	<array>
+		<string>the</string>
+		<string>teh</string>
+	</array>
+	<array>
+		<string> </string>
+		<string>  </string>
+	</array>
+</array>
+</plist>

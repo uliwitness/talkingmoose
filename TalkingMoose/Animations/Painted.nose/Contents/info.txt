@@ -1,0 +1,46 @@
+# "Painted Moose" animation by M. Uli Kusterer. This is the first
+# Moose 'new-style' moose animation that is contained in a package
+# instead of a resource file. This allows for larger animations.
+# This animation was created from a scanned painting made using
+# water colors.
+
+NAME
+Painted Moose
+VERSION
+1.0
+AUTHOR
+M. Uli Kusterer
+
+# This is the extension (aka suffix) to append to the image file names.
+# This lets you use any QuickTime-recognized image format for your
+# animation's frames.
+EXTENSION
+.png
+
+# Name (without extension) of the image file to use as the background. I
+# am planning to someday allow providing several backgrounds for one
+# animation, but that's still a dream of a distant future...
+BACKGROUND
+spheric
+cylindric
+linear
+
+# Name (without exension) of the image file to overlay over the animation
+# when the Moose has been silenced temporarily.
+QUIETIMAGE
+shutup
+
+# The following line tells the Moose to tint the background image
+# in the user-selected background color. For best results, an image
+# that you want tinted should be a greyscale image.
+TINT BACKGROUND
+
+# This tells the Moose that this animation doesn't have an image for
+# every available phoneme but instead supports only the reduced five
+# or so phonemes of the initial Moose releases. 
+REDUCED PHONEMES
+
+# The following tells the Moose that this animation also contains icons
+# for the different positions of the eyes, which will be used when the
+# Moose looks in the mouse arrow's direction.
+EYES FOLLOW MOUSE

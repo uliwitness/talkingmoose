@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Physician</string>
+	<string>Programmer</string>
+	<string>Time Lord</string>
+	<string>Gardener</string>
+	<string>Ballet Dancer</string>
+	<string>Actor</string>
+	<string>Director</string>
+	<string>Software Evangelist</string>
+	<string>Support Technician</string>
+	<string>Physicist</string>
+	<string>Chemist</string>
+	<string>Biologist</string>
+	<string>Geologist</string>
+	<string>Teacher</string>
+	<string>Musician</string>
+	<string>Telephone Disinfection Professional</string>
+	<string>Mediator</string>
+	<string>Politician</string>
+	<string>Doctor</string>
+	<string>Professor</string>
+	<string>Seamster</string>
+	<string>Writer</string>
+	<string>Technical Writer</string>
+	<string>Poet</string>
+	<string>Playwright</string>
+	<string>Singer</string>
+	<string>Composer</string>
+	<string>Undertaker</string>
+	<string>Dump Truck Operator</string>
+	<string>Telephone Operator</string>
+	<string>Binary Operator</string>
+	<string>Inventor</string>
+	<string>Travelling Salesman</string>
+	<string>Executive</string>
+	<string>CEO</string>
+	<string>Pilot</string>
+	<string>Firefighter</string>
+	<string>Gaffer</string>
+	<string>Producer</string>
+	<string>Dry-Cleaner-Operator</string>
+</array>
+</plist>

@@ -1,0 +1,16 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = UKConvertAnimationAppDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                imageView = NSImageView; 
+                progress = NSProgressIndicator; 
+                status = NSTextField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

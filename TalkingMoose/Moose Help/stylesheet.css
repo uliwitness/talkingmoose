@@ -1,0 +1,194 @@
+/* -----------------------------------------------------------------------------
+    Elements:
+   -------------------------------------------------------------------------- */
+
+body
+{
+    font-family: Lucida Grande, Arial, Sans-Serif;
+    font-size: 11pt;
+    /*text-align: justify;*/
+    margin-left: 40pt;
+    margin-right: 40pt;
+}
+
+h1
+{
+    font-family: Lucida Grande, Arial, Sans-Serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-stretch: semi-condensed;
+    font-size: 14pt;
+    text-align: center;
+    margin-left: -40pt;
+    margin-right: -40pt;
+    padding-top: 4pt;
+    padding-bottom: 4pt;
+    color: rgb(200,200,200);
+    background-color: rgb(240,240,240);
+}
+
+h2
+{
+    font-family: Lucida Grande, Arial, Sans-Serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-stretch: semi-condensed;
+    font-size: 18pt;
+    color: rgb(80,0,160);
+    margin-bottom: 1em;
+}
+
+h3
+{
+    font-family: Lucida Grande, Arial, Sans-Serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-stretch: semi-condensed;
+    font-size: 16pt;
+    color: rgb(80,0,160);
+}
+
+a[href]
+{
+    text-shadow: 2px 2px 1px #aaa; /* Safari Only. */
+}
+
+
+body ul li
+{    list-style-image: url(img/list_bullet.png);}
+
+
+li + li
+{
+    margin-top: 8pt;
+}
+
+ul
+{
+    margin-top: 8pt;
+    margin-bottom: 8pt;
+}
+
+
+/* -----------------------------------------------------------------------------
+    Classes:
+   -------------------------------------------------------------------------- */
+
+body .question
+{
+    color: rgb(80,0,160);
+    background-color: #eee;
+    padding-left: 70pt;
+    padding-top: 20pt;
+    margin-top: -20pt;
+    padding-bottom: 22pt;
+    margin-bottom: 8pt;
+    text-shadow: 2px 2px 1px #aaa; /* Safari Only. */
+    background-image: url(img/question_icon.png);
+    background-repeat: no-repeat;
+}
+
+body ul + .question
+{
+    margin-top: 40pt;
+}
+
+body h2 + .question
+{
+    margin-top: 20pt;
+}
+
+body .answer
+{
+    color: #555;
+    padding-left: 70px;
+    padding-bottom: 64px;
+    margin-bottom: -32px;
+    background-image: url(img/answer_icon.png);
+    background-repeat: no-repeat;
+}
+
+body .note
+{
+    border-left-width: medium;
+    border-left-style: solid;
+    border-left-color: rgb(200,200,200);
+    padding-left: 5em;
+    padding-top: 4pt;
+    padding-bottom: 4pt;
+    margin-top: 1em;
+    /*margin-left: 4em;*/
+    margin-right: 4em;
+    text-indent: -4em;
+    font-size: 9pt;
+    background-color: #eee;
+}
+
+.note b
+{
+    color: rgb(80,0,160);
+    float: left; width: 4em;
+}
+
+body .menu
+{
+    font-weight: bold;
+}
+
+body .menuitem
+{
+    font-weight: bold;
+}
+
+body .uielement
+{
+    font-weight: bold;
+}
+
+body .nav
+{
+    font-family: Lucida Grande, Arial, Sans-Serif;
+    font-stretch: semi-condensed;
+    font-size: 10pt;
+    text-align: center;
+    margin-left: -40pt;
+    margin-left: -40pt;
+    padding-left: 40pt;
+    margin-right: -40pt;
+    padding-right: 40pt;
+    padding-top: 4pt;
+    padding-bottom: 4pt;
+    margin-top: 1em;
+    color: rgb(200,200,200);
+    background-color: rgb(240,240,240);
+}
+
+
+body .release
+{
+    border-left-width: medium;
+    border-left-style: solid;
+    border-left-color: rgb(200,200,200);
+    padding-left: 5em;
+    padding-top: 4pt;
+    padding-bottom: 4pt;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-indent: -4em;
+    font-size: 11pt;
+    background-color: #eee;
+}
+
+body .release b
+{
+    color: rgb(80,0,160);
+    float: left; width: 4em;
+}
+
+
+body .release ul
+{
+    text-indent: 0;
+}
+
+

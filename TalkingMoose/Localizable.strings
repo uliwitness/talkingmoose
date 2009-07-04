@@ -1,0 +1,7 @@
+"Male" = "Male";
+"Female" = "Female";
+"Neuter" = "Neuter";
+"FEEDBACK_EMAIL" = "moosefeedback@zathras.de";
+"FEEDBACK_SUBJECT_PREFIX" = "[Moose Feedback] ";
+"FEEDBACK_URL" = "mailto:moosefeedback@zathras.de?subject=Moose%20Feedback";
+"DEFAULT_ANIMATION" = "Uli's Moose";
