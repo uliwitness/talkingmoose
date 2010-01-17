@@ -259,9 +259,6 @@ static BOOL		gIsSilenced = NO;
 	else
 		[windowWidgets setHidden: YES];
 	#endif
-	
-	[dragArea setCursor: [NSCursor openHandCursor]];
-	[[dragArea window] invalidateCursorRectsForView: dragArea];
 }
 
 
@@ -899,22 +896,33 @@ static BOOL		gIsSilenced = NO;
 }
 
 
-// Called by click on moose image:
--(void) interruptMoose: (id)sender
+-(void)	interruptMoose: (id)sender
 {
-    BOOL        dragInstead = ([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask;
-	
-    if( dragInstead )
-    {
-        [self mooseImageClicked: sender];   // Call title bar drag method instead.
-        return;
-    }
-
     [speechSynth stopSpeaking];
     [recSpeechSynth stopSpeaking];
 	// Reset visible count to make sure it goes away.
 	mooseVisibleCount = 1;
 	[self hideMoose];
+}
+
+
+// Called by click on moose image:
+-(void) mooseAnimationWindowClicked: (id)sender
+{
+    BOOL        dragInstead = NO;
+	
+	Point	globMouse = { 0, 0 };
+	GetGlobalMouse( &globMouse );
+	if( WaitMouseMoved( globMouse ) )
+		dragInstead = YES;
+	
+    if( dragInstead )
+    {
+        [self dragMooseAnimationWindow: sender];   // Call title bar drag method instead.
+        return;
+    }
+	
+	[self interruptMoose: self];
 }
 
 
@@ -965,7 +973,7 @@ static BOOL		gIsSilenced = NO;
 
 
 // Called by click in window's "title bar" drag area:
--(void) mooseImageClicked: (id)sender
+-(void) dragMooseAnimationWindow: (id)sender
 {
 	NSPoint		mousePos = [NSEvent mouseLocation];
 	NSPoint		posDiff = [[imageView window] frame].origin;
@@ -1170,6 +1178,8 @@ static BOOL		gIsSilenced = NO;
         NSRect			bubbleFrame = [bubbleWin frame];
         //NSDictionary*   attrs = [NSDictionary dictionaryWithObjectsAndKeys: [[NSColor whiteColor] colorWithAlphaComponent: 0.8], NSBackgroundColorAttributeName, nil];
         
+		[mooseWin removeChildWindow: bubbleWin];
+		
         [speechBubbleView setString: [NSSpeechSynthesizer prettifyString: currPhrase]];
         //[[speechBubbleView textStorage] setAttributes: attrs range: NSMakeRange(0,[currPhrase length])];
         [speechBubbleView setAlignment: NSCenterTextAlignment];
@@ -1209,6 +1219,8 @@ static BOOL		gIsSilenced = NO;
         else
             [bubbleWin orderFrontRegardless];*/
 		UKLog(@"Positioned at %@ for moose frame %@.",NSStringFromRect( bubbleFrame ),NSStringFromRect( mooseFrame ));
+		
+		[mooseWin addChildWindow: bubbleWin ordered: NSWindowAbove];
     }
 	else
 		UKLog(@"showSpokenString == false");

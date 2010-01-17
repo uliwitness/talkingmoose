@@ -1,1 +1,1 @@
-#define SVN_VERSION "exported"
+#define SVN_VERSION "27"

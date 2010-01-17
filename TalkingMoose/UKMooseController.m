@@ -542,7 +542,7 @@
             // Draw shadow of image:
             NSPoint     pos = { 0, SHDW_WIDTH };
 			[NSGraphicsContext saveGraphicsState];
-			id		shad = [[[NSShadow alloc] init] autorelease];
+			NSShadow	*shad = [[[NSShadow alloc] init] autorelease];
 			[shad setShadowOffset: NSMakeSize(SHDW_HEIGHT,-SHDW_WIDTH)];
 			[shad setShadowBlurRadius: SHDW_BLUR];
 			[shad set];
@@ -563,7 +563,18 @@
 	
 	// Notify anyone who's interested that our image changed:
 	if( delegate && [delegate respondsToSelector: @selector(mooseControllerAnimationDidChange:)] )
-		[delegate mooseControllerAnimationDidChange: self];
+	{
+		if( (lastPhonemeTime -CFAbsoluteTimeGetCurrent()) > 3.0 && isSpeaking )
+		{
+			UKLog(@"finished speaking. (2)");
+			isSpeaking = NO;
+			if( delegate && [delegate respondsToSelector: @selector(speechSynthesizer:didFinishSpeaking:)] )
+				[delegate speechSynthesizer: nil didFinishSpeaking: YES];
+			[self changeMouthImageToPhoneme: 0];
+		}
+		else
+			[delegate mooseControllerAnimationDidChange: self];
+	}
 	[[NSNotificationCenter defaultCenter] postNotificationName: UKMooseControllerAnimationDidChangeNotification object:self];
 }
 
@@ -834,9 +845,7 @@
 	[currentImage release];
 	currentImage = nil;
 	
-	#if MERGE_ANIMATION_FRAMES
 	lastPhonemeTime = CFAbsoluteTimeGetCurrent();
-	#endif
 	
 	[self buildCurrentImage];
 }
@@ -867,13 +876,14 @@
 }
 
 
-- (void)speechSynthesizer:(NSSpeechSynthesizer *)sender didFinishSpeaking:(BOOL)finishedSpeaking
+- (void)speechSynthesizer: (NSSpeechSynthesizer *)sender didFinishSpeaking: (BOOL)finishedSpeaking
 {
-	UKLog(@"finished speaking.");
+	UKLog( @"finished speaking%s. (1)", (finishedSpeaking?"":" abnormally") );
 	isSpeaking = NO;
 	if( delegate && [delegate respondsToSelector: @selector(speechSynthesizer:didFinishSpeaking:)] )
 		[delegate speechSynthesizer: (NSSpeechSynthesizer*) sender didFinishSpeaking: finishedSpeaking];
 	[self changeMouthImageToPhoneme: 0];
+	[sender stopSpeaking];
 }
 
 

@@ -101,7 +101,8 @@
 -(void)	loadSettingsFromDefaultsIntoUI;
 -(void)	setUpSpeechBubbleWindow;
 
-// Nestable show/hide methods that make sure moose window doesn't hide until everyone that needs it visible has signed off:
+// Nestable show/hide methods that make sure moose window doesn't hide until
+//	everyone that needs it visible has signed off:
 -(void) showMoose;
 -(void) hideMoose;
 
@@ -109,7 +110,7 @@
 -(void)	showSettingsWindow: (id)sender;
 
 // Window widget actions:
--(void) interruptMoose: (id)sender;
+-(void) mooseAnimationWindowClicked: (id)sender;
 -(void) resizeMoose: (id)sender;
 -(void) zoomMoose: (id)sender;
 
@@ -118,7 +119,7 @@
 -(void) backgroundImageDidChange: (id)sender;
 -(void) takeStartColorFrom: (id)sender;
 -(void) takeEndColorFrom: (id)sender;
--(void) mooseImageClicked: (id)sender;
+-(void) dragMooseAnimationWindow: (id)sender;
 -(void) takeSpeechDelayFrom: (id)sender;
 -(void) takeLaunchAtLoginBoolFrom: (id)sender;
 -(void) takeShowSpokenStringBoolFrom: (id)sender;
