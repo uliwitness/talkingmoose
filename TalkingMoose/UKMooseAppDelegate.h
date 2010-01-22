@@ -18,12 +18,14 @@
 @class  UKCarbonEventHandler;
 @class  UKMooseDragAreaView;
 @class	UKRecordedSpeechChannel;
+@class	UKClickableImageView;
 
 
 @interface UKMooseAppDelegate : NSObject
 {
 	IBOutlet NSImageView*					imageView;				// Image view where current moose is displayed.
-    IBOutlet NSView*						windowWidgets;			// Close box, zoom box and grow box that we hide when mouse enters our window.
+	IBOutlet NSView*						windowWidgets;			// Close box, zoom box and grow box that we hide when mouse enters our window.
+    IBOutlet UKClickableImageView*			titleView;
 	IBOutlet NSTableView*					mooseList;				// List view for displaying available mooses.
 	IBOutlet UKPhraseDatabase*				phraseDB;				// All phrases.
 	IBOutlet UKSpeechSettingsView*			speechSets;				// Prefs GUI for speech channel.

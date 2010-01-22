@@ -31,6 +31,7 @@
 #import "UKMooseMouthImageRep.h"
 #import "UKGroupFile.h"
 #import "UKRecordedSpeechChannel.h"
+#import "UKClickableImageView.h"
 
 #if DEBUG && 0
 #include <execinfo.h>
@@ -206,7 +207,7 @@ static BOOL		gIsSilenced = NO;
 //	UKLog(@"%@", dockView);
 	
 	// Set window bg pattern:
-	[settingsWindow setBackgroundColor: [NSColor colorWithPatternImage: [NSImage imageNamed: @"window_bg"]]];
+	//[settingsWindow setBackgroundColor: [NSColor colorWithPatternImage: [NSImage imageNamed: @"window_bg"]]];
 	
 	#if 0
 	// Remove the phrases tab for now, it's not finished yet:
@@ -242,8 +243,6 @@ static BOOL		gIsSilenced = NO;
 	[self loadSettingsFromDefaultsIntoUI];
     [self refreshSpeakHoursUI];
     [self setUpSpeechBubbleWindow];
-	
-	//[imageView addSubview: windowWidgets];
 	
 	// Hide widgets on 10.2:
 	#if USE_ISHIDDEN_WHERE_AVAILABLE

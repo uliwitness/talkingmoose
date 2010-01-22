@@ -108,6 +108,16 @@
 		555B1FB60CFDFFC50040273F /* UKSpeechSynthesizer.bundle in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 3D1E8DA10CE288B200334A8E /* UKSpeechSynthesizer.bundle */; };
 		557FD0C20E56FB0C000A1A11 /* UKMooseDragAreaView.h in Headers */ = {isa = PBXBuildFile; fileRef = 557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */; };
 		557FD0C30E56FB0C000A1A11 /* UKMooseDragAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */; };
+		55A660CB110A4F7700FE0723 /* UKWindowDraggingImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A660C9110A4F7700FE0723 /* UKWindowDraggingImageView.h */; };
+		55A660CC110A4F7700FE0723 /* UKWindowDraggingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A660CA110A4F7700FE0723 /* UKWindowDraggingImageView.m */; };
+		55A66103110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A66101110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h */; };
+		55A66104110A559100FE0723 /* UKTabViewSwitchingSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A66102110A559100FE0723 /* UKTabViewSwitchingSourceViewController.m */; };
+		55A66108110A55B900FE0723 /* UKWindowBodyView.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A66106110A55B900FE0723 /* UKWindowBodyView.h */; };
+		55A66109110A55B900FE0723 /* UKWindowBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A66107110A55B900FE0723 /* UKWindowBodyView.m */; };
+		55A66145110A63C200FE0723 /* NSBezierPathCappedBoxes.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A66141110A63C200FE0723 /* NSBezierPathCappedBoxes.h */; };
+		55A66146110A63C200FE0723 /* NSBezierPathCappedBoxes.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A66142110A63C200FE0723 /* NSBezierPathCappedBoxes.m */; };
+		55A66147110A63C200FE0723 /* UKFinderIconCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A66143110A63C200FE0723 /* UKFinderIconCell.h */; };
+		55A66148110A63C200FE0723 /* UKFinderIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A66144110A63C200FE0723 /* UKFinderIconCell.m */; };
 		55DBFB290C175901007D400D /* UKMoosePhraseologyDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 55DBFB270C175901007D400D /* UKMoosePhraseologyDelegate.h */; };
 		55DBFB2A0C175901007D400D /* UKMoosePhraseologyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DBFB280C175901007D400D /* UKMoosePhraseologyDelegate.m */; };
 		55E27CA60E635104003A077C /* Blech.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 55E27CA50E635104003A077C /* Blech.m4a */; };
@@ -292,6 +302,16 @@
 		3DF9CB7309C7426800C7BBA8 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = ../HotKeysLib3/PTHotKeysLib/res/Japanese.lproj/PTKeyComboPanel.nib; sourceTree = SOURCE_ROOT; };
 		557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMooseDragAreaView.h; sourceTree = "<group>"; };
 		557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMooseDragAreaView.m; sourceTree = "<group>"; };
+		55A660C9110A4F7700FE0723 /* UKWindowDraggingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKWindowDraggingImageView.h; path = ../UliKit/UKWindowDraggingImageView.h; sourceTree = SOURCE_ROOT; };
+		55A660CA110A4F7700FE0723 /* UKWindowDraggingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKWindowDraggingImageView.m; path = ../UliKit/UKWindowDraggingImageView.m; sourceTree = SOURCE_ROOT; };
+		55A66101110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKTabViewSwitchingSourceViewController.h; path = ../UliKit/UKTabViewSwitchingSourceViewController.h; sourceTree = SOURCE_ROOT; };
+		55A66102110A559100FE0723 /* UKTabViewSwitchingSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKTabViewSwitchingSourceViewController.m; path = ../UliKit/UKTabViewSwitchingSourceViewController.m; sourceTree = SOURCE_ROOT; };
+		55A66106110A55B900FE0723 /* UKWindowBodyView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKWindowBodyView.h; path = ../UliKit/UKWindowBodyView.h; sourceTree = SOURCE_ROOT; };
+		55A66107110A55B900FE0723 /* UKWindowBodyView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKWindowBodyView.m; path = ../UliKit/UKWindowBodyView.m; sourceTree = SOURCE_ROOT; };
+		55A66141110A63C200FE0723 /* NSBezierPathCappedBoxes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = NSBezierPathCappedBoxes.h; path = ../UKDistributedView/UKFinderIconCell/NSBezierPathCappedBoxes.h; sourceTree = SOURCE_ROOT; };
+		55A66142110A63C200FE0723 /* NSBezierPathCappedBoxes.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = NSBezierPathCappedBoxes.m; path = ../UKDistributedView/UKFinderIconCell/NSBezierPathCappedBoxes.m; sourceTree = SOURCE_ROOT; };
+		55A66143110A63C200FE0723 /* UKFinderIconCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKFinderIconCell.h; path = ../UKDistributedView/UKFinderIconCell/UKFinderIconCell.h; sourceTree = SOURCE_ROOT; };
+		55A66144110A63C200FE0723 /* UKFinderIconCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKFinderIconCell.m; path = ../UKDistributedView/UKFinderIconCell/UKFinderIconCell.m; sourceTree = SOURCE_ROOT; };
 		55DBFB270C175901007D400D /* UKMoosePhraseologyDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKMoosePhraseologyDelegate.h; sourceTree = "<group>"; };
 		55DBFB280C175901007D400D /* UKMoosePhraseologyDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKMoosePhraseologyDelegate.m; sourceTree = "<group>"; };
 		55E27CA50E635104003A077C /* Blech.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blech.m4a; sourceTree = "<group>"; };
@@ -521,6 +541,10 @@
 				3DE190000A275D750040D274 /* NSScreen+ScreenAtPoint.m */,
 				5BBD988806B07F9E00FFE801 /* UKClickableImageView.h */,
 				5BBD988C06B07F9E00FFE801 /* UKClickableImageView.m */,
+				55A660C9110A4F7700FE0723 /* UKWindowDraggingImageView.h */,
+				55A660CA110A4F7700FE0723 /* UKWindowDraggingImageView.m */,
+				55A66101110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h */,
+				55A66102110A559100FE0723 /* UKTabViewSwitchingSourceViewController.m */,
 				5BBD988706B07F9E00FFE801 /* UKIdleTimer.h */,
 				5BBD988206B07F9E00FFE801 /* UKIdleTimer.m */,
 				5BBD987206B07F7900FFE801 /* UKSpeechSettingsView.h */,
@@ -538,6 +562,12 @@
 				3D55636809CB4E7B002608B2 /* UKAboutBox.m */,
 				3D8CAD140CE5E80C0046B187 /* UKNibOwner.m */,
 				3D8CAD150CE5E80C0046B187 /* UKNibOwner.h */,
+				55A66106110A55B900FE0723 /* UKWindowBodyView.h */,
+				55A66107110A55B900FE0723 /* UKWindowBodyView.m */,
+				55A66141110A63C200FE0723 /* NSBezierPathCappedBoxes.h */,
+				55A66142110A63C200FE0723 /* NSBezierPathCappedBoxes.m */,
+				55A66143110A63C200FE0723 /* UKFinderIconCell.h */,
+				55A66144110A63C200FE0723 /* UKFinderIconCell.m */,
 			);
 			name = UliKit;
 			sourceTree = "<group>";
@@ -669,6 +699,11 @@
 				3D8CAD170CE5E80C0046B187 /* UKNibOwner.h in Headers */,
 				557FD0C20E56FB0C000A1A11 /* UKMooseDragAreaView.h in Headers */,
 				55F8CAC90E65F01C00DCF0D2 /* UKRecordedSpeechChannel.h in Headers */,
+				55A660CB110A4F7700FE0723 /* UKWindowDraggingImageView.h in Headers */,
+				55A66103110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h in Headers */,
+				55A66108110A55B900FE0723 /* UKWindowBodyView.h in Headers */,
+				55A66145110A63C200FE0723 /* NSBezierPathCappedBoxes.h in Headers */,
+				55A66147110A63C200FE0723 /* UKFinderIconCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +898,11 @@
 				3D8CAD160CE5E80C0046B187 /* UKNibOwner.m in Sources */,
 				557FD0C30E56FB0C000A1A11 /* UKMooseDragAreaView.m in Sources */,
 				55F8CACA0E65F01C00DCF0D2 /* UKRecordedSpeechChannel.m in Sources */,
+				55A660CC110A4F7700FE0723 /* UKWindowDraggingImageView.m in Sources */,
+				55A66104110A559100FE0723 /* UKTabViewSwitchingSourceViewController.m in Sources */,
+				55A66109110A55B900FE0723 /* UKWindowBodyView.m in Sources */,
+				55A66146110A63C200FE0723 /* NSBezierPathCappedBoxes.m in Sources */,
+				55A66148110A63C200FE0723 /* UKFinderIconCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
