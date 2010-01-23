@@ -126,8 +126,8 @@ int		UKPhraseFileSortFunction( id objA, id objB, void* context )
 	NS_DURING
 		if( tableView == phraseFileTable )
 		{
-			if( [[tableColumn identifier] isEqualToString: @"filename"] )
-				NS_VALUERETURN( [[[phraseFiles objectAtIndex: row] objectForKey: [tableColumn identifier]] stringByDeletingPathExtension], id );
+			if( [[tableColumn identifier] isEqualToString: @"name"] )
+				NS_VALUERETURN( [[[phraseFiles objectAtIndex: row] objectForKey: @"name"] stringByDeletingPathExtension], id );
 			else
 				NS_VALUERETURN( [[phraseFiles objectAtIndex: row] objectForKey: [tableColumn identifier]], id );
 		}
