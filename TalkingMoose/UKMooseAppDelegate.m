@@ -1046,6 +1046,10 @@ static BOOL		gIsSilenced = NO;
 		NSImage*			theImg = [[mooseControllers objectAtIndex: row] valueForKey: @"previewImage"];
 		NSString*			theName = [[mooseControllers objectAtIndex: row] valueForKey: @"name"];
 		
+		[fic setBgColor: nil];
+		[fic setBoxColor: nil];
+		[fic setNameColor: nil];
+		[fic setSelectionColor: nil];
 		[fic setStringValue: theName];
 		[fic setImage: theImg];
 		[fic setImagePosition: NSImageLeft];
