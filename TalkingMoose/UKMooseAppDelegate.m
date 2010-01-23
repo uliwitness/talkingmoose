@@ -32,6 +32,7 @@
 #import "UKGroupFile.h"
 #import "UKRecordedSpeechChannel.h"
 #import "UKClickableImageView.h"
+#import "UKFinderIconCell.h"
 
 #if DEBUG && 0
 #include <execinfo.h>
@@ -1035,6 +1036,21 @@ static BOOL		gIsSilenced = NO;
 	return [[mooseControllers objectAtIndex: row] valueForKey: [tableColumn identifier]];
 }
 
+
+- (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell
+		forTableColumn:(NSTableColumn *)tableColumn row:(int)row
+{
+	if( [[tableColumn identifier] isEqualToString: @"name"] )
+	{
+		UKFinderIconCell*	fic = cell;
+		NSImage*			theImg = [[mooseControllers objectAtIndex: row] valueForKey: @"previewImage"];
+		NSString*			theName = [[mooseControllers objectAtIndex: row] valueForKey: @"name"];
+		
+		[fic setStringValue: theName];
+		[fic setImage: theImg];
+		[fic setImagePosition: NSImageLeft];
+	}
+}
 
 - (void)tableViewSelectionDidChange: (NSNotification *)notification
 {
