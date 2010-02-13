@@ -3,16 +3,18 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
 		<string key="IBDocument.SystemVersion">10C540</string>
-		<string key="IBDocument.InterfaceBuilderVersion">732</string>
+		<string key="IBDocument.InterfaceBuilderVersion">759</string>
 		<string key="IBDocument.AppKitVersion">1038.25</string>
 		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">732</string>
+			<string key="NS.object.0">759</string>
 		</object>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
+			<integer value="242"/>
 			<integer value="390"/>
-			<integer value="238"/>
+			<integer value="1071"/>
+			<integer value="29"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -65,6 +67,16 @@
 									<string key="NSTitle">About Uli's Moose</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSKeyEquivModMask">524288</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="479391044"/>
+									<reference key="NSMixedImage" ref="937503997"/>
+								</object>
+								<object class="NSMenuItem" id="865882110">
+									<reference key="NSMenu" ref="250289448"/>
+									<bool key="NSIsAlternate">YES</bool>
+									<string key="NSTitle">About Uli's Moose</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSKeyEquivModMask">1572864</int>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="479391044"/>
 									<reference key="NSMixedImage" ref="937503997"/>
@@ -2246,7 +2258,6 @@
 														<reference key="NSHScroller" ref="427425501"/>
 														<reference key="NSContentView" ref="836762699"/>
 														<reference key="NSHeaderClipView" ref="32775131"/>
-														<reference key="NSCornerView" ref="314166060"/>
 														<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 													</object>
 													<object class="NSButton" id="110649516">
@@ -3063,7 +3074,7 @@
 							</object>
 						</object>
 					</array>
-					<string key="NSFrame">{{1, 1}, {219, 222}}</string>
+					<string key="NSFrameSize">{219, 222}</string>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{213, 129}</string>
@@ -3077,6 +3088,58 @@
 			</object>
 			<object class="NSCustomObject" id="718731516">
 				<string key="NSClassName">UKTabViewSwitchingSourceViewController</string>
+			</object>
+			<object class="NSWindowTemplate" id="85747266">
+				<int key="NSWindowStyleMask">3</int>
+				<int key="NSWindowBacking">2</int>
+				<string key="NSWindowRect">{{185, 471}, {450, 492}}</string>
+				<int key="NSWTFlags">1886912512</int>
+				<string key="NSWindowTitle"/>
+				<string key="NSWindowClass">UKBorderlessWindow</string>
+				<object class="NSMutableString" key="NSViewClass">
+					<characters key="NS.bytes">View</characters>
+				</object>
+				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
+				<string key="NSWindowContentMinSize">{213, 107}</string>
+				<object class="NSView" key="NSWindowView" id="568563669">
+					<reference key="NSNextResponder"/>
+					<int key="NSvFlags">256</int>
+					<array class="NSMutableArray" key="NSSubviews">
+						<object class="NSImageView" id="703116181">
+							<reference key="NSNextResponder" ref="568563669"/>
+							<int key="NSvFlags">268</int>
+							<set class="NSMutableSet" key="NSDragTypes">
+								<string>Apple PDF pasteboard type</string>
+								<string>Apple PICT pasteboard type</string>
+								<string>Apple PNG pasteboard type</string>
+								<string>NSFilenamesPboardType</string>
+								<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
+								<string>NeXT TIFF v4.0 pasteboard type</string>
+							</set>
+							<string key="NSFrameSize">{450, 492}</string>
+							<reference key="NSSuperview" ref="568563669"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSImageCell" key="NSCell" id="413193582">
+								<int key="NSCellFlags">130560</int>
+								<int key="NSCellFlags2">33554432</int>
+								<object class="NSCustomResource" key="NSContents">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">GoodbyeOldFriend</string>
+								</object>
+								<int key="NSAlign">0</int>
+								<int key="NSScale">0</int>
+								<int key="NSStyle">0</int>
+								<bool key="NSAnimates">NO</bool>
+							</object>
+							<bool key="NSEditable">YES</bool>
+						</object>
+					</array>
+					<string key="NSFrameSize">{450, 492}</string>
+					<reference key="NSSuperview"/>
+				</object>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSMinSize">{213, 129}</string>
+				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -4025,6 +4088,22 @@
 					</object>
 					<int key="connectionID">1065</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">orderOut:</string>
+						<reference key="source" ref="85747266"/>
+						<reference key="destination" ref="703116181"/>
+					</object>
+					<int key="connectionID">1084</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">makeKeyAndOrderFront:</string>
+						<reference key="source" ref="85747266"/>
+						<reference key="destination" ref="865882110"/>
+					</object>
+					<int key="connectionID">1085</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -4147,6 +4226,7 @@
 							<reference ref="824858368"/>
 							<reference ref="334446303"/>
 							<reference ref="547136937"/>
+							<reference ref="865882110"/>
 						</array>
 						<reference key="parent" ref="1031062252"/>
 					</object>
@@ -5907,6 +5987,41 @@
 						<reference key="object" ref="611574621"/>
 						<reference key="parent" ref="561566131"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1067</int>
+						<reference key="object" ref="865882110"/>
+						<reference key="parent" ref="250289448"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1071</int>
+						<reference key="object" ref="85747266"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="568563669"/>
+						</array>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">AltCmdAboutPanel</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1072</int>
+						<reference key="object" ref="568563669"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="703116181"/>
+						</array>
+						<reference key="parent" ref="85747266"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1082</int>
+						<reference key="object" ref="703116181"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="413193582"/>
+						</array>
+						<reference key="parent" ref="568563669"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1083</int>
+						<reference key="object" ref="413193582"/>
+						<reference key="parent" ref="703116181"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -5985,6 +6100,19 @@
 				<boolean value="YES" key="106.ImportedFromIB2"/>
 				<string key="1061.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1066.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="1067.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<boolean value="YES" key="1067.ImportedFromIB2"/>
+				<string key="1071.IBEditorWindowLastContentRect">{{489, 336}, {450, 492}}</string>
+				<string key="1071.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="1071.IBWindowTemplateEditedContentRect">{{489, 336}, {450, 492}}</string>
+				<boolean value="YES" key="1071.ImportedFromIB2"/>
+				<boolean value="YES" key="1071.windowTemplate.hasMinSize"/>
+				<string key="1071.windowTemplate.minSize">{213, 107}</string>
+				<string key="1072.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<boolean value="YES" key="1072.ImportedFromIB2"/>
+				<string key="1082.CustomClassName">UKClickableImageView</string>
+				<string key="1082.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="1083.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="111.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="111.ImportedFromIB2"/>
 				<string key="129.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -6118,6 +6246,7 @@
 				<boolean value="YES" key="270.ImportedFromIB2"/>
 				<string key="271.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="271.ImportedFromIB2"/>
+				<string key="29.IBEditorWindowLastContentRect">{{433, 772}, {289, 20}}</string>
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="29.ImportedFromIB2"/>
 				<string key="300.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -6487,7 +6616,9 @@
 				<boolean value="YES" key="553.ImportedFromIB2"/>
 				<string key="554.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="554.ImportedFromIB2"/>
+				<string key="558.IBEditorWindowLastContentRect">{{347, 623}, {219, 222}}</string>
 				<string key="558.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="558.IBWindowTemplateEditedContentRect">{{347, 623}, {219, 222}}</string>
 				<boolean value="YES" key="558.ImportedFromIB2"/>
 				<boolean value="YES" key="558.windowTemplate.hasMinSize"/>
 				<string key="558.windowTemplate.minSize">{213, 107}</string>
@@ -6505,6 +6636,7 @@
 				<boolean value="YES" key="566.ImportedFromIB2"/>
 				<string key="567.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="567.ImportedFromIB2"/>
+				<string key="57.IBEditorWindowLastContentRect">{{445, 509}, {215, 263}}</string>
 				<string key="57.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="57.ImportedFromIB2"/>
 				<string key="573.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -6558,7 +6690,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1066</int>
+			<int key="maxID">1085</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -6768,6 +6900,7 @@
 						<string key="dragMooseAnimationWindow:">id</string>
 						<string key="mooseAnimationWindowClicked:">id</string>
 						<string key="moosePictClicked:">id</string>
+						<string key="orderFrontSecretAboutBox:">id</string>
 						<string key="repeatLastPhrase:">id</string>
 						<string key="resizeMoose:">id</string>
 						<string key="showSettingsWindow:">id</string>
@@ -7651,6 +7784,7 @@
 			</array>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
+		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
 			<integer value="1050" key="NS.object.0"/>
@@ -7662,5 +7796,15 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../TalkingMoose.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="GoodbyeOldFriend">{450, 492}</string>
+			<string key="MiniMoose">{46, 64}</string>
+			<string key="NSApplicationIcon">{512, 512}</string>
+			<string key="PrefsTitle">{346, 95}</string>
+			<string key="minus-8">{8, 8}</string>
+			<string key="plus-8">{8, 8}</string>
+			<string key="tylerui_growbox">{24, 24}</string>
+			<string key="tylerui_zoombox">{24, 24}</string>
+		</dictionary>
 	</data>
 </archive>

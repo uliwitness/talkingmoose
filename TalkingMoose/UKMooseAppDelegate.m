@@ -64,6 +64,7 @@
 
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
 #define UKUserPhrasesPath       "/Library/Application Support/Moose/Phrases"
+#define MINIMUM_MOOSE_SIZE		48
 
 
 // -----------------------------------------------------------------------------
@@ -259,6 +260,12 @@ static BOOL		gIsSilenced = NO;
 	else
 		[windowWidgets setHidden: YES];
 	#endif
+}
+
+
+-(IBAction)	orderFrontSecretAboutBox: (id)sender
+{
+	
 }
 
 
@@ -937,7 +944,8 @@ static BOOL		gIsSilenced = NO;
     
 	UKLog(@"About to call showMoose");
     [self showMoose];
-    
+    [wd setContentAspectRatio: mooseSize];
+	
     while( YES )
     {
         currEvt = [NSApp nextEventMatchingMask: NSLeftMouseUpMask | NSLeftMouseDraggedMask
@@ -945,20 +953,22 @@ static BOOL		gIsSilenced = NO;
         if( currEvt && [currEvt type] == NSLeftMouseUp )
             break;
         
-        newBox.size.width = oldBox.size.width +[currEvt deltaX];
-        newBox.size.height = oldBox.size.height +[currEvt deltaY];
-        
-        oldBox.origin.y -= newBox.size.height -oldBox.size.height;
-        oldBox.size.width = newBox.size.width;
-        oldBox.size.height = newBox.size.height;
-        
-        newBox.origin = oldBox.origin;
-        newBox.size = [NSImage scaledSize: imgSize toCoverSize: oldBox.size];
+        oldBox.size.width += [currEvt deltaX];
+		oldBox.origin.y = oldBox.origin.y +oldBox.size.height -[currEvt deltaY];
+		oldBox.size.height = oldBox.size.height +[currEvt deltaY];
+		
+		NSSize		newSize = [NSImage scaledSize: imgSize toFitSize: oldBox.size];
+		if( newSize.width < MINIMUM_MOOSE_SIZE || newSize.height < MINIMUM_MOOSE_SIZE )
+			newSize = [NSImage scaledSize: imgSize toFitSize: NSMakeSize( MINIMUM_MOOSE_SIZE, MINIMUM_MOOSE_SIZE )];
+		newBox.size.width = newSize.width;
+		newBox.origin.y = newBox.origin.y +newBox.size.height -newSize.height;
+		newBox.size.height = newSize.height;
         
         [wd setFrame: newBox display: YES];
         [currentMoose setGlobalFrame: newBox];
     }
     
+    [wd setContentAspectRatio: NSMakeSize( 1, 1 )];
     [self setScaleFactor: newBox.size.width / mooseSize.width];
 	
 	[self pinWidgetsBoxToBotRight];

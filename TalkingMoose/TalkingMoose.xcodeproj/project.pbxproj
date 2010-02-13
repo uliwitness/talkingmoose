@@ -15,7 +15,6 @@
 		3D1E8E840CE29C6200334A8E /* quiet.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8E830CE29C6200334A8E /* quiet.png */; };
 		3D32B407087EE78D008CFC56 /* UKSpeechSettingsView.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3D32B405087EE78D008CFC56 /* UKSpeechSettingsView.nib */; };
 		3D4662FB0869D3FC00FA8F86 /* MacPAD.url in Resources */ = {isa = PBXBuildFile; fileRef = 3D4662FA0869D3FC00FA8F86 /* MacPAD.url */; };
-		3D469DE1085E0E200066EB49 /* tylerui_dragbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D469DE0085E0E200066EB49 /* tylerui_dragbar.png */; };
 		3D55636A09CB4E7B002608B2 /* UKAboutBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D55636809CB4E7B002608B2 /* UKAboutBox.m */; };
 		3D55636B09CB4E7B002608B2 /* UKAboutBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D55636909CB4E7B002608B2 /* UKAboutBox.h */; };
 		3D56781E0994F2D8008FDECF /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56781C0994F2D8008FDECF /* UKCrashReporter.m */; };
@@ -108,6 +107,7 @@
 		555B1FB60CFDFFC50040273F /* UKSpeechSynthesizer.bundle in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 3D1E8DA10CE288B200334A8E /* UKSpeechSynthesizer.bundle */; };
 		557FD0C20E56FB0C000A1A11 /* UKMooseDragAreaView.h in Headers */ = {isa = PBXBuildFile; fileRef = 557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */; };
 		557FD0C30E56FB0C000A1A11 /* UKMooseDragAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */; };
+		558FD4001115DE80008D69DC /* GoodbyeOldFriend.png in Resources */ = {isa = PBXBuildFile; fileRef = 558FD3FF1115DE80008D69DC /* GoodbyeOldFriend.png */; };
 		55A660CB110A4F7700FE0723 /* UKWindowDraggingImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A660C9110A4F7700FE0723 /* UKWindowDraggingImageView.h */; };
 		55A660CC110A4F7700FE0723 /* UKWindowDraggingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A660CA110A4F7700FE0723 /* UKWindowDraggingImageView.m */; };
 		55A66103110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A66101110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h */; };
@@ -202,7 +202,6 @@
 		3D34C68808785BDD000189DD /* UKUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKUIElement.h; path = ../UliKit/UKUIElement.h; sourceTree = "<group>"; };
 		3D34C68908785BDD000189DD /* UKUIElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKUIElement.m; path = ../UliKit/UKUIElement.m; sourceTree = "<group>"; };
 		3D4662FA0869D3FC00FA8F86 /* MacPAD.url */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = MacPAD.url; sourceTree = "<group>"; };
-		3D469DE0085E0E200066EB49 /* tylerui_dragbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tylerui_dragbar.png; sourceTree = "<group>"; };
 		3D55636809CB4E7B002608B2 /* UKAboutBox.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKAboutBox.m; path = ../UliKit/UKAboutBox.m; sourceTree = SOURCE_ROOT; };
 		3D55636909CB4E7B002608B2 /* UKAboutBox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKAboutBox.h; path = ../UliKit/UKAboutBox.h; sourceTree = SOURCE_ROOT; };
 		3D56781C0994F2D8008FDECF /* UKCrashReporter.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKCrashReporter.m; path = ../UliKit/UKCrashReporter.m; sourceTree = SOURCE_ROOT; };
@@ -227,7 +226,7 @@
 		3D8CABC70CE4F7970046B187 /* UKMooseMouthImageRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKMooseMouthImageRep.h; path = ../MooseBetterLipSync/UKMooseMouthImageRep.h; sourceTree = SOURCE_ROOT; };
 		3D8CABC80CE4F7970046B187 /* UKMooseMouthImageRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKMooseMouthImageRep.m; path = ../MooseBetterLipSync/UKMooseMouthImageRep.m; sourceTree = SOURCE_ROOT; };
 		3D8CABFD0CE5C97B0046B187 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
-		3D8CAD090CE5D21E0046B187 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = ../UliKit/English.lproj/UKCrashReporter.nib; sourceTree = SOURCE_ROOT; };
+		3D8CAD090CE5D21E0046B187 /* English */ = {isa = PBXFileReference; comments = Stupid; lastKnownFileType = wrapper.nib; name = English; path = ../UliKit/English.lproj/UKCrashReporter.nib; sourceTree = SOURCE_ROOT; };
 		3D8CAD140CE5E80C0046B187 /* UKNibOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKNibOwner.m; path = ../UliKit/UKNibOwner.m; sourceTree = SOURCE_ROOT; };
 		3D8CAD150CE5E80C0046B187 /* UKNibOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKNibOwner.h; path = ../UliKit/UKNibOwner.h; sourceTree = SOURCE_ROOT; };
 		3D8CADEA0CE6450E0046B187 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
@@ -302,6 +301,7 @@
 		3DF9CB7309C7426800C7BBA8 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = ../HotKeysLib3/PTHotKeysLib/res/Japanese.lproj/PTKeyComboPanel.nib; sourceTree = SOURCE_ROOT; };
 		557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMooseDragAreaView.h; sourceTree = "<group>"; };
 		557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMooseDragAreaView.m; sourceTree = "<group>"; };
+		558FD3FF1115DE80008D69DC /* GoodbyeOldFriend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoodbyeOldFriend.png; sourceTree = "<group>"; };
 		55A660C9110A4F7700FE0723 /* UKWindowDraggingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKWindowDraggingImageView.h; path = ../UliKit/UKWindowDraggingImageView.h; sourceTree = SOURCE_ROOT; };
 		55A660CA110A4F7700FE0723 /* UKWindowDraggingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKWindowDraggingImageView.m; path = ../UliKit/UKWindowDraggingImageView.m; sourceTree = SOURCE_ROOT; };
 		55A66101110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKTabViewSwitchingSourceViewController.h; path = ../UliKit/UKTabViewSwitchingSourceViewController.h; sourceTree = SOURCE_ROOT; };
@@ -456,10 +456,10 @@
 				3DF412EC0796B9D0002DE6EF /* BandAid.tiff */,
 				3D73E1DF088557C80067BEE3 /* PrefsTitle.png */,
 				3D73E1F7088559F00067BEE3 /* window_bg.png */,
-				3D469DE0085E0E200066EB49 /* tylerui_dragbar.png */,
 				3D791E970798EBB3009BA042 /* tylerui_zoombox.png */,
 				3D791E980798EBB3009BA042 /* tylerui_growbox.png */,
 				3D791E990798EBB3009BA042 /* tylerui_closebox.png */,
+				558FD3FF1115DE80008D69DC /* GoodbyeOldFriend.png */,
 				5BBD988506B07F9E00FFE801 /* MooseAlphaIcon.icns */,
 				3DF413B00796FE2F002DE6EF /* MooseAnim.icns */,
 				3DA3554E0884740F00825D47 /* MoosePhraseFileIcon.icns */,
@@ -785,7 +785,6 @@
 				3D791E9A0798EBB3009BA042 /* tylerui_zoombox.png in Resources */,
 				3D791E9B0798EBB3009BA042 /* tylerui_growbox.png in Resources */,
 				3D6439C60813BE0900B7779A /* Localizable.strings in Resources */,
-				3D469DE1085E0E200066EB49 /* tylerui_dragbar.png in Resources */,
 				3D4662FB0869D3FC00FA8F86 /* MacPAD.url in Resources */,
 				3D32B407087EE78D008CFC56 /* UKSpeechSettingsView.nib in Resources */,
 				3DA3554F0884740F00825D47 /* MoosePhraseFileIcon.icns in Resources */,
@@ -816,6 +815,7 @@
 				55E27CA60E635104003A077C /* Blech.m4a in Resources */,
 				55F8CB140E66043300DCF0D2 /* SpokenString.plist in Resources */,
 				55F8CB150E66043300DCF0D2 /* SpokenString.aiff in Resources */,
+				558FD4001115DE80008D69DC /* GoodbyeOldFriend.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -848,7 +848,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "open -a /Developer/Applications/Utilities/Help\\ Indexer.app \"${BUILD_DIR}/${BUILD_STYLE}/${PRODUCT_NAME}.app/Contents/Resources/Moose Help/\"";
+			shellScript = "open -a /Developer/Applications/Utilities/Help\\ Indexer.app \"${BUILD_DIR}/${BUILD_STYLE}/${PRODUCT_NAME}.app/Contents/Resources/Moose Help/\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -962,6 +962,7 @@
 			children = (
 				3D8CAD090CE5D21E0046B187 /* English */,
 			);
+			comments = "Stupid\n";
 			name = UKCrashReporter.nib;
 			sourceTree = "<group>";
 		};

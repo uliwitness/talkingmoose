@@ -78,6 +78,8 @@
 	UKRecordedSpeechChannel*				recSpeechSynth;
 }
 
+-(IBAction)	orderFrontSecretAboutBox: (id)sender;
+
 -(void) mooseControllerAnimationDidChange: (UKMooseController*)controller;
 -(void) mooseControllerDidChange;
 
