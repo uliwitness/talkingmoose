@@ -40,24 +40,6 @@
 #endif
 
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
-#define	NSWindowCollectionBehaviorCanJoinAllSpaces	(1 << 0)	// Leopard constant.
-@protocol UKNSWindowLeopardMethods
--(void)	setCollectionBehavior: (unsigned int)n;	// Leopard method.
-@end
-#endif
-
-
-#if USE_ISHIDDEN_WHERE_AVAILABLE
-@interface NSObject (NSViewTenThreeMethods)
-
--(BOOL)		isHidden;
--(void)		setHidden: (BOOL)state;
-
-@end
-#endif
-
-
 // -----------------------------------------------------------------------------
 //	Constants:
 // -----------------------------------------------------------------------------
@@ -92,17 +74,7 @@ static BOOL		gIsSilenced = NO;
 		mooseControllers = [[NSMutableArray alloc] init];
 		
 		// Speech channel:
-		long		outVersion = 0;
-		Gestalt( gestaltSystemVersion, &outVersion);
-		if( outVersion >= 0x1050 )	// NSSpeechSynthesizer has finally become usable! Use that!
-			speechSynth = [[NSSpeechSynthesizer alloc] init];
-		else	// Load UKSpeechChannel from bundle and use that:
-		{
-			NSString*	bPath = [[[NSBundle mainBundle] builtInPlugInsPath] stringByAppendingPathComponent: @"UKSpeechSynthesizer.bundle"];
-			NSBundle*	speechSynthCompatClasses = [NSBundle bundleWithPath: bPath];
-			[speechSynthCompatClasses load];
-			speechSynth = (NSSpeechSynthesizer*) [[NSClassFromString( @"UKSpeechSynthesizer" ) alloc] init];
-		}
+		speechSynth = [[NSSpeechSynthesizer alloc] init];
 		NSDictionary*   settings = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKSpeechChannelSettings"];
 		if( settings )
 		{
@@ -173,11 +145,6 @@ static BOOL		gIsSilenced = NO;
 	DESTROY(speechSynth);
 	DESTROY(appSwitchEventHandler);
 	
-	#if USE_ISHIDDEN_WHERE_AVAILABLE
-	if( ![windowWidgets respondsToSelector: @selector(isHidden)] )	// We're on 10.2, and we retained it an additional time to be able to hide it by removing it from its superview.
-	#endif
-		DESTROY(windowWidgets);
-	
 	[super dealloc];
 }
 
@@ -247,19 +214,7 @@ static BOOL		gIsSilenced = NO;
     [self setUpSpeechBubbleWindow];
 	
 	// Hide widgets on 10.2:
-	#if USE_ISHIDDEN_WHERE_AVAILABLE
-	if( ![windowWidgets respondsToSelector: @selector(isHidden)] )
-	{
-	#endif
-		if( windowWidgetsSuperview == nil )
-			windowWidgetsSuperview = [mooseWindow contentView];
-		[windowWidgets retain];
-		[windowWidgets removeFromSuperview];
-	#if USE_ISHIDDEN_WHERE_AVAILABLE
-	}
-	else
-		[windowWidgets setHidden: YES];
-	#endif
+	[windowWidgets setHidden: YES];
 }
 
 
@@ -357,24 +312,7 @@ static BOOL		gIsSilenced = NO;
 	
 	if( [UKLoginItemRegistry indexForLoginItemWithPath: bundlePath] != -1 )
 		[launchAtLoginSwitch setState: YES];
-	
-	// BG Image:
-	NSString*   bgImageName = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseBkgndImage"];
-	if( bgImageName != nil )
-		[imagePopup selectItemWithTitle: bgImageName];
-	[self backgroundImageDidChange: self];
-	
-	// Gradient colors:
-	NSColor*	theColor = [[[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseBkgndStartColor"] colorValue];
-	if( theColor != nil )
-		[startColor setColor: theColor];
-	[self takeStartColorFrom: startColor];
-
-	theColor = [[[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseBkgndEndColor"] colorValue];
-	if( theColor != nil )
-		[endColor setColor: theColor];
-	[self takeEndColorFrom: endColor];
-	
+		
 	// Delay:
 	NSNumber* delay = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseSpeechDelay"];
 	if( delay != nil )
@@ -391,13 +329,6 @@ static BOOL		gIsSilenced = NO;
 	showSpokenString = (sspks && [sspks boolValue]);
 	[showSpokenStringSwitch setState: showSpokenString];
 	
-	NSNumber*   fios = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseFadeInOut"];
-	fadeInOut = (fios && [fios boolValue]);
-	[fadeInOutSwitch setState: fadeInOut];
-	
-	NSNumber*   aids = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseAnimateInDock"];
-	[animateInDockSwitch setState: (aids && [aids boolValue])];
-
 	NSNumber*   sovms = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseSpeakOnVolumeMount"];
 	if( !sovms )
 	{
@@ -763,16 +694,6 @@ static BOOL		gIsSilenced = NO;
 }
 
 
--(void) toggleFadeInOut: (id)sender
-{
-    NSUserDefaults*     ud = [NSUserDefaults standardUserDefaults];
-    BOOL                state = [ud boolForKey: @"UKMooseFadeInOut"];
-    
-    [ud setBool: !state forKey: @"UKMooseFadeInOut"];
-    fadeInOut = !state;
-}
-
-
 -(void) toggleSpeakVolumeMount: (id)sender
 {
     NSUserDefaults*     ud = [NSUserDefaults standardUserDefaults];
@@ -1078,40 +999,6 @@ static BOOL		gIsSilenced = NO;
 }
 
 
--(void) takeStartColorFrom: (id)sender
-{
-	NSEnumerator*		enny = [mooseControllers objectEnumerator];
-	NSString*			imgName = [imagePopup titleOfSelectedItem];
-	NSColor*			theCol = [sender color];
-	UKMooseController*  mc = nil;
-	
-	while( (mc = [enny nextObject]) )
-	{
-		[mc setStartColor: theCol];
-		[mc setBackgroundImage: imgName];
-	}
-	
-	[[NSUserDefaults standardUserDefaults] setObject: [NSArray arrayWithColor: theCol] forKey: @"UKMooseBkgndStartColor"];
-}
-
-
--(void) takeEndColorFrom: (id)sender
-{
-	NSEnumerator*		enny = [mooseControllers objectEnumerator];
-	NSString*			imgName = [imagePopup titleOfSelectedItem];
-	NSColor*			theCol = [sender color];
-	UKMooseController*  mc = nil;
-	
-	while( (mc = [enny nextObject]) )
-	{
-		[mc setEndColor: theCol];
-		[mc setBackgroundImage: imgName];
-	}
-	
-	[[NSUserDefaults standardUserDefaults] setObject: [NSArray arrayWithColor: theCol] forKey: @"UKMooseBkgndEndColor"];
-}
-
-
 -(void)	showSettingsWindow: (id)sender
 {
 	[settingsWindow makeKeyAndOrderFront: sender];
@@ -1267,10 +1154,7 @@ static BOOL		gIsSilenced = NO;
 		if( showSpokenString )
 		{
 			[speechBubbleView setString: currPhrase];
-            if( fadeInOut )
-                [[speechBubbleView window] fadeInWithDuration: 0.5];
-            else
-                [[speechBubbleView window] orderFrontRegardless];
+			[[speechBubbleView window] fadeInWithDuration: 0.5];
 		}
 	}
 }
@@ -1357,39 +1241,6 @@ static BOOL		gIsSilenced = NO;
 }
 
 
--(void) takeAnimateInDockBoolFrom: (id)sender
-{
-	[[NSUserDefaults standardUserDefaults] setObject: [NSNumber numberWithBool: [sender state]] forKey: @"UKMooseAnimateInDock"];
-	[currentMoose setDontIdleAnimate: ![sender state]];
-}
-
-
--(void) backgroundImageDidChange: (id)sender
-{
-	NSEnumerator*		enny = [mooseControllers objectEnumerator];
-	UKMooseController*  mc = nil;
-	NSString*			imgName = [imagePopup titleOfSelectedItem];
-	
-	while( (mc = [enny nextObject]) )
-		[mc setBackgroundImage: imgName];
-	
-	[[NSUserDefaults standardUserDefaults] setObject: imgName forKey: @"UKMooseBkgndImage"];
-	
-	// Now correctly enable color pickers:
-	mc = [mooseControllers lastObject];
-	[startColor setEnabled: [mc bgImageHasStartColor: imgName]];
-	if( ![mc bgImageHasStartColor: imgName] )
-		[startColorLabel setTextColor: [NSColor disabledControlTextColor]];
-	else
-		[startColorLabel setTextColor: [NSColor controlTextColor]];
-	[endColor setEnabled: [mc bgImageHasEndColor: imgName]];
-	if( ![mc bgImageHasEndColor: imgName] )
-		[endColorLabel setTextColor: [NSColor disabledControlTextColor]];
-	else
-		[endColorLabel setTextColor: [NSColor controlTextColor]];
-}
-
-
 -(void) mooseControllerDidChange
 {
     //UKLog(@"mooseControllerDidChange");
@@ -1425,16 +1276,9 @@ static BOOL		gIsSilenced = NO;
 	[recSpeechSynth setDelegate: currentMoose];
 	[[NSUserDefaults standardUserDefaults] setObject: [currentMoose filePath] forKey: @"UKCurrentMooseAnimationPath"];
 	
-	NSString*   bgImageName = [[[imagePopup titleOfSelectedItem] retain] autorelease];
-	[imagePopup removeAllItems];
-	if( !bgImageName || [bgImageName length] == 0 )
-		bgImageName = @"Transparent";
-	[imagePopup addItemsWithTitles: [currentMoose backgroundImages]];
-	[imagePopup selectItemWithTitle: bgImageName];
-	
 	// Make sure widgets are in lower right:
 	[self pinWidgetsBoxToBotRight];
-	[currentMoose setDontIdleAnimate: ![animateInDockSwitch state]];
+	//[currentMoose setDontIdleAnimate: NO];
 	
     [self refreshShutUpBadge];
     
@@ -1481,28 +1325,8 @@ static BOOL		gIsSilenced = NO;
     
 		// Show/hide the window widgets if mouse is (not) in window:
 		BOOL    hideWidgets = !NSPointInRect( [NSEvent mouseLocation], [mooseWin frame] );
-		#if USE_ISHIDDEN_WHERE_AVAILABLE
-		if( [windowWidgets respondsToSelector: @selector(isHidden)] )
-		{
-			if( hideWidgets != [windowWidgets isHidden] )
-				[windowWidgets setHidden: hideWidgets];
-		}
-		else	// 10.2 doesn't have isHidden and setHidden:
-		{
-		#endif
-			if( hideWidgets && ([windowWidgets superview] != nil) )			// Should be hidden but isn't?
-			{
-				[windowWidgets removeFromSuperview];
-				[windowWidgets setNeedsDisplay: YES];
-			}
-			else if( !hideWidgets && ([windowWidgets superview] == nil) )	// Is hidden but shouldn't be?
-			{
-				[windowWidgetsSuperview addSubview: windowWidgets];
-				[windowWidgetsSuperview setNeedsDisplay: YES];
-			}
-		#if USE_ISHIDDEN_WHERE_AVAILABLE
-		}
-		#endif
+		if( hideWidgets != [windowWidgets isHidden] )
+			[windowWidgets setHidden: hideWidgets];
 	}
 
     //UKLog(@"mooseControllerAnimationDidChange:");
@@ -1654,26 +1478,11 @@ static BOOL		gIsSilenced = NO;
 	
     if( mooseVisibleCount == 0 )
     {
-		[currentMoose setDontIdleAnimate: ![animateInDockSwitch state]];
-        if( fadeInOut )
-        {
-            UKLog( @"\tHit zero. Fading out." );
-            [[imageView window] fadeOutWithDuration: 0.5];
-            [[speechBubbleView window] fadeOutWithDuration: 0.5];
-        }
-        else
-        {
-            UKLog( @"\tHit zero. Hiding." );
-            [[imageView window] orderOut: nil];
-            [[speechBubbleView window] orderOut: nil];
-        }
-		
-		/*if( rehideAppOnMooseHide )
-		{
-			[NSApp hide: nil];
-			rehideAppOnMooseHide = NO;
-		}*/
-    }
+		//[currentMoose setDontIdleAnimate: NO];
+		UKLog( @"\tHit zero. Fading out." );
+		[[imageView window] fadeOutWithDuration: 0.5];
+		[[speechBubbleView window] fadeOutWithDuration: 0.5];
+	}
 }
 
 
@@ -1734,21 +1543,11 @@ void	UKLogBacktrace()
 			UKLog(@"no need to constrain rect %@.",NSStringFromRect( mooseFrame ));
 
 		// Now actually show the Moose window:
-        if( fadeInOut )
-        {
-            UKLog( @"\tHit 1. Fading in." );
-            [mooseWin fadeInWithDuration: 0.5];
-			if( showSpokenString )
-				[[speechBubbleView window] fadeInWithDuration: 0.5];
-        }
-        else
-        {
-            UKLog( @"\tHit 1. Showing." );
-            [mooseWin orderFrontRegardless];
-            if( showSpokenString )
-				[[speechBubbleView window] orderFrontRegardless];
-        }
-		[currentMoose setDontIdleAnimate: NO];
+		UKLog( @"\tHit 1. Fading in." );
+		[mooseWin fadeInWithDuration: 0.5];
+		if( showSpokenString )
+			[[speechBubbleView window] fadeInWithDuration: 0.5];
+		//[currentMoose setDontIdleAnimate: NO];
 		[self pinWidgetsBoxToBotRight];
     }
 	else
@@ -1775,7 +1574,5 @@ void	UKLogBacktrace()
 {
 	[self speakPhraseFromGroup: @"MOOSE SETTINGS PICTURE CLICKED"];
 }
-
-
 
 @end

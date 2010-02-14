@@ -104,7 +104,6 @@
 		3DF9CB5309C7422800C7BBA8 /* PTKeyCodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DF9CB4F09C7422800C7BBA8 /* PTKeyCodes.plist */; };
 		3DF9CB5409C7422800C7BBA8 /* PTKeyComboPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF9CB5109C7422800C7BBA8 /* PTKeyComboPanel.nib */; };
 		3DF9CB5A09C7423600C7BBA8 /* PTKeyboardIcon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3DF9CB5909C7423600C7BBA8 /* PTKeyboardIcon.tiff */; };
-		555B1FB60CFDFFC50040273F /* UKSpeechSynthesizer.bundle in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 3D1E8DA10CE288B200334A8E /* UKSpeechSynthesizer.bundle */; };
 		557FD0C20E56FB0C000A1A11 /* UKMooseDragAreaView.h in Headers */ = {isa = PBXBuildFile; fileRef = 557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */; };
 		557FD0C30E56FB0C000A1A11 /* UKMooseDragAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */; };
 		558FD4001115DE80008D69DC /* GoodbyeOldFriend.png in Resources */ = {isa = PBXBuildFile; fileRef = 558FD3FF1115DE80008D69DC /* GoodbyeOldFriend.png */; };
@@ -153,37 +152,6 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3D1E8D3F0CE27F3800334A8E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3D1E8D3B0CE27F3800334A8E /* UKSpeechSynthesizer.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8D5B49B6048680CD000E48DA;
-			remoteInfo = UKSpeechSynthesizer;
-		};
-		3D1E8D880CE2881200334A8E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3D1E8D3B0CE27F3800334A8E /* UKSpeechSynthesizer.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8D5B49AC048680CD000E48DA;
-			remoteInfo = UKSpeechSynthesizer;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		555B1FB40CFDFFBA0040273F /* Copy Plugins */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				555B1FB60CFDFFC50040273F /* UKSpeechSynthesizer.bundle in Copy Plugins */,
-			);
-			name = "Copy Plugins";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -194,8 +162,6 @@
 		3D05C45C08888A1600DA756A /* UKDocumentationController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKDocumentationController.h; path = ../UliKit/UKDocumentationController.h; sourceTree = "<group>"; };
 		3D05C45D08888A1600DA756A /* UKDocumentationController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKDocumentationController.m; path = ../UliKit/UKDocumentationController.m; sourceTree = "<group>"; };
 		3D05C4910888C68C00DA756A /* Moose Help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Moose Help"; sourceTree = "<group>"; };
-		3D1E8D3B0CE27F3800334A8E /* UKSpeechSynthesizer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UKSpeechSynthesizer.xcodeproj; path = UKSpeechSynthesizer/UKSpeechSynthesizer.xcodeproj; sourceTree = "<group>"; };
-		3D1E8DA10CE288B200334A8E /* UKSpeechSynthesizer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = UKSpeechSynthesizer.bundle; path = UKSpeechSynthesizer/build/Deployment/UKSpeechSynthesizer.bundle; sourceTree = "<group>"; };
 		3D1E8E810CE29C5200334A8E /* loud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loud.png; sourceTree = "<group>"; };
 		3D1E8E830CE29C6200334A8E /* quiet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quiet.png; sourceTree = "<group>"; };
 		3D32B406087EE78D008CFC56 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = ../UliKit/English.lproj/UKSpeechSettingsView.nib; sourceTree = SOURCE_ROOT; };
@@ -427,7 +393,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				3D1E8D3B0CE27F3800334A8E /* UKSpeechSynthesizer.xcodeproj */,
 			);
 			name = CocoaMoose;
 			sourceTree = "<group>";
@@ -485,7 +450,6 @@
 				3D05C4910888C68C00DA756A /* Moose Help */,
 				3DF5B7ED0AA830D1000D2302 /* minus-8.png */,
 				3DF5B7EF0AA830D1000D2302 /* plus-8.png */,
-				3D1E8DA10CE288B200334A8E /* UKSpeechSynthesizer.bundle */,
 				3D1E8E810CE29C5200334A8E /* loud.png */,
 				3D1E8E830CE29C6200334A8E /* quiet.png */,
 				55E27CA50E635104003A077C /* Blech.m4a */,
@@ -596,14 +560,6 @@
 				3DC7D508090FC9B0009A2900 /* NSWindow+Fade.m */,
 			);
 			name = UliKit;
-			sourceTree = "<group>";
-		};
-		3D1E8D3C0CE27F3800334A8E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3D1E8D400CE27F3800334A8E /* UKSpeechSynthesizer.bundle */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3D8CABCD0CE4F79A0046B187 /* MouthShapes */ = {
@@ -717,7 +673,6 @@
 				3D0FC5A20813D159003CD615 /* Determine Version */,
 				8D1107270486CEB800E47090 /* Headers */,
 				8D1107290486CEB800E47090 /* Resources */,
-				555B1FB40CFDFFBA0040273F /* Copy Plugins */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				3D3A1FEF09B1E1A800FB2B56 /* Build Helpbook */,
@@ -725,7 +680,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3D1E8D890CE2881200334A8E /* PBXTargetDependency */,
 			);
 			name = Moose;
 			productInstallPath = "$(HOME)/Applications";
@@ -743,28 +697,12 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CocoaMoose */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 3D1E8D3C0CE27F3800334A8E /* Products */;
-					ProjectRef = 3D1E8D3B0CE27F3800334A8E /* UKSpeechSynthesizer.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Moose */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		3D1E8D400CE27F3800334A8E /* UKSpeechSynthesizer.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = UKSpeechSynthesizer.bundle;
-			remoteRef = 3D1E8D3F0CE27F3800334A8E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D1107290486CEB800E47090 /* Resources */ = {
@@ -908,14 +846,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		3D1E8D890CE2881200334A8E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UKSpeechSynthesizer;
-			targetProxy = 3D1E8D880CE2881200334A8E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -1031,8 +961,6 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Moose;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
-				"SDKROOT[arch=ppc]" = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
 				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = "";
 				WARNING_CFLAGS = (
@@ -1065,8 +993,6 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Moose;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
-				"SDKROOT[arch=ppc]" = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
 				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = "";
 				WARNING_CFLAGS = (
@@ -1084,7 +1010,7 @@
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_VERSION = 4.0;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 			};
 			name = Development;
 		};
@@ -1097,10 +1023,8 @@
 				);
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_VERSION = 4.0;
-				GCC_VERSION_ppc = 3.3;
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
-				"SDKROOT[arch=ppc]" = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 			};
 			name = Deployment;
 		};

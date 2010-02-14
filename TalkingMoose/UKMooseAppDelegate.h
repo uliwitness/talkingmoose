@@ -24,14 +24,11 @@
 @interface UKMooseAppDelegate : NSObject
 {
 	IBOutlet NSImageView*					imageView;				// Image view where current moose is displayed.
-	IBOutlet NSView*						windowWidgets;			// Close box, zoom box and grow box that we hide when mouse enters our window.
+	IBOutlet NSView*						windowWidgets;			// Zoom box and grow box that we unhide when mouse enters our window.
     IBOutlet UKClickableImageView*			titleView;
 	IBOutlet NSTableView*					mooseList;				// List view for displaying available mooses.
 	IBOutlet UKPhraseDatabase*				phraseDB;				// All phrases.
 	IBOutlet UKSpeechSettingsView*			speechSets;				// Prefs GUI for speech channel.
-	IBOutlet NSColorWell*					startColor;				// Start color for gradient or solid color.
-	IBOutlet NSColorWell*					endColor;				// End color for gradient.
-	IBOutlet NSPopUpButton*					imagePopup;				// Pop-up of images available as backgrounds.
 	NSMutableArray*							mooseControllers;		// List of all available moose controllers.
 	UKMooseController*						currentMoose;			// Moose controller currently in use.
 	NSSpeechSynthesizer*					speechSynth;			// The synthesizer the current moose is lip-syncing with.
@@ -56,13 +53,10 @@
 	IBOutlet NSButton*						speakHoursSwitch;       // Checkbox for turning on/off speaking time on full hours.
 	IBOutlet NSButton*						speakHalfHoursSwitch;   // Checkbox for turning on/off speaking time on half hours.
 	IBOutlet NSButton*						beAnallyRetentive;      // Checkbox for removing the inexactitude from full/half hour announcements.
-	IBOutlet NSButton*						fadeInOutSwitch;        // Checkbox for activating fade in/fade out for Moose window.
     float									scaleFactor;            // By how much the current moose animation window should be enlarged/made smaller.
-    BOOL									fadeInOut;              // state of fade in/out checkbox.
 	IBOutlet UKApplicationListController*	excludeApps;			// List of apps that cause the Moose to go quiet.
 	IBOutlet NSWindow*						settingsWindow;			// The settings window.
 	NSView*									windowWidgetsSuperview;	// View to reinsert windowWidgets in again to show it on 10.2.
-	IBOutlet NSButton*						animateInDockSwitch;	// Checkbox whether Moose is to keep linking and glancing when not speaking.
 	BOOL									speakOnVolumeMount;
 	IBOutlet NSButton*						speakOnVolMountSwitch;
 	BOOL									speakOnAppLaunchQuit;
@@ -70,8 +64,6 @@
 	BOOL									speakOnAppChange;
 	IBOutlet NSButton*						speakOnAppChangeSwitch;
 	UKCarbonEventHandler*					appSwitchEventHandler;
-	IBOutlet NSTextField*					startColorLabel;
-	IBOutlet NSTextField*					endColorLabel;
 	IBOutlet UKMooseDragAreaView*			dragArea;
 	BOOL									didSetDragAreaCursor;
 	IBOutlet NSTabView*						mainTabView;
@@ -94,8 +86,6 @@
 -(void) toggleSpeakHours: (id)sender;
 -(void) toggleSpeakHalfHours: (id)sender;
 -(void) toggleAnallyRetentive: (id)sender;
--(void) toggleFadeInOut: (id)sender;
--(void) takeAnimateInDockBoolFrom: (id)sender;
 -(void) toggleSpeakVolumeMount: (id)sender;
 -(void) toggleSpeakAppLaunchQuit: (id)sender;
 -(void) toggleSpeakAppChange: (id)sender;
@@ -120,9 +110,6 @@
 
 -(void)	moosePictClicked: (id)sender;
 
--(void) backgroundImageDidChange: (id)sender;
--(void) takeStartColorFrom: (id)sender;
--(void) takeEndColorFrom: (id)sender;
 -(void) dragMooseAnimationWindow: (id)sender;
 -(void) takeSpeechDelayFrom: (id)sender;
 -(void) takeLaunchAtLoginBoolFrom: (id)sender;
