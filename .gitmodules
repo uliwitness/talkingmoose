@@ -1,0 +1,3 @@
+[submodule "UliKit"]
+	path = UliKit
+	url = git@github.com:uliwitness/UliKit.git
