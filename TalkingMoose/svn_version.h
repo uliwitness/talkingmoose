@@ -1,1 +1,2 @@
-#define SVN_VERSION "90"
+#define SVN_VERSION	"99"
+#define GIT_HASH	"6b872f3aa853796e16c90dfbc884f8674316011d"

@@ -264,6 +264,7 @@
 		3DF9CB6909C7425700C7BBA8 /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = ../HotKeysLib3/PTHotKeysLib/res/German.lproj/PTKeyComboPanel.nib; sourceTree = SOURCE_ROOT; };
 		3DF9CB7209C7426800C7BBA8 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Japanese; path = ../HotKeysLib3/PTHotKeysLib/res/Japanese.lproj/PTKeyCodes.plist; sourceTree = SOURCE_ROOT; };
 		3DF9CB7309C7426800C7BBA8 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = ../HotKeysLib3/PTHotKeysLib/res/Japanese.lproj/PTKeyComboPanel.nib; sourceTree = SOURCE_ROOT; };
+		5543C2DB112822D600783ABE /* make_git_version_header.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = make_git_version_header.sh; path = ../UliKit/make_git_version_header.sh; sourceTree = SOURCE_ROOT; };
 		557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMooseDragAreaView.h; sourceTree = "<group>"; };
 		557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMooseDragAreaView.m; sourceTree = "<group>"; };
 		558FD3FF1115DE80008D69DC /* GoodbyeOldFriend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoodbyeOldFriend.png; sourceTree = "<group>"; };
@@ -519,6 +520,7 @@
 				3D05C45D08888A1600DA756A /* UKDocumentationController.m */,
 				3DF5B8020AA83246000D2302 /* UKSystemInfo.h */,
 				3DF5B8010AA83246000D2302 /* UKSystemInfo.m */,
+				5543C2DB112822D600783ABE /* make_git_version_header.sh */,
 				3DE61B480869B177002EC36A /* Auto-Generated */,
 				3D56781D0994F2D8008FDECF /* UKCrashReporter.h */,
 				3D56781C0994F2D8008FDECF /* UKCrashReporter.m */,
@@ -772,7 +774,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = ../UliKit/make_svn_version_header.sh;
+			shellScript = ../UliKit/make_git_version_header.sh;
 		};
 		3D3A1FEF09B1E1A800FB2B56 /* Build Helpbook */ = {
 			isa = PBXShellScriptBuildPhase;
