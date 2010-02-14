@@ -84,7 +84,7 @@ static PTHotKeyCenter* _sharedHotKeyCenter = nil;
 								[[hotKey keyCombo] modifiers],
 								hotKeyID,
 								GetEventDispatcherTarget(),
-								nil,
+								0L,
 								&carbonHotKey );
 
 	if( err )
@@ -254,7 +254,7 @@ static PTHotKeyCenter* _sharedHotKeyCenter = nil;
 	
 
 	NSAssert( hotKeyID.signature == 'PTHk', @"Invalid hot key id" );
-	NSAssert( hotKeyID.id != nil, @"Invalid hot key id" );
+	NSAssert( hotKeyID.id != 0L, @"Invalid hot key id" );
 
 	hotKey = (PTHotKey*)hotKeyID.id;
 
