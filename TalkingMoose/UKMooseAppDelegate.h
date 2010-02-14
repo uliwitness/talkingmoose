@@ -25,7 +25,6 @@
 {
 	IBOutlet NSImageView*					imageView;				// Image view where current moose is displayed.
 	IBOutlet NSView*						windowWidgets;			// Zoom box and grow box that we unhide when mouse enters our window.
-    IBOutlet UKClickableImageView*			titleView;
 	IBOutlet NSTableView*					mooseList;				// List view for displaying available mooses.
 	IBOutlet UKPhraseDatabase*				phraseDB;				// All phrases.
 	IBOutlet UKSpeechSettingsView*			speechSets;				// Prefs GUI for speech channel.

@@ -120,6 +120,7 @@
 		55DBFB290C175901007D400D /* UKMoosePhraseologyDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 55DBFB270C175901007D400D /* UKMoosePhraseologyDelegate.h */; };
 		55DBFB2A0C175901007D400D /* UKMoosePhraseologyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DBFB280C175901007D400D /* UKMoosePhraseologyDelegate.m */; };
 		55E27CA60E635104003A077C /* Blech.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 55E27CA50E635104003A077C /* Blech.m4a */; };
+		55F3136E1127FBCD00BC5C68 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F3136C1127FBCD00BC5C68 /* MainMenu.xib */; };
 		55F8CAC90E65F01C00DCF0D2 /* UKRecordedSpeechChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 55F8CAC70E65F01C00DCF0D2 /* UKRecordedSpeechChannel.h */; };
 		55F8CACA0E65F01C00DCF0D2 /* UKRecordedSpeechChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8CAC80E65F01C00DCF0D2 /* UKRecordedSpeechChannel.m */; };
 		55F8CB140E66043300DCF0D2 /* SpokenString.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55F8CB120E66043300DCF0D2 /* SpokenString.plist */; };
@@ -147,7 +148,6 @@
 		5BBD989A06B07F9F00FFE801 /* NSImage+NiceScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988D06B07F9E00FFE801 /* NSImage+NiceScaling.m */; };
 		5BBD98A106B07FE600FFE801 /* UKBorderlessWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BBD989F06B07FE500FFE801 /* UKBorderlessWindow.h */; };
 		5BBD98A206B07FE600FFE801 /* UKBorderlessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD98A006B07FE500FFE801 /* UKBorderlessWindow.m */; };
-		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -155,7 +155,6 @@
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		3D05C3F4088875CD00DA756A /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
@@ -281,6 +280,7 @@
 		55DBFB270C175901007D400D /* UKMoosePhraseologyDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKMoosePhraseologyDelegate.h; sourceTree = "<group>"; };
 		55DBFB280C175901007D400D /* UKMoosePhraseologyDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKMoosePhraseologyDelegate.m; sourceTree = "<group>"; };
 		55E27CA50E635104003A077C /* Blech.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blech.m4a; sourceTree = "<group>"; };
+		55F3136D1127FBCD00BC5C68 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		55F8CAC70E65F01C00DCF0D2 /* UKRecordedSpeechChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKRecordedSpeechChannel.h; sourceTree = "<group>"; };
 		55F8CAC80E65F01C00DCF0D2 /* UKRecordedSpeechChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKRecordedSpeechChannel.m; sourceTree = "<group>"; };
 		55F8CB120E66043300DCF0D2 /* SpokenString.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SpokenString.plist; sourceTree = "<group>"; };
@@ -416,7 +416,7 @@
 				3D6439C50813BE0900B7779A /* Localizable.strings */,
 				3D567A170994FACB008FDECF /* UKCrashReporter.strings */,
 				3D7CC85C09CB6A760036DC5C /* UKUpdateChecker.strings */,
-				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+				55F3136C1127FBCD00BC5C68 /* MainMenu.xib */,
 				3DF412CF0796A168002DE6EF /* MiniMoose.tiff */,
 				3DF412EC0796B9D0002DE6EF /* BandAid.tiff */,
 				3D73E1DF088557C80067BEE3 /* PrefsTitle.png */,
@@ -709,7 +709,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				5BBD988E06B07F9F00FFE801 /* CocoaMoose_Prefix.pch in Resources */,
 				5BBD989206B07F9F00FFE801 /* MooseAlphaIcon.icns in Resources */,
@@ -754,6 +753,7 @@
 				55F8CB140E66043300DCF0D2 /* SpokenString.plist in Resources */,
 				55F8CB150E66043300DCF0D2 /* SpokenString.aiff in Resources */,
 				558FD4001115DE80008D69DC /* GoodbyeOldFriend.png in Resources */,
+				55F3136E1127FBCD00BC5C68 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -855,14 +855,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				29B97319FDCFA39411CA2CEA /* English */,
-			);
-			name = MainMenu.nib;
-			sourceTree = "<group>";
-		};
 		3D32B405087EE78D008CFC56 /* UKSpeechSettingsView.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -932,6 +924,14 @@
 				3DF9CB7309C7426800C7BBA8 /* Japanese */,
 			);
 			name = PTKeyComboPanel.nib;
+			sourceTree = "<group>";
+		};
+		55F3136C1127FBCD00BC5C68 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55F3136D1127FBCD00BC5C68 /* English */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
