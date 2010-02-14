@@ -82,7 +82,9 @@
 -(void)	loadPhrasesInFile: (NSString*)currPath
 {
 	[UKGroupFile cleanUpGroupFile: currPath];
+	#if DEBUG
 	int		oldNumPhrases = [phraseFiles numPhrases];
+	#endif DEBUG
 	[phraseFiles parseGroupFile: currPath withDefaultCategory: @"PAUSE"];
 	UKLog(@"Loaded %d phrases from file %@.",([phraseFiles numPhrases] -oldNumPhrases),currPath);
 }
