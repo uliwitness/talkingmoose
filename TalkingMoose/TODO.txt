@@ -1,5 +1,4 @@
 TO DO!
--> Move area needs to be positioned more reliably, it disappears occasionally.
 -> More intuitive window widgets and drag areas. Maybe at top in regular OS X look?
 -> Detect printing and speak special phrases then.
 -> Adopt LSSharedList for login items setting.
@@ -21,8 +20,11 @@ TO DO!
 -> Make Moose "scroll in" from screen edge like a popup folder?
 -> Make Moose "scroll in" upside-down from the top?
 -> Make edges of animations suitable for light *and* dark backgrounds.
--> The moose might consider taking control of iTunes (or other audio) and lowering the volume on my blasting music before speaking.  I frequently can't really hear him over my tunes.
+-> The moose might consider taking control of iTunes (or other audio) and
+	lowering the volume on my blasting music before speaking.  I frequently
+	can't really hear him over my tunes.
 
+ Ã Move area needs to be positioned more reliably, it disappears occasionally.
  Ã app switch needs to say settings phrases when switching to Moose.
  Ã Find crash in outline view for phrases.
  Ã Why is quit speech interrupted?
