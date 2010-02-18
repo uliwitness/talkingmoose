@@ -4,3 +4,6 @@
 [submodule "UliPhoneKit"]
 	path = UliPhoneKit
 	url = git@github.com:uliwitness/UliPhoneKit.git
+[submodule "UKDistributedView"]
+	path = UKDistributedView
+	url = git@github.com:uliwitness/UKDistributedView.git
