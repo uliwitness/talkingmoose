@@ -7,3 +7,6 @@
 [submodule "UKDistributedView"]
 	path = UKDistributedView
 	url = git@github.com:uliwitness/UKDistributedView.git
+[submodule "UKSyntaxColoredTextDocument"]
+	path = UKSyntaxColoredTextDocument
+	url = git@github.com:uliwitness/UKSyntaxColoredTextDocument.git
