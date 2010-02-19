@@ -10,3 +10,6 @@
 [submodule "UKSyntaxColoredTextDocument"]
 	path = UKSyntaxColoredTextDocument
 	url = git@github.com:uliwitness/UKSyntaxColoredTextDocument.git
+[submodule "MGTwitterEngine"]
+	path = MGTwitterEngine
+	url = git@github.com:uliwitness/mgtwitterengine.git
