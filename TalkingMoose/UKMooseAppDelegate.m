@@ -220,7 +220,8 @@ static BOOL		gIsSilenced = NO;
 
 -(IBAction)	orderFrontSecretAboutBox: (id)sender
 {
-	
+	[self speakPhraseFromGroup: @"SECRET ABOUT BOX"];
+	[secretAboutBox makeKeyAndOrderFront: self];
 }
 
 
@@ -356,7 +357,7 @@ static BOOL		gIsSilenced = NO;
 	speakOnAppChange = [soacs boolValue];
 	[speakOnAppChangeSwitch setState: speakOnAppChange];
 	
-	UKLog(@"Loaded.");
+	//UKLog(@"Loaded.");
 }
 
 
@@ -366,7 +367,7 @@ static BOOL		gIsSilenced = NO;
 
 -(void)		setUpSpeechBubbleWindow
 {
-	UKLog(@"About to set up.");
+	//UKLog(@"About to set up.");
 	UKBorderlessWindow*		speechBubbleWindow = (UKBorderlessWindow*) [speechBubbleView window];
 	
 	[speechBubbleWindow setBackgroundColor: [NSColor clearColor]];
@@ -377,7 +378,7 @@ static BOOL		gIsSilenced = NO;
 	[speechBubbleWindow setHidesOnDeactivate: NO];
 	[speechBubbleWindow setCanHide: NO];
 	[speechBubbleView setTextContainerInset: NSMakeSize(4,6)];
-	UKLog(@"Finished.");
+	//UKLog(@"Finished.");
 }
 
 
@@ -863,7 +864,7 @@ static BOOL		gIsSilenced = NO;
                 newBox = [wd frame];
     NSEvent*    currEvt = nil;
     
-	UKLog(@"About to call showMoose");
+	//UKLog(@"About to call showMoose");
     [self showMoose];
     [wd setContentAspectRatio: mooseSize];
 	
@@ -913,7 +914,7 @@ static BOOL		gIsSilenced = NO;
 	posDiff.x -= mousePos.x;
 	posDiff.y -= mousePos.y;
 	
-	UKLog(@"About to call showMoose");
+	//UKLog(@"About to call showMoose");
     [self showMoose];
     
 	[[NSCursor closedHandCursor] push];
@@ -1087,7 +1088,7 @@ static BOOL		gIsSilenced = NO;
 {
     if( showSpokenString )
     {
-		UKLog(@"About to position.");
+		//UKLog(@"About to position.");
         NSWindow*		bubbleWin = [speechBubbleView window];
         NSWindow*		mooseWin = [imageView window];
         NSRect			mooseFrame = [mooseWin frame];
@@ -1134,12 +1135,12 @@ static BOOL		gIsSilenced = NO;
             [bubbleWin fadeInWithDuration: 0.5];
         else
             [bubbleWin orderFrontRegardless];*/
-		UKLog(@"Positioned at %@ for moose frame %@.",NSStringFromRect( bubbleFrame ),NSStringFromRect( mooseFrame ));
+		//UKLog(@"Positioned at %@ for moose frame %@.",NSStringFromRect( bubbleFrame ),NSStringFromRect( mooseFrame ));
 		
 		[mooseWin addChildWindow: bubbleWin ordered: NSWindowAbove];
     }
 	else
-		UKLog(@"showSpokenString == false");
+		;//UKLog(@"showSpokenString == false");
 }
 
 
@@ -1284,7 +1285,7 @@ static BOOL		gIsSilenced = NO;
     
 	[self mooseControllerAnimationDidChange: currentMoose];
 	
-	UKLog(@"Moose controller changed to \"%@\".", [currentMoose filePath]);
+	//UKLog(@"Moose controller changed to \"%@\".", [currentMoose filePath]);
 }
 
 
@@ -1305,7 +1306,7 @@ static BOOL		gIsSilenced = NO;
 	wBox.origin = [[imageView window] convertBaseToScreen: [imageView convertPoint: NSZeroPoint toView: nil]];
 	[currentMoose setGlobalFrame: wBox];
 
-	UKLog(@"About to call showMoose");
+	//UKLog(@"About to call showMoose");
 	[self showMoose];
 }
 
@@ -1320,7 +1321,7 @@ static BOOL		gIsSilenced = NO;
 	if( [mooseWin isVisible] )
 	{
     	[imageView setImage: currImg];
-		UKLog(@"Moose image changed.");
+		//UKLog(@"Moose image changed.");
         //[mooseWin invalidateShadow];
     
 		// Show/hide the window widgets if mouse is (not) in window:
@@ -1340,10 +1341,10 @@ static BOOL		gIsSilenced = NO;
 	if( terminateWhenFinished )
 	{
 		[NSApp replyToApplicationShouldTerminate: YES];
-		UKLog(@"finished speaking, resuming quit.");
+		//UKLog(@"finished speaking, resuming quit.");
 	}
 
-    UKLog(@"finished.");
+    //UKLog(@"finished.");
 }
 
 
@@ -1471,7 +1472,7 @@ static BOOL		gIsSilenced = NO;
 {
     mooseVisibleCount--;
     
-    UKLog( @"Hiding Moose (%d)", mooseVisibleCount );
+    //UKLog( @"Hiding Moose (%d)", mooseVisibleCount );
     
 	if( mooseVisibleCount < 0 )
 		mooseVisibleCount = 0;
@@ -1479,7 +1480,7 @@ static BOOL		gIsSilenced = NO;
     if( mooseVisibleCount == 0 )
     {
 		//[currentMoose setDontIdleAnimate: NO];
-		UKLog( @"\tHit zero. Fading out." );
+		//UKLog( @"\tHit zero. Fading out." );
 		[[imageView window] fadeOutWithDuration: 0.5];
 		[[speechBubbleView window] fadeOutWithDuration: 0.5];
 	}
@@ -1521,7 +1522,7 @@ void	UKLogBacktrace()
 	
     mooseVisibleCount++;
     
-    UKLog( @"Showing Moose (%d)", mooseVisibleCount );
+    //UKLog( @"Showing Moose (%d)", mooseVisibleCount );
     //UKLogBacktrace();
 	
 	if( mooseVisibleCount < 0 )
@@ -1536,14 +1537,14 @@ void	UKLogBacktrace()
 		if( mooseFrame.origin.x != oldMooseFrame.origin.x || mooseFrame.origin.y != oldMooseFrame.origin.y
 			|| mooseFrame.size.width != oldMooseFrame.size.width || mooseFrame.size.height != oldMooseFrame.size.height )
 		{
-			UKLog(@"constraining moose rect %@ to %@", NSStringFromRect( oldMooseFrame ), NSStringFromRect( mooseFrame ));
+			//UKLog(@"constraining moose rect %@ to %@", NSStringFromRect( oldMooseFrame ), NSStringFromRect( mooseFrame ));
 			[mooseWin setFrame: mooseFrame display: YES];
 		}
 		else
-			UKLog(@"no need to constrain rect %@.",NSStringFromRect( mooseFrame ));
+			;//UKLog(@"no need to constrain rect %@.",NSStringFromRect( mooseFrame ));
 
 		// Now actually show the Moose window:
-		UKLog( @"\tHit 1. Fading in." );
+		//UKLog( @"\tHit 1. Fading in." );
 		[mooseWin fadeInWithDuration: 0.5];
 		if( showSpokenString )
 			[[speechBubbleView window] fadeInWithDuration: 0.5];
@@ -1551,7 +1552,7 @@ void	UKLogBacktrace()
 		[self pinWidgetsBoxToBotRight];
     }
 	else
-		UKLog(@"Not 1, leaving window untouched.");
+		;//UKLog(@"Not 1, leaving window untouched.");
     [mooseWin invalidateShadow];
 }
 

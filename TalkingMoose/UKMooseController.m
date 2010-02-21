@@ -566,7 +566,7 @@
 	{
 		if( (lastPhonemeTime -CFAbsoluteTimeGetCurrent()) > 3.0 && isSpeaking )
 		{
-			UKLog(@"finished speaking. (2)");
+			//UKLog(@"finished speaking. (2)");
 			isSpeaking = NO;
 			if( delegate && [delegate respondsToSelector: @selector(speechSynthesizer:didFinishSpeaking:)] )
 				[delegate speechSynthesizer: nil didFinishSpeaking: YES];
@@ -859,7 +859,7 @@
 	#endif MERGE_ANIMATION_FRAMES
 	NSImage*		phonImg = [self imageFileForPhoneme: thePhoneme];
 	if( !phonImg )
-		UKLog(@"No image for phoneme %d",thePhoneme);
+		;//UKLog(@"No image for phoneme %d",thePhoneme);
 	else
 	{
 		#if MERGE_ANIMATION_FRAMES
@@ -878,7 +878,7 @@
 
 - (void)speechSynthesizer: (NSSpeechSynthesizer *)sender didFinishSpeaking: (BOOL)finishedSpeaking
 {
-	UKLog( @"finished speaking%s. (1)", (finishedSpeaking?"":" abnormally") );
+	//UKLog( @"finished speaking%s. (1)", (finishedSpeaking?"":" abnormally") );
 	isSpeaking = NO;
 	if( delegate && [delegate respondsToSelector: @selector(speechSynthesizer:didFinishSpeaking:)] )
 		[delegate speechSynthesizer: (NSSpeechSynthesizer*) sender didFinishSpeaking: finishedSpeaking];
@@ -889,7 +889,7 @@
 
 - (void)speechSynthesizer:(NSSpeechSynthesizer *)sender willSpeakPhoneme:(short)phonemeOpcode
 {
-	UKLog(@"About to speak phoneme %d",phonemeOpcode);
+	//UKLog(@"About to speak phoneme %d",phonemeOpcode);
 	
 	if( !isSpeaking && delegate && [delegate respondsToSelector: @selector(mooseControllerSpeechStart:)] )
 	{

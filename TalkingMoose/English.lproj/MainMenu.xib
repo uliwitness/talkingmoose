@@ -11,12 +11,12 @@
 			<string key="NS.object.0">759</string>
 		</object>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
-			<integer value="549"/>
-			<integer value="29"/>
 			<integer value="1071"/>
-			<integer value="237"/>
-			<integer value="390"/>
 			<integer value="558"/>
+			<integer value="549"/>
+			<integer value="237"/>
+			<integer value="57"/>
+			<integer value="390"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1043,7 +1043,6 @@
 														<reference key="NSHScroller" ref="988838516"/>
 														<reference key="NSContentView" ref="409589607"/>
 														<reference key="NSHeaderClipView" ref="932974288"/>
-														<reference key="NSCornerView" ref="117941457"/>
 														<bytes key="NSScrollAmts">QSAAAEEgAABCZAAAQmQAAA</bytes>
 													</object>
 												</array>
@@ -2589,9 +2588,6 @@
 			<object class="NSCustomObject" id="869215725">
 				<string key="NSClassName">UKDocumentationController</string>
 			</object>
-			<object class="NSCustomObject" id="386664245">
-				<string key="NSClassName">UKUpdateChecker</string>
-			</object>
 			<object class="NSCustomObject" id="549794476">
 				<string key="NSClassName">UKAboutBox</string>
 			</object>
@@ -2928,6 +2924,9 @@
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
+			</object>
+			<object class="NSCustomObject" id="761732978">
+				<string key="NSClassName">SUUpdater</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -3597,30 +3596,6 @@
 					<int key="connectionID">539</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">checkForUpdates:</string>
-						<reference key="source" ref="386664245"/>
-						<reference key="destination" ref="824858368"/>
-					</object>
-					<int key="connectionID">544</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">takeBoolFromObject:</string>
-						<reference key="source" ref="386664245"/>
-						<reference key="destination" ref="204497309"/>
-					</object>
-					<int key="connectionID">545</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">prefsButton</string>
-						<reference key="source" ref="386664245"/>
-						<reference key="destination" ref="204497309"/>
-					</object>
-					<int key="connectionID">546</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">creditsTextView</string>
 						<reference key="source" ref="549794476"/>
@@ -3781,12 +3756,28 @@
 					<int key="connectionID">1084</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">secretAboutBox</string>
+						<reference key="source" ref="238646484"/>
+						<reference key="destination" ref="85747266"/>
+					</object>
+					<int key="connectionID">1086</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">makeKeyAndOrderFront:</string>
-						<reference key="source" ref="85747266"/>
+						<string key="label">orderFrontSecretAboutBox:</string>
+						<reference key="source" ref="238646484"/>
 						<reference key="destination" ref="865882110"/>
 					</object>
-					<int key="connectionID">1085</int>
+					<int key="connectionID">1087</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">checkForUpdates:</string>
+						<reference key="source" ref="761732978"/>
+						<reference key="destination" ref="824858368"/>
+					</object>
+					<int key="connectionID">1089</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4395,12 +4386,6 @@
 						<reference key="object" ref="869215725"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">UKDocumentationController</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">543</int>
-						<reference key="object" ref="386664245"/>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">UKUpdateChecker</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">547</int>
@@ -5566,6 +5551,11 @@
 						<reference key="object" ref="413193582"/>
 						<reference key="parent" ref="703116181"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1088</int>
+						<reference key="object" ref="761732978"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -5741,9 +5731,9 @@
 				<boolean value="YES" key="222.ImportedFromIB2"/>
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="23.ImportedFromIB2"/>
-				<string key="236.IBEditorWindowLastContentRect">{{340, 224}, {617, 567}}</string>
+				<string key="236.IBEditorWindowLastContentRect">{{481, 170}, {617, 567}}</string>
 				<string key="236.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="236.IBWindowTemplateEditedContentRect">{{340, 224}, {617, 567}}</string>
+				<string key="236.IBWindowTemplateEditedContentRect">{{481, 170}, {617, 567}}</string>
 				<boolean value="YES" key="236.ImportedFromIB2"/>
 				<boolean value="YES" key="236.windowTemplate.hasMinSize"/>
 				<string key="236.windowTemplate.minSize">{617, 567}</string>
@@ -6069,7 +6059,6 @@
 				<boolean value="YES" key="531.ImportedFromIB2"/>
 				<string key="532.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="532.ImportedFromIB2"/>
-				<boolean value="YES" key="543.ImportedFromIB2"/>
 				<boolean value="YES" key="547.ImportedFromIB2"/>
 				<string key="548.IBEditorWindowLastContentRect">{{347, 511}, {268, 334}}</string>
 				<string key="548.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -6157,7 +6146,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1085</int>
+			<int key="maxID">1089</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -6392,6 +6381,7 @@
 						<string key="mooseList">NSTableView</string>
 						<string key="phraseDB">UKPhraseDatabase</string>
 						<string key="repeatLastPhraseHKField">NSTextField</string>
+						<string key="secretAboutBox">NSPanel</string>
 						<string key="settingsWindow">NSWindow</string>
 						<string key="showSpokenStringSwitch">NSButton</string>
 						<string key="shutUpSwitch">NSButton</string>
@@ -6559,30 +6549,6 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">UKUpdateChecker</string>
-					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="checkForUpdates:">id</string>
-						<string key="takeBoolFromObject:">id</string>
-					</dictionary>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">prefsButton</string>
-						<string key="NS.object.0">NSButton</string>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../UliKit/UKUpdateChecker.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UKUpdateChecker</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBUserSource</string>
-						<string key="minorKey"/>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">UKWindowBodyView</string>
 					<string key="superclassName">NSView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -6597,6 +6563,35 @@
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">../UliKit/UKWindowDraggingImageView.h</string>
 					</object>
+				</object>
+			</array>
+			<array class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../../Sparkle/build/Debug/Sparkle.framework/Versions/A/Headers/SUAppcast.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="170205597">
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../../Sparkle/build/Debug/Sparkle.framework/Versions/A/Headers/SUUpdater.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SUUpdater</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">checkForUpdates:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">delegate</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<reference key="sourceIdentifier" ref="170205597"/>
 				</object>
 			</array>
 			<array class="NSMutableArray" key="referencedPartialClassDescriptionsV3.2+">

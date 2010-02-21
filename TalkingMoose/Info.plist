@@ -64,5 +64,7 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>http://www.the-void-software.com/sparkle/TalkingMoose.rss</string>
 </dict>
 </plist>

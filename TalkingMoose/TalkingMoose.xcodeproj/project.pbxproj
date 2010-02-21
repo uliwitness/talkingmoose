@@ -60,8 +60,6 @@
 		3DDF4F3B09D6B9180033B811 /* UKCarbonEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF4F3909D6B9180033B811 /* UKCarbonEventHandler.m */; };
 		3DE190010A275D750040D274 /* NSScreen+ScreenAtPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE18FFF0A275D750040D274 /* NSScreen+ScreenAtPoint.h */; };
 		3DE190020A275D750040D274 /* NSScreen+ScreenAtPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE190000A275D750040D274 /* NSScreen+ScreenAtPoint.m */; };
-		3DE61AE50869AC65002EC36A /* UKUpdateChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE61AE30869AC65002EC36A /* UKUpdateChecker.h */; };
-		3DE61AE60869AC65002EC36A /* UKUpdateChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE61AE40869AC65002EC36A /* UKUpdateChecker.m */; };
 		3DE61AED0869AC77002EC36A /* NSData+URLUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE61AEB0869AC77002EC36A /* NSData+URLUserAgent.h */; };
 		3DE61AEE0869AC77002EC36A /* NSData+URLUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE61AEC0869AC77002EC36A /* NSData+URLUserAgent.m */; };
 		3DE61AF40869ACAE002EC36A /* Message.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE61AF30869ACAE002EC36A /* Message.framework */; };
@@ -117,6 +115,8 @@
 		55A66146110A63C200FE0723 /* NSBezierPathCappedBoxes.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A66142110A63C200FE0723 /* NSBezierPathCappedBoxes.m */; };
 		55A66147110A63C200FE0723 /* UKFinderIconCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A66143110A63C200FE0723 /* UKFinderIconCell.h */; };
 		55A66148110A63C200FE0723 /* UKFinderIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A66144110A63C200FE0723 /* UKFinderIconCell.m */; };
+		55DAEFDD11317D6B00701FC7 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 55DAEFB811317C1E00701FC7 /* Sparkle.framework */; };
+		55DAEFDE11317DAD00701FC7 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DAEFB811317C1E00701FC7 /* Sparkle.framework */; };
 		55DBFB290C175901007D400D /* UKMoosePhraseologyDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 55DBFB270C175901007D400D /* UKMoosePhraseologyDelegate.h */; };
 		55DBFB2A0C175901007D400D /* UKMoosePhraseologyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DBFB280C175901007D400D /* UKMoosePhraseologyDelegate.m */; };
 		55E27CA60E635104003A077C /* Blech.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 55E27CA50E635104003A077C /* Blech.m4a */; };
@@ -151,6 +151,58 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		55DAEFB711317C1E00701FC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55DAEFAB11317C1E00701FC7 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = Sparkle;
+		};
+		55DAEFB911317C1E00701FC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55DAEFAB11317C1E00701FC7 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 61B5F90209C4CEE200B25A18;
+			remoteInfo = "Sparkle Test App";
+		};
+		55DAEFBB11317C1E00701FC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55DAEFAB11317C1E00701FC7 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 612279D90DB5470200AB99EA;
+			remoteInfo = "Sparkle Unit Tests";
+		};
+		55DAEFBD11317C1E00701FC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55DAEFAB11317C1E00701FC7 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55F9B5E410C68F890099848A;
+			remoteInfo = finish_installation;
+		};
+		55DAEFCC11317C6000701FC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55DAEFAB11317C1E00701FC7 /* Sparkle.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = Sparkle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		55DAEFDC11317D4400701FC7 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				55DAEFDD11317D6B00701FC7 /* Sparkle.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -214,8 +266,6 @@
 		3DDF4F3909D6B9180033B811 /* UKCarbonEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKCarbonEventHandler.m; path = ../UliKit/UKCarbonEventHandler.m; sourceTree = SOURCE_ROOT; };
 		3DE18FFF0A275D750040D274 /* NSScreen+ScreenAtPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSScreen+ScreenAtPoint.h"; path = "../UliKit/NSScreen+ScreenAtPoint.h"; sourceTree = SOURCE_ROOT; };
 		3DE190000A275D750040D274 /* NSScreen+ScreenAtPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSScreen+ScreenAtPoint.m"; path = "../UliKit/NSScreen+ScreenAtPoint.m"; sourceTree = SOURCE_ROOT; };
-		3DE61AE30869AC65002EC36A /* UKUpdateChecker.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKUpdateChecker.h; path = ../UliKit/UKUpdateChecker.h; sourceTree = "<group>"; };
-		3DE61AE40869AC65002EC36A /* UKUpdateChecker.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKUpdateChecker.m; path = ../UliKit/UKUpdateChecker.m; sourceTree = "<group>"; };
 		3DE61AEB0869AC77002EC36A /* NSData+URLUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSData+URLUserAgent.h"; path = "../UliKit/NSData+URLUserAgent.h"; sourceTree = "<group>"; };
 		3DE61AEC0869AC77002EC36A /* NSData+URLUserAgent.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSData+URLUserAgent.m"; path = "../UliKit/NSData+URLUserAgent.m"; sourceTree = "<group>"; };
 		3DE61AF30869ACAE002EC36A /* Message.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Message.framework; path = /System/Library/Frameworks/Message.framework; sourceTree = "<absolute>"; };
@@ -278,6 +328,7 @@
 		55A66142110A63C200FE0723 /* NSBezierPathCappedBoxes.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = NSBezierPathCappedBoxes.m; path = ../UKDistributedView/UKFinderIconCell/NSBezierPathCappedBoxes.m; sourceTree = SOURCE_ROOT; };
 		55A66143110A63C200FE0723 /* UKFinderIconCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKFinderIconCell.h; path = ../UKDistributedView/UKFinderIconCell/UKFinderIconCell.h; sourceTree = SOURCE_ROOT; };
 		55A66144110A63C200FE0723 /* UKFinderIconCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKFinderIconCell.m; path = ../UKDistributedView/UKFinderIconCell/UKFinderIconCell.m; sourceTree = SOURCE_ROOT; };
+		55DAEFAB11317C1E00701FC7 /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = ../Sparkle/Sparkle.xcodeproj; sourceTree = SOURCE_ROOT; };
 		55DBFB270C175901007D400D /* UKMoosePhraseologyDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKMoosePhraseologyDelegate.h; sourceTree = "<group>"; };
 		55DBFB280C175901007D400D /* UKMoosePhraseologyDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKMoosePhraseologyDelegate.m; sourceTree = "<group>"; };
 		55E27CA50E635104003A077C /* Blech.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blech.m4a; sourceTree = "<group>"; };
@@ -318,6 +369,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55DAEFDE11317DAD00701FC7 /* Sparkle.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				3DC2F8910798039800423F0A /* Carbon.framework in Frameworks */,
 				3DE61AF40869ACAE002EC36A /* Message.framework in Frameworks */,
@@ -352,6 +404,7 @@
 				3DF41F3A07974CB8002DE6EF /* AppleScriptCommands */,
 				3D1575AA071BE9E2008183E8 /* PTHotKeys */,
 				3D1575B1071BEA73008183E8 /* UliKit */,
+				55DAEF8E11317B3700701FC7 /* Sparkle */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -394,6 +447,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				55DAEFAB11317C1E00701FC7 /* Sparkle.xcodeproj */,
 			);
 			name = CocoaMoose;
 			sourceTree = "<group>";
@@ -514,8 +568,6 @@
 				5BBD988206B07F9E00FFE801 /* UKIdleTimer.m */,
 				5BBD987206B07F7900FFE801 /* UKSpeechSettingsView.h */,
 				5BBD986D06B07F7800FFE801 /* UKSpeechSettingsView.m */,
-				3DE61AE30869AC65002EC36A /* UKUpdateChecker.h */,
-				3DE61AE40869AC65002EC36A /* UKUpdateChecker.m */,
 				3D05C45C08888A1600DA756A /* UKDocumentationController.h */,
 				3D05C45D08888A1600DA756A /* UKDocumentationController.m */,
 				3DF5B8020AA83246000D2302 /* UKSystemInfo.h */,
@@ -608,6 +660,24 @@
 			name = AppleScriptCommands;
 			sourceTree = "<group>";
 		};
+		55DAEF8E11317B3700701FC7 /* Sparkle */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sparkle;
+			sourceTree = "<group>";
+		};
+		55DAEFAC11317C1E00701FC7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55DAEFB811317C1E00701FC7 /* Sparkle.framework */,
+				55DAEFBA11317C1E00701FC7 /* Sparkle Test App.app */,
+				55DAEFBC11317C1E00701FC7 /* Sparkle Unit Tests.octest */,
+				55DAEFBE11317C1E00701FC7 /* finish_installation.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -630,7 +700,6 @@
 				3DF41F3707974CAE002DE6EF /* UKSpeakRandomPhraseCommand.h in Headers */,
 				3DF41F7307975218002DE6EF /* UKDisableSpeechCommand.h in Headers */,
 				3DF41F7407975218002DE6EF /* UKEnableSpeechCommand.h in Headers */,
-				3DE61AE50869AC65002EC36A /* UKUpdateChecker.h in Headers */,
 				3DE61AED0869AC77002EC36A /* NSData+URLUserAgent.h in Headers */,
 				3DE61B450869B176002EC36A /* svn_version.h in Headers */,
 				3DA3544F08841AB400825D47 /* UKApplicationListController.h in Headers */,
@@ -673,6 +742,7 @@
 			buildConfigurationList = 3DBAA7240880496A0035E83A /* Build configuration list for PBXNativeTarget "Moose" */;
 			buildPhases = (
 				3D0FC5A20813D159003CD615 /* Determine Version */,
+				55DAEFDC11317D4400701FC7 /* Copy Frameworks */,
 				8D1107270486CEB800E47090 /* Headers */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
@@ -682,6 +752,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				55DAEFCD11317C6000701FC7 /* PBXTargetDependency */,
 			);
 			name = Moose;
 			productInstallPath = "$(HOME)/Applications";
@@ -697,14 +768,58 @@
 			buildConfigurationList = 3DBAA7280880496A0035E83A /* Build configuration list for PBXProject "TalkingMoose" */;
 			compatibilityVersion = "Xcode 3.0";
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CocoaMoose */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 55DAEFAC11317C1E00701FC7 /* Products */;
+					ProjectRef = 55DAEFAB11317C1E00701FC7 /* Sparkle.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Moose */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		55DAEFB811317C1E00701FC7 /* Sparkle.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Sparkle.framework;
+			remoteRef = 55DAEFB711317C1E00701FC7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55DAEFBA11317C1E00701FC7 /* Sparkle Test App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Sparkle Test App.app";
+			remoteRef = 55DAEFB911317C1E00701FC7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55DAEFBC11317C1E00701FC7 /* Sparkle Unit Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Sparkle Unit Tests.octest";
+			remoteRef = 55DAEFBB11317C1E00701FC7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55DAEFBE11317C1E00701FC7 /* finish_installation.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = finish_installation.app;
+			remoteRef = 55DAEFBD11317C1E00701FC7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D1107290486CEB800E47090 /* Resources */ = {
@@ -813,7 +928,6 @@
 				3DF41F3607974CAE002DE6EF /* UKSpeakRandomPhraseCommand.m in Sources */,
 				3DF41F7507975218002DE6EF /* UKEnableSpeechCommand.m in Sources */,
 				3DF41F7607975218002DE6EF /* UKDisableSpeechCommand.m in Sources */,
-				3DE61AE60869AC65002EC36A /* UKUpdateChecker.m in Sources */,
 				3DE61AEE0869AC77002EC36A /* NSData+URLUserAgent.m in Sources */,
 				3DA3545008841AB400825D47 /* UKApplicationListController.m in Sources */,
 				3D05C45F08888A1600DA756A /* UKDocumentationController.m in Sources */,
@@ -847,6 +961,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		55DAEFCD11317C6000701FC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Sparkle;
+			targetProxy = 55DAEFCC11317C6000701FC7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
@@ -939,7 +1061,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3DBAA7250880496A0035E83A /* Development */ = {
+		3DBAA7250880496A0035E83A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "${NATIVE_ARCH}";
@@ -973,9 +1095,9 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
-			name = Development;
+			name = Debug;
 		};
-		3DBAA7260880496A0035E83A /* Deployment */ = {
+		3DBAA7260880496A0035E83A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
@@ -1005,18 +1127,18 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
-			name = Deployment;
+			name = Release;
 		};
-		3DBAA7290880496A0035E83A /* Development */ = {
+		3DBAA7290880496A0035E83A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_VERSION = 4.0;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 			};
-			name = Development;
+			name = Debug;
 		};
-		3DBAA72A0880496A0035E83A /* Deployment */ = {
+		3DBAA72A0880496A0035E83A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
@@ -1028,7 +1150,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 			};
-			name = Deployment;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1036,20 +1158,20 @@
 		3DBAA7240880496A0035E83A /* Build configuration list for PBXNativeTarget "Moose" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3DBAA7250880496A0035E83A /* Development */,
-				3DBAA7260880496A0035E83A /* Deployment */,
+				3DBAA7250880496A0035E83A /* Debug */,
+				3DBAA7260880496A0035E83A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Development;
+			defaultConfigurationName = Release;
 		};
 		3DBAA7280880496A0035E83A /* Build configuration list for PBXProject "TalkingMoose" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3DBAA7290880496A0035E83A /* Development */,
-				3DBAA72A0880496A0035E83A /* Deployment */,
+				3DBAA7290880496A0035E83A /* Debug */,
+				3DBAA72A0880496A0035E83A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Development;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

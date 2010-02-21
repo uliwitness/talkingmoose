@@ -9,6 +9,7 @@
 #import "UKPhraseDatabase.h"
 #import "UKGroupFile.h"
 #import "NSFileManager+CreateDirectoriesForPath.h"
+#import "svn_version.h"
 
 
 @implementation UKPhraseDatabase
@@ -25,9 +26,16 @@
 		NSString*		builtinPhrasePath = [[NSBundle mainBundle] pathForResource: @"Phrases" ofType: nil];
 		if( ![fm fileExistsAtPath: stdPhrasePath] )
 			[fm createDirectoriesForPath: stdPhrasePath];
+		
+		NSString*	mooseVersionPath = [stdPhrasePath stringByAppendingPathComponent: @"mooseversion"];
+		NSString*	mooseVersionStr = [NSString stringWithContentsOfFile: mooseVersionPath];
+		mooseVersionStr = [[mooseVersionStr componentsSeparatedByString: @"\n"] objectAtIndex: 0];	// First line only, in case we ever need to store other info.
+		BOOL		versionChanged = [@"" SVN_VERSION isEqualToString: mooseVersionStr] == NO;
+		
 		NSArray*	builtinPhrases = [fm directoryContentsAtPath: builtinPhrasePath];
 		int			x = 0, numFiles = [builtinPhrases count];
-		for( x = 0; x < numFiles; x++)
+		BOOL		success = YES;
+		for( x = 0; (x < numFiles) && success; x++)
 		{
 			NSString*	currFileName = [builtinPhrases objectAtIndex: x];
 			if( [currFileName characterAtIndex: 0] == '.' )	// Ignore any errant DS_Store etc.
@@ -35,11 +43,16 @@
 			NSString*	currFile = [stdPhrasePath stringByAppendingPathComponent: currFileName];
 			NSString*	currFileOff = [stdPhrasePathOff stringByAppendingPathComponent: currFileName];
 			NSString*	srcFile = [builtinPhrasePath stringByAppendingPathComponent: currFileName];
-			if( ![fm fileExistsAtPath: currFile] && ![fm fileExistsAtPath: currFileOff] )
-				[fm copyPath: srcFile toPath: currFile handler: nil];
-			// +++ NEED TO RE-COPY OLD FILES ON UPDATE!
+			if( (![fm fileExistsAtPath: currFile] && ![fm fileExistsAtPath: currFileOff])
+				|| versionChanged )
+			{
+				[fm removeItemAtPath: currFile error: nil];	// In case we're updating.
+				success = [fm copyItemAtPath: srcFile toPath: currFile error: nil];
+			}
 		}
 		
+		if( success && ![@"" SVN_VERSION isEqualToString: mooseVersionStr] )
+			[@"" SVN_VERSION writeToFile: mooseVersionPath atomically: YES];
 		[self loadPhrasesInFolder: stdPhrasePath];
 		[self loadPhrasesInFolder: @"/Library/Application Support/Moose/Phrases"];
 		[self loadPhrasesInFolder: @"~/Library/Application Support/Moose/Phrases"];
@@ -83,10 +96,10 @@
 {
 	[UKGroupFile cleanUpGroupFile: currPath];
 	#if DEBUG
-	int		oldNumPhrases = [phraseFiles numPhrases];
+	//int		oldNumPhrases = [phraseFiles numPhrases];
 	#endif DEBUG
 	[phraseFiles parseGroupFile: currPath withDefaultCategory: @"PAUSE"];
-	UKLog(@"Loaded %d phrases from file %@.",([phraseFiles numPhrases] -oldNumPhrases),currPath);
+	//UKLog(@"Loaded %d phrases from file %@.",([phraseFiles numPhrases] -oldNumPhrases),currPath);
 }
 
 

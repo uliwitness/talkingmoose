@@ -67,6 +67,7 @@
 	BOOL									didSetDragAreaCursor;
 	IBOutlet NSTabView*						mainTabView;
 	UKRecordedSpeechChannel*				recSpeechSynth;
+	IBOutlet NSPanel*						secretAboutBox;
 }
 
 -(IBAction)	orderFrontSecretAboutBox: (id)sender;
