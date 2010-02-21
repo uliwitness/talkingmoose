@@ -45,11 +45,11 @@
 	<key>CFBundleHelpBookFolder</key>
 	<string>Moose Help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>Uli&apos;s Moose Help</string>
+	<string>Uli's Moose Help</string>
 	<key>CFBundleIconFile</key>
 	<string>MooseAlphaIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.ulikusterer.cocoamoose</string>
+	<string>com.thevoidsoftware.talkingmoose</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
