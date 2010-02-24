@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 44;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -766,7 +766,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 3DBAA7280880496A0035E83A /* Build configuration list for PBXProject "TalkingMoose" */;
-			compatibilityVersion = "Xcode 3.0";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -903,7 +903,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "open -a /Developer/Applications/Utilities/Help\\ Indexer.app \"${BUILD_DIR}/${BUILD_STYLE}/${PRODUCT_NAME}.app/Contents/Resources/Moose Help/\"\n";
+			shellScript = "open -a /Developer/Applications/Utilities/Help\\ Indexer.app \"${BUILD_DIR}/${BUILD_STYLE}/${PRODUCT_NAME}.app/Contents/Resources/Moose Help/\"\nsleep 2\nosascript -e 'tell application \"Help Indexer\" to quit'";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1065,6 +1065,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "${NATIVE_ARCH}";
+				CODE_SIGN_IDENTITY = "The Void Software";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -1100,6 +1101,7 @@
 		3DBAA7260880496A0035E83A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "The Void Software";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -1134,7 +1136,7 @@
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_VERSION = 4.0;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -1148,7 +1150,7 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_VERSION = 4.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};
