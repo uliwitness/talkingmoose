@@ -19,3 +19,6 @@
 [submodule "AGIconFamily"]
 	path = AGIconFamily
 	url = git@github.com:uliwitness/AGIconFamily.git
+[submodule "PXListView"]
+	path = PXListView
+	url = git@github.com:uliwitness/PXListView.git
