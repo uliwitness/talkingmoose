@@ -45,11 +45,11 @@
 	<key>CFBundleHelpBookFolder</key>
 	<string>Moose Help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>Uli's Moose Help</string>
+	<string>Uli&apos;s Moose Help</string>
 	<key>CFBundleIconFile</key>
 	<string>MooseAlphaIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.thevoidsoftware.talkingmoose</string>
+	<string>com.thevoidsoftware.talkingmoose.macosx</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -64,7 +64,5 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUFeedURL</key>
-	<string>http://www.the-void-software.com/sparkle/TalkingMoose.rss</string>
 </dict>
 </plist>

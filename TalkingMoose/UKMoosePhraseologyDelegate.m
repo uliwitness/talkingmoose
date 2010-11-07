@@ -272,4 +272,15 @@ int		UKPhraseFileSortFunction( id objA, id objB, void* context )
 }
 
 
+-(BOOL)	outlineView: (NSOutlineView *)outlineView shouldSelectItem: (id)item
+{
+	return NO;
+}
+
+
+-(BOOL)	outlineView: (NSOutlineView *)outlineView shouldTrackCell: (NSCell *)cell forTableColumn: (NSTableColumn *)tableColumn item: (id)item
+{
+	return [[tableColumn]];
+}
+
 @end
