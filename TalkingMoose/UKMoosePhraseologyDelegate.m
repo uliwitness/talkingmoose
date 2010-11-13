@@ -183,6 +183,19 @@ int		UKPhraseFileSortFunction( id objA, id objB, void* context )
 //	[phraseTable performSelector: @selector(reloadData) withObject: nil afterDelay: 0];
 }
 
+
+-(BOOL)	tableView: (NSTableView *)outlineView shouldSelectRow: (NSInteger)item
+{
+	return NO;
+}
+
+
+-(BOOL)	tableView: (NSTableView *)tableView shouldTrackCell: (NSCell *)cell forTableColumn: (NSTableColumn *)tableColumn row: (NSInteger)row
+{
+	return [[tableColumn identifier] isEqualToString: @"active"];
+}
+
+
 -(float)	outlineView: (NSOutlineView*)outlineView heightOfRowByItem: (id)item
 {
 	if( item == nil )
@@ -269,18 +282,6 @@ int		UKPhraseFileSortFunction( id objA, id objB, void* context )
 //	UKGroupFile*			groupFile = [dict objectForKey: @"groupFile"];
 	
 	//[outlineView ];
-}
-
-
--(BOOL)	outlineView: (NSOutlineView *)outlineView shouldSelectItem: (id)item
-{
-	return NO;
-}
-
-
--(BOOL)	outlineView: (NSOutlineView *)outlineView shouldTrackCell: (NSCell *)cell forTableColumn: (NSTableColumn *)tableColumn item: (id)item
-{
-	return [[tableColumn]];
 }
 
 @end
