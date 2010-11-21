@@ -22,3 +22,6 @@
 [submodule "PXListView"]
 	path = PXListView
 	url = git@github.com:uliwitness/PXListView.git
+[submodule "MovieTheatre"]
+	path = MovieTheatre
+	url = git@github.com:uliwitness/MovieTheatre.git
