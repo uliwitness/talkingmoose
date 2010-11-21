@@ -25,3 +25,6 @@
 [submodule "MovieTheatre"]
 	path = MovieTheatre
 	url = git@github.com:uliwitness/MovieTheatre.git
+[submodule "HIDRemoteSDK"]
+	path = HIDRemoteSDK
+	url = git@github.com:uliwitness/HIDRemoteSDK.git
