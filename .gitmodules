@@ -28,3 +28,6 @@
 [submodule "HIDRemoteSDK"]
 	path = HIDRemoteSDK
 	url = git@github.com:uliwitness/HIDRemoteSDK.git
+[submodule "TrackStorer"]
+	path = TrackStorer
+	url = git@github.com:uliwitness/TrackStorer.git
