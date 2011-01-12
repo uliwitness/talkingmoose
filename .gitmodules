@@ -31,3 +31,6 @@
 [submodule "TrackStorer"]
 	path = TrackStorer
 	url = git@github.com:uliwitness/TrackStorer.git
+[submodule "UKSoundWaveformView"]
+	path = UKSoundWaveformView
+	url = git@github.com:uliwitness/UKSoundWaveformView.git
