@@ -34,3 +34,6 @@
 [submodule "UKSoundWaveformView"]
 	path = UKSoundWaveformView
 	url = git@github.com:uliwitness/UKSoundWaveformView.git
+[submodule "ULINetSocket"]
+	path = ULINetSocket
+	url = git@github.com:uliwitness/ULINetSocket.git
