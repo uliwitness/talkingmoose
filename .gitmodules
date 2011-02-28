@@ -37,3 +37,9 @@
 [submodule "ULINetSocket"]
 	path = ULINetSocket
 	url = git@github.com:uliwitness/ULINetSocket.git
+[submodule "stackimport"]
+	path = stackimport
+	url = git@github.com:uliwitness/stackimport.git
+[submodule "Stacksmith"]
+	path = Stacksmith
+	url = git@github.com:uliwitness/Stacksmith.git
