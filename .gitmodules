@@ -43,3 +43,6 @@
 [submodule "Stacksmith"]
 	path = Stacksmith
 	url = git@github.com:uliwitness/Stacksmith.git
+[submodule "UKPaintView"]
+	path = UKPaintView
+	url = git@github.com:uliwitness/UKPaintView.git
