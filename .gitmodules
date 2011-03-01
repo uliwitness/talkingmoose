@@ -46,3 +46,6 @@
 [submodule "UKPaintView"]
 	path = UKPaintView
 	url = git@github.com:uliwitness/UKPaintView.git
+[submodule "UKInterface"]
+	path = UKInterface
+	url = git@github.com:uliwitness/UKInterface.git
