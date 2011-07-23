@@ -52,3 +52,6 @@
 [submodule "UKDiffView"]
 	path = UKDiffView
 	url = git@github.com:uliwitness/UKDiffView.git
+[submodule "objc"]
+	path = objc
+	url = git@github.com:uliwitness/objc.git
