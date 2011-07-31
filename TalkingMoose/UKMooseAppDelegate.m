@@ -567,6 +567,11 @@ static BOOL		gIsSilenced = NO;
 	
 	// Say hello to the user:
 	[self speakPhraseFromGroup: @"HELLO"];
+	
+#if 0
+	int	*	crashy = 0;
+	(*crashy) = 1;
+#endif
 }
 
 
