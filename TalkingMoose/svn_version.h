@@ -1,3 +1,4 @@
-#define SVN_VERSION	"522"
-#define GIT_HASH	"40eac57e19e276ac54ed0f614d355bf28935506f"
-#define SVN_VERSION_NUM	522
+#define SVN_VERSION		"839"
+#define GIT_HASH		"0c3c83dadfd46c2bdbf38a0fd1db69e680dda1cb"
+#define SVN_VERSION_NUM	839
+#define SVN_BUILD_DATE	"2011-07-30"
