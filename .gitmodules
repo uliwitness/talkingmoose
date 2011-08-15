@@ -55,3 +55,6 @@
 [submodule "objc"]
 	path = objc
 	url = git@github.com:uliwitness/objc.git
+[submodule "ULIMelodyQueue"]
+	path = ULIMelodyQueue
+	url = git@github.com:uliwitness/ULIMelodyQueue.git
