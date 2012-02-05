@@ -58,3 +58,6 @@
 [submodule "ULIMelodyQueue"]
 	path = ULIMelodyQueue
 	url = git@github.com:uliwitness/ULIMelodyQueue.git
+[submodule "UKDockableView"]
+	path = UKDockableView
+	url = git@github.com:uliwitness/UKDockableView.git
