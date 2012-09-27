@@ -1050,7 +1050,8 @@ static BOOL		gIsSilenced = NO;
 		if( !cmdDict )
 		{
 			NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
-			BOOL	voiceCantDoPhonemes = (voiceAttrs && [[voiceAttrs objectForKey: @"VoiceSynthesizerNumericID"] intValue] == 'roar');
+			BOOL	voiceCantDoPhonemes = [self voiceCantProvidePhonemesJudgingByAttributes: voiceAttrs];
+
 			[currentMoose setSimulateMissingPhonemes: voiceCantDoPhonemes];
 			
 			if( voiceCantDoPhonemes )
@@ -1086,12 +1087,23 @@ static BOOL		gIsSilenced = NO;
 }
 
 
+-(BOOL)	voiceCantProvidePhonemesJudgingByAttributes: (NSDictionary*)voiceAttrs
+{
+	BOOL	voiceCantDoPhonemes = NO;
+	NSString*phonemes = [speechSynth phonemesFromText: @"Texas"];
+	if( [phonemes length] == 0 )
+		return YES;
+	
+	return voiceCantDoPhonemes;
+}
+
+
 -(void) speakString: (NSString*)currPhrase
 {
 	if( mooseDisableCount == 0 && ![excludeApps appInListMatches] && ![excludeApps screenSaverRunning] )
 	{
 		NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
-		BOOL	voiceCantDoPhonemes = (voiceAttrs && [[voiceAttrs objectForKey: @"VoiceSynthesizerNumericID"] intValue] == 'roar');
+		BOOL	voiceCantDoPhonemes = [self voiceCantProvidePhonemesJudgingByAttributes: voiceAttrs];
 		[currentMoose setSimulateMissingPhonemes: voiceCantDoPhonemes];
 			
 		if( voiceCantDoPhonemes )
@@ -1172,7 +1184,8 @@ static BOOL		gIsSilenced = NO;
 			return;
 		
 		NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
-		BOOL	voiceCantDoPhonemes = (voiceAttrs && [[voiceAttrs objectForKey: @"VoiceSynthesizerNumericID"] intValue] == 'roar');
+		BOOL	voiceCantDoPhonemes = [self voiceCantProvidePhonemesJudgingByAttributes: voiceAttrs];
+
 		[currentMoose setSimulateMissingPhonemes: voiceCantDoPhonemes];
 		
 		if( voiceCantDoPhonemes )
