@@ -328,7 +328,7 @@ char *lower(char*);
 		// If we found a match and it's the same rating, randomly pick one or the
 		//	other. If our new match has a higher rating, prefer it over this one.
 		if( foundMatch
-			&& ((bestRating < currRating) || (bestRating == currRating && (rand() & 1 == 0))) )
+			&& ((bestRating < currRating) || (bestRating == currRating && ((rand() & 1) == 0))) )
 		{
 			bestRating = currRating;
 			bestTmpl = currTmpl;
