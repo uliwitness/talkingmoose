@@ -30,6 +30,7 @@
     NSImage*                    badgeImage;			// Badge to draw on top of animation.
 	BOOL						dontIdleAnimate;	// No idle animations like blinking and eye following the mouse?
 	NSTimeInterval				lastPhonemeTime;	// Last time we displayed a phoneme, so we can calc a good time to show an image morphed between this and the next phoneme.
+	BOOL						simulateMissingPhonemes;	// Show random mouth shapes, we won't get any phonemes from the voice.
 }
 
 -(id)			initWithAnimationFile: (NSString*)fpath;
@@ -52,6 +53,12 @@
 
 -(void)			setDelegate: (id)dele;
 -(id)			delegate;
+
+// Workaround for voices that don't give phonemes:
+-(void)			speechStartedWithoutPhonemes;
+
+-(void)			setSimulateMissingPhonemes: (BOOL)inSimulateMissingPhonemes;	// Show random mouth shapes, we won't get any phonemes from the voice.
+-(BOOL)			simulateMissingPhonemes;
 
 
 // Useful info for displaying this thing to users:
@@ -114,6 +121,7 @@
 #define MOOSE_PI				3.14159265358979323846
 
 
-#define UK_EYE_TIMER_TIME		0.06
+#define UK_EYE_TIMER_TIME					0.06
+#define UK_SIMULATED_PHONEME_TIMER_TIME		0.01
 
 

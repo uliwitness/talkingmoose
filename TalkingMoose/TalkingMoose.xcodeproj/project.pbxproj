@@ -1013,7 +1013,7 @@
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_VERSION = 4.0;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.7;
 			};
 			name = Debug;
 		};
@@ -1027,7 +1027,7 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_VERSION = 4.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.7;
 			};
 			name = Release;
 		};

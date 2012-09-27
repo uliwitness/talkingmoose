@@ -94,6 +94,17 @@
 }
 
 
+-(void)	speechStartedWithoutPhonemes
+{
+	if( simulateMissingPhonemes && !isSpeaking )
+	{
+		isSpeaking = YES;
+		if( delegate && [delegate respondsToSelector: @selector(mooseControllerSpeechStart:)] )
+			[delegate mooseControllerSpeechStart: self];
+	}
+}
+
+
 -(NSArray*)		backgroundImages
 {
 	NSArray*		bgs = [mooseInfo objectForKey: @"BACKGROUND"];
@@ -607,6 +618,19 @@
 }
 
 
+-(void)			setSimulateMissingPhonemes: (BOOL)inSimulateMissingPhonemes
+{
+	simulateMissingPhonemes = inSimulateMissingPhonemes;
+}
+
+
+-(BOOL)			simulateMissingPhonemes
+{
+	return simulateMissingPhonemes;
+}
+
+
+
 -(void)			eyeFollowTimerAction: (id)sender
 {
 	if( blinking == 0 && (rand() % 3) == 0
@@ -631,6 +655,16 @@
 	}
 	else
 		[self setEyesImageForGlobalMouse: [NSEvent mouseLocation]];
+	
+	if( isSpeaking && simulateMissingPhonemes && ([NSDate timeIntervalSinceReferenceDate] -lastPhonemeTime) > (1.0 / 20.0) )
+	{
+		int	currPhoneme = (rand() % 42);
+		[self changeMouthImageToPhoneme: currPhoneme];
+		if( [delegate respondsToSelector: @selector(speechSynthesizer:willSpeakPhoneme:)] )
+			[delegate speechSynthesizer: nil willSpeakPhoneme: currPhoneme];
+		lastPhonemeTime = [NSDate timeIntervalSinceReferenceDate];
+	}
+	
 	[self buildCurrentImage];
 }
 
@@ -856,7 +890,7 @@
 	#if MERGE_ANIMATION_FRAMES
 	NSImage*		prevMouth = [[[mooseImages objectForKey: @"MOUTH"] retain] autorelease];
 	NSTimeInterval	timeTillFullPhoneme = (CFAbsoluteTimeGetCurrent() -lastPhonemeTime) / 2;
-	#endif MERGE_ANIMATION_FRAMES
+	#endif // MERGE_ANIMATION_FRAMES
 	NSImage*		phonImg = [self imageFileForPhoneme: thePhoneme];
 	if( !phonImg )
 		;//UKLog(@"No image for phoneme %d",thePhoneme);
@@ -870,7 +904,7 @@
 			[self performSelector: @selector(setMouthImage_Internal:) withObject: phonImg afterDelay: timeTillFullPhoneme];
 		}
 		else if( phonImg )
-		#endif MERGE_ANIMATION_FRAMES
+		#endif // MERGE_ANIMATION_FRAMES
 			[self setMouthImage_Internal: phonImg];
 	}
 }
@@ -891,10 +925,11 @@
 {
 	//UKLog(@"About to speak phoneme %d",phonemeOpcode);
 	
-	if( !isSpeaking && delegate && [delegate respondsToSelector: @selector(mooseControllerSpeechStart:)] )
+	if( !isSpeaking )
 	{
 		isSpeaking = YES;
-		[delegate mooseControllerSpeechStart: self];
+		if( delegate && [delegate respondsToSelector: @selector(mooseControllerSpeechStart:)] )
+			[delegate mooseControllerSpeechStart: self];
 	}
 
 	if( delegate && [delegate respondsToSelector: @selector(speechSynthesizer:willSpeakPhoneme:)] )
@@ -906,7 +941,15 @@
 - (void)speechSynthesizer:(NSSpeechSynthesizer *)sender willSpeakWord:(NSRange)characterRange ofString:(NSString *)string
 {
 	if( delegate && [delegate respondsToSelector: @selector(speechSynthesizer:willSpeakWord:ofString:)] )
+	{
 		[delegate speechSynthesizer: (NSSpeechSynthesizer*) sender willSpeakWord: characterRange ofString: string];
+		
+		if( !isSpeaking && delegate && [delegate respondsToSelector: @selector(mooseControllerSpeechStart:)] )
+		{
+			isSpeaking = YES;
+			[delegate mooseControllerSpeechStart: self];
+		}
+	}
 }
 
 

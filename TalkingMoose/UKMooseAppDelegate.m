@@ -291,7 +291,7 @@ static BOOL		gIsSilenced = NO;
 	
     // Update list and select current moose:
 	[mooseList reloadData];
-	[mooseList selectRow: currMooseIndex byExtendingSelection: NO];	// Changes animation and may cause reset in scale factor:
+	[mooseList selectRowIndexes: [NSIndexSet indexSetWithIndex: currMooseIndex] byExtendingSelection: NO];	// Changes animation and may cause reset in scale factor:
 }
 
 
@@ -301,7 +301,7 @@ static BOOL		gIsSilenced = NO;
 
 -(void)	loadSettingsFromDefaultsIntoUI
 {
-	UKLog(@"About to Load.");
+	//UKLog(@"About to Load.");
 	
     // Hotkey shortcut edit fields:
 	[speakNowHKField setStringValue: [speakNowHotkey stringValue]];
@@ -1049,6 +1049,13 @@ static BOOL		gIsSilenced = NO;
 		NSDictionary*	cmdDict = UKGroupFileExtractCommandFromPhrase( currPhrase );
 		if( !cmdDict )
 		{
+			NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
+			BOOL	voiceCantDoPhonemes = (voiceAttrs && [[voiceAttrs objectForKey: @"VoiceSynthesizerNumericID"] intValue] == 'roar');
+			[currentMoose setSimulateMissingPhonemes: voiceCantDoPhonemes];
+			
+			if( voiceCantDoPhonemes )
+				[currentMoose speechStartedWithoutPhonemes];
+
 			[speechSynth startSpeakingString: currPhrase];
 			[self showSpeechBubbleWithString: currPhrase];
 		}
@@ -1083,6 +1090,13 @@ static BOOL		gIsSilenced = NO;
 {
 	if( mooseDisableCount == 0 && ![excludeApps appInListMatches] && ![excludeApps screenSaverRunning] )
 	{
+		NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
+		BOOL	voiceCantDoPhonemes = (voiceAttrs && [[voiceAttrs objectForKey: @"VoiceSynthesizerNumericID"] intValue] == 'roar');
+		[currentMoose setSimulateMissingPhonemes: voiceCantDoPhonemes];
+			
+		if( voiceCantDoPhonemes )
+			[currentMoose speechStartedWithoutPhonemes];
+		
 		[speechSynth startSpeakingString: currPhrase];
 		[self showSpeechBubbleWithString: currPhrase];
         //UKLog(@"Speaking: %@", currPhrase);
@@ -1156,6 +1170,14 @@ static BOOL		gIsSilenced = NO;
 		NSString*   currPhrase = [phraseDB mostRecentPhrase];
 		if( !currPhrase )
 			return;
+		
+		NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
+		BOOL	voiceCantDoPhonemes = (voiceAttrs && [[voiceAttrs objectForKey: @"VoiceSynthesizerNumericID"] intValue] == 'roar');
+		[currentMoose setSimulateMissingPhonemes: voiceCantDoPhonemes];
+		
+		if( voiceCantDoPhonemes )
+			[currentMoose speechStartedWithoutPhonemes];
+
 		[speechSynth startSpeakingString: currPhrase];
 		if( showSpokenString )
 		{

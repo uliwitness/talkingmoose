@@ -39,7 +39,7 @@
 <div class="answer">No, you don't have to start the Moose by hand. You can tell the Moose to automatically start up each time Finder is loaded (&quot;at login time&quot;):
 <ul>
 <li> Choose <span class="menuitem">Preferences...</span> from the <span class="menu">Uli's Moose</span> menu.
-<li> Click the <span class="uielement">Options</span> button to switch to the <i>Options</i> page.
+<li> Click the <span class="uielement">Appearance</span> entry in the source list on the left to show the <i>Appearance</i> page.
 <li> Click the check-box to the left of <span class="uielement">Launch Moose at Login</span> so it is marked with a little hook.
 </ul>
 From now on, the Moose will automatically start up.</div>
@@ -54,10 +54,10 @@ From now on, the Moose will automatically start up.</div>
 <li>Two Finder windows will open, showing the actual Moose application files.
 <li>Select the two files' icons and select <span class="menuitem">Get Info</span> from the <span class="menu">File</span> menu.
 <li>Compare the two applications' information to determine the newer one.
-<li>Double-click the older one's icon and choose <span class="menuitem">Quit Uli's Moose</span> from the <span class="menu">Moose</span> menu.
+<li>Double-click the older one's icon and choose <span class="menuitem">Quit Uli's Moose</span> from the <span class="menu">Uli's Moose</span> menu.
 <li>Drag the older file to the trash to delete it.
 </ul>
-<div class="note"><b>Note:</b> If for some reason you do not wish to delete the other Moose (or you can't because an administrator installed it), you can also double-click the older Moose's icon to make it frontmost and then go to the <span class="uielement">Options</span> page (called <span class="uielement">Behaviors</span> in older versions) of the Settings window and uncheck the <span class="uielement">Launch Moose at Login</span> checkbox. Then quit the old Moose as mentioned above and you'll be left with a single Moose.</div>
+<div class="note"><b>Note:</b> If for some reason you do not wish to delete the other Moose (or you can't because an administrator installed it), you can also double-click the older Moose's icon to make it frontmost and then go to the <span class="uielement">Appearance</span> page (called <span class="uielement">Options</span> or <span class="uielement">Behaviors</span> in older versions) of the <span class="uielement">Preferences</span> window and uncheck the <span class="uielement">Launch Moose at Login</span> checkbox. Then quit the old Moose as mentioned above and you'll be left with a single Moose.</div>
 </div>
 
 
@@ -66,6 +66,17 @@ From now on, the Moose will automatically start up.</div>
 <div class="question"><a name="uninstall">How do I uninstall the Moose?</a></div>
 <div class="answer">To get rid of the Moose, all you have to do is find, quit and delete the <i>Moose</i> application file.
 <ul>
+<li>Click on the &quot;Launch Pad&quot; icon in the dock.
+<li>Find the Moose in Launch Pad among your applications. You can click and drag left or right to switch pages.
+<li>Move the mouse over the <span class="uielement">Moose</span> icon and hold, but do not release the mouse button.
+<li>Wait about 2 seconds until the icons all begin jittering
+<li>A little <span class="uielement">X</span> in a circle should now have appeared next to the <span class="uielement">Moose</span> icon.
+<li>Click this <span class="uielement">X</span> to delete the Moose.
+</ul>
+
+If you can not see the <span class="uielement">X</span> or it otherwise doesn't work, you can alternately perform the following steps:
+
+<ul>
 <li>Click on the Moose icon in the dock while holding down the Command-key.
 <li>A Finder window will open, showing the actual Moose application file.
 <li>Double-click the <span class="uielement">Moose</span> icon and choose <span class="menuitem">Quit Uli's Moose</span> from the <span class="menu">Moose</span> menu.
@@ -73,26 +84,8 @@ From now on, the Moose will automatically start up.</div>
 </ul>
 The Moose is very disappointed that you would ever consider such harsh action. If you do not want to entirely delete the Moose,
 you can also simply deactivate the <span class="uielement">Launch at Login</span> checkbox on the <span class="uielement">Options</span> page
-of the Moose settings window and quit the Moose using the <span class="menuitem">Quit Uli's Moose</span> menu item from the <span class="menu">Moose</span> menu.
+of the <span class="uielement">Preferences</span> window and quit the Moose using the <span class="menuitem">Quit Uli's Moose</span> menu item from the <span class="menu">Moose</span> menu.
 Then the Moose won't show again until you double-click the Moose application file.
-</div>
-
-
-<!-- Q: Install Animations -->
-
-<div class="question"><a name="installanimations">How do I add new Animations to the Moose?</a></div>
-<div class="answer">When you download an animation, it comes as a file with a name suffix of &quot;.nose&quot;. To install it, simply double-click the animation file's icon. The Moose will now start up if it isn't already running, and install the new animation, and display a message telling you what it did. Once an animation has been installed, you can trash the original &quot;.nose&quot;-file.
-<div class="note"><b>Note:</b> When an animation is installed, the Moose in reality simply copies the animation file into the Animations-folder inside the Moose folder of your Library folder's Application Support folder (<tt>~/Library/Application Support/Moose/Animations/</tt>), from where you can delete it again, should you want to get rid of an animation.</div>
-<div class="note"><b>Note:</b> As of 3.5, Uli's Moose only supports the newer animations with &quot;.nose&quot; filename suffix. If you have an older animation for version 2.0 through 3.0.5, please get in contact with the author to have it converted to the new format.</div>
-</div>
-
-
-<!-- Q: Install Phrase Files -->
-
-<div class="question"><a name="installphrases">How do I add new Phrase Files to the Moose?</a></div>
-<div class="answer">When you download a phrase file, it comes as a file with a name suffix of &quot;.phraseFile&quot;. To install it, simply double-click the phrase file's icon. The Moose will now start up if it isn't already running, and install the new phrases, and display a message telling you what it did. Once a phrase file has been installed, you can trash the original &quot;.phraseFile&quot;-file.
-<div class="note"><b>Note:</b> Prior to Uli's Moose 3.5, phrase files had the name suffix &quot;.txt&quot;, just like regular text files. To install such an old phrase file, drag the file's icon onto the Moose's icon in the dock, instead of double-clicking its icon. Note that the icon may not properly highlight when you drag a file on it. That's okay, it will still work.</div>
-<div class="note"><b>Note:</b> When a phrase file is installed, the Moose in reality simply copies the file into the Phrases-folder inside the Moose folder of your Library folder's Application Support folder (<tt>~/Library/Application Support/Moose/Phrases/</tt>), from where you can delete it again, should you want to get rid of a bunch of phrases.</div>
 </div>
 
 
@@ -105,20 +98,6 @@ Then the Moose won't show again until you double-click the Moose application fil
 </div>
 
 
-<!-- Q: Get Phrase Files -->
-
-<div class="question"><a name="getphrases">Where do I get More Phrase Files?</a></div>
-<div class="answer">Additional Phrase Files with more funny phrases will be made available for download on the <a href="http://www.zathras.de/moose/">official Talking Moose web site</a> occasionally. In addition, other Moose fans can create Phrase Files of their own very easily and put them up on a web site or otherwise give them away. Finally, the Moose can use phrase files created for Scott McNally's Talking Mouse, which can still be found on the web in some places.
-</div>
-
-
-<!-- Q: Get Animations -->
-
-<div class="question"><a name="getanimations">Where do I get More Animations?</a></div>
-<div class="answer">Additional Animations that give the Moose a different face will be made available for download on the <a href="http://www.zathras.de/moose/">official Talking Moose web site</a> occasionally. In addition, other Moose fans can create Animations of their own and put them up on a web site or otherwise give them away.
-</div>
-
-
 <!-- Q: Move Moose -->
 
 <div class="question"><a name="movemoose">How do I Move the Moose out of the Way?</a></div>
@@ -128,39 +107,10 @@ Then the Moose won't show again until you double-click the Moose application fil
 </ul>
 or
 <ul>
-<li><img src="drag_area.png" alt="[The drag area]" title="The red circle shows the drag area" align="right">Move the mouse over the Moose. Two little grey circles with icons in them and a grey bar will appear overlaid over the bottom of the Moose.
-<li>Click the rounded bar and hold down the mouse, and you can drag the Moose to another place on the screen.
-</ul>
-<div class="note"><b>Note:</b> Should the small bar not be visible, you can also hold down the command key while clicking anywhere inside the Moose animation and dragging.</div>
-</div>
-
-
-<!-- Q: Resize Moose -->
-
-<div class="question"><a name="resizemoose">How do I Make the Moose Larger?</a></div>
-<div class="answer">To make the Moose larger, do the following:
-<ul>
-<li>Move the mouse over the Moose animation.
-<li><img src="grow_icon.png" alt="[The resize icon]" title="The red circle shows the resize icon" align="right">Two little grey circles with icons in them and a grey bar will appear overlaid over the bottom of the Moose.
-<li>Click the rightmost circle with the three diagonal bars in it that look like the &quot;grow&quot; box of a window.
-<li>Hold the mouse down and drag, and the Moose will enlarge.
-<li>Release the mouse and the Moose will stay at this size.
+<li>Move the mouse over the Moose.
+<li>Hold down the mouse, and you can drag the Moose to another place on the screen.
 </ul>
 </div>
-
-
-<!-- Q: Move Moose -->
-
-<div class="question"><a name="zoommoose">I made the Moose larger. How do I get it back to original size?</a></div>
-<div class="answer">You can make the Moose smaller by simply doing the same as when enlarging it. However, if you want to restore its original size, you must zoom the Moose:
-<ul>
-<li>Move the mouse over the Moose animation.
-<li><img src="zoom_icon.png" alt="[The zoom icon]" title="The red circle shows the zoom icon" align="right">Two little grey circles with icons in them and a grey bar will appear overlaid over the bottom of the Moose.
-<li>Click the second circle from the right with the plus sign in it that looks like the &quot;zoom&quot; box of a window.
-<li>The Moose will resize back to original size.
-</ul>
-</div>
-
 
 
 <!-- Q: Speech Interval -->
@@ -170,8 +120,7 @@ or
 how long you've been idle. I.e. if you set the Moose to speak every minute, it will speak if you've not done
 anything for one minute, and then keep saying something every minute until you do something again.<br>
 <br>
-To make things more interesting, the Moose won't always do that. Sometimes it will speak even though you are
-working.
+There are exceptions to this rule. When the Moose comments on something you are doing, (like activating an application, reacting to USB sticks being plugged in), or announcing the current time, it will do so even though you are working.
 </div>
 
 
@@ -180,9 +129,9 @@ working.
 <div class="question"><a name="speaknomore">The Moose doesn't speak - ever! Why?</a></div>
 <div class="answer">If the Moose doesn't speak at all, even when you quit and restart it, there are three possibilities:
 <ol>
-<li>The moose could have been turned off (maybe by accident) using the <span class="menuitem">Silence, Moose!</span> menu item in its dock menu, using the <span class="uielement">Don't Speak Right Now</span> check box on the <span class="uielement">Behavior</span> page of the <span class="uielement">Moose Settings</span> window, or using the <span class="uielement">Shut Up Keys</span> key combination that you set on the <span class="uielement">Speech</span> page of the <span class="uielement">Moose Settings</span> window.
+<li>The moose could have been turned off (maybe by accident) using the <span class="menuitem">Silence, Moose!</span> menu item in its dock menu, using the <span class="uielement">Don't Speak Right Now</span> check box on the <span class="uielement">Speech</span> page of the <span class="uielement">Preferences</span> window, or using the <span class="uielement">Shut Up Keys</span> key combination that you set on the <span class="uielement">Speech</span> page of the <span class="uielement">Preferences</span> window.
 <p>In that case, the Moose will have a tiny little band-aid over its mouth indicating it's been told not to speak (see below for other reasons why this band-aid may be showing). To turn the Moose back on, just use any of the above checkboxes, menu items or keyboard shortcuts to turn it on again.</li>
-<li>If the Moose pops up, but you can't hear any speech, the volume has probably been turned down. There are two volume settings that may influence the Moose. The first one is the Moose's own volume control on the <span class="uielement">Speech</span> page of the <span class="uielement">Moose Settings</span> window. If that is already on the loudest setting (10), you might perhaps have the system volume set too low. Use the volume control keys on your keyboard or the slider in the <span class="uielement">Sound</span> section of <span class="uielement">System Preferences</span> to increase the system volume.</li>
+<li>If the Moose pops up, but you can't hear any speech, the volume has probably been turned down. There are two volume settings that may influence the Moose. The first one is the Moose's own volume control on the <span class="uielement">Advanced</span> page of the <span class="uielement">Preferences</span> window. If that is already on the loudest setting, you might perhaps have the system volume set too low. Use the volume control keys on your keyboard or the slider in the <span class="uielement">Sound</span> section of <span class="uielement">System Preferences</span> to increase the system volume.</li>
 <li>If it's none of the two above, it may be that the Moose is silent because there is an entry for one of the currently running applications in its <span class="uielement">Exclude Apps</span> section. In this case, too, the Moose will have a band aid over its mouth in the dock.
 <p><img src="front_running_radios.jpg" alt="[Two Front and Running radio buttons]" title="The red circle shows the radio buttons of the entry for Myst IV" align="right">Next to each application in the list, there are two radio
 buttons. One is in the <span class="uielement">Front</span> column, and the other in the <span class="uielement">Running</span>
