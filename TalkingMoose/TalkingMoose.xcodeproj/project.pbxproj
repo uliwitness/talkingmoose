@@ -61,7 +61,6 @@
 		3DE190020A275D750040D274 /* NSScreen+ScreenAtPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE190000A275D750040D274 /* NSScreen+ScreenAtPoint.m */; };
 		3DE61AED0869AC77002EC36A /* NSData+URLUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE61AEB0869AC77002EC36A /* NSData+URLUserAgent.h */; };
 		3DE61AEE0869AC77002EC36A /* NSData+URLUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE61AEC0869AC77002EC36A /* NSData+URLUserAgent.m */; };
-		3DE61AF40869ACAE002EC36A /* Message.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE61AF30869ACAE002EC36A /* Message.framework */; };
 		3DE61B450869B176002EC36A /* svn_version.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE61B440869B176002EC36A /* svn_version.h */; };
 		3DF412D00796A168002DE6EF /* MiniMoose.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3DF412CF0796A168002DE6EF /* MiniMoose.tiff */; };
 		3DF412ED0796B9D0002DE6EF /* BandAid.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3DF412EC0796B9D0002DE6EF /* BandAid.tiff */; };
@@ -101,6 +100,7 @@
 		3DF9CB5309C7422800C7BBA8 /* PTKeyCodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DF9CB4F09C7422800C7BBA8 /* PTKeyCodes.plist */; };
 		3DF9CB5409C7422800C7BBA8 /* PTKeyComboPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF9CB5109C7422800C7BBA8 /* PTKeyComboPanel.nib */; };
 		3DF9CB5A09C7423600C7BBA8 /* PTKeyboardIcon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3DF9CB5909C7423600C7BBA8 /* PTKeyboardIcon.tiff */; };
+		553E5081161496C100272749 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553E5080161496C100272749 /* ServiceManagement.framework */; };
 		557FD0C20E56FB0C000A1A11 /* UKMooseDragAreaView.h in Headers */ = {isa = PBXBuildFile; fileRef = 557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */; };
 		557FD0C30E56FB0C000A1A11 /* UKMooseDragAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */; };
 		558FD4001115DE80008D69DC /* GoodbyeOldFriend.png in Resources */ = {isa = PBXBuildFile; fileRef = 558FD3FF1115DE80008D69DC /* GoodbyeOldFriend.png */; };
@@ -212,7 +212,6 @@
 		3DE190000A275D750040D274 /* NSScreen+ScreenAtPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSScreen+ScreenAtPoint.m"; path = "../UliKit/NSScreen+ScreenAtPoint.m"; sourceTree = SOURCE_ROOT; };
 		3DE61AEB0869AC77002EC36A /* NSData+URLUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSData+URLUserAgent.h"; path = "../UliKit/NSData+URLUserAgent.h"; sourceTree = "<group>"; };
 		3DE61AEC0869AC77002EC36A /* NSData+URLUserAgent.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSData+URLUserAgent.m"; path = "../UliKit/NSData+URLUserAgent.m"; sourceTree = "<group>"; };
-		3DE61AF30869ACAE002EC36A /* Message.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Message.framework; path = /System/Library/Frameworks/Message.framework; sourceTree = "<absolute>"; };
 		3DE61B440869B176002EC36A /* svn_version.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = svn_version.h; sourceTree = "<group>"; };
 		3DF412CF0796A168002DE6EF /* MiniMoose.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniMoose.tiff; sourceTree = "<group>"; };
 		3DF412EC0796B9D0002DE6EF /* BandAid.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = BandAid.tiff; sourceTree = "<group>"; };
@@ -258,6 +257,8 @@
 		3DF9CB6909C7425700C7BBA8 /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = ../HotKeysLib3/PTHotKeysLib/res/German.lproj/PTKeyComboPanel.nib; sourceTree = SOURCE_ROOT; };
 		3DF9CB7209C7426800C7BBA8 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Japanese; path = ../HotKeysLib3/PTHotKeysLib/res/Japanese.lproj/PTKeyCodes.plist; sourceTree = SOURCE_ROOT; };
 		3DF9CB7309C7426800C7BBA8 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = ../HotKeysLib3/PTHotKeysLib/res/Japanese.lproj/PTKeyComboPanel.nib; sourceTree = SOURCE_ROOT; };
+		553E507E1614952000272749 /* Moose.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Moose.entitlements; path = Moose/Moose.entitlements; sourceTree = "<group>"; };
+		553E5080161496C100272749 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = ../../../../../System/Library/Frameworks/ServiceManagement.framework; sourceTree = "<group>"; };
 		5543C2DB112822D600783ABE /* make_git_version_header.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = make_git_version_header.sh; path = ../UliKit/make_git_version_header.sh; sourceTree = SOURCE_ROOT; };
 		557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMooseDragAreaView.h; sourceTree = "<group>"; };
 		557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMooseDragAreaView.m; sourceTree = "<group>"; };
@@ -314,9 +315,9 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				3DC2F8910798039800423F0A /* Carbon.framework in Frameworks */,
-				3DE61AF40869ACAE002EC36A /* Message.framework in Frameworks */,
 				3D8CABFE0CE5C97B0046B187 /* ApplicationServices.framework in Frameworks */,
 				3D8CADEB0CE6450E0046B187 /* AddressBook.framework in Frameworks */,
+				553E5081161496C100272749 /* ServiceManagement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,9 +356,9 @@
 			children = (
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				3DC2F8900798039800423F0A /* Carbon.framework */,
-				3DE61AF30869ACAE002EC36A /* Message.framework */,
 				3D8CABFD0CE5C97B0046B187 /* ApplicationServices.framework */,
 				3D8CADEA0CE6450E0046B187 /* AddressBook.framework */,
+				553E5080161496C100272749 /* ServiceManagement.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -382,6 +383,7 @@
 		29B97314FDCFA39411CA2CEA /* CocoaMoose */ = {
 			isa = PBXGroup;
 			children = (
+				553E507E1614952000272749 /* Moose.entitlements */,
 				3D791E6A0798CDD2009BA042 /* TODO.txt */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -942,6 +944,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "${NATIVE_ARCH}";
+				CODE_SIGN_ENTITLEMENTS = Moose/Moose.entitlements;
 				CODE_SIGN_IDENTITY = "The Void Software";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -978,6 +981,7 @@
 		3DBAA7260880496A0035E83A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Moose/Moose.entitlements;
 				CODE_SIGN_IDENTITY = "The Void Software";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "";

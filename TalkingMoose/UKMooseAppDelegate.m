@@ -33,6 +33,7 @@
 #import "UKRecordedSpeechChannel.h"
 #import "UKClickableImageView.h"
 #import "UKFinderIconCell.h"
+#import <ServiceManagement/ServiceManagement.h>
 
 #if DEBUG && 0
 #include <execinfo.h>
@@ -1264,6 +1265,7 @@ static BOOL		gIsSilenced = NO;
 
 -(void) takeLaunchAtLoginBoolFrom: (id)sender
 {
+#if 0
 	NSString*		bundlePath = [[NSBundle mainBundle] bundlePath];
 	int				loginItemIdx = [UKLoginItemRegistry indexForLoginItemWithPath: bundlePath];
 	
@@ -1271,6 +1273,9 @@ static BOOL		gIsSilenced = NO;
 		[UKLoginItemRegistry addLoginItemWithPath: bundlePath hideIt: YES];
 	else
 		[UKLoginItemRegistry removeLoginItemAtIndex: loginItemIdx];
+#else
+	SMLoginItemSetEnabled( (CFStringRef) [[NSBundle mainBundle] bundleIdentifier], [sender state] == NSOnState );
+#endif
 }
 
 
