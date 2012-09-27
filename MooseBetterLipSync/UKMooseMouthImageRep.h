@@ -40,4 +40,4 @@
 
 @end
 
-#endif DEBUG
+#endif // DEBUG
