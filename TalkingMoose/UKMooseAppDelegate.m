@@ -1265,7 +1265,7 @@ static BOOL		gIsSilenced = NO;
 
 -(void) takeLaunchAtLoginBoolFrom: (id)sender
 {
-#if 0
+#if 1
 	NSString*		bundlePath = [[NSBundle mainBundle] bundlePath];
 	int				loginItemIdx = [UKLoginItemRegistry indexForLoginItemWithPath: bundlePath];
 	

@@ -175,7 +175,8 @@ NSString*	UKGroupFileCommandArgsKey = @"UKGroupFileCommandArgs";
 
 -(void) parseGroupFile: (NSString*)fpath withDefaultCategory: (NSString*)defCat
 {
-	NSString*				infoText = [NSString stringWithContentsOfFile: fpath];
+	NSError*				theError = nil;
+	NSString*				infoText = [NSString stringWithContentsOfFile: fpath encoding: NSUTF8StringEncoding error: &theError];
 	[self parseGroupString: infoText withDefaultCategory: defCat];
 	[mooseInfo setObject: [fpath stringByDeletingLastPathComponent] forKey: @"CONTENTSPATH"];
 }
@@ -347,16 +348,18 @@ int		UKShuffleCompareFunction( id a, id b, void* c )
 		[fileContents appendString: @"\n"];
 	}
 	
-	return [fileContents writeToFile: fpath atomically: yorn];
+	NSError	*	theError = nil;
+	return [fileContents writeToFile: fpath atomically: yorn encoding: NSUTF8StringEncoding error: &theError];
 }
 
 
 +(BOOL)		cleanUpGroupFile: (NSString*)fpath
 {
-	NSMutableString*	str = [NSMutableString stringWithContentsOfFile: fpath];
+	NSError			*	theError = nil;
+	NSMutableString	*	str = [NSMutableString stringWithContentsOfFile: fpath encoding: NSUTF8StringEncoding error: &theError];
 	
 	if( [str replaceOccurrencesOfString:@"\r" withString:@"\n" options: NSLiteralSearch range:NSMakeRange(0,[str length])] > 0 )
-		return [str writeToFile: fpath atomically: NO];
+		return [str writeToFile: fpath atomically: NO encoding: NSUTF8StringEncoding error: &theError];
 	else
 		return YES;
 }

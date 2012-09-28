@@ -12,7 +12,7 @@
 @class UKGroupFile;
 
 
-@interface UKMooseController : NSObject
+@interface UKMooseController : NSObject <NSSpeechSynthesizerDelegate>
 {
 	NSMutableDictionary*		mooseImages;		// Array of NSImages to draw for this moose animation.
 	UKGroupFile*				mooseInfo;			// Contents of info.txt file, as NSMutableArrays of NSStrings for the lines in each category.

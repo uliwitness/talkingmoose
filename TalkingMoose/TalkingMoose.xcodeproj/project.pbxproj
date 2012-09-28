@@ -13,7 +13,6 @@
 		3D05C49D0888C68C00DA756A /* Moose Help in Resources */ = {isa = PBXBuildFile; fileRef = 3D05C4910888C68C00DA756A /* Moose Help */; };
 		3D1E8E820CE29C5200334A8E /* loud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8E810CE29C5200334A8E /* loud.png */; };
 		3D1E8E840CE29C6200334A8E /* quiet.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8E830CE29C6200334A8E /* quiet.png */; };
-		3D32B407087EE78D008CFC56 /* UKSpeechSettingsView.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3D32B405087EE78D008CFC56 /* UKSpeechSettingsView.nib */; };
 		3D55636A09CB4E7B002608B2 /* UKAboutBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D55636809CB4E7B002608B2 /* UKAboutBox.m */; };
 		3D55636B09CB4E7B002608B2 /* UKAboutBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D55636909CB4E7B002608B2 /* UKAboutBox.h */; };
 		3D56781E0994F2D8008FDECF /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56781C0994F2D8008FDECF /* UKCrashReporter.m */; };
@@ -32,7 +31,6 @@
 		3D8CABCB0CE4F7970046B187 /* UKMooseMouthImageRep.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D8CABC70CE4F7970046B187 /* UKMooseMouthImageRep.h */; };
 		3D8CABCC0CE4F7970046B187 /* UKMooseMouthImageRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CABC80CE4F7970046B187 /* UKMooseMouthImageRep.m */; };
 		3D8CABFE0CE5C97B0046B187 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8CABFD0CE5C97B0046B187 /* ApplicationServices.framework */; };
-		3D8CAD0A0CE5D21E0046B187 /* UKCrashReporter.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8CAD080CE5D21E0046B187 /* UKCrashReporter.nib */; };
 		3D8CAD160CE5E80C0046B187 /* UKNibOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CAD140CE5E80C0046B187 /* UKNibOwner.m */; };
 		3D8CAD170CE5E80C0046B187 /* UKNibOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D8CAD150CE5E80C0046B187 /* UKNibOwner.h */; };
 		3D8CADEB0CE6450E0046B187 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8CADEA0CE6450E0046B187 /* AddressBook.framework */; };
@@ -104,6 +102,9 @@
 		557FD0C20E56FB0C000A1A11 /* UKMooseDragAreaView.h in Headers */ = {isa = PBXBuildFile; fileRef = 557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */; };
 		557FD0C30E56FB0C000A1A11 /* UKMooseDragAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */; };
 		558FD4001115DE80008D69DC /* GoodbyeOldFriend.png in Resources */ = {isa = PBXBuildFile; fileRef = 558FD3FF1115DE80008D69DC /* GoodbyeOldFriend.png */; };
+		559D6D0016160B83001E1D91 /* UKCrashReporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559D6CFC16160B83001E1D91 /* UKCrashReporter.xib */; };
+		559D6D0116160B83001E1D91 /* UKSpeechSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559D6CFE16160B83001E1D91 /* UKSpeechSettingsView.xib */; };
+		559D6D03161611E4001E1D91 /* Message.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559D6D02161611E4001E1D91 /* Message.framework */; };
 		55A660CB110A4F7700FE0723 /* UKWindowDraggingImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A660C9110A4F7700FE0723 /* UKWindowDraggingImageView.h */; };
 		55A660CC110A4F7700FE0723 /* UKWindowDraggingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A660CA110A4F7700FE0723 /* UKWindowDraggingImageView.m */; };
 		55A66103110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A66101110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h */; };
@@ -160,7 +161,6 @@
 		3D05C4910888C68C00DA756A /* Moose Help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Moose Help"; sourceTree = "<group>"; };
 		3D1E8E810CE29C5200334A8E /* loud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loud.png; sourceTree = "<group>"; };
 		3D1E8E830CE29C6200334A8E /* quiet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quiet.png; sourceTree = "<group>"; };
-		3D32B406087EE78D008CFC56 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = ../UliKit/English.lproj/UKSpeechSettingsView.nib; sourceTree = SOURCE_ROOT; };
 		3D34C68808785BDD000189DD /* UKUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKUIElement.h; path = ../UliKit/UKUIElement.h; sourceTree = "<group>"; };
 		3D34C68908785BDD000189DD /* UKUIElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKUIElement.m; path = ../UliKit/UKUIElement.m; sourceTree = "<group>"; };
 		3D55636809CB4E7B002608B2 /* UKAboutBox.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKAboutBox.m; path = ../UliKit/UKAboutBox.m; sourceTree = SOURCE_ROOT; };
@@ -187,7 +187,6 @@
 		3D8CABC70CE4F7970046B187 /* UKMooseMouthImageRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKMooseMouthImageRep.h; path = ../MooseBetterLipSync/UKMooseMouthImageRep.h; sourceTree = SOURCE_ROOT; };
 		3D8CABC80CE4F7970046B187 /* UKMooseMouthImageRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKMooseMouthImageRep.m; path = ../MooseBetterLipSync/UKMooseMouthImageRep.m; sourceTree = SOURCE_ROOT; };
 		3D8CABFD0CE5C97B0046B187 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
-		3D8CAD090CE5D21E0046B187 /* English */ = {isa = PBXFileReference; comments = Stupid; lastKnownFileType = wrapper.nib; name = English; path = ../UliKit/English.lproj/UKCrashReporter.nib; sourceTree = SOURCE_ROOT; };
 		3D8CAD140CE5E80C0046B187 /* UKNibOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKNibOwner.m; path = ../UliKit/UKNibOwner.m; sourceTree = SOURCE_ROOT; };
 		3D8CAD150CE5E80C0046B187 /* UKNibOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKNibOwner.h; path = ../UliKit/UKNibOwner.h; sourceTree = SOURCE_ROOT; };
 		3D8CADEA0CE6450E0046B187 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
@@ -257,12 +256,14 @@
 		3DF9CB6909C7425700C7BBA8 /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = ../HotKeysLib3/PTHotKeysLib/res/German.lproj/PTKeyComboPanel.nib; sourceTree = SOURCE_ROOT; };
 		3DF9CB7209C7426800C7BBA8 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Japanese; path = ../HotKeysLib3/PTHotKeysLib/res/Japanese.lproj/PTKeyCodes.plist; sourceTree = SOURCE_ROOT; };
 		3DF9CB7309C7426800C7BBA8 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = ../HotKeysLib3/PTHotKeysLib/res/Japanese.lproj/PTKeyComboPanel.nib; sourceTree = SOURCE_ROOT; };
-		553E507E1614952000272749 /* Moose.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Moose.entitlements; path = Moose/Moose.entitlements; sourceTree = "<group>"; };
 		553E5080161496C100272749 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = ../../../../../System/Library/Frameworks/ServiceManagement.framework; sourceTree = "<group>"; };
 		5543C2DB112822D600783ABE /* make_git_version_header.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = make_git_version_header.sh; path = ../UliKit/make_git_version_header.sh; sourceTree = SOURCE_ROOT; };
 		557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMooseDragAreaView.h; sourceTree = "<group>"; };
 		557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMooseDragAreaView.m; sourceTree = "<group>"; };
 		558FD3FF1115DE80008D69DC /* GoodbyeOldFriend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoodbyeOldFriend.png; sourceTree = "<group>"; };
+		559D6CFD16160B83001E1D91 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = ../UliKit/English.lproj/UKCrashReporter.xib; sourceTree = "<group>"; };
+		559D6CFF16160B83001E1D91 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = ../UliKit/English.lproj/UKSpeechSettingsView.xib; sourceTree = "<group>"; };
+		559D6D02161611E4001E1D91 /* Message.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Message.framework; path = ../../../../../System/Library/Frameworks/Message.framework; sourceTree = "<group>"; };
 		55A660C9110A4F7700FE0723 /* UKWindowDraggingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKWindowDraggingImageView.h; path = ../UliKit/UKWindowDraggingImageView.h; sourceTree = SOURCE_ROOT; };
 		55A660CA110A4F7700FE0723 /* UKWindowDraggingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKWindowDraggingImageView.m; path = ../UliKit/UKWindowDraggingImageView.m; sourceTree = SOURCE_ROOT; };
 		55A66101110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKTabViewSwitchingSourceViewController.h; path = ../UliKit/UKTabViewSwitchingSourceViewController.h; sourceTree = SOURCE_ROOT; };
@@ -318,6 +319,7 @@
 				3D8CABFE0CE5C97B0046B187 /* ApplicationServices.framework in Frameworks */,
 				3D8CADEB0CE6450E0046B187 /* AddressBook.framework in Frameworks */,
 				553E5081161496C100272749 /* ServiceManagement.framework in Frameworks */,
+				559D6D03161611E4001E1D91 /* Message.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +360,7 @@
 				3DC2F8900798039800423F0A /* Carbon.framework */,
 				3D8CABFD0CE5C97B0046B187 /* ApplicationServices.framework */,
 				3D8CADEA0CE6450E0046B187 /* AddressBook.framework */,
+				559D6D02161611E4001E1D91 /* Message.framework */,
 				553E5080161496C100272749 /* ServiceManagement.framework */,
 			);
 			name = "Linked Frameworks";
@@ -383,7 +386,6 @@
 		29B97314FDCFA39411CA2CEA /* CocoaMoose */ = {
 			isa = PBXGroup;
 			children = (
-				553E507E1614952000272749 /* Moose.entitlements */,
 				3D791E6A0798CDD2009BA042 /* TODO.txt */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -425,8 +427,8 @@
 				5BBD988506B07F9E00FFE801 /* MooseAlphaIcon.icns */,
 				3DF413B00796FE2F002DE6EF /* MooseAnim.icns */,
 				3DA3554E0884740F00825D47 /* MoosePhraseFileIcon.icns */,
-				3D8CAD080CE5D21E0046B187 /* UKCrashReporter.nib */,
-				3D32B405087EE78D008CFC56 /* UKSpeechSettingsView.nib */,
+				559D6CFC16160B83001E1D91 /* UKCrashReporter.xib */,
+				559D6CFE16160B83001E1D91 /* UKSpeechSettingsView.xib */,
 				3DF412A607969BAD002DE6EF /* PTHotKeys */,
 				3D87481C06CB022D007D365E /* UKSplotchSynonyms.plist */,
 				3D874E2506CC14C5007D365E /* UKSplotchMainDictionary.plist */,
@@ -687,7 +689,9 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ULI;
 				LastUpgradeCheck = 0410;
+				ORGANIZATIONNAME = "The Void Software";
 			};
 			buildConfigurationList = 3DBAA7280880496A0035E83A /* Build configuration list for PBXProject "TalkingMoose" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -727,7 +731,6 @@
 				3D791E9A0798EBB3009BA042 /* tylerui_zoombox.png in Resources */,
 				3D791E9B0798EBB3009BA042 /* tylerui_growbox.png in Resources */,
 				3D6439C60813BE0900B7779A /* Localizable.strings in Resources */,
-				3D32B407087EE78D008CFC56 /* UKSpeechSettingsView.nib in Resources */,
 				3DA3554F0884740F00825D47 /* MoosePhraseFileIcon.icns in Resources */,
 				3D73E1E0088557C80067BEE3 /* PrefsTitle.png in Resources */,
 				3D73E1F8088559F00067BEE3 /* window_bg.png in Resources */,
@@ -752,12 +755,13 @@
 				3DBE7C630B9E539800526251 /* UKSplotchLiquids.plist in Resources */,
 				3D1E8E820CE29C5200334A8E /* loud.png in Resources */,
 				3D1E8E840CE29C6200334A8E /* quiet.png in Resources */,
-				3D8CAD0A0CE5D21E0046B187 /* UKCrashReporter.nib in Resources */,
 				55E27CA60E635104003A077C /* Blech.m4a in Resources */,
 				55F8CB140E66043300DCF0D2 /* SpokenString.plist in Resources */,
 				55F8CB150E66043300DCF0D2 /* SpokenString.aiff in Resources */,
 				558FD4001115DE80008D69DC /* GoodbyeOldFriend.png in Resources */,
 				55F3136E1127FBCD00BC5C68 /* MainMenu.xib in Resources */,
+				559D6D0016160B83001E1D91 /* UKCrashReporter.xib in Resources */,
+				559D6D0116160B83001E1D91 /* UKSpeechSettingsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,14 +862,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		3D32B405087EE78D008CFC56 /* UKSpeechSettingsView.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3D32B406087EE78D008CFC56 /* English */,
-			);
-			name = UKSpeechSettingsView.nib;
-			sourceTree = "<group>";
-		};
 		3D567A170994FACB008FDECF /* UKCrashReporter.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -880,15 +876,6 @@
 				3D7CC85D09CB6A760036DC5C /* English */,
 			);
 			name = UKUpdateChecker.strings;
-			sourceTree = "<group>";
-		};
-		3D8CAD080CE5D21E0046B187 /* UKCrashReporter.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3D8CAD090CE5D21E0046B187 /* English */,
-			);
-			comments = "Stupid\n";
-			name = UKCrashReporter.nib;
 			sourceTree = "<group>";
 		};
 		3DF5B7ED0AA830D1000D2302 /* minus-8.png */ = {
@@ -929,6 +916,22 @@
 			name = PTKeyComboPanel.nib;
 			sourceTree = "<group>";
 		};
+		559D6CFC16160B83001E1D91 /* UKCrashReporter.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				559D6CFD16160B83001E1D91 /* English */,
+			);
+			name = UKCrashReporter.xib;
+			sourceTree = "<group>";
+		};
+		559D6CFE16160B83001E1D91 /* UKSpeechSettingsView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				559D6CFF16160B83001E1D91 /* English */,
+			);
+			name = UKSpeechSettingsView.xib;
+			sourceTree = "<group>";
+		};
 		55F3136C1127FBCD00BC5C68 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -944,7 +947,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "${NATIVE_ARCH}";
-				CODE_SIGN_ENTITLEMENTS = Moose/Moose.entitlements;
 				CODE_SIGN_IDENTITY = "The Void Software";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -963,6 +965,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Moose;
@@ -981,7 +984,6 @@
 		3DBAA7260880496A0035E83A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Moose/Moose.entitlements;
 				CODE_SIGN_IDENTITY = "The Void Software";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -997,6 +999,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Moose;

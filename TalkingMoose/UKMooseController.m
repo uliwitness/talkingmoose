@@ -457,7 +457,7 @@
 	if( [[self useMooseMouthFiles] boolValue] )
 		return [mooseInfo filenameFromString: fname extension: @".mooseMouth"];
 	else
-	#endif DEBUG
+	#endif // DEBUG
 		return [mooseInfo filenameFromString: fname extension: nil];
 }
 

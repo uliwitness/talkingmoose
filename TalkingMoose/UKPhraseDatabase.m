@@ -20,6 +20,7 @@
 	{
 		phraseFiles = [[UKGroupFile alloc] init];
 		
+		NSError		*	theError = nil;
 		NSFileManager*	fm = [NSFileManager defaultManager];
 		NSString*		stdPhrasePath = [@"~/Library/Application Support/Moose/Standard Phrases" stringByExpandingTildeInPath];
 		NSString*		stdPhrasePathOff = [@"~/Library/Application Support/Moose/Standard Phrases (Off)" stringByExpandingTildeInPath];
@@ -28,7 +29,7 @@
 			[fm createDirectoriesForPath: stdPhrasePath];
 		
 		NSString*	mooseVersionPath = [stdPhrasePath stringByAppendingPathComponent: @"mooseversion"];
-		NSString*	mooseVersionStr = [NSString stringWithContentsOfFile: mooseVersionPath];
+		NSString*	mooseVersionStr = [NSString stringWithContentsOfFile: mooseVersionPath encoding: NSUTF8StringEncoding error: &theError];
 		mooseVersionStr = [[mooseVersionStr componentsSeparatedByString: @"\n"] objectAtIndex: 0];	// First line only, in case we ever need to store other info.
 		BOOL		versionChanged = [@"" SVN_VERSION isEqualToString: mooseVersionStr] == NO;
 		
@@ -52,7 +53,7 @@
 		}
 		
 		if( success && ![@"" SVN_VERSION isEqualToString: mooseVersionStr] )
-			[@"" SVN_VERSION writeToFile: mooseVersionPath atomically: YES];
+			[@"" SVN_VERSION writeToFile: mooseVersionPath atomically: YES encoding: NSUTF8StringEncoding error: &theError];
 		[self loadPhrasesInFolder: stdPhrasePath];
 		[self loadPhrasesInFolder: @"/Library/Application Support/Moose/Phrases"];
 		[self loadPhrasesInFolder: @"~/Library/Application Support/Moose/Phrases"];
@@ -97,7 +98,7 @@
 	[UKGroupFile cleanUpGroupFile: currPath];
 	#if DEBUG
 	//int		oldNumPhrases = [phraseFiles numPhrases];
-	#endif DEBUG
+	#endif // DEBUG
 	[phraseFiles parseGroupFile: currPath withDefaultCategory: @"PAUSE"];
 	//UKLog(@"Loaded %d phrases from file %@.",([phraseFiles numPhrases] -oldNumPhrases),currPath);
 }

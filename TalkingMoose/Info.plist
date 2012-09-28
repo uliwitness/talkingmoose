@@ -45,7 +45,7 @@
 	<key>CFBundleHelpBookFolder</key>
 	<string>Moose Help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>Uli&apos;s Moose Help</string>
+	<string>Uli's Moose Help</string>
 	<key>CFBundleIconFile</key>
 	<string>MooseAlphaIcon</string>
 	<key>CFBundleIdentifier</key>
@@ -54,10 +54,12 @@
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>3.6b2</string>
 	<key>CFBundleSignature</key>
 	<string>MOSp</string>
-	<key>CFBundleVersion</key>
-	<string>3.6</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.entertainment</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSMainNibFile</key>
