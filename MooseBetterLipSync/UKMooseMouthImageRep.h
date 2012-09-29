@@ -19,6 +19,7 @@
 @interface UKMooseMouthImageRep : NSImageRep
 {
     UKMouthShape*	mouthShape;	// The loaded shape to draw.
+	NSImage*		insideImage;
 }
 
 +(id)				imageRepWithData: (NSData *)plistData;
@@ -29,6 +30,9 @@
 
 -(UKMouthShape*)	mouthShape;
 
+-(void)				setInsideImage: (NSImage*)inImage;
+-(NSImage*)			insideImage;
+
 @end
 
 
@@ -37,6 +41,9 @@
 // Works best with images containing each a UKMooseMouthImageRep:
 //	Assumes both images are same size.
 -(id)	imageMergedWith: (NSImage*)otherImage percentageOfOther: (float)perc;
+
+-(void)				setInsideImage: (NSImage*)inImage;
+-(NSImage*)			insideImage;
 
 @end
 

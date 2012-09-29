@@ -12,6 +12,9 @@
 #import "UKMooseMouthImageRep.h"
 
 
+#define MERGE_ANIMATION_FRAMES		0
+
+
 @interface UKMooseController (PrivateMethods)
 
 -(void)			buildCurrentImage;
@@ -46,6 +49,10 @@
 			NSImage* bgImage = [mooseInfo imageFileFromString: @"base"];
 			if( bgImage )
 				[mooseImages setObject: bgImage forKey: @"BASE"];
+			
+			NSImage* mouthInsideImage = [mooseInfo imageFileFromString: @"mouth-inside"];
+			if( mouthInsideImage )
+				[mooseImages setObject: mouthInsideImage forKey: @"MOUTH-INSIDE"];
 			
 			lastPhonemeTime = CFAbsoluteTimeGetCurrent();
 			[self changeMouthImageToPhoneme: 0];
@@ -464,18 +471,19 @@
 
 -(NSImage*)		imageFileForPhoneme: (short)phon
 {
-	NSString*   bgFilename = [self filenameFromPhoneme: phon];
-    NSImage*    img = [mooseImages objectForKey: bgFilename];
+	NSString*   phonemeFilename = [self filenameFromPhoneme: phon];
+    NSImage*    img = [mooseImages objectForKey: phonemeFilename];
     
     if( !img )
     {
-        img = [[[NSImage alloc] initWithContentsOfFile: bgFilename] autorelease];
+        img = [[[NSImage alloc] initWithContentsOfFile: phonemeFilename] autorelease];
+		[img setInsideImage: [mooseImages objectForKey: @"MOUTH-INSIDE"]];
         [img setCacheMode: NSImageCacheAlways];
 	
         if( !img )
-            NSLog(@"UKMooseController: Couldn't load image %@", bgFilename);
+            NSLog(@"UKMooseController: Couldn't load image %@", phonemeFilename);
         else
-            [mooseImages setObject: img forKey: bgFilename];
+            [mooseImages setObject: img forKey: phonemeFilename];
     }
     
     return img;
@@ -643,7 +651,8 @@
 	if( blinking != 0 )
 	{
 		NSImage* theImage = [mooseInfo imageFileFromString: [NSString stringWithFormat: @"eyes-blink%d", (blinking > 0) ? blinking : -blinking]];
-		[mooseImages setObject: theImage forKey: @"EYES"];
+		if( theImage )
+			[mooseImages setObject: theImage forKey: @"EYES"];
 		blinking++;
 		
 		if( blinking > 3 )

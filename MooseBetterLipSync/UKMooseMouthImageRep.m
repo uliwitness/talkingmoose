@@ -9,6 +9,7 @@
 #if DEBUG
 
 #import "UKMooseMouthImageRep.h"
+#import "UKHelperMacros.h"
 
 
 @implementation UKMooseMouthImageRep
@@ -67,8 +68,8 @@
 
 -(void) dealloc
 {
-	[mouthShape release];
-	mouthShape = nil;
+	DESTROY_DEALLOC(insideImage);
+	DESTROY_DEALLOC(mouthShape);
 
 	[super dealloc];
 }
@@ -84,6 +85,7 @@
 {
 	UKMooseMouthImageRep*	obj = [super copyWithZone: zone];
 	obj->mouthShape = [mouthShape copyWithZone: zone];
+	obj->insideImage = [insideImage retain];
 	return obj;
 }
 
@@ -92,7 +94,7 @@
 	NSRect				box = { { 0, 0 }, { 120, 120 } };
 	box.size = [mouthShape size];
 	
-	[mouthShape drawInRect: box displayArea: box insideImage: nil];
+	[mouthShape drawInRect: box displayArea: box insideImage: insideImage];
 	
     return YES;
 }
@@ -104,7 +106,7 @@
 	box.origin = point;
 	box.size = [mouthShape size];
 	
-	[mouthShape drawInRect: box displayArea: box insideImage: nil];
+	[mouthShape drawInRect: box displayArea: box insideImage: insideImage];
 	
     return YES;
 }
@@ -114,9 +116,21 @@
 {
 	rect.size.width /= 2;
 	rect.size.height /= 2;
-	[mouthShape drawInRect: rect displayArea: rect insideImage: nil];
+	[mouthShape drawInRect: rect displayArea: rect insideImage: insideImage];
 	
     return YES;
+}
+
+
+-(void)		setInsideImage: (NSImage*)inImage
+{
+	ASSIGN(insideImage, inImage);
+}
+
+
+-(NSImage*)			insideImage
+{
+	return insideImage;
 }
 
 
@@ -195,6 +209,7 @@
 	{
 		UKMouthShape*			mergedShape = [[selfMouthRep mouthShape] mouthShapeByMergingWithShape: [otherMouthRep mouthShape] percentageOfOther: perc];
 		UKMooseMouthImageRep*	mergedMouthRep = [UKMooseMouthImageRep imageRepWithMouthShape: mergedShape];
+		[mergedMouthRep setInsideImage: [otherMouthRep insideImage]];
 		img = [[[NSImage alloc] initWithSize: [mergedShape size]] autorelease];
 		[img addRepresentation: mergedMouthRep];
 	}
@@ -208,6 +223,38 @@
 	}
 	
 	return img;
+}
+
+
+-(void)				setInsideImage: (NSImage*)inImage
+{
+	NSImageRep*				currRep = nil;
+	UKMooseMouthImageRep*	selfMouthRep = nil;
+	NSEnumerator*			enny = [[self representations] objectEnumerator];
+	
+	while(( currRep = [enny nextObject] ))
+	{
+		if( [currRep isKindOfClass: [UKMooseMouthImageRep class]] )
+			selfMouthRep = (UKMooseMouthImageRep*) currRep;
+	}
+	
+	[selfMouthRep setInsideImage: inImage];
+}
+
+
+-(NSImage*)			insideImage
+{
+	NSImageRep*				currRep = nil;
+	UKMooseMouthImageRep*	selfMouthRep = nil;
+	NSEnumerator*			enny = [[self representations] objectEnumerator];
+	
+	while(( currRep = [enny nextObject] ))
+	{
+		if( [currRep isKindOfClass: [UKMooseMouthImageRep class]] )
+			selfMouthRep = (UKMooseMouthImageRep*) currRep;
+	}
+	
+	return [selfMouthRep insideImage];
 }
 
 @end
