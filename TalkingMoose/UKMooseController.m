@@ -477,7 +477,8 @@
     if( !img )
     {
         img = [[[NSImage alloc] initWithContentsOfFile: phonemeFilename] autorelease];
-		[img setInsideImage: [mooseImages objectForKey: @"MOUTH-INSIDE"]];
+		if( [img respondsToSelector: @selector(setInsideImage:)] )
+			[img setInsideImage: [mooseImages objectForKey: @"MOUTH-INSIDE"]];
         [img setCacheMode: NSImageCacheAlways];
 	
         if( !img )
