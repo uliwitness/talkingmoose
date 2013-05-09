@@ -23,7 +23,6 @@
 		3D73E1F8088559F00067BEE3 /* window_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D73E1F7088559F00067BEE3 /* window_bg.png */; };
 		3D791E9A0798EBB3009BA042 /* tylerui_zoombox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D791E970798EBB3009BA042 /* tylerui_zoombox.png */; };
 		3D791E9B0798EBB3009BA042 /* tylerui_growbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D791E980798EBB3009BA042 /* tylerui_growbox.png */; };
-		3D7CC85E09CB6A760036DC5C /* UKUpdateChecker.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D7CC85C09CB6A760036DC5C /* UKUpdateChecker.strings */; };
 		3D8749A606CB0252007D365E /* Animations in Resources */ = {isa = PBXBuildFile; fileRef = 3D87481E06CB0250007D365E /* Animations */; };
 		3D8749A706CB0252007D365E /* Phrases in Resources */ = {isa = PBXBuildFile; fileRef = 3D87498B06CB0252007D365E /* Phrases */; };
 		3D8CABC90CE4F7970046B187 /* UKMouthShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D8CABC50CE4F7970046B187 /* UKMouthShape.h */; };
@@ -175,7 +174,6 @@
 		3D791E970798EBB3009BA042 /* tylerui_zoombox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tylerui_zoombox.png; sourceTree = "<group>"; };
 		3D791E980798EBB3009BA042 /* tylerui_growbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tylerui_growbox.png; sourceTree = "<group>"; };
 		3D791E990798EBB3009BA042 /* tylerui_closebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tylerui_closebox.png; sourceTree = "<group>"; };
-		3D7CC85D09CB6A760036DC5C /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = ../UliKit/English.lproj/UKUpdateChecker.strings; sourceTree = SOURCE_ROOT; };
 		3D87480606C6C819007D365E /* UKSplotchChatterbot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKSplotchChatterbot.h; sourceTree = "<group>"; };
 		3D87480706C6C819007D365E /* UKSplotchChatterbot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKSplotchChatterbot.m; sourceTree = "<group>"; };
 		3D87481C06CB022D007D365E /* UKSplotchSynonyms.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = UKSplotchSynonyms.plist; sourceTree = SOURCE_ROOT; };
@@ -414,7 +412,6 @@
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				3D6439C50813BE0900B7779A /* Localizable.strings */,
 				3D567A170994FACB008FDECF /* UKCrashReporter.strings */,
-				3D7CC85C09CB6A760036DC5C /* UKUpdateChecker.strings */,
 				55F3136C1127FBCD00BC5C68 /* MainMenu.xib */,
 				3DF412CF0796A168002DE6EF /* MiniMoose.tiff */,
 				3DF412EC0796B9D0002DE6EF /* BandAid.tiff */,
@@ -740,7 +737,6 @@
 				3DF9CB5309C7422800C7BBA8 /* PTKeyCodes.plist in Resources */,
 				3DF9CB5409C7422800C7BBA8 /* PTKeyComboPanel.nib in Resources */,
 				3DF9CB5A09C7423600C7BBA8 /* PTKeyboardIcon.tiff in Resources */,
-				3D7CC85E09CB6A760036DC5C /* UKUpdateChecker.strings in Resources */,
 				3DF5B7F10AA830D1000D2302 /* minus-8.png in Resources */,
 				3DF5B7F20AA830D1000D2302 /* plus-8.png in Resources */,
 				3DBE7AC80B9E279400526251 /* UKSplotchSynonyms.plist in Resources */,
@@ -868,14 +864,6 @@
 				3D567A180994FACB008FDECF /* English */,
 			);
 			name = UKCrashReporter.strings;
-			sourceTree = "<group>";
-		};
-		3D7CC85C09CB6A760036DC5C /* UKUpdateChecker.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3D7CC85D09CB6A760036DC5C /* English */,
-			);
-			name = UKUpdateChecker.strings;
 			sourceTree = "<group>";
 		};
 		3DF5B7ED0AA830D1000D2302 /* minus-8.png */ = {
