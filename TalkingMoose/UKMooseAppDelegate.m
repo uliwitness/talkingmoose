@@ -21,7 +21,6 @@
 #import "NSArray+Color.h"
 #import "PTHotKey.h"
 #import "PTKeyComboPanel.h"
-#import "UKLoginItemRegistry.h"
 #import "NSFileManager+CreateDirectoriesForPath.h"
 #import "NSWindow+Fade.h"
 //#import "UKUIElement.h"
@@ -33,6 +32,7 @@
 #import "UKRecordedSpeechChannel.h"
 #import "UKClickableImageView.h"
 #import "UKFinderIconCell.h"
+#import "UKHelperMacros.h"
 #import <ServiceManagement/ServiceManagement.h>
 
 #if DEBUG && 0
@@ -310,11 +310,12 @@ static BOOL		gIsSilenced = NO;
 	[silenceMooseHKField setStringValue: [silenceMooseHotkey stringValue]];
 	
     // "Launch at startup" checkbox:
-	NSString*		bundlePath = [[NSBundle mainBundle] bundlePath];
+	NSString				*bundleID = [[NSBundle mainBundle] bundleIdentifier];
+	NSRunningApplication	*helperApp = [NSRunningApplication runningApplicationsWithBundleIdentifier: bundleID].firstObject;
 	
-	if( [UKLoginItemRegistry indexForLoginItemWithPath: bundlePath] != -1 )
+	if( helperApp != nil )
 		[launchAtLoginSwitch setState: YES];
-		
+	
 	// Delay:
 	NSNumber* delay = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseSpeechDelay"];
 	if( delay != nil )
@@ -396,7 +397,7 @@ static BOOL		gIsSilenced = NO;
 	NSString*	title = NSLocalizedString(@"Install these files?",@"Multiple Install Question Title");
 	NSString*   msg = NSLocalizedString(@"You have opened animation/phrase files with the Moose. Do you want to install them on your computer so the Moose will use them from now on?",@"Multiple Install Question Message");
 
-	if( NSRunInformationalAlertPanel( title, msg, NSLocalizedString(@"Yes",@""), NSLocalizedString(@"No",@""), @"" ) == NSOKButton )
+	if( NSRunInformationalAlertPanel( title, @"%@", NSLocalizedString(@"Yes",@""), NSLocalizedString(@"No",@""), @"", msg ) == NSOKButton )
 	{
 		NSEnumerator*	enny = [filenames objectEnumerator];
 		NSString*		currFilename = nil;
@@ -409,7 +410,7 @@ static BOOL		gIsSilenced = NO;
 		msg = [NSString stringWithFormat: msg, [installedFileNames componentsJoinedByString: @"\n"]];
 		title = [NSString stringWithFormat: NSLocalizedString(@"%d Files Installed.",@""), [installedFileNames count]];
 		
-		if( NSRunInformationalAlertPanel( title, msg, NSLocalizedString(@"Yes",@""), NSLocalizedString(@"No",@""), @"" ) == NSOKButton )
+		if( NSRunInformationalAlertPanel( title, @"%@", NSLocalizedString(@"Yes",@""), NSLocalizedString(@"No",@""), @"", msg ) == NSOKButton )
 			[[mooseList window] makeKeyAndOrderFront: self];
 	}
 }
@@ -426,7 +427,7 @@ static BOOL		gIsSilenced = NO;
 	NSString*	title = NSLocalizedString(@"Install this file?",@"Install Question Title");
 	NSString*   msg = NSLocalizedString(@"You have opened an animation/phrase file with the Moose. Do you want to install it on your computer so the Moose will use it from now on?",@"Install Question Message");
 
-	if( NSRunInformationalAlertPanel( title, msg, NSLocalizedString(@"Yes",@""), NSLocalizedString(@"No",@""), @"" ) == NSOKButton )
+	if( NSRunInformationalAlertPanel( title, @"%@", NSLocalizedString(@"Yes",@""), NSLocalizedString(@"No",@""), @"", msg ) == NSOKButton )
 	{
 		return [self application: sender openFile: filename dontAskButAddToList: nil];
 	}
@@ -504,8 +505,8 @@ static BOOL		gIsSilenced = NO;
 			{
 				NSString*   msg = NSLocalizedString(@"The %@ \"%@\" has been installed. Do you want to open the Moose panel so you can examine/activate it?",@"Install Success Message");
 				msg = [NSString stringWithFormat: msg, itemKindName, itemName];
-				if( NSRunInformationalAlertPanel( NSLocalizedString(@"Installation successful.",@""), msg,
-						NSLocalizedString(@"Yes",@""), NSLocalizedString(@"No",@""), @"" ) == NSOKButton )
+				if( NSRunInformationalAlertPanel( NSLocalizedString(@"Installation successful.",@""), @"%@",
+						NSLocalizedString(@"Yes",@""), NSLocalizedString(@"No",@""), @"", msg ) == NSOKButton )
 					[[mooseList window] makeKeyAndOrderFront: self];
 			}
         }
@@ -846,10 +847,10 @@ static BOOL		gIsSilenced = NO;
 {
     BOOL        dragInstead = NO;
 	
-	Point	globMouse = { 0, 0 };
-	GetGlobalMouse( &globMouse );
-	if( WaitMouseMoved( globMouse ) )
+	NSEvent *currEvent = [NSApplication.sharedApplication nextEventMatchingMask: NSEventMaskLeftMouseDragged | NSEventMaskLeftMouseUp untilDate: [NSDate dateWithTimeIntervalSinceNow: 0.5] inMode: NSEventTrackingRunLoopMode dequeue: NO];
+	if (currEvent.type != NSEventTypeLeftMouseDragged) {
 		dragInstead = YES;
+	}
 	
     if( dragInstead )
     {
@@ -1265,17 +1266,7 @@ static BOOL		gIsSilenced = NO;
 
 -(void) takeLaunchAtLoginBoolFrom: (id)sender
 {
-#if 1
-	NSString*		bundlePath = [[NSBundle mainBundle] bundlePath];
-	int				loginItemIdx = [UKLoginItemRegistry indexForLoginItemWithPath: bundlePath];
-	
-	if( loginItemIdx == -1 )
-		[UKLoginItemRegistry addLoginItemWithPath: bundlePath hideIt: YES];
-	else
-		[UKLoginItemRegistry removeLoginItemAtIndex: loginItemIdx];
-#else
 	SMLoginItemSetEnabled( (CFStringRef) [[NSBundle mainBundle] bundleIdentifier], [sender state] == NSOnState );
-#endif
 }
 
 

@@ -1,9 +1,10 @@
 #import "UKMoosePhraseologyDelegate.h"
 #import "UKGroupFile.h"
+#import "UKHelperMacros.h"
 
 @implementation UKMoosePhraseologyDelegate
 
-int		UKPhraseFileSortFunction( id objA, id objB, void* context )
+NSInteger	UKPhraseFileSortFunction( id objA, id objB, void* context )
 {
 	return [[objA objectForKey: @"name"] caseInsensitiveCompare: [objB objectForKey: @"name"]];
 }

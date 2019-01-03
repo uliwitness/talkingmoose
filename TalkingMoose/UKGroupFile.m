@@ -248,7 +248,7 @@ NSString*	UKGroupFileCommandArgsKey = @"UKGroupFileCommandArgs";
 }
 
 
-int		UKShuffleCompareFunction( id a, id b, void* c )
+NSInteger	UKShuffleCompareFunction( id _Nonnull a, id _Nonnull b, void* _Nullable c )
 {
 	return ((rand() & 1) == 1) ? 1 : -1;
 }

@@ -7,6 +7,7 @@
 //
 
 #import "UKMouthShape.h"
+#import "UKHelperMacros.h"
 
 
 #define MAX_POINTS		16

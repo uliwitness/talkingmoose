@@ -78,10 +78,6 @@
 		3DF5B7F20AA830D1000D2302 /* plus-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5B7EF0AA830D1000D2302 /* plus-8.png */; };
 		3DF5B8030AA83246000D2302 /* UKSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B8010AA83246000D2302 /* UKSystemInfo.m */; };
 		3DF5B8040AA83246000D2302 /* UKSystemInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF5B8020AA83246000D2302 /* UKSystemInfo.h */; };
-		3DF9CB0509C7398100C7BBA8 /* LoginItemsAE.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF9CB0309C7398100C7BBA8 /* LoginItemsAE.h */; };
-		3DF9CB0609C7398100C7BBA8 /* LoginItemsAE.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DF9CB0409C7398100C7BBA8 /* LoginItemsAE.c */; };
-		3DF9CB1A09C73A3F00C7BBA8 /* UKLoginItemRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF9CB1809C73A3F00C7BBA8 /* UKLoginItemRegistry.h */; };
-		3DF9CB1B09C73A3F00C7BBA8 /* UKLoginItemRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF9CB1909C73A3F00C7BBA8 /* UKLoginItemRegistry.m */; };
 		3DF9CB4309C741C800C7BBA8 /* PTHotKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF9CB3709C741C800C7BBA8 /* PTHotKey.h */; };
 		3DF9CB4409C741C800C7BBA8 /* PTHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF9CB3809C741C800C7BBA8 /* PTHotKey.m */; };
 		3DF9CB4509C741C800C7BBA8 /* PTHotKeyCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF9CB3909C741C800C7BBA8 /* PTHotKeyCenter.h */; };
@@ -103,7 +99,6 @@
 		558FD4001115DE80008D69DC /* GoodbyeOldFriend.png in Resources */ = {isa = PBXBuildFile; fileRef = 558FD3FF1115DE80008D69DC /* GoodbyeOldFriend.png */; };
 		559D6D0016160B83001E1D91 /* UKCrashReporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559D6CFC16160B83001E1D91 /* UKCrashReporter.xib */; };
 		559D6D0116160B83001E1D91 /* UKSpeechSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559D6CFE16160B83001E1D91 /* UKSpeechSettingsView.xib */; };
-		559D6D03161611E4001E1D91 /* Message.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559D6D02161611E4001E1D91 /* Message.framework */; };
 		55A660CB110A4F7700FE0723 /* UKWindowDraggingImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A660C9110A4F7700FE0723 /* UKWindowDraggingImageView.h */; };
 		55A660CC110A4F7700FE0723 /* UKWindowDraggingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A660CA110A4F7700FE0723 /* UKWindowDraggingImageView.m */; };
 		55A66103110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A66101110A559100FE0723 /* UKTabViewSwitchingSourceViewController.h */; };
@@ -130,7 +125,6 @@
 		5BBD987E06B07F7900FFE801 /* UKMooseController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BBD987406B07F7900FFE801 /* UKMooseController.h */; };
 		5BBD987F06B07F7900FFE801 /* UKMooseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD987506B07F7900FFE801 /* UKMooseAppDelegate.m */; };
 		5BBD988006B07F7900FFE801 /* UKPhraseDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD987606B07F7900FFE801 /* UKPhraseDatabase.m */; };
-		5BBD988E06B07F9F00FFE801 /* CocoaMoose_Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 5BBD988106B07F9E00FFE801 /* CocoaMoose_Prefix.pch */; };
 		5BBD988F06B07F9F00FFE801 /* UKIdleTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988206B07F9E00FFE801 /* UKIdleTimer.m */; };
 		5BBD989006B07F9F00FFE801 /* NSArray+Color.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BBD988306B07F9E00FFE801 /* NSArray+Color.h */; };
 		5BBD989106B07F9F00FFE801 /* UKGroupFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988406B07F9E00FFE801 /* UKGroupFile.m */; };
@@ -166,7 +160,7 @@
 		3D55636909CB4E7B002608B2 /* UKAboutBox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKAboutBox.h; path = ../UliKit/UKAboutBox.h; sourceTree = SOURCE_ROOT; };
 		3D56781C0994F2D8008FDECF /* UKCrashReporter.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKCrashReporter.m; path = ../UliKit/UKCrashReporter.m; sourceTree = SOURCE_ROOT; };
 		3D56781D0994F2D8008FDECF /* UKCrashReporter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKCrashReporter.h; path = ../UliKit/UKCrashReporter.h; sourceTree = SOURCE_ROOT; };
-		3D567A180994FACB008FDECF /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = ../UliKit/English.lproj/UKCrashReporter.strings; sourceTree = SOURCE_ROOT; };
+		3D567A180994FACB008FDECF /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = ../UliKit/English.lproj/UKCrashReporter.strings; sourceTree = SOURCE_ROOT; };
 		3D6439C50813BE0900B7779A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		3D73E1DF088557C80067BEE3 /* PrefsTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PrefsTitle.png; sourceTree = "<group>"; };
 		3D73E1F7088559F00067BEE3 /* window_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = window_bg.png; sourceTree = "<group>"; };
@@ -229,10 +223,6 @@
 		3DF5B7F00AA830D1000D2302 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = English; path = "../UliKit/English.lproj/plus-8.png"; sourceTree = SOURCE_ROOT; };
 		3DF5B8010AA83246000D2302 /* UKSystemInfo.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKSystemInfo.m; path = ../UliKit/UKSystemInfo.m; sourceTree = SOURCE_ROOT; };
 		3DF5B8020AA83246000D2302 /* UKSystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKSystemInfo.h; path = ../UliKit/UKSystemInfo.h; sourceTree = SOURCE_ROOT; };
-		3DF9CB0309C7398100C7BBA8 /* LoginItemsAE.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = LoginItemsAE.h; path = ../LoginItemsAE/LoginItemsAE.h; sourceTree = SOURCE_ROOT; };
-		3DF9CB0409C7398100C7BBA8 /* LoginItemsAE.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = LoginItemsAE.c; path = ../LoginItemsAE/LoginItemsAE.c; sourceTree = SOURCE_ROOT; };
-		3DF9CB1809C73A3F00C7BBA8 /* UKLoginItemRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKLoginItemRegistry.h; path = ../UliKit/UKLoginItemRegistry.h; sourceTree = SOURCE_ROOT; };
-		3DF9CB1909C73A3F00C7BBA8 /* UKLoginItemRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKLoginItemRegistry.m; path = ../UliKit/UKLoginItemRegistry.m; sourceTree = SOURCE_ROOT; };
 		3DF9CB3709C741C800C7BBA8 /* PTHotKey.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PTHotKey.h; path = ../HotKeysLib3/PTHotKeysLib/src/PTHotKey.h; sourceTree = "<group>"; };
 		3DF9CB3809C741C800C7BBA8 /* PTHotKey.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PTHotKey.m; path = ../HotKeysLib3/PTHotKeysLib/src/PTHotKey.m; sourceTree = "<group>"; };
 		3DF9CB3909C741C800C7BBA8 /* PTHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PTHotKeyCenter.h; path = ../HotKeysLib3/PTHotKeysLib/src/PTHotKeyCenter.h; sourceTree = "<group>"; };
@@ -288,7 +278,6 @@
 		5BBD987406B07F7900FFE801 /* UKMooseController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKMooseController.h; sourceTree = SOURCE_ROOT; };
 		5BBD987506B07F7900FFE801 /* UKMooseAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKMooseAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		5BBD987606B07F7900FFE801 /* UKPhraseDatabase.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKPhraseDatabase.m; sourceTree = SOURCE_ROOT; };
-		5BBD988106B07F9E00FFE801 /* CocoaMoose_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CocoaMoose_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		5BBD988206B07F9E00FFE801 /* UKIdleTimer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKIdleTimer.m; path = ../UliKit/UKIdleTimer.m; sourceTree = "<group>"; };
 		5BBD988306B07F9E00FFE801 /* NSArray+Color.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSArray+Color.h"; path = "../UliKit/NSArray+Color.h"; sourceTree = "<group>"; };
 		5BBD988406B07F9E00FFE801 /* UKGroupFile.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKGroupFile.m; sourceTree = SOURCE_ROOT; };
@@ -317,7 +306,6 @@
 				3D8CABFE0CE5C97B0046B187 /* ApplicationServices.framework in Frameworks */,
 				3D8CADEB0CE6450E0046B187 /* AddressBook.framework in Frameworks */,
 				553E5081161496C100272749 /* ServiceManagement.framework in Frameworks */,
-				559D6D03161611E4001E1D91 /* Message.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,8 +386,6 @@
 			isa = PBXGroup;
 			children = (
 				5BBD988A06B07F9E00FFE801 /* main.m */,
-				5BBD988106B07F9E00FFE801 /* CocoaMoose_Prefix.pch */,
-				3D1575B4071BEA92008183E8 /* LoginItems */,
 				3D1575B7071BEAA5008183E8 /* UliKit */,
 			);
 			name = "Other Sources";
@@ -530,17 +516,6 @@
 			name = UliKit;
 			sourceTree = "<group>";
 		};
-		3D1575B4071BEA92008183E8 /* LoginItems */ = {
-			isa = PBXGroup;
-			children = (
-				3DF9CB0309C7398100C7BBA8 /* LoginItemsAE.h */,
-				3DF9CB0409C7398100C7BBA8 /* LoginItemsAE.c */,
-				3DF9CB1809C73A3F00C7BBA8 /* UKLoginItemRegistry.h */,
-				3DF9CB1909C73A3F00C7BBA8 /* UKLoginItemRegistry.m */,
-			);
-			name = LoginItems;
-			sourceTree = "<group>";
-		};
 		3D1575B7071BEAA5008183E8 /* UliKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,8 +603,6 @@
 				3D05C45E08888A1600DA756A /* UKDocumentationController.h in Headers */,
 				3DC7D50B090FC9B0009A2900 /* NSWindow+Fade.h in Headers */,
 				3D56781F0994F2D8008FDECF /* UKCrashReporter.h in Headers */,
-				3DF9CB0509C7398100C7BBA8 /* LoginItemsAE.h in Headers */,
-				3DF9CB1A09C73A3F00C7BBA8 /* UKLoginItemRegistry.h in Headers */,
 				3DF9CB4309C741C800C7BBA8 /* PTHotKey.h in Headers */,
 				3DF9CB4509C741C800C7BBA8 /* PTHotKeyCenter.h in Headers */,
 				3DF9CB4709C741C800C7BBA8 /* PTKeyBroadcaster.h in Headers */,
@@ -689,6 +662,11 @@
 				CLASSPREFIX = ULI;
 				LastUpgradeCheck = 0410;
 				ORGANIZATIONNAME = "The Void Software";
+				TargetAttributes = {
+					8D1107260486CEB800E47090 = {
+						DevelopmentTeam = RCKXACKVZS;
+					};
+				};
 			};
 			buildConfigurationList = 3DBAA7280880496A0035E83A /* Build configuration list for PBXProject "TalkingMoose" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -716,7 +694,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				5BBD988E06B07F9F00FFE801 /* CocoaMoose_Prefix.pch in Resources */,
 				5BBD989206B07F9F00FFE801 /* MooseAlphaIcon.icns in Resources */,
 				3D8749A606CB0252007D365E /* Animations in Resources */,
 				3D8749A706CB0252007D365E /* Phrases in Resources */,
@@ -776,7 +753,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = ../UliKit/make_git_version_header.sh;
+			shellScript = "cd \"${BUILD_DIR}\"\n\"${PROJECT_DIR}/../UliKit/make_git_version_header.sh\"\n";
 		};
 		3D3A1FEF09B1E1A800FB2B56 /* Build Helpbook */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -820,8 +797,6 @@
 				3D05C45F08888A1600DA756A /* UKDocumentationController.m in Sources */,
 				3DC7D50A090FC9B0009A2900 /* NSWindow+Fade.m in Sources */,
 				3D56781E0994F2D8008FDECF /* UKCrashReporter.m in Sources */,
-				3DF9CB0609C7398100C7BBA8 /* LoginItemsAE.c in Sources */,
-				3DF9CB1B09C73A3F00C7BBA8 /* UKLoginItemRegistry.m in Sources */,
 				3DF9CB4409C741C800C7BBA8 /* PTHotKey.m in Sources */,
 				3DF9CB4609C741C800C7BBA8 /* PTHotKeyCenter.m in Sources */,
 				3DF9CB4809C741C800C7BBA8 /* PTKeyBroadcaster.m in Sources */,
@@ -934,26 +909,31 @@
 		3DBAA7250880496A0035E83A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "${NATIVE_ARCH}";
-				CODE_SIGN_IDENTITY = "The Void Software";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
+				DEVELOPMENT_TEAM = RCKXACKVZS;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CocoaMoose_Prefix.pch;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../UliKit/",
+					"$(PROJECT_DIR)/../MooseBetterLipSync/",
+					"$(PROJECT_DIR)/../HotKeysLib3/PTHotKeysLib/src/",
+					"$(PROJECT_DIR)/../UKDistributedView/",
+					"$(PROJECT_DIR)/../UKDistributedView/UKFinderIconCell/",
+					"$(BUILD_DIR)/",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Moose;
@@ -972,22 +952,27 @@
 		3DBAA7260880496A0035E83A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "The Void Software";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = RCKXACKVZS;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CocoaMoose_Prefix.pch;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../UliKit/",
+					"$(PROJECT_DIR)/../MooseBetterLipSync/",
+					"$(PROJECT_DIR)/../HotKeysLib3/PTHotKeysLib/src/",
+					"$(PROJECT_DIR)/../UKDistributedView/",
+					"$(PROJECT_DIR)/../UKDistributedView/UKFinderIconCell/",
+					"$(BUILD_DIR)/",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Moose;
@@ -1006,23 +991,30 @@
 		3DBAA7290880496A0035E83A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_VERSION = 4.0;
-				SDKROOT = macosx10.7;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				USE_HEADERMAP = NO;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
 		3DBAA72A0880496A0035E83A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-				);
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_VERSION = 4.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
-				SDKROOT = macosx10.7;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				USE_HEADERMAP = NO;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};

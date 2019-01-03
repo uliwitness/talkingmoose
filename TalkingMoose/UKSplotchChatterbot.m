@@ -8,6 +8,7 @@
 //
 
 #import "UKSplotchChatterbot.h"
+#import "UKHelperMacros.h"
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>

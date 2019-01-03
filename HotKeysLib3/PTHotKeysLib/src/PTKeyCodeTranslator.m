@@ -15,7 +15,7 @@
 {
     static PTKeyCodeTranslator *current = nil;
     KeyboardLayoutRef currentLayout;
-    OSStatus err = KLGetCurrentKeyboardLayout( &currentLayout );
+	OSStatus err = unimpErr; //KLGetCurrentKeyboardLayout( &currentLayout ); // TODO: Replace.
     if (err != noErr) return nil;
     
     if (current == nil) {
@@ -32,14 +32,14 @@
     if ((self = [super init]) != nil) {
         OSStatus err;
         keyboardLayout = aLayout;
-        err = KLGetKeyboardLayoutProperty( aLayout, kKLKind, (const void **)&keyLayoutKind );
+        err = unimpErr; //KLGetKeyboardLayoutProperty( aLayout, kKLKind, (const void **)&keyLayoutKind ); // TODO: Replace.
         if (err != noErr) return nil;
 
         if (keyLayoutKind == kKLKCHRKind) {
-            err = KLGetKeyboardLayoutProperty( keyboardLayout, kKLKCHRData, (const void **)&KCHRData );
+            err = unimpErr; //KLGetKeyboardLayoutProperty( keyboardLayout, kKLKCHRData, (const void **)&KCHRData );
             if (err != noErr) return nil;
         } else {
-            err = KLGetKeyboardLayoutProperty( keyboardLayout, kKLuchrData, (const void **)&uchrData );
+            err = unimpErr; //KLGetKeyboardLayoutProperty( keyboardLayout, kKLuchrData, (const void **)&uchrData );
             if (err !=  noErr) return nil;
         }
     }
@@ -56,7 +56,7 @@
 
 - (NSString *)translateKeyCode:(short)keyCode {
     if (keyLayoutKind == kKLKCHRKind) {
-        UInt32 charCode = KeyTranslate( KCHRData, keyCode, &keyTranslateState );
+		UInt32 charCode = 0; //KeyTranslate( KCHRData, keyCode, &keyTranslateState );
         char theChar = (charCode & 0x00FF);
 		return [[[NSString alloc] initWithData:[NSData dataWithBytes:&theChar length:1] encoding:NSMacOSRomanStringEncoding] autorelease];
     } else {
@@ -79,8 +79,8 @@
     else
         kind = @"uchr";
     
-    NSString *layoutName;
-    KLGetKeyboardLayoutProperty( keyboardLayout, kKLLocalizedName, (const void **)&layoutName );
+    NSString *layoutName = nil;
+    //KLGetKeyboardLayoutProperty( keyboardLayout, kKLLocalizedName, (const void **)&layoutName );
     return [NSString stringWithFormat:@"PTKeyCodeTranslator layout=%@ (%@)", layoutName, kind];
 }
 
