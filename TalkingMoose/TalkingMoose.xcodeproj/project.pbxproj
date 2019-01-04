@@ -109,6 +109,22 @@
 		55A66146110A63C200FE0723 /* NSBezierPathCappedBoxes.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A66142110A63C200FE0723 /* NSBezierPathCappedBoxes.m */; };
 		55A66147110A63C200FE0723 /* UKFinderIconCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A66143110A63C200FE0723 /* UKFinderIconCell.h */; };
 		55A66148110A63C200FE0723 /* UKFinderIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A66144110A63C200FE0723 /* UKFinderIconCell.m */; };
+		55CD5BD721DFFDA700B5E004 /* ULIMooseHelperAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CD5BD621DFFDA700B5E004 /* ULIMooseHelperAppDelegate.m */; };
+		55CD5BD921DFFDAA00B5E004 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55CD5BD821DFFDAA00B5E004 /* Assets.xcassets */; };
+		55CD5BDC21DFFDAA00B5E004 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55CD5BDA21DFFDAA00B5E004 /* MainMenu.xib */; };
+		55CD5BDF21DFFDAA00B5E004 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CD5BDE21DFFDAA00B5E004 /* main.m */; };
+		55CD5BE421DFFE9A00B5E004 /* UKMooseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD986F06B07F7800FFE801 /* UKMooseController.m */; };
+		55CD5BE521DFFE9E00B5E004 /* UKPhraseDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD987606B07F7900FFE801 /* UKPhraseDatabase.m */; };
+		55CD5BE621DFFEA400B5E004 /* UKGroupFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988406B07F9E00FFE801 /* UKGroupFile.m */; };
+		55CD5BE721DFFEAC00B5E004 /* UKMooseDragAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */; };
+		55CD5BE821DFFEB100B5E004 /* UKRecordedSpeechChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8CAC80E65F01C00DCF0D2 /* UKRecordedSpeechChannel.m */; };
+		55CD5BE921DFFEB700B5E004 /* UKMooseMouthImageRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CABC80CE4F7970046B187 /* UKMooseMouthImageRep.m */; };
+		55CD5BEA21DFFEBA00B5E004 /* UKMouthShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CABC60CE4F7970046B187 /* UKMouthShape.m */; };
+		55CD5BEB21DFFEF600B5E004 /* UKBorderlessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD98A006B07FE500FFE801 /* UKBorderlessWindow.m */; };
+		55CD5BEC21DFFEFB00B5E004 /* NSFileManager+CreateDirectoriesForPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF413D207970106002DE6EF /* NSFileManager+CreateDirectoriesForPath.m */; };
+		55CD5BED21DFFF0300B5E004 /* UKClickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988C06B07F9E00FFE801 /* UKClickableImageView.m */; };
+		55CD5BEE21DFFF0A00B5E004 /* UKWindowDraggingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A660CA110A4F7700FE0723 /* UKWindowDraggingImageView.m */; };
+		55CD5BEF21DFFF1300B5E004 /* UKIdleTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988206B07F9E00FFE801 /* UKIdleTimer.m */; };
 		55DBFB290C175901007D400D /* UKMoosePhraseologyDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 55DBFB270C175901007D400D /* UKMoosePhraseologyDelegate.h */; };
 		55DBFB2A0C175901007D400D /* UKMoosePhraseologyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DBFB280C175901007D400D /* UKMoosePhraseologyDelegate.m */; };
 		55E27CA60E635104003A077C /* Blech.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 55E27CA50E635104003A077C /* Blech.m4a */; };
@@ -262,6 +278,14 @@
 		55A66142110A63C200FE0723 /* NSBezierPathCappedBoxes.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = NSBezierPathCappedBoxes.m; path = ../UKDistributedView/UKFinderIconCell/NSBezierPathCappedBoxes.m; sourceTree = SOURCE_ROOT; };
 		55A66143110A63C200FE0723 /* UKFinderIconCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKFinderIconCell.h; path = ../UKDistributedView/UKFinderIconCell/UKFinderIconCell.h; sourceTree = SOURCE_ROOT; };
 		55A66144110A63C200FE0723 /* UKFinderIconCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKFinderIconCell.m; path = ../UKDistributedView/UKFinderIconCell/UKFinderIconCell.m; sourceTree = SOURCE_ROOT; };
+		55CD5BD321DFFDA700B5E004 /* MooseHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MooseHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		55CD5BD521DFFDA700B5E004 /* ULIMooseHelperAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ULIMooseHelperAppDelegate.h; sourceTree = "<group>"; };
+		55CD5BD621DFFDA700B5E004 /* ULIMooseHelperAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ULIMooseHelperAppDelegate.m; sourceTree = "<group>"; };
+		55CD5BD821DFFDAA00B5E004 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		55CD5BDB21DFFDAA00B5E004 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		55CD5BDD21DFFDAA00B5E004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55CD5BDE21DFFDAA00B5E004 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		55CD5BE021DFFDAB00B5E004 /* MooseHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MooseHelper.entitlements; sourceTree = "<group>"; };
 		55DBFB270C175901007D400D /* UKMoosePhraseologyDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKMoosePhraseologyDelegate.h; sourceTree = "<group>"; };
 		55DBFB280C175901007D400D /* UKMoosePhraseologyDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKMoosePhraseologyDelegate.m; sourceTree = "<group>"; };
 		55E27CA50E635104003A077C /* Blech.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blech.m4a; sourceTree = "<group>"; };
@@ -297,6 +321,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		55CD5BD021DFFDA700B5E004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -365,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Moose.app */,
+				55CD5BD321DFFDA700B5E004 /* MooseHelper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -376,6 +408,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				55CD5BD421DFFDA700B5E004 /* MooseHelper */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -504,8 +537,8 @@
 				3D56781C0994F2D8008FDECF /* UKCrashReporter.m */,
 				3D55636909CB4E7B002608B2 /* UKAboutBox.h */,
 				3D55636809CB4E7B002608B2 /* UKAboutBox.m */,
-				3D8CAD140CE5E80C0046B187 /* UKNibOwner.m */,
 				3D8CAD150CE5E80C0046B187 /* UKNibOwner.h */,
+				3D8CAD140CE5E80C0046B187 /* UKNibOwner.m */,
 				55A66106110A55B900FE0723 /* UKWindowBodyView.h */,
 				55A66107110A55B900FE0723 /* UKWindowBodyView.m */,
 				55A66141110A63C200FE0723 /* NSBezierPathCappedBoxes.h */,
@@ -575,6 +608,20 @@
 			name = AppleScriptCommands;
 			sourceTree = "<group>";
 		};
+		55CD5BD421DFFDA700B5E004 /* MooseHelper */ = {
+			isa = PBXGroup;
+			children = (
+				55CD5BD521DFFDA700B5E004 /* ULIMooseHelperAppDelegate.h */,
+				55CD5BD621DFFDA700B5E004 /* ULIMooseHelperAppDelegate.m */,
+				55CD5BD821DFFDAA00B5E004 /* Assets.xcassets */,
+				55CD5BDA21DFFDAA00B5E004 /* MainMenu.xib */,
+				55CD5BDD21DFFDAA00B5E004 /* Info.plist */,
+				55CD5BDE21DFFDAA00B5E004 /* main.m */,
+				55CD5BE021DFFDAB00B5E004 /* MooseHelper.entitlements */,
+			);
+			path = MooseHelper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -632,6 +679,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		55CD5BD221DFFDA700B5E004 /* MooseHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55CD5BE321DFFDAB00B5E004 /* Build configuration list for PBXNativeTarget "MooseHelper" */;
+			buildPhases = (
+				55CD5BCF21DFFDA700B5E004 /* Sources */,
+				55CD5BD021DFFDA700B5E004 /* Frameworks */,
+				55CD5BD121DFFDA700B5E004 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MooseHelper;
+			productName = MooseHelper;
+			productReference = 55CD5BD321DFFDA700B5E004 /* MooseHelper.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8D1107260486CEB800E47090 /* Moose */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3DBAA7240880496A0035E83A /* Build configuration list for PBXNativeTarget "Moose" */;
@@ -663,6 +727,11 @@
 				LastUpgradeCheck = 0410;
 				ORGANIZATIONNAME = "The Void Software";
 				TargetAttributes = {
+					55CD5BD221DFFDA700B5E004 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = RCKXACKVZS;
+						ProvisioningStyle = Automatic;
+					};
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = RCKXACKVZS;
 					};
@@ -678,17 +747,28 @@
 				French,
 				German,
 				en,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CocoaMoose */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Moose */,
+				55CD5BD221DFFDA700B5E004 /* MooseHelper */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		55CD5BD121DFFDA700B5E004 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55CD5BD921DFFDAA00B5E004 /* Assets.xcassets in Resources */,
+				55CD5BDC21DFFDAA00B5E004 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -772,6 +852,27 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		55CD5BCF21DFFDA700B5E004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55CD5BEA21DFFEBA00B5E004 /* UKMouthShape.m in Sources */,
+				55CD5BED21DFFF0300B5E004 /* UKClickableImageView.m in Sources */,
+				55CD5BDF21DFFDAA00B5E004 /* main.m in Sources */,
+				55CD5BE621DFFEA400B5E004 /* UKGroupFile.m in Sources */,
+				55CD5BE521DFFE9E00B5E004 /* UKPhraseDatabase.m in Sources */,
+				55CD5BEE21DFFF0A00B5E004 /* UKWindowDraggingImageView.m in Sources */,
+				55CD5BE921DFFEB700B5E004 /* UKMooseMouthImageRep.m in Sources */,
+				55CD5BEC21DFFEFB00B5E004 /* NSFileManager+CreateDirectoriesForPath.m in Sources */,
+				55CD5BE721DFFEAC00B5E004 /* UKMooseDragAreaView.m in Sources */,
+				55CD5BE821DFFEB100B5E004 /* UKRecordedSpeechChannel.m in Sources */,
+				55CD5BE421DFFE9A00B5E004 /* UKMooseController.m in Sources */,
+				55CD5BEF21DFFF1300B5E004 /* UKIdleTimer.m in Sources */,
+				55CD5BEB21DFFEF600B5E004 /* UKBorderlessWindow.m in Sources */,
+				55CD5BD721DFFDA700B5E004 /* ULIMooseHelperAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -895,6 +996,14 @@
 			name = UKSpeechSettingsView.xib;
 			sourceTree = "<group>";
 		};
+		55CD5BDA21DFFDAA00B5E004 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55CD5BDB21DFFDAA00B5E004 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		55F3136C1127FBCD00BC5C68 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -933,7 +1042,6 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Moose;
@@ -972,7 +1080,6 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Moose;
@@ -1018,6 +1125,129 @@
 			};
 			name = Release;
 		};
+		55CD5BE121DFFDAB00B5E004 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = MooseHelper/MooseHelper.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RCKXACKVZS;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = MooseHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.MooseHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		55CD5BE221DFFDAB00B5E004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = MooseHelper/MooseHelper.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = RCKXACKVZS;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = MooseHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.MooseHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1035,6 +1265,15 @@
 			buildConfigurations = (
 				3DBAA7290880496A0035E83A /* Debug */,
 				3DBAA72A0880496A0035E83A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55CD5BE321DFFDAB00B5E004 /* Build configuration list for PBXNativeTarget "MooseHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55CD5BE121DFFDAB00B5E004 /* Debug */,
+				55CD5BE221DFFDAB00B5E004 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
