@@ -59,7 +59,7 @@
 
 @end
 
-NSDictionary*		UKGroupFileExtractCommandFromPhrase( NSString* inPhrase );
+extern NSDictionary*	UKGroupFileExtractCommandFromPhrase( NSString* inPhrase );
 
 extern NSString*	UKGroupFileCommandNameKey;
 extern NSString*	UKGroupFileCommandArgsKey;

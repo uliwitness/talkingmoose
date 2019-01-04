@@ -255,6 +255,7 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="-161" y="8"/>
         </menu>
         <customObject id="208" userLabel="UKMooseAppDelegate" customClass="UKMooseAppDelegate">
             <connections>
@@ -288,7 +289,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="84" y="719" width="123" height="111"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <value key="minSize" type="size" width="102.724" height="20"/>
             <view key="contentView" id="217">
                 <rect key="frame" x="0.0" y="0.0" width="123" height="111"/>
@@ -329,6 +330,7 @@
                     </customView>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="-126" y="186"/>
         </window>
         <customObject id="222" userLabel="UKPhraseDatabase" customClass="UKPhraseDatabase"/>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="UKMoosePanel" animationBehavior="default" id="236" userLabel="MoosePanel" customClass="NSPanel">
@@ -1020,10 +1022,10 @@
             <windowStyleMask key="styleMask" titled="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="228" y="323" width="213" height="484"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <value key="minSize" type="size" width="59" height="56"/>
             <view key="contentView" id="368">
-                <rect key="frame" x="1" y="9" width="213" height="484"/>
+                <rect key="frame" x="0.0" y="0.0" width="213" height="484"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="372">
@@ -1031,7 +1033,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="aHe-vM-DNB">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="478"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" smartInsertDelete="YES" id="371">
                                     <rect key="frame" x="0.0" y="0.0" width="213" height="478"/>

@@ -125,6 +125,18 @@
 		55CD5BED21DFFF0300B5E004 /* UKClickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988C06B07F9E00FFE801 /* UKClickableImageView.m */; };
 		55CD5BEE21DFFF0A00B5E004 /* UKWindowDraggingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A660CA110A4F7700FE0723 /* UKWindowDraggingImageView.m */; };
 		55CD5BEF21DFFF1300B5E004 /* UKIdleTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988206B07F9E00FFE801 /* UKIdleTimer.m */; };
+		55CD5BF021E00BD500B5E004 /* UKSpeechSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD986D06B07F7800FFE801 /* UKSpeechSettingsView.m */; };
+		55CD5BF121E0178200B5E004 /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56781C0994F2D8008FDECF /* UKCrashReporter.m */; };
+		55CD5BF221E0179800B5E004 /* NSWindow+Fade.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC7D508090FC9B0009A2900 /* NSWindow+Fade.m */; };
+		55CD5BF321E017AB00B5E004 /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D567A170994FACB008FDECF /* UKCrashReporter.strings */; };
+		55CD5BF421E017BA00B5E004 /* UKCrashReporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559D6CFC16160B83001E1D91 /* UKCrashReporter.xib */; };
+		55CD5BF521E017EA00B5E004 /* UKSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B8010AA83246000D2302 /* UKSystemInfo.m */; };
+		55CD5BF621E017F300B5E004 /* UKNibOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CAD140CE5E80C0046B187 /* UKNibOwner.m */; };
+		55CD5BF721E018B600B5E004 /* tylerui_zoombox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D791E970798EBB3009BA042 /* tylerui_zoombox.png */; };
+		55CD5BF821E018B900B5E004 /* tylerui_growbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D791E980798EBB3009BA042 /* tylerui_growbox.png */; };
+		55CD5BFA21E0197600B5E004 /* Animations in Resources */ = {isa = PBXBuildFile; fileRef = 3D87481E06CB0250007D365E /* Animations */; };
+		55CD5BFB21E0197E00B5E004 /* Phrases in Resources */ = {isa = PBXBuildFile; fileRef = 3D87498B06CB0252007D365E /* Phrases */; };
+		55CD5BFC21E019D300B5E004 /* NSImage+NiceScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988D06B07F9E00FFE801 /* NSImage+NiceScaling.m */; };
 		55DBFB290C175901007D400D /* UKMoosePhraseologyDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 55DBFB270C175901007D400D /* UKMoosePhraseologyDelegate.h */; };
 		55DBFB2A0C175901007D400D /* UKMoosePhraseologyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DBFB280C175901007D400D /* UKMoosePhraseologyDelegate.m */; };
 		55E27CA60E635104003A077C /* Blech.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 55E27CA50E635104003A077C /* Blech.m4a */; };
@@ -764,7 +776,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55CD5BF421E017BA00B5E004 /* UKCrashReporter.xib in Resources */,
 				55CD5BD921DFFDAA00B5E004 /* Assets.xcassets in Resources */,
+				55CD5BFA21E0197600B5E004 /* Animations in Resources */,
+				55CD5BF321E017AB00B5E004 /* UKCrashReporter.strings in Resources */,
+				55CD5BF821E018B900B5E004 /* tylerui_growbox.png in Resources */,
+				55CD5BFB21E0197E00B5E004 /* Phrases in Resources */,
+				55CD5BF721E018B600B5E004 /* tylerui_zoombox.png in Resources */,
 				55CD5BDC21DFFDAA00B5E004 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -856,18 +874,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55CD5BF121E0178200B5E004 /* UKCrashReporter.m in Sources */,
 				55CD5BEA21DFFEBA00B5E004 /* UKMouthShape.m in Sources */,
 				55CD5BED21DFFF0300B5E004 /* UKClickableImageView.m in Sources */,
 				55CD5BDF21DFFDAA00B5E004 /* main.m in Sources */,
 				55CD5BE621DFFEA400B5E004 /* UKGroupFile.m in Sources */,
 				55CD5BE521DFFE9E00B5E004 /* UKPhraseDatabase.m in Sources */,
 				55CD5BEE21DFFF0A00B5E004 /* UKWindowDraggingImageView.m in Sources */,
+				55CD5BF221E0179800B5E004 /* NSWindow+Fade.m in Sources */,
 				55CD5BE921DFFEB700B5E004 /* UKMooseMouthImageRep.m in Sources */,
 				55CD5BEC21DFFEFB00B5E004 /* NSFileManager+CreateDirectoriesForPath.m in Sources */,
+				55CD5BF021E00BD500B5E004 /* UKSpeechSettingsView.m in Sources */,
+				55CD5BFC21E019D300B5E004 /* NSImage+NiceScaling.m in Sources */,
 				55CD5BE721DFFEAC00B5E004 /* UKMooseDragAreaView.m in Sources */,
 				55CD5BE821DFFEB100B5E004 /* UKRecordedSpeechChannel.m in Sources */,
 				55CD5BE421DFFE9A00B5E004 /* UKMooseController.m in Sources */,
+				55CD5BF521E017EA00B5E004 /* UKSystemInfo.m in Sources */,
 				55CD5BEF21DFFF1300B5E004 /* UKIdleTimer.m in Sources */,
+				55CD5BF621E017F300B5E004 /* UKNibOwner.m in Sources */,
 				55CD5BEB21DFFEF600B5E004 /* UKBorderlessWindow.m in Sources */,
 				55CD5BD721DFFDA700B5E004 /* ULIMooseHelperAppDelegate.m in Sources */,
 			);
@@ -1134,7 +1158,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1180,6 +1204,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../UliKit/",
+					"$(PROJECT_DIR)/../MooseBetterLipSync/",
+					"$(PROJECT_DIR)/../HotKeysLib3/PTHotKeysLib/src/",
+					"$(PROJECT_DIR)/../UKDistributedView/",
+					"$(PROJECT_DIR)/../UKDistributedView/UKFinderIconCell/",
+					"$(BUILD_DIR)/",
+					"$(PROJECT_DIR)/",
+				);
 				INFOPLIST_FILE = MooseHelper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1199,7 +1232,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1239,6 +1272,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../UliKit/",
+					"$(PROJECT_DIR)/../MooseBetterLipSync/",
+					"$(PROJECT_DIR)/../HotKeysLib3/PTHotKeysLib/src/",
+					"$(PROJECT_DIR)/../UKDistributedView/",
+					"$(PROJECT_DIR)/../UKDistributedView/UKFinderIconCell/",
+					"$(BUILD_DIR)/",
+					"$(PROJECT_DIR)/",
+				);
 				INFOPLIST_FILE = MooseHelper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
