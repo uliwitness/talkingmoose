@@ -7,54 +7,6 @@
 [submodule "UKDistributedView"]
 	path = UKDistributedView
 	url = git@github.com:uliwitness/UKDistributedView.git
-[submodule "UKSyntaxColoredTextDocument"]
-	path = UKSyntaxColoredTextDocument
-	url = git@github.com:uliwitness/UKSyntaxColoredTextDocument.git
 [submodule "Sparkle"]
 	path = Sparkle
 	url = git@github.com:uliwitness/Sparkle.git
-[submodule "AGIconFamily"]
-	path = AGIconFamily
-	url = git@github.com:uliwitness/AGIconFamily.git
-[submodule "PXListView"]
-	path = PXListView
-	url = git@github.com:uliwitness/PXListView.git
-[submodule "MovieTheatre"]
-	path = MovieTheatre
-	url = git@github.com:uliwitness/MovieTheatre.git
-[submodule "HIDRemoteSDK"]
-	path = HIDRemoteSDK
-	url = git@github.com:uliwitness/HIDRemoteSDK.git
-[submodule "TrackStorer"]
-	path = TrackStorer
-	url = git@github.com:uliwitness/TrackStorer.git
-[submodule "UKSoundWaveformView"]
-	path = UKSoundWaveformView
-	url = git@github.com:uliwitness/UKSoundWaveformView.git
-[submodule "ULINetSocket"]
-	path = ULINetSocket
-	url = git@github.com:uliwitness/ULINetSocket.git
-[submodule "stackimport"]
-	path = stackimport
-	url = git@github.com:uliwitness/stackimport.git
-[submodule "Stacksmith"]
-	path = Stacksmith
-	url = git@github.com:uliwitness/Stacksmith.git
-[submodule "UKPaintView"]
-	path = UKPaintView
-	url = git@github.com:uliwitness/UKPaintView.git
-[submodule "UKInterface"]
-	path = UKInterface
-	url = git@github.com:uliwitness/UKInterface.git
-[submodule "UKDiffView"]
-	path = UKDiffView
-	url = git@github.com:uliwitness/UKDiffView.git
-[submodule "objc"]
-	path = objc
-	url = git@github.com:uliwitness/objc.git
-[submodule "ULIMelodyQueue"]
-	path = ULIMelodyQueue
-	url = git@github.com:uliwitness/ULIMelodyQueue.git
-[submodule "UKDockableView"]
-	path = UKDockableView
-	url = git@github.com:uliwitness/UKDockableView.git
