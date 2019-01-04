@@ -218,6 +218,7 @@
 		currMooseIndex = defaultMooseIndex;
 	
 	currentMoose = mooseControllers[currMooseIndex];
+	[self mooseControllerDidChange];
 }
 
 
@@ -263,7 +264,7 @@
 	}
 	
 	// Say hello to the user:
-	[self speakPhraseFromGroup: @"HELLO"];
+	[self performSelector: @selector(speakPhraseFromGroup:) withObject: @"HELLO" afterDelay: 1.0];
 	
 #if 0
 	int	*	crashy = 0;
