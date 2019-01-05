@@ -22,6 +22,7 @@
 #import "UKGroupFile.h"
 #import "NSImage+NiceScaling.h"
 #import "NSWindow+Fade.h"
+#import "UKApplicationListController.h"
 
 
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
@@ -47,6 +48,7 @@
 	int										mooseVisibleCount;      // Visible-counter for showMoose/hideMoose. Moose window is hidden only when this becomes 0.
 	NSTimer*								clockTimer;             // Timer that's set to fire on full/half hours.
 	float									scaleFactor;            // By how much the current moose animation window should be enlarged/made smaller.
+	IBOutlet ULIApplicationList*			excludeApps;			// List of apps that cause the Moose to go quiet.
 	NSView*									windowWidgetsSuperview;	// View to reinsert windowWidgets in again to show it on 10.2.
 	BOOL									speakOnVolumeMount;
 	BOOL									speakOnAppLaunchQuit;
@@ -58,6 +60,9 @@
 }
 
 @property (weak) IBOutlet NSWindow *window;
+
+@property (strong) id<NSObject> appNapDeactivatingActivity;
+
 @end
 
 @implementation ULIMooseHelperAppDelegate
@@ -286,7 +291,7 @@
 
 -(NSApplicationTerminateReply)  applicationShouldTerminate:(NSApplication *)sender
 {
-	if( mooseDisableCount == 0 /*![excludeApps appInListMatches] && ![excludeApps screenSaverRunning]*/ )
+	if( mooseDisableCount == 0 && ![excludeApps appInListMatches] && ![excludeApps screenSaverRunning] )
 	{
 		terminateWhenFinished = YES;	// This causes didFinishSpeaking: to call replyToApplicationShouldTerminate.
 		if( [speechSynth isSpeaking] || [recSpeechSynth isSpeaking] || [self speakPhraseFromGroup: @"GOODBYE"] )
@@ -603,12 +608,16 @@
 //	in that string with a filler string. Used to e.g. allow the Moose to say the name of a disk ejected.
 -(BOOL) speakPhraseFromGroup: (NSString*)group withFillerString: (NSString*)fill
 {
+	UKLog(@"speakPhraseFromGroup: %@ withFillerString: %@", group, fill);
+	
 	if( mooseDisableCount == 0
-	   && ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] /*&& ![excludeApps appInListMatches] && ![excludeApps screenSaverRunning]*/ )
+	   && ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] && ![excludeApps appInListMatches] && ![excludeApps screenSaverRunning] )
 	{
 		NSString*		currPhrase = [phraseDB randomPhraseFromGroup: group];
-		if( !currPhrase )
+		if( !currPhrase ) {
+			UKLog(@"\tNo phrase found.");
 			return NO;
+		}
 		
 		NSRange			strRange = [currPhrase rangeOfString: @"%s"];
 		
@@ -622,6 +631,8 @@
 		NSDictionary*	cmdDict = UKGroupFileExtractCommandFromPhrase( currPhrase );
 		if( !cmdDict )
 		{
+			self.appNapDeactivatingActivity = [[NSProcessInfo processInfo] beginActivityWithOptions: NSActivityBackground | NSActivityAutomaticTerminationDisabled | NSActivitySuddenTerminationDisabled reason: @"Moose speaking."];
+			
 			NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
 			BOOL	voiceCantDoPhonemes = [self voiceCantProvidePhonemesJudgingByAttributes: voiceAttrs];
 			
@@ -630,6 +641,7 @@
 			if( voiceCantDoPhonemes )
 				[currentMoose speechStartedWithoutPhonemes];
 			
+			UKLog(@"\tspeaking: %@", currPhrase);
 			[speechSynth startSpeakingString: currPhrase];
 			[self showSpeechBubbleWithString: currPhrase];
 		}
@@ -637,16 +649,21 @@
 		{
 			NSString*	methodName = [NSString stringWithFormat: @"embeddedPhraseCommand%@:", [cmdDict objectForKey: UKGroupFileCommandNameKey]];
 			SEL			methodSelector = NSSelectorFromString( methodName );
-			if( [self respondsToSelector: methodSelector] )
+			if( [self respondsToSelector: methodSelector] ) {
+				UKLog(@"Executing embedded command %@", methodName);
 				[self performSelector: methodSelector withObject: [cmdDict objectForKey: UKGroupFileCommandArgsKey]];
-			else
+			} else {
+				UKLog(@"Skipping unknown embedded command %@", methodName);
 				return NO;
+			}
 		}
 		
 		return YES;
 	}
-	else
+	else {
+		UKLog(@"Not allowed to speak right now.");
 		return NO;
+	}
 }
 
 
@@ -654,7 +671,9 @@
 {
 	if( [args count] >= 1 )
 	{
-		NSString*	fPath = [[NSBundle mainBundle] pathForSoundResource: [args objectAtIndex: 0]];
+		UKLog(@"\tPlaying soundfile \"%@\"", args.firstObject);
+		self.appNapDeactivatingActivity = [[NSProcessInfo processInfo] beginActivityWithOptions: NSActivityBackground | NSActivityAutomaticTerminationDisabled | NSActivitySuddenTerminationDisabled reason: @"Moose speaking."];
+		NSString*	fPath = [[NSBundle mainBundle] pathForSoundResource: args.firstObject];
 		[recSpeechSynth startSpeakingSoundFileAtPath: fPath];
 	}
 }
@@ -673,8 +692,10 @@
 
 -(void) speakString: (NSString*)currPhrase
 {
-	if( mooseDisableCount == 0 /*&& ![excludeApps appInListMatches] && ![excludeApps screenSaverRunning]*/ )
+	if( mooseDisableCount == 0 && ![excludeApps appInListMatches] && ![excludeApps screenSaverRunning] )
 	{
+		self.appNapDeactivatingActivity = [[NSProcessInfo processInfo] beginActivityWithOptions: NSActivityBackground | NSActivityAutomaticTerminationDisabled | NSActivitySuddenTerminationDisabled reason: @"Moose speaking."];
+
 		NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
 		BOOL	voiceCantDoPhonemes = [self voiceCantProvidePhonemesJudgingByAttributes: voiceAttrs];
 		[currentMoose setSimulateMissingPhonemes: voiceCantDoPhonemes];
@@ -684,7 +705,7 @@
 		
 		[speechSynth startSpeakingString: currPhrase];
 		[self showSpeechBubbleWithString: currPhrase];
-		//UKLog(@"Speaking: %@", currPhrase);
+		UKLog(@"Speaking: %@", currPhrase);
 	}
 }
 
@@ -788,7 +809,7 @@
 
 -(void) mooseControllerDidChange
 {
-	//UKLog(@"mooseControllerDidChange");
+	UKLog(@"mooseControllerDidChange");
 	
 	NSWindow*		mooseWindow = [imageView window];
 	
@@ -848,7 +869,7 @@
 	wBox.origin = [[imageView window] convertBaseToScreen: [imageView convertPoint: NSZeroPoint toView: nil]];
 	[currentMoose setGlobalFrame: wBox];
 	
-	//UKLog(@"About to call showMoose");
+	UKLog(@"About to call showMoose");
 	[self showMoose];
 }
 
@@ -868,6 +889,7 @@
 		
 		// Show/hide the window widgets if mouse is (not) in window:
 		BOOL    hideWidgets = !NSPointInRect( [NSEvent mouseLocation], [mooseWin frame] );
+		NSLog(@"hide widgets? %d", hideWidgets);
 		if( hideWidgets != [windowWidgets isHidden] )
 			[windowWidgets setHidden: hideWidgets];
 	}
@@ -883,10 +905,10 @@
 	if( terminateWhenFinished )
 	{
 		[NSApp replyToApplicationShouldTerminate: YES];
-		//UKLog(@"finished speaking, resuming quit.");
+		UKLog(@"finished speaking, resuming quit.");
 	}
 	
-	//UKLog(@"finished.");
+	UKLog(@"finished.");
 }
 
 
@@ -932,11 +954,17 @@
 {
 	if( speakOnAppLaunchQuit )
 	{
-		NSString*		appName = [[[[notif userInfo] objectForKey: @"NSApplicationName"] retain] autorelease];
+		NSRunningApplication 	*runningApp = notif.userInfo[NSWorkspaceApplicationKey];
+		NSString				*appName = runningApp.localizedName;
 		
-		if( ![appName isEqualToString: @"ScreenSaverEngine"]
-		   && ![appName isEqualToString: @"ScreenSaverEngin"] )
+		if ([runningApp.bundleIdentifier isEqualToString: NSBundle.mainBundle.bundleIdentifier]) {
+			return; // Don't send messages for ourself.
+		} else if ([runningApp.bundleIdentifier isEqualToString: @"com.thevoidsoftware.talkingmoose.macosx"]) {
+			[self speakPhraseOnMainThreadFromGroup: @"LAUNCH SETUP" withFillerString: appName];
+		} else if (![appName isEqualToString: @"ScreenSaverEngine"]
+			&& ![appName isEqualToString: @"ScreenSaverEngin"]) {
 			[self speakPhraseOnMainThreadFromGroup: @"LAUNCH APPLICATION" withFillerString: appName];
+		}
 	}
 	[self mooseControllerAnimationDidChange: currentMoose];
 }
@@ -946,10 +974,17 @@
 {
 	if( speakOnAppLaunchQuit )
 	{
-		NSString*		appName = [[[[notif userInfo] objectForKey: @"NSApplicationName"] retain] autorelease];
-		if( ![appName isEqualToString: @"ScreenSaverEngine"]
-		   && ![appName isEqualToString: @"ScreenSaverEngin"] )
+		NSRunningApplication 	*runningApp = notif.userInfo[NSWorkspaceApplicationKey];
+		NSString				*appName = runningApp.localizedName;
+		
+		if ([runningApp.bundleIdentifier isEqualToString: NSBundle.mainBundle.bundleIdentifier]) {
+			return; // Don't send messages for ourself.
+		} else if ([runningApp.bundleIdentifier isEqualToString: @"com.thevoidsoftware.talkingmoose.macosx"]) {
+			[self speakPhraseOnMainThreadFromGroup: @"QUIT SETUP" withFillerString: appName];
+		} else if (![appName isEqualToString: @"ScreenSaverEngine"]
+				   && ![appName isEqualToString: @"ScreenSaverEngin"]) {
 			[self speakPhraseOnMainThreadFromGroup: @"QUIT APPLICATION" withFillerString: appName];
+		}
 	}
 	[self mooseControllerAnimationDidChange: currentMoose];
 }
@@ -960,12 +995,13 @@
 	//UKLog(@"applicationSwitchNotification");
 	if( speakOnAppChange )
 	{
-		// Don't speak if we're switching to this app, so the two methods bwlow get their shot:
-		NSDictionary*	activeAppDict = [[NSWorkspace sharedWorkspace] activeApplication];
-		if( ![[activeAppDict objectForKey: @"NSApplicationPath"] isEqualToString: [[NSBundle mainBundle] bundlePath]] )
-		{
-			NSString*		appName = [[[activeAppDict objectForKey: @"NSApplicationName"] retain] autorelease];
-			[self speakPhraseOnMainThreadFromGroup: @"CHANGE APPLICATION" withFillerString: appName];
+		NSRunningApplication *runningApp = notif.userInfo[NSWorkspaceApplicationKey];
+		if ([runningApp.bundleIdentifier isEqualToString: NSBundle.mainBundle.bundleIdentifier]) {
+			return; // Don't send messages for ourself.
+		} else if ([runningApp.bundleIdentifier isEqualToString: @"com.thevoidsoftware.talkingmoose.macosx"]) {
+			[self speakPhraseOnMainThreadFromGroup: @"LAUNCH SETUP" withFillerString: runningApp.localizedName];
+		} else {
+			[self speakPhraseOnMainThreadFromGroup: @"CHANGE APPLICATION" withFillerString: runningApp.localizedName];
 		}
 	}
 	[self mooseControllerAnimationDidChange: currentMoose];
@@ -992,7 +1028,7 @@
 {
 	mooseVisibleCount--;
 	
-	//UKLog( @"Hiding Moose (%d)", mooseVisibleCount );
+	UKLog( @"Hiding Moose (%d)", mooseVisibleCount );
 	
 	if( mooseVisibleCount < 0 )
 		mooseVisibleCount = 0;
@@ -1003,6 +1039,7 @@
 		//UKLog( @"\tHit zero. Fading out." );
 		[[imageView window] fadeOutWithDuration: 0.5];
 		[[speechBubbleView window] fadeOutWithDuration: 0.5];
+		self.appNapDeactivatingActivity = nil;
 	}
 }
 
@@ -1013,7 +1050,7 @@
 
 	mooseVisibleCount++;
 	
-	//UKLog( @"Showing Moose (%d)", mooseVisibleCount );
+	UKLog( @"Showing Moose (%d)", mooseVisibleCount );
 	//UKLogBacktrace();
 	
 	if( mooseVisibleCount < 0 )

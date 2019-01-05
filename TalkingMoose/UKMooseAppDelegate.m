@@ -47,7 +47,7 @@
 
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
 #define UKUserPhrasesPath       "/Library/Application Support/Moose/Phrases"
-#define UKHelperApplicationID	@"com.thevoidsoftware.talkingmoose.helper"
+#define UKHelperApplicationID	@"com.thevoidsoftware.talkingmoose.helper.macosx"
 #define MINIMUM_MOOSE_SIZE		48
 
 

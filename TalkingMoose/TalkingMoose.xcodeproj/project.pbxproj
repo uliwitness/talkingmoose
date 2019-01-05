@@ -93,6 +93,7 @@
 		3DF9CB5309C7422800C7BBA8 /* PTKeyCodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DF9CB4F09C7422800C7BBA8 /* PTKeyCodes.plist */; };
 		3DF9CB5409C7422800C7BBA8 /* PTKeyComboPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF9CB5109C7422800C7BBA8 /* PTKeyComboPanel.nib */; };
 		3DF9CB5A09C7423600C7BBA8 /* PTKeyboardIcon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3DF9CB5909C7423600C7BBA8 /* PTKeyboardIcon.tiff */; };
+		553852A821E0E81E00AF7F69 /* UKApplicationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3544E08841AB400825D47 /* UKApplicationListController.m */; };
 		553E5081161496C100272749 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553E5080161496C100272749 /* ServiceManagement.framework */; };
 		557FD0C20E56FB0C000A1A11 /* UKMooseDragAreaView.h in Headers */ = {isa = PBXBuildFile; fileRef = 557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */; };
 		557FD0C30E56FB0C000A1A11 /* UKMooseDragAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */; };
@@ -913,6 +914,7 @@
 				55CD5BE521DFFE9E00B5E004 /* UKPhraseDatabase.m in Sources */,
 				55CD5BEE21DFFF0A00B5E004 /* UKWindowDraggingImageView.m in Sources */,
 				55CD5BF221E0179800B5E004 /* NSWindow+Fade.m in Sources */,
+				553852A821E0E81E00AF7F69 /* UKApplicationListController.m in Sources */,
 				55CD5BE921DFFEB700B5E004 /* UKMooseMouthImageRep.m in Sources */,
 				55CD5BEC21DFFEFB00B5E004 /* NSFileManager+CreateDirectoriesForPath.m in Sources */,
 				55CD5BF021E00BD500B5E004 /* UKSpeechSettingsView.m in Sources */,
@@ -1259,7 +1261,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.helper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.helper.macosx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1326,7 +1328,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.helper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.helper.macosx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
