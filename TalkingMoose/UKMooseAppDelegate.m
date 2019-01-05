@@ -709,7 +709,12 @@ static BOOL		gIsSilenced = NO;
 
 -(void) takeLaunchAtLoginBoolFrom: (id)sender
 {
-	SMLoginItemSetEnabled( (CFStringRef) UKHelperApplicationID, [sender state] == NSOnState );
+	BOOL shouldLaunch = [sender state] == NSControlStateValueOn;
+	if (shouldLaunch) {
+		NSURL	*helperURL = [[[[NSBundle.mainBundle.bundleURL URLByAppendingPathComponent: @"Contents"] URLByAppendingPathComponent: @"Library"] URLByAppendingPathComponent: @"LoginItems"] URLByAppendingPathComponent: @"MooseHelper.app"];
+		LSRegisterURL((CFURLRef) helperURL, true);
+	}
+	SMLoginItemSetEnabled( (CFStringRef) UKHelperApplicationID, shouldLaunch );
 }
 
 
