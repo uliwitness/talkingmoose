@@ -473,7 +473,7 @@
 	BOOL        dragInstead = NO;
 	
 	NSEvent *currEvent = [NSApplication.sharedApplication nextEventMatchingMask: NSEventMaskLeftMouseDragged | NSEventMaskLeftMouseUp untilDate: [NSDate dateWithTimeIntervalSinceNow: 0.5] inMode: NSEventTrackingRunLoopMode dequeue: NO];
-	if (currEvent.type != NSEventTypeLeftMouseDragged) {
+	if (currEvent.type != NSEventTypeLeftMouseUp) {
 		dragInstead = YES;
 	}
 	
