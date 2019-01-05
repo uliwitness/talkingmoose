@@ -21,6 +21,7 @@
 #import "UKCrashReporter.h"
 #import "UKGroupFile.h"
 #import "NSImage+NiceScaling.h"
+#import "NSWindow+Fade.h"
 
 
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
@@ -265,7 +266,7 @@
 	[[imageView window] display];
 	
 	// Say hello to the user:
-	[self performSelector: @selector(speakPhraseFromGroup:) withObject: @"HELLO" afterDelay: 10.0];
+	[self performSelector: @selector(speakPhraseFromGroup:) withObject: @"HELLO" afterDelay: 0.0];
 	
 #if 0
 	int	*	crashy = 0;
