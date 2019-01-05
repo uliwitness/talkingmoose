@@ -1044,6 +1044,8 @@
 	else
 		;//UKLog(@"Not 1, leaving window untouched.");
 	[mooseWin invalidateShadow];
+	
+	[NSApplication.sharedApplication unhide: nil];
 }
 
 @end
