@@ -66,6 +66,11 @@
 	self = [super init];
 	if( self )
 	{
+		speakOnAppChange = YES;
+		speakOnVolumeMount = YES;
+		speakOnAppLaunchQuit = YES;
+		showSpokenString = YES;
+		
 		srand((unsigned int)time(NULL));
 		
 		phraseTimer = [[UKIdleTimer alloc] initWithTimeInterval: 30];
@@ -95,6 +100,8 @@
 				   name: NSWorkspaceDidLaunchApplicationNotification object: nil];
 		[nc addObserver: self selector:@selector(applicationTerminationNotification:)
 				   name: NSWorkspaceDidTerminateApplicationNotification object: nil];
+		[nc addObserver: self selector:@selector(applicationSwitchNotification:)
+				   name: NSWorkspaceDidActivateApplicationNotification object: nil];
 		[nc addObserver: self selector:@selector(fastUserSwitchedInNotification:)
 				   name: NSWorkspaceSessionDidBecomeActiveNotification object: nil];
 		[nc addObserver: self selector:@selector(fastUserSwitchedOutNotification:)
@@ -137,6 +144,8 @@
 	[mooseWindow setBackgroundColor: [NSColor clearColor]];
 	[mooseWindow setOpaque: NO];
 	[((UKBorderlessWindow*)mooseWindow) setConstrainRect: YES];
+	[((UKBorderlessWindow*)mooseWindow) setCanBecomeKeyWindow: YES];
+	[((UKBorderlessWindow*)mooseWindow) setCanBecomeMainWindow: YES];
 	[mooseWindow setLevel: kCGOverlayWindowLevel];
 	[mooseWindow setHidesOnDeactivate: NO];
 	[mooseWindow setCanHide: NO];
@@ -1001,7 +1010,7 @@
 -(void)     showMoose
 {
 	NSWindow*		mooseWin = [imageView window];
-	
+
 	mooseVisibleCount++;
 	
 	//UKLog( @"Showing Moose (%d)", mooseVisibleCount );
@@ -1026,7 +1035,6 @@
 			;//UKLog(@"no need to constrain rect %@.",NSStringFromRect( mooseFrame ));
 		
 		// Now actually show the Moose window:
-		//UKLog( @"\tHit 1. Fading in." );
 		[mooseWin fadeInWithDuration: 0.5];
 		if( showSpokenString )
 			[[speechBubbleView window] fadeInWithDuration: 0.5];
