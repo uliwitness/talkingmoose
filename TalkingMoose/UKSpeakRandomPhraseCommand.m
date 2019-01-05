@@ -18,7 +18,7 @@
     NSString*   cat = [[[self evaluatedArguments] objectForKey: @"category"] uppercaseString];
     if( !cat )
         cat = @"PAUSE";
-    [(UKMooseAppDelegate*)[NSApp delegate] speakPhraseFromGroup: cat withFillerString: fill];
+    //[(UKMooseAppDelegate*)[NSApp delegate] speakPhraseFromGroup: cat withFillerString: fill];
     
     return nil;
 }

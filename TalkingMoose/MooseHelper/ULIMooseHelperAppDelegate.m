@@ -82,8 +82,6 @@
 		else
 			; //UKLog(@"No Speech settings in Prefs.");
 		
-		[speechSynth startSpeakingString: @""]; // Make sure everything's loaded and ready.
-		
 		recSpeechSynth = [[UKRecordedSpeechChannel alloc] init];
 
 		// Start listening for interesting user actions:
@@ -263,8 +261,11 @@
 		[[imageView window] setFrameOrigin: mooseBox.origin];
 	}
 	
+	[speechSynth startSpeakingString: @""]; // Make sure everything's loaded and ready.
+	[[imageView window] display];
+	
 	// Say hello to the user:
-	[self performSelector: @selector(speakPhraseFromGroup:) withObject: @"HELLO" afterDelay: 1.0];
+	[self performSelector: @selector(speakPhraseFromGroup:) withObject: @"HELLO" afterDelay: 10.0];
 	
 #if 0
 	int	*	crashy = 0;

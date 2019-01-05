@@ -94,7 +94,7 @@ static NSPoint	UKLocalPointForRect( NSPoint origPos, NSSize internalSize, NSRect
 			imageSize = NSMakeSize(DEFAULT_WIDTH,DEFAULT_HEIGHT);
 		
 		NSArray*	arr = [enclosingDict objectForKey: @"UKMouthPoints"];
-		int		arrCount = [arr count], x = 0;
+		NSUInteger	arrCount = [arr count], x = 0;
 		for( x = 0; x < arrCount; x++ )
 		{
 			NSDictionary*	dict = [arr objectAtIndex: x];

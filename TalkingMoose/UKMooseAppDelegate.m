@@ -47,6 +47,7 @@
 
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
 #define UKUserPhrasesPath       "/Library/Application Support/Moose/Phrases"
+#define UKHelperApplicationID	@"com.thevoidsoftware.talkingmoose.helper"
 #define MINIMUM_MOOSE_SIZE		48
 
 
@@ -68,26 +69,7 @@ static BOOL		gIsSilenced = NO;
 	self = [super init];
 	if( self )
 	{
-		srand(time(NULL));
-		
-		phraseTimer = [[UKIdleTimer alloc] initWithTimeInterval: 30];
-		[phraseTimer setDelegate: self];
 		mooseControllers = [[NSMutableArray alloc] init];
-		
-		// Speech channel:
-		speechSynth = [[NSSpeechSynthesizer alloc] init];
-		NSDictionary*   settings = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKSpeechChannelSettings"];
-		if( settings )
-		{
-			//UKLog(@"Loading Speech settings from Prefs.");
-			[speechSynth setSettingsDictionary: settings];
-		}
-		else
-			; //UKLog(@"No Speech settings in Prefs.");
-	
-		[speechSynth startSpeakingString: @""]; // Make sure everything's loaded and ready.
-		
-		recSpeechSynth = [[UKRecordedSpeechChannel alloc] init];
 		
 		// System-wide keyboard shortcuts:
 		speakNowHotkey = [[PTHotKey alloc] initWithName: @"Speak Now" target: self action: @selector(speakOnePhrase:) addToCenter: YES];
@@ -113,14 +95,6 @@ static BOOL		gIsSilenced = NO;
 				name: NSWorkspaceSessionDidResignActiveNotification object: nil];
 		[[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(applicationSwitchNotification:)
 				name: UKCarbonEventHandlerEventReceived object: appSwitchEventHandler];
-        
-        // Set up a timer to fire every half hour for clock announcements:
-        clockTimer = [[NSTimer scheduledTimerWithTimeInterval: 60 * 30
-                        target: self selector: @selector(halfHourElapsed:)
-                        userInfo: [NSDictionary dictionary] repeats: YES] retain];
-        [self updateClockTimerFireTime: clockTimer];
-        
-        [self setScaleFactor: 1];	// Make sure Moose doesn't start out 0x0 pixels large.
 	}
 	
 	return self;
@@ -133,17 +107,13 @@ static BOOL		gIsSilenced = NO;
 
 -(void) dealloc
 {
-	DESTROY(recSpeechSynth);
 	DESTROY(speakNowHotkey);
 	DESTROY(repeatLastPhraseHotkey);
 	DESTROY(silenceMooseHotkey);
 	
 	[[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver: self];
 	
-    DESTROY(clockTimer);
-	DESTROY(phraseTimer);
 	DESTROY(mooseControllers);
-	DESTROY(speechSynth);
 	DESTROY(appSwitchEventHandler);
 	
 	[super dealloc];
@@ -154,94 +124,24 @@ static BOOL		gIsSilenced = NO;
 //	NIB has been loaded, set up GUI:
 // -----------------------------------------------------------------------------
 
-
-//#define kCGWindowListOptionOnScreenOnly		(1 << 0)
-//typedef CFArrayRef (*CGWLCWIPtr)( uint32_t, uint32_t );
-//static CGWLCWIPtr	_CGWindowListCopyWindowInfo = NULL;
-//
-//CFBundleRef		appServices = CFBundleGetBundleWithIdentifier( CFSTR("com.apple.ApplicationServices") );
-//if( appServices )
-//	_CGWindowListCopyWindowInfo = (CGWLCWIPtr) CFBundleGetFunctionPointerForName( appServices, CFSTR("CGWindowListCopyWindowInfo") );
-//
-//if( _CGWindowListCopyWindowInfo )
-//{
-//	NSArray*	arr = (NSArray*) _CGWindowListCopyWindowInfo( kCGWindowListOptionOnScreenOnly, 0 );
-//	UKLog(@"%@",arr);
-//}
-
 -(void) awakeFromNib
 {
 	UKCrashReporterCheckForCrash();
-	
-//	NSView*	dockView = [[NSApp dockTile] contentView];
-//	UKLog(@"%@", dockView);
-	
-	// Set window bg pattern:
-	//[settingsWindow setBackgroundColor: [NSColor colorWithPatternImage: [NSImage imageNamed: @"window_bg"]]];
-	
-	#if 0
-	// Remove the phrases tab for now, it's not finished yet:
-	int	phrasesTab = [mainTabView indexOfTabViewItemWithIdentifier: @"de.zathras.phrases-tab"];
-	NSTabViewItem*	tvi = [mainTabView tabViewItemAtIndex: phrasesTab];
-	[tvi retain];
-	[mainTabView removeTabViewItem: tvi];
-	#endif
-	
+		
 	[mainTabView selectTabViewItemAtIndex: 0];
 	
-    // Set up our moose window:
-	NSWindow*   mooseWindow = [imageView window];
-	
-	[mooseWindow setBackgroundColor: [NSColor clearColor]];
-	[mooseWindow setOpaque: NO];
-	[((UKBorderlessWindow*)mooseWindow) setConstrainRect: YES];
-	[mooseWindow setLevel: kCGOverlayWindowLevel];
-	[mooseWindow setHidesOnDeactivate: NO];
-	[mooseWindow setCanHide: NO];
-	if( [mooseWindow respondsToSelector: @selector(setCollectionBehavior:)] )
-		[(id)mooseWindow setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
-	
-    // Get window scale factor from Prefs:
-	float savedScaleFactor = [[NSUserDefaults standardUserDefaults] floatForKey: @"UKMooseScaleFactor"];
-    if( savedScaleFactor <= 0 )
-        savedScaleFactor = 1;
-	
 	[self loadMooseControllers];
-	[self setScaleFactor: savedScaleFactor];
 	
     // Load settings from user defaults:
 	[self loadSettingsFromDefaultsIntoUI];
     [self refreshSpeakHoursUI];
-    [self setUpSpeechBubbleWindow];
-	
-	// Hide widgets on 10.2:
-	[windowWidgets setHidden: YES];
 }
 
 
 -(IBAction)	orderFrontSecretAboutBox: (id)sender
 {
-	[self speakPhraseFromGroup: @"SECRET ABOUT BOX"];
+	//[self speakPhraseFromGroup: @"SECRET ABOUT BOX"];
 	[secretAboutBox makeKeyAndOrderFront: self];
-}
-
-
--(void)	setScaleFactor: (float)sf
-{
-	scaleFactor = sf;
-	
-	NSWindow    *wd = [imageView window];
-    NSRect      oldBox = [wd frame];
-    NSSize      imgSize = [[currentMoose image] size];
-	
-	imgSize.width *= sf;
-	imgSize.height *= sf;
-    
-    oldBox.origin.y -= imgSize.height -oldBox.size.height;
-    oldBox.size = imgSize;
-    
-    [wd setFrame: oldBox display: YES];
-    [currentMoose setGlobalFrame: oldBox];
 }
 
 
@@ -287,9 +187,6 @@ static BOOL		gIsSilenced = NO;
 	if( !foundMoose )	// Moose in prefs doesn't exist? Use default!
 		currMooseIndex = defaultMooseIndex;
 	
-    // Make sure the view knows whose settings to change:
-    [speechSets setSpeechSynthesizer: speechSynth];
-	
     // Update list and select current moose:
 	[mooseList reloadData];
 	[mooseList selectRowIndexes: [NSIndexSet indexSetWithIndex: currMooseIndex] byExtendingSelection: NO];	// Changes animation and may cause reset in scale factor:
@@ -310,7 +207,7 @@ static BOOL		gIsSilenced = NO;
 	[silenceMooseHKField setStringValue: [silenceMooseHotkey stringValue]];
 	
     // "Launch at startup" checkbox:
-	NSString				*bundleID = [[NSBundle mainBundle] bundleIdentifier];
+	NSString				*bundleID = UKHelperApplicationID;
 	NSRunningApplication	*helperApp = [NSRunningApplication runningApplicationsWithBundleIdentifier: bundleID].firstObject;
 	
 	if( helperApp != nil )
@@ -360,27 +257,6 @@ static BOOL		gIsSilenced = NO;
 	[speakOnAppChangeSwitch setState: speakOnAppChange];
 	
 	//UKLog(@"Loaded.");
-}
-
-
-// -----------------------------------------------------------------------------
-//	Set up all those properties our window for displaying phrase text needs:
-// -----------------------------------------------------------------------------
-
--(void)		setUpSpeechBubbleWindow
-{
-	//UKLog(@"About to set up.");
-	UKBorderlessWindow*		speechBubbleWindow = (UKBorderlessWindow*) [speechBubbleView window];
-	
-	[speechBubbleWindow setBackgroundColor: [NSColor clearColor]];
-	[speechBubbleWindow setOpaque: NO];
-	[speechBubbleWindow setHasShadow: YES];
-	[speechBubbleWindow setConstrainRect: YES];
-	[speechBubbleWindow setLevel: kCGOverlayWindowLevel];
-	[speechBubbleWindow setHidesOnDeactivate: NO];
-	[speechBubbleWindow setCanHide: NO];
-	[speechBubbleView setTextContainerInset: NSMakeSize(4,6)];
-	//UKLog(@"Finished.");
 }
 
 
@@ -516,11 +392,9 @@ static BOOL		gIsSilenced = NO;
 }
 
 
--(BOOL) applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
 {
-    [[mooseList window] makeKeyAndOrderFront: self];
-    
-    return NO;
+	return YES;
 }
 
 
@@ -550,58 +424,11 @@ static BOOL		gIsSilenced = NO;
 	
 	// Force update of Moose, even when we can't say "hello":
 	[self refreshShutUpBadge];
-	[self mooseControllerAnimationDidChange: currentMoose];
-	
-	// Position Moose window:
-	NSString*	animPos = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseAnimPosition"];
-	if( animPos )
-	{
-		//UKLog(@"didFinishLaunching: Moose position will be set to: %@",animPos);
-		[(UKBorderlessWindow*)[imageView window] setConstrainRect: YES];
-		NSRect		mooseBox, oldMooseBox;
-		mooseBox.origin = NSPointFromString( animPos );
-		mooseBox.size = [[imageView window] frame].size;
-		oldMooseBox = mooseBox;
-		mooseBox = [[imageView window] constrainFrameRect: mooseBox toScreen: [[imageView window] screen]];
-		//UKLog(@"didFinishLaunching: Constraining %@ to %@",NSStringFromRect( oldMooseBox ),NSStringFromRect( mooseBox ));
-		[[imageView window] setFrameOrigin: mooseBox.origin];
-	}
-	
-	// Say hello to the user:
-	[self speakPhraseFromGroup: @"HELLO"];
 	
 #if 0
 	int	*	crashy = 0;
 	(*crashy) = 1;
 #endif
-}
-
-
--(NSApplicationTerminateReply)  applicationShouldTerminate:(NSApplication *)sender
-{
-	if( mooseDisableCount == 0 && ![excludeApps appInListMatches] && ![excludeApps screenSaverRunning] )
-	{
-		terminateWhenFinished = YES;	// This causes didFinishSpeaking: to call replyToApplicationShouldTerminate.
-		if( [speechSynth isSpeaking] || [recSpeechSynth isSpeaking] || [self speakPhraseFromGroup: @"GOODBYE"] )
-			return NSTerminateLater;
-		else
-			return NSTerminateNow;	// No speech output busy, and we couldn't speak a "Goodbye" phrase. Just quit quietly, and right away.
-	}
-	else
-	{
-		return NSTerminateNow;
-	}
-}
-
-
--(void) applicationWillTerminate: (NSNotification*)notif
-{
-	NSString*		moosePosString = NSStringFromPoint( [[imageView window] frame].origin );
-	//UKLog( @"applicationWillTerminate: Saving position: %@", moosePosString );
-	[[NSUserDefaults standardUserDefaults] setObject: moosePosString forKey: @"UKMooseAnimPosition"];
-	[[NSUserDefaults standardUserDefaults] setObject: [speechSynth settingsDictionary] forKey: @"UKSpeechChannelSettings"];
-	[[NSUserDefaults standardUserDefaults] setObject: [NSNumber numberWithBool: [[mooseList window] isVisible]] forKey: @"UKMoosePanelVisible"];
-	[[NSUserDefaults standardUserDefaults] setFloat: [self scaleFactor] forKey: @"UKMooseScaleFactor"];
 }
 
 
@@ -675,8 +502,7 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [ud boolForKey: @"UKMooseSpeakTime"];
     
     [ud setBool: !state forKey: @"UKMooseSpeakTime"];
-    [self updateClockTimerFireTime: clockTimer];
-    
+	
     [speakHalfHoursSwitch setEnabled: !state];
     [beAnallyRetentive setEnabled: !state];
 }
@@ -688,7 +514,6 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [ud boolForKey: @"UKMooseSpeakTimeOnHalfHours"];
     
     [ud setBool: !state forKey: @"UKMooseSpeakTimeOnHalfHours"];
-    [self updateClockTimerFireTime: clockTimer];
 }
 
 
@@ -698,7 +523,6 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [ud boolForKey: @"UKMooseSpeakTimeAnallyRetentive"];
     
     [ud setBool: !state forKey: @"UKMooseSpeakTimeAnallyRetentive"];
-    [self updateClockTimerFireTime: clockTimer];
 }
 
 
@@ -799,171 +623,6 @@ static BOOL		gIsSilenced = NO;
 }
 
 
--(void) halfHourElapsed: (NSTimer*)timer
-{
-	NS_DURING
-		NSAutoreleasePool*	pool = [[NSAutoreleasePool alloc] init];
-		
-		if( !speechSynth )
-			[NSException raise: @"UKHalfHourElapsedNoChannel" format: @"Speech channel is NIL in halfHourElapsed:"];
-		
-		if( ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] )
-		{
-			NSString*			timeFmtStr = @"%I:%M";
-			if( !timeFmtStr )
-				[NSException raise: @"UKHalfHourElapsedNoTimeFmtStr" format: @"Time Format String is NIL in halfHourElapsed:"];
-			NSDateFormatter*    form = [[[NSDateFormatter alloc] initWithDateFormat: timeFmtStr allowNaturalLanguage: NO] autorelease];
-			if( !form )
-				[NSException raise: @"UKHalfHourElapsedNoDateFrm" format: @"Date Formatter is NIL in halfHourElapsed:"];
-
-			NSString*			timeStr = [form stringForObjectValue: [NSDate date]];
-			if( !timeStr )
-				[NSException raise: @"UKHalfHourElapsedNoTimeStr" format: @"Time String is NIL in halfHourElapsed:"];
-			[self speakPhraseFromGroup: @"TIME ANNOUNCEMENT" withFillerString: timeStr];
-			
-			//UKLog( @"Speaking time: %@", timeStr );
-		}
-		[self updateClockTimerFireTime: timer];
-	
-		[pool release];
-	NS_HANDLER
-		NSLog(@"Error during time announcement: %@", localException);
-	NS_ENDHANDLER
-}
-
-
--(void)	interruptMoose: (id)sender
-{
-    [speechSynth stopSpeaking];
-    [recSpeechSynth stopSpeaking];
-	// Reset visible count to make sure it goes away.
-	mooseVisibleCount = 1;
-	[self hideMoose];
-}
-
-
-// Called by click on moose image:
--(void) mooseAnimationWindowClicked: (id)sender
-{
-    BOOL        dragInstead = NO;
-	
-	NSEvent *currEvent = [NSApplication.sharedApplication nextEventMatchingMask: NSEventMaskLeftMouseDragged | NSEventMaskLeftMouseUp untilDate: [NSDate dateWithTimeIntervalSinceNow: 0.5] inMode: NSEventTrackingRunLoopMode dequeue: NO];
-	if (currEvent.type != NSEventTypeLeftMouseDragged) {
-		dragInstead = YES;
-	}
-	
-    if( dragInstead )
-    {
-        [self dragMooseAnimationWindow: sender];   // Call title bar drag method instead.
-        return;
-    }
-	
-	[self interruptMoose: self];
-}
-
-
--(void) resizeMoose: (id)sender
-{
-    NSWindow    *wd = [imageView window];
-    NSSize      imgSize = [[imageView image] size],
-                mooseSize = [currentMoose size];
-    NSRect      oldBox = [wd frame],
-                newBox = [wd frame];
-    NSEvent*    currEvt = nil;
-    
-	//UKLog(@"About to call showMoose");
-    [self showMoose];
-    [wd setContentAspectRatio: mooseSize];
-	
-    while( YES )
-    {
-        currEvt = [NSApp nextEventMatchingMask: NSLeftMouseUpMask | NSLeftMouseDraggedMask
-                    untilDate: [NSDate distantFuture] inMode: NSEventTrackingRunLoopMode dequeue: YES];
-        if( currEvt && [currEvt type] == NSLeftMouseUp )
-            break;
-        
-        oldBox.size.width += [currEvt deltaX];
-		oldBox.origin.y = oldBox.origin.y +oldBox.size.height -[currEvt deltaY];
-		oldBox.size.height = oldBox.size.height +[currEvt deltaY];
-		
-		NSSize		newSize = [NSImage scaledSize: imgSize toFitSize: oldBox.size];
-		if( newSize.width < MINIMUM_MOOSE_SIZE || newSize.height < MINIMUM_MOOSE_SIZE )
-			newSize = [NSImage scaledSize: imgSize toFitSize: NSMakeSize( MINIMUM_MOOSE_SIZE, MINIMUM_MOOSE_SIZE )];
-		newBox.size.width = newSize.width;
-		newBox.origin.y = newBox.origin.y +newBox.size.height -newSize.height;
-		newBox.size.height = newSize.height;
-        
-        [wd setFrame: newBox display: YES];
-        [currentMoose setGlobalFrame: newBox];
-    }
-    
-    [wd setContentAspectRatio: NSMakeSize( 1, 1 )];
-    [self setScaleFactor: newBox.size.width / mooseSize.width];
-	
-	[self pinWidgetsBoxToBotRight];
-    [self hideMoose];
-}
-
-
--(void) zoomMoose: (id)sender
-{
-    [self setScaleFactor: 1];
-}
-
-
-// Called by click in window's "title bar" drag area:
--(void) dragMooseAnimationWindow: (id)sender
-{
-	NSPoint		mousePos = [NSEvent mouseLocation];
-	NSPoint		posDiff = [[imageView window] frame].origin;
-	NSEvent*	evt = nil;
-    
-	posDiff.x -= mousePos.x;
-	posDiff.y -= mousePos.y;
-	
-	//UKLog(@"About to call showMoose");
-    [self showMoose];
-    
-	[[NSCursor closedHandCursor] push];
-	
-	while( true )
-	{
-		evt = [NSApp nextEventMatchingMask: (NSLeftMouseUpMask | NSLeftMouseDraggedMask)
-				untilDate: [NSDate distantFuture] inMode: NSEventTrackingRunLoopMode
-				dequeue:YES];
-		if( !evt )
-			continue;
-		
-		if( [evt type] == NSLeftMouseUp )
-			break;
-		
-		mousePos = [NSEvent mouseLocation];
-		mousePos.x += posDiff.x;
-		mousePos.y += posDiff.y;
-		
-		[[imageView window] setFrameOrigin: mousePos];
-	}
-
-	[[NSCursor closedHandCursor] pop];
-    
-    [self hideMoose];
-}
-
-
--(void) timerBeginsIdling: (id)sender
-{
-	[self refreshShutUpBadge];
-	[self speakOnePhrase: sender];
-}
-
-
--(void) timerContinuesIdling: (id)sender
-{
-	[self refreshShutUpBadge];
-	[self speakOnePhrase: sender];
-}
-
-
 - (int)numberOfRowsInTableView:(NSTableView *)tableView
 {
 	return [mooseControllers count];
@@ -997,223 +656,11 @@ static BOOL		gIsSilenced = NO;
 
 - (void)tableViewSelectionDidChange: (NSNotification *)notification
 {
-	[speechSynth stopSpeaking];
-	[recSpeechSynth stopSpeaking];
 	[currentMoose setDelegate: nil];
 	
 	currentMoose = [mooseControllers objectAtIndex: [mooseList selectedRow]];
 	
 	[self mooseControllerDidChange];
-}
-
-
--(void)	showSettingsWindow: (id)sender
-{
-	[settingsWindow makeKeyAndOrderFront: sender];
-	
-	if( ![NSApp isActive] || [NSApp isHidden] )
-		[NSApp activateIgnoringOtherApps: YES];
-}
-
-
--(BOOL) speakOnePhrase: (id)sender
-{
-	return [self speakPhraseFromGroup: @"PAUSE"];
-}
-
-
--(BOOL) speakPhraseFromGroup: (NSString*)group
-{
-	return [self speakPhraseFromGroup: group withFillerString: nil];
-}
-
-
-// Speaks the next phrase from the specified group, optionally replacing any "%s" placeholders
-//	in that string with a filler string. Used to e.g. allow the Moose to say the name of a disk ejected.
--(BOOL) speakPhraseFromGroup: (NSString*)group withFillerString: (NSString*)fill
-{
-	if( mooseDisableCount == 0
-		&& ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] && ![excludeApps appInListMatches] && ![excludeApps screenSaverRunning] )
-	{
-		NSString*		currPhrase = [phraseDB randomPhraseFromGroup: group];
-		if( !currPhrase )
-			return NO;
-		
-		NSRange			strRange = [currPhrase rangeOfString: @"%s"];
-		
-		if( fill && (strRange.location != NSNotFound) )
-		{
-			currPhrase = [[currPhrase mutableCopy] autorelease];
-			[(NSMutableString*)currPhrase replaceCharactersInRange: strRange withString: fill];
-			[phraseDB setMostRecentPhrase: currPhrase];	// We changed the string, so tell phrase DB about the string we actually spoke, with the placeholder filled.
-		}
-		
-		NSDictionary*	cmdDict = UKGroupFileExtractCommandFromPhrase( currPhrase );
-		if( !cmdDict )
-		{
-			NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
-			BOOL	voiceCantDoPhonemes = [self voiceCantProvidePhonemesJudgingByAttributes: voiceAttrs];
-
-			[currentMoose setSimulateMissingPhonemes: voiceCantDoPhonemes];
-			
-			if( voiceCantDoPhonemes )
-				[currentMoose speechStartedWithoutPhonemes];
-
-			[speechSynth startSpeakingString: currPhrase];
-			[self showSpeechBubbleWithString: currPhrase];
-		}
-		else
-		{
-			NSString*	methodName = [NSString stringWithFormat: @"embeddedPhraseCommand%@:", [cmdDict objectForKey: UKGroupFileCommandNameKey]];
-			SEL			methodSelector = NSSelectorFromString( methodName );
-			if( [self respondsToSelector: methodSelector] )
-				[self performSelector: methodSelector withObject: [cmdDict objectForKey: UKGroupFileCommandArgsKey]];
-			else
-				return NO;
-		}
-		
-		return YES;
-	}
-	else
-		return NO;
-}
-
-
--(void)	embeddedPhraseCommandSOUNDFILE: (NSArray*)args
-{
-	if( [args count] >= 1 )
-	{
-		NSString*	fPath = [[NSBundle mainBundle] pathForSoundResource: [args objectAtIndex: 0]];
-		[recSpeechSynth startSpeakingSoundFileAtPath: fPath];
-	}
-}
-
-
--(BOOL)	voiceCantProvidePhonemesJudgingByAttributes: (NSDictionary*)voiceAttrs
-{
-	BOOL	voiceCantDoPhonemes = NO;
-	NSString*phonemes = [speechSynth phonemesFromText: @"Texas"];
-	if( [phonemes length] == 0 )
-		return YES;
-	
-	return voiceCantDoPhonemes;
-}
-
-
--(void) speakString: (NSString*)currPhrase
-{
-	if( mooseDisableCount == 0 && ![excludeApps appInListMatches] && ![excludeApps screenSaverRunning] )
-	{
-		NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
-		BOOL	voiceCantDoPhonemes = [self voiceCantProvidePhonemesJudgingByAttributes: voiceAttrs];
-		[currentMoose setSimulateMissingPhonemes: voiceCantDoPhonemes];
-			
-		if( voiceCantDoPhonemes )
-			[currentMoose speechStartedWithoutPhonemes];
-		
-		[speechSynth startSpeakingString: currPhrase];
-		[self showSpeechBubbleWithString: currPhrase];
-        //UKLog(@"Speaking: %@", currPhrase);
-	}
-}
-
--(void) showSpeechBubbleWithString: (NSString*)currPhrase
-{
-    if( showSpokenString )
-    {
-		//UKLog(@"About to position.");
-        NSWindow*		bubbleWin = [speechBubbleView window];
-        NSWindow*		mooseWin = [imageView window];
-        NSRect			mooseFrame = [mooseWin frame];
-        NSRect			bubbleFrame = [bubbleWin frame];
-        //NSDictionary*   attrs = [NSDictionary dictionaryWithObjectsAndKeys: [[NSColor whiteColor] colorWithAlphaComponent: 0.8], NSBackgroundColorAttributeName, nil];
-        
-		[mooseWin removeChildWindow: bubbleWin];
-		
-        [speechBubbleView setString: [NSSpeechSynthesizer prettifyString: currPhrase]];
-        //[[speechBubbleView textStorage] setAttributes: attrs range: NSMakeRange(0,[currPhrase length])];
-        [speechBubbleView setAlignment: NSCenterTextAlignment];
-        
-        [speechBubbleView setMinSize: NSMakeSize(16,16)];
-        [speechBubbleView setMaxSize: NSMakeSize(300,10000)];
-        [speechBubbleView sizeToFit];
-		
-		// Position bubble to right of Moose:
-        bubbleFrame.size = [speechBubbleView frame].size;
-        bubbleFrame.origin = NSMakePoint(mooseFrame.origin.x +mooseFrame.size.width +8,
-                                        mooseFrame.origin.y -(bubbleFrame.size.height /2) +(mooseFrame.size.height /2));
-        
-		// Check whether text fits on screen, if not, try left side:
-		NSRect		visibleBubbleFrame = [bubbleWin constrainFrameRect: bubbleFrame toScreen: [mooseWin screen]];
-		if( visibleBubbleFrame.origin.x != bubbleFrame.origin.x
-			|| visibleBubbleFrame.origin.y != bubbleFrame.origin.y )
-		{
-			NSRect newBubbleFrame = bubbleFrame;
-			newBubbleFrame.origin = NSMakePoint(mooseFrame.origin.x -8 -bubbleFrame.size.width,
-                                        mooseFrame.origin.y -(bubbleFrame.size.height /2) +(mooseFrame.size.height /2));
-			
-			visibleBubbleFrame = [bubbleWin constrainFrameRect: newBubbleFrame toScreen: [[imageView window] screen]];
-			if( visibleBubbleFrame.origin.x != newBubbleFrame.origin.x
-				|| visibleBubbleFrame.origin.y != newBubbleFrame.origin.y )		// Left side still not onscreen? Fallback: Just go back to original frame rect, even though it may be on top of Moose.
-				bubbleFrame = [bubbleWin constrainFrameRect: bubbleFrame toScreen: [[imageView window] screen]];
-			else
-				bubbleFrame = visibleBubbleFrame;
-		}
-		else
-			bubbleFrame = visibleBubbleFrame;
-		
-		// Actually assign frame we found and display Moose:
-        [bubbleWin setFrame: bubbleFrame display: YES];
-        /*if( fadeInOut )
-            [bubbleWin fadeInWithDuration: 0.5];
-        else
-            [bubbleWin orderFrontRegardless];*/
-		//UKLog(@"Positioned at %@ for moose frame %@.",NSStringFromRect( bubbleFrame ),NSStringFromRect( mooseFrame ));
-		
-		[mooseWin addChildWindow: bubbleWin ordered: NSWindowAbove];
-    }
-	else
-		;//UKLog(@"showSpokenString == false");
-}
-
-
--(void) repeatLastPhrase: (id)sender
-{
-	if( mooseDisableCount == 0 )
-	{
-		NSString*   currPhrase = [phraseDB mostRecentPhrase];
-		if( !currPhrase )
-			return;
-		
-		NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
-		BOOL	voiceCantDoPhonemes = [self voiceCantProvidePhonemesJudgingByAttributes: voiceAttrs];
-
-		[currentMoose setSimulateMissingPhonemes: voiceCantDoPhonemes];
-		
-		if( voiceCantDoPhonemes )
-			[currentMoose speechStartedWithoutPhonemes];
-
-		[speechSynth startSpeakingString: currPhrase];
-		if( showSpokenString )
-		{
-			[speechBubbleView setString: currPhrase];
-			[[speechBubbleView window] fadeInWithDuration: 0.5];
-		}
-	}
-}
-
-
--(void) silenceMoose: (id)sender
-{
-	if( gIsSilenced )
-		mooseDisableCount--;
-	else
-		mooseDisableCount++;
-	
-	gIsSilenced = !gIsSilenced;
-	[shutUpSwitch setState: gIsSilenced];
-    [self refreshShutUpBadge];
-	[self interruptMoose: self];
 }
 
 
@@ -1254,10 +701,6 @@ static BOOL		gIsSilenced = NO;
 {
 	double		theVal = [sender doubleValue];
 	
-	[phraseTimer release];
-	phraseTimer = [[UKIdleTimer alloc] initWithTimeInterval: theVal];
-	[phraseTimer setDelegate: self];
-	
 	[[NSUserDefaults standardUserDefaults] setObject: [NSNumber numberWithDouble: theVal] forKey: @"UKMooseSpeechDelay"];
 	
 	[speechDelayField setStringValue: [NSString stringWithFormat: @"Every %d min.", ((int)trunc(theVal /60.0))]];
@@ -1266,7 +709,7 @@ static BOOL		gIsSilenced = NO;
 
 -(void) takeLaunchAtLoginBoolFrom: (id)sender
 {
-	SMLoginItemSetEnabled( (CFStringRef) [[NSBundle mainBundle] bundleIdentifier], [sender state] == NSOnState );
+	SMLoginItemSetEnabled( (CFStringRef) UKHelperApplicationID, [sender state] == NSOnState );
 }
 
 
@@ -1282,105 +725,11 @@ static BOOL		gIsSilenced = NO;
 {
     //UKLog(@"mooseControllerDidChange");
     
-	NSWindow*		mooseWindow = [imageView window];
-	
-	#ifdef TRYTOKEEPPOSITION
-	NSRect		oldWBox = [mooseWindow frame];
-	oldWBox.origin = [mooseWindow convertBaseToScreen: [imageView convertPoint: NSZeroPoint toView: nil]];
-	NSRect		wBox = oldWBox;
-	wBox.size = [currentMoose size];
-	wBox.origin.y += oldWBox.size.height;	// These two pin it to upper left.
-	wBox.origin.y -= wBox.size.height;
-	//UKLog(@"mooseControllerDidChange (1): Old: %@ New: %@", NSStringFromRect([mooseWindow frame]), NSStringFromRect(wBox));
-	[mooseWindow setFrame: wBox display: YES];
-	[currentMoose setGlobalFrame: wBox];
-	#else
-    NSSize      wdSize = [currentMoose size];
-	//UKLog(@"mooseControllerDidChange: currentMoose: %@",currentMoose);
-    //[self setScaleFactor: 1.0];
-	//[mooseWindow setContentSize: wdSize];
-	NSRect		wdBox;
-	wdBox.origin = [mooseWindow frame].origin;
-	wdBox.size = wdSize;
-	wdBox = [mooseWindow constrainFrameRect: wdBox toScreen: [mooseWindow screen]];
-	//UKLog(@"mooseControllerDidChange (2): Old: %@ New: %@", NSStringFromRect([mooseWindow frame]), NSStringFromRect(wdBox));
-	[mooseWindow setFrame: wdBox display: YES];
-	[currentMoose setGlobalFrame: wdBox];
-	#endif
-	
-	[currentMoose setDelegate: self];
-	[speechSynth setDelegate: currentMoose];
-	[recSpeechSynth setDelegate: currentMoose];
 	[[NSUserDefaults standardUserDefaults] setObject: [currentMoose filePath] forKey: @"UKCurrentMooseAnimationPath"];
 	
-	// Make sure widgets are in lower right:
-	[self pinWidgetsBoxToBotRight];
-	//[currentMoose setDontIdleAnimate: NO];
-	
     [self refreshShutUpBadge];
-    
-	[self mooseControllerAnimationDidChange: currentMoose];
 	
 	//UKLog(@"Moose controller changed to \"%@\".", [currentMoose filePath]);
-}
-
-
--(void)	pinWidgetsBoxToBotRight
-{
-	NSRect	widgetsBox = [windowWidgets frame],
-			widgetsOwnerBox = [windowWidgetsSuperview frame];
-	
-	widgetsBox.origin.x = widgetsOwnerBox.size.width -widgetsBox.size.width;
-	widgetsBox.origin.y = 0;
-	[windowWidgets setFrameOrigin: widgetsBox.origin];
-}
-
-
--(void) mooseControllerSpeechStart: (UKMooseController*)mc
-{
-	NSRect		wBox = [[imageView window] frame];
-	wBox.origin = [[imageView window] convertBaseToScreen: [imageView convertPoint: NSZeroPoint toView: nil]];
-	[currentMoose setGlobalFrame: wBox];
-
-	//UKLog(@"About to call showMoose");
-	[self showMoose];
-}
-
-
--(void) mooseControllerAnimationDidChange: (UKMooseController*)mc
-{
-	NSImage*		currImg = [mc image];
-	NSImage*		iconImg = [currImg scaledImageToFitSize: NSMakeSize(128,128)];
-	NSWindow*		mooseWin = [imageView window];
-	
-	[NSApp setApplicationIconImage: iconImg];
-	if( [mooseWin isVisible] )
-	{
-    	[imageView setImage: currImg];
-		//UKLog(@"Moose image changed.");
-        //[mooseWin invalidateShadow];
-    
-		// Show/hide the window widgets if mouse is (not) in window:
-		BOOL    hideWidgets = !NSPointInRect( [NSEvent mouseLocation], [mooseWin frame] );
-		if( hideWidgets != [windowWidgets isHidden] )
-			[windowWidgets setHidden: hideWidgets];
-	}
-
-    //UKLog(@"mooseControllerAnimationDidChange:");
-}
-
-
-- (void)speechSynthesizer:(NSSpeechSynthesizer *)sender didFinishSpeaking:(BOOL)finishedSpeaking
-{
-	[self hideMoose];
-	
-	if( terminateWhenFinished )
-	{
-		[NSApp replyToApplicationShouldTerminate: YES];
-		//UKLog(@"finished speaking, resuming quit.");
-	}
-
-    //UKLog(@"finished.");
 }
 
 
@@ -1398,7 +747,7 @@ static BOOL		gIsSilenced = NO;
 // Keys in dictionary: "Group" (required) and "Filler" (optional):
 -(void)	speakPhraseFromDictionary: (NSDictionary*)dict
 {
-	[self speakPhraseFromGroup: [dict objectForKey: @"Group"] withFillerString: [dict objectForKey: @"Filler"]];
+	//[self speakPhraseFromGroup: [dict objectForKey: @"Group"] withFillerString: [dict objectForKey: @"Filler"]];
 }
 
 
@@ -1433,7 +782,6 @@ static BOOL		gIsSilenced = NO;
 			[self speakPhraseOnMainThreadFromGroup: @"LAUNCH APPLICATION" withFillerString: appName];
 	}
 	[self refreshShutUpBadge];
-	[self mooseControllerAnimationDidChange: currentMoose];
 }
 
 
@@ -1447,7 +795,6 @@ static BOOL		gIsSilenced = NO;
 		[self speakPhraseOnMainThreadFromGroup: @"QUIT APPLICATION" withFillerString: appName];
 	}
 	[self refreshShutUpBadge];
-	[self mooseControllerAnimationDidChange: currentMoose];
 }
 
 
@@ -1465,7 +812,6 @@ static BOOL		gIsSilenced = NO;
 		}
 	}
 	[self refreshShutUpBadge];
-	[self mooseControllerAnimationDidChange: currentMoose];
 }
 
 
@@ -1474,7 +820,6 @@ static BOOL		gIsSilenced = NO;
 	[self speakPhraseOnMainThreadFromGroup: @"LAUNCH SETUP" withFillerString: nil];
 	
 	[self refreshShutUpBadge];
-	[self mooseControllerAnimationDidChange: currentMoose];
 }
 
 -(void) applicationDidResignActive: (NSNotification *)notification
@@ -1482,44 +827,6 @@ static BOOL		gIsSilenced = NO;
 	[self speakPhraseOnMainThreadFromGroup: @"QUIT SETUP" withFillerString: nil];
 	
 	[self refreshShutUpBadge];
-	[self mooseControllerAnimationDidChange: currentMoose];
-}	
-
-
--(void) fastUserSwitchedInNotification:(NSNotification*)notif
-{
-	mooseDisableCount--;
-	if( mooseDisableCount == 0 && ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] )
-		[self speakPhraseOnMainThreadFromGroup: @"USER SWITCHED IN" withFillerString: nil];
-	[self refreshShutUpBadge];
-}
-
-
--(void) fastUserSwitchedOutNotification:(NSNotification*)notif
-{
-	if( mooseDisableCount == 0 && ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] )
-		[self speakPhraseOnMainThreadFromGroup: @"USER SWITCHED OUT" withFillerString: nil];
-	mooseDisableCount++;
-	[self refreshShutUpBadge];
-}
-
-
--(void)     hideMoose
-{
-    mooseVisibleCount--;
-    
-    //UKLog( @"Hiding Moose (%d)", mooseVisibleCount );
-    
-	if( mooseVisibleCount < 0 )
-		mooseVisibleCount = 0;
-	
-    if( mooseVisibleCount == 0 )
-    {
-		//[currentMoose setDontIdleAnimate: NO];
-		//UKLog( @"\tHit zero. Fading out." );
-		[[imageView window] fadeOutWithDuration: 0.5];
-		[[speechBubbleView window] fadeOutWithDuration: 0.5];
-	}
 }
 
 
@@ -1527,7 +834,7 @@ static BOOL		gIsSilenced = NO;
 
 -(void)		splotchChatterbot: (UKSplotchChatterbot*)sender gaveAnswer: (NSString*)theAnswer
 {
-	[self speakString: theAnswer];
+	//[self speakString: theAnswer];
 }
 
 -(NSString*)	randomPhraseForSplotchChatterbot: (UKSplotchChatterbot*)sender
@@ -1552,64 +859,23 @@ void	UKLogBacktrace()
 #endif
 
 
--(void)     showMoose
-{
-	NSWindow*		mooseWin = [imageView window];
-	
-    mooseVisibleCount++;
-    
-    //UKLog( @"Showing Moose (%d)", mooseVisibleCount );
-    //UKLogBacktrace();
-	
-	if( mooseVisibleCount < 0 )
-		mooseVisibleCount = 0;
-	
-    if( mooseVisibleCount == 1 )
-    {
-		// Make sure it's onscreen:
-		NSRect		oldMooseFrame = [mooseWin frame],
-					mooseFrame = oldMooseFrame;
-		mooseFrame = [mooseWin constrainFrameRect: mooseFrame toScreen: [mooseWin screen]];
-		if( mooseFrame.origin.x != oldMooseFrame.origin.x || mooseFrame.origin.y != oldMooseFrame.origin.y
-			|| mooseFrame.size.width != oldMooseFrame.size.width || mooseFrame.size.height != oldMooseFrame.size.height )
-		{
-			//UKLog(@"constraining moose rect %@ to %@", NSStringFromRect( oldMooseFrame ), NSStringFromRect( mooseFrame ));
-			[mooseWin setFrame: mooseFrame display: YES];
-		}
-		else
-			;//UKLog(@"no need to constrain rect %@.",NSStringFromRect( mooseFrame ));
-
-		// Now actually show the Moose window:
-		//UKLog( @"\tHit 1. Fading in." );
-		[mooseWin fadeInWithDuration: 0.5];
-		if( showSpokenString )
-			[[speechBubbleView window] fadeInWithDuration: 0.5];
-		//[currentMoose setDontIdleAnimate: NO];
-		[self pinWidgetsBoxToBotRight];
-    }
-	else
-		;//UKLog(@"Not 1, leaving window untouched.");
-    [mooseWin invalidateShadow];
-}
-
-
 - (void)windowDidBecomeMain: (NSNotification*)notification
 {
-    if( mooseDisableCount == 0 && ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] )
-		[self speakPhraseFromGroup: @"LAUNCH SETUP"];
+//    if( mooseDisableCount == 0 && ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] )
+//		[self speakPhraseFromGroup: @"LAUNCH SETUP"];
 }
 
 
 - (void)windowDidResignMain: (NSNotification*)notification
 {
-    if( mooseDisableCount == 0 && ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] )
-		[self speakPhraseFromGroup: @"QUIT SETUP"];
+//    if( mooseDisableCount == 0 && ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] )
+//		[self speakPhraseFromGroup: @"QUIT SETUP"];
 }
 
 
 -(void)	moosePictClicked: (id)sender
 {
-	[self speakPhraseFromGroup: @"MOOSE SETTINGS PICTURE CLICKED"];
+	//[self speakPhraseFromGroup: @"MOOSE SETTINGS PICTURE CLICKED"];
 }
 
 @end

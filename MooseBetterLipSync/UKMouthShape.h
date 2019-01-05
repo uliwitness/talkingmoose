@@ -31,7 +31,7 @@ enum
 @interface UKMouthShape : NSObject <NSCopying>
 {
 	UKMouthPoint*	points;
-	int				numPoints;
+	NSUInteger		numPoints;
 	NSSize			imageSize;
 }
 

@@ -137,6 +137,7 @@
 		55CD5BFA21E0197600B5E004 /* Animations in Resources */ = {isa = PBXBuildFile; fileRef = 3D87481E06CB0250007D365E /* Animations */; };
 		55CD5BFB21E0197E00B5E004 /* Phrases in Resources */ = {isa = PBXBuildFile; fileRef = 3D87498B06CB0252007D365E /* Phrases */; };
 		55CD5BFC21E019D300B5E004 /* NSImage+NiceScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988D06B07F9E00FFE801 /* NSImage+NiceScaling.m */; };
+		55CD5C0021E0414B00B5E004 /* MooseHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55CD5BD321DFFDA700B5E004 /* MooseHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		55DBFB290C175901007D400D /* UKMoosePhraseologyDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 55DBFB270C175901007D400D /* UKMoosePhraseologyDelegate.h */; };
 		55DBFB2A0C175901007D400D /* UKMoosePhraseologyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DBFB280C175901007D400D /* UKMoosePhraseologyDelegate.m */; };
 		55E27CA60E635104003A077C /* Blech.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 55E27CA50E635104003A077C /* Blech.m4a */; };
@@ -170,6 +171,29 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		55CD5BFE21E0414300B5E004 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55CD5BD221DFFDA700B5E004;
+			remoteInfo = MooseHelper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		55CD5BFD21E0411C00B5E004 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				55CD5C0021E0414B00B5E004 /* MooseHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -298,6 +322,7 @@
 		55CD5BDD21DFFDAA00B5E004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55CD5BDE21DFFDAA00B5E004 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		55CD5BE021DFFDAB00B5E004 /* MooseHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MooseHelper.entitlements; sourceTree = "<group>"; };
+		55CD5C0121E041FD00B5E004 /* Moose.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Moose.entitlements; path = Moose/Moose.entitlements; sourceTree = "<group>"; };
 		55DBFB270C175901007D400D /* UKMoosePhraseologyDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKMoosePhraseologyDelegate.h; sourceTree = "<group>"; };
 		55DBFB280C175901007D400D /* UKMoosePhraseologyDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKMoosePhraseologyDelegate.m; sourceTree = "<group>"; };
 		55E27CA50E635104003A077C /* Blech.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blech.m4a; sourceTree = "<group>"; };
@@ -416,6 +441,7 @@
 		29B97314FDCFA39411CA2CEA /* CocoaMoose */ = {
 			isa = PBXGroup;
 			children = (
+				55CD5C0121E041FD00B5E004 /* Moose.entitlements */,
 				3D791E6A0798CDD2009BA042 /* TODO.txt */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -718,10 +744,12 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				3D3A1FEF09B1E1A800FB2B56 /* Build Helpbook */,
+				55CD5BFD21E0411C00B5E004 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				55CD5BFF21E0414300B5E004 /* PBXTargetDependency */,
 			);
 			name = Moose;
 			productInstallPath = "$(HOME)/Applications";
@@ -746,6 +774,11 @@
 					};
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = RCKXACKVZS;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -851,7 +884,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "cd \"${BUILD_DIR}\"\n\"${PROJECT_DIR}/../UliKit/make_git_version_header.sh\"\n";
+			shellScript = "cd \"${SRCROOT}\"\n\"${PROJECT_DIR}/../UliKit/make_git_version_header.sh\"\n";
 		};
 		3D3A1FEF09B1E1A800FB2B56 /* Build Helpbook */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -949,6 +982,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		55CD5BFF21E0414300B5E004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55CD5BD221DFFDA700B5E004 /* MooseHelper */;
+			targetProxy = 55CD5BFE21E0414300B5E004 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -1043,6 +1084,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CODE_SIGN_ENTITLEMENTS = Moose/Moose.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -1060,8 +1102,8 @@
 					"$(PROJECT_DIR)/../MooseBetterLipSync/",
 					"$(PROJECT_DIR)/../HotKeysLib3/PTHotKeysLib/src/",
 					"$(PROJECT_DIR)/../UKDistributedView/",
+					"$(PROJECT_DIR)/",
 					"$(PROJECT_DIR)/../UKDistributedView/UKFinderIconCell/",
-					"$(BUILD_DIR)/",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -1084,6 +1126,7 @@
 		3DBAA7260880496A0035E83A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Moose/Moose.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = RCKXACKVZS;
@@ -1098,8 +1141,8 @@
 					"$(PROJECT_DIR)/../MooseBetterLipSync/",
 					"$(PROJECT_DIR)/../HotKeysLib3/PTHotKeysLib/src/",
 					"$(PROJECT_DIR)/../UKDistributedView/",
+					"$(PROJECT_DIR)/",
 					"$(PROJECT_DIR)/../UKDistributedView/UKFinderIconCell/",
-					"$(BUILD_DIR)/",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -1218,7 +1261,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.MooseHelper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.helper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1285,7 +1328,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.MooseHelper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.helper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
