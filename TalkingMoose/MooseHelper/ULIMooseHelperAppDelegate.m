@@ -26,6 +26,7 @@
 
 
 #define UKMainApplicationID		@"com.thevoidsoftware.talkingmoose.macosx"
+#define UKApplicationGroupID	@"RCKXACKVZS.talkingmoose"
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
 #define UKUserPhrasesPath       "/Library/Application Support/Moose/Phrases"
 #define MINIMUM_MOOSE_SIZE		48
@@ -61,7 +62,7 @@
 	NSTimeInterval							speechDelay;
 	NSTimeInterval							lastSpeakTime;
 	
-	NSUserDefaults							*mainAppDefaults;
+	NSUserDefaults							*_sharedDefaults;
 }
 
 @property (weak) IBOutlet NSWindow *window;
@@ -79,7 +80,7 @@
 		srand((unsigned int)time(NULL));
 
 		mooseControllers = [[NSMutableArray alloc] init];
-		mainAppDefaults = [[NSUserDefaults alloc] initWithSuiteName: UKMainApplicationID];
+		_sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName: UKApplicationGroupID];
 		speechSynth = [[NSSpeechSynthesizer alloc] init];
 		recSpeechSynth = [[UKRecordedSpeechChannel alloc] init];
 		
@@ -148,7 +149,7 @@
 		[(id)mooseWindow setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
 	
 	// Get window scale factor from Prefs:
-	float savedScaleFactor = [mainAppDefaults floatForKey: @"UKMooseScaleFactor"];
+	float savedScaleFactor = [_sharedDefaults floatForKey: @"UKMooseScaleFactor"];
 	if( savedScaleFactor <= 0 )
 		savedScaleFactor = 1;
 	
@@ -166,23 +167,23 @@
 -(void)	refreshSettingsFromMainAppDefaults
 {
 	// Delay:
-	NSNumber* delay = [mainAppDefaults objectForKey: @"UKMooseSpeechDelay"];
+	NSNumber* delay = [_sharedDefaults objectForKey: @"UKMooseSpeechDelay"];
 	if( delay != nil ) {
 		speechDelay = [delay doubleValue];
 	} else {
 		speechDelay = 30.0;
 	}
 	
-	NSNumber*   sspks = [mainAppDefaults objectForKey: @"UKMooseShowSpokenString"];
+	NSNumber*   sspks = [_sharedDefaults objectForKey: @"UKMooseShowSpokenString"];
 	showSpokenString = (sspks && [sspks boolValue]);
 	
-	NSNumber*   sovms = [mainAppDefaults objectForKey: @"UKMooseSpeakOnVolumeMount"];
+	NSNumber*   sovms = [_sharedDefaults objectForKey: @"UKMooseSpeakOnVolumeMount"];
 	speakOnVolumeMount = sovms == nil || [sovms boolValue]; // Defaults to on.
 	
-	NSNumber*   soalqs = [mainAppDefaults objectForKey: @"UKMooseSpeakOnAppLaunchQuit"];
+	NSNumber*   soalqs = [_sharedDefaults objectForKey: @"UKMooseSpeakOnAppLaunchQuit"];
 	speakOnAppLaunchQuit = soalqs == nil || [soalqs boolValue]; // Defaults to on.
 	
-	NSNumber*   soacs = [mainAppDefaults objectForKey: @"UKMooseSpeakOnAppChange"];
+	NSNumber*   soacs = [_sharedDefaults objectForKey: @"UKMooseSpeakOnAppChange"];
 	speakOnAppChange = soacs == nil || [soacs boolValue]; // Defaults to on.
 	
 	if (phraseTimer) {
@@ -193,7 +194,7 @@
 	
 	
 	// Speech channel:
-	NSDictionary*   settings = [mainAppDefaults objectForKey: @"UKSpeechChannelSettings"];
+	NSDictionary*   settings = [_sharedDefaults objectForKey: @"UKSpeechChannelSettings"];
 	if( settings )
 	{
 		//UKLog(@"Loading Speech settings from Prefs.");
@@ -231,7 +232,7 @@
 
 -(void)	loadMooseControllers
 {
-	NSString*   currAnim = [mainAppDefaults objectForKey: @"UKCurrentMooseAnimationPath"];
+	NSString*   currAnim = [_sharedDefaults objectForKey: @"UKCurrentMooseAnimationPath"];
 	
 	// Load built-in animations and those in the two library folders:
 	[self loadAnimationsInFolder: @"~" UKUserAnimationsPath];
@@ -293,7 +294,7 @@
 	[self mooseControllerAnimationDidChange: currentMoose];
 	
 	// Position Moose window:
-	NSString*	animPos = [mainAppDefaults objectForKey: @"UKMooseAnimPosition"];
+	NSString*	animPos = [_sharedDefaults objectForKey: @"UKMooseAnimPosition"];
 	if( animPos )
 	{
 		//UKLog(@"didFinishLaunching: Moose position will be set to: %@",animPos);
@@ -341,9 +342,9 @@
 {
 	NSString*		moosePosString = NSStringFromPoint( [[imageView window] frame].origin );
 	//UKLog( @"applicationWillTerminate: Saving position: %@", moosePosString );
-	[mainAppDefaults setObject: moosePosString forKey: @"UKMooseAnimPosition"];
-	[mainAppDefaults setObject: [speechSynth settingsDictionary] forKey: @"UKSpeechChannelSettings"];
-	[mainAppDefaults setFloat: [self scaleFactor] forKey: @"UKMooseScaleFactor"];
+	[_sharedDefaults setObject: moosePosString forKey: @"UKMooseAnimPosition"];
+	[_sharedDefaults setObject: [speechSynth settingsDictionary] forKey: @"UKSpeechChannelSettings"];
+	[_sharedDefaults setFloat: [self scaleFactor] forKey: @"UKMooseScaleFactor"];
 }
 
 
@@ -396,9 +397,8 @@
 -(void) updateClockTimerFireTime: (NSTimer*)timer
 {
 	NSCalendarDate* calDate = [NSDate distantFuture];
-	NSUserDefaults* ud = mainAppDefaults;
 	
-	if( [ud boolForKey: @"UKMooseSpeakTime"] )
+	if( [_sharedDefaults boolForKey: @"UKMooseSpeakTime"] )
 	{
 		int             year;
 		unsigned int	month, day, hour, minute, second;
@@ -417,7 +417,7 @@
 		int             minAdd = (randNum & 0x00000007),		// Low 3 bits: 0...7
 		secAdd = (randNum & 0x00000070) >> 4;	// 3 bits: 0...7
 		
-		if( minute >= 30 || ![ud boolForKey: @"UKMooseSpeakTimeOnHalfHours"] )
+		if( minute >= 30 || ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeOnHalfHours"] )
 		{
 			minute = 0;
 			hour++;
@@ -443,13 +443,13 @@
 		else
 			minute = 30;
 		
-		if( [ud boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
+		if( [_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
 			second = 0;
 		
 		calDate = [NSCalendarDate dateWithYear: year month: month day: day
 										  hour: hour minute: minute second: second timeZone: zone];
 		
-		if( ![ud boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
+		if( ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
 			calDate = [calDate dateByAddingYears: 0 months: 0 days: 0 hours: 0 minutes: minAdd seconds: secAdd];
 	}
 	else

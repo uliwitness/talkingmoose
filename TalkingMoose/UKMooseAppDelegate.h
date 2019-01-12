@@ -55,6 +55,8 @@
 	UKCarbonEventHandler*					appSwitchEventHandler;
 	IBOutlet NSTabView*						mainTabView;
 	IBOutlet NSPanel*						secretAboutBox;
+	
+	NSUserDefaults							*_sharedDefaults;
 }
 
 -(IBAction)	orderFrontSecretAboutBox: (id)sender;

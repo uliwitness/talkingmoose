@@ -48,6 +48,7 @@
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
 #define UKUserPhrasesPath       "/Library/Application Support/Moose/Phrases"
 #define UKHelperApplicationID	@"com.thevoidsoftware.talkingmoose.helper.macosx"
+#define UKApplicationGroupID	@"RCKXACKVZS.talkingmoose"
 #define MINIMUM_MOOSE_SIZE		48
 
 
@@ -70,7 +71,8 @@ static BOOL		gIsSilenced = NO;
 	if( self )
 	{
 		mooseControllers = [[NSMutableArray alloc] init];
-		
+		_sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName: UKApplicationGroupID];
+
 		// System-wide keyboard shortcuts:
 		speakNowHotkey = [[PTHotKey alloc] initWithName: @"Speak Now" target: self action: @selector(speakOnePhrase:) addToCenter: YES];
 		repeatLastPhraseHotkey = [[PTHotKey alloc] initWithName: @"Repeat Last Phrase" target: self action: @selector(repeatLastPhrase:) addToCenter: YES];
@@ -157,7 +159,7 @@ static BOOL		gIsSilenced = NO;
 
 -(void)	loadMooseControllers
 {
-    NSString*   currAnim = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKCurrentMooseAnimationPath"];
+    NSString*   currAnim = [_sharedDefaults objectForKey: @"UKCurrentMooseAnimationPath"];
 
     // Load built-in animations and those in the two library folders:
 	[self loadAnimationsInFolder: @"~" UKUserAnimationsPath];
@@ -214,44 +216,44 @@ static BOOL		gIsSilenced = NO;
 		[launchAtLoginSwitch setState: YES];
 	
 	// Delay:
-	NSNumber* delay = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseSpeechDelay"];
+	NSNumber* delay = [_sharedDefaults objectForKey: @"UKMooseSpeechDelay"];
 	if( delay != nil )
 		[speechDelaySlider setDoubleValue: [delay doubleValue]];
 	[self takeSpeechDelayFrom: speechDelaySlider];
 	
 	// Settings window:
-	NSNumber*   num = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMoosePanelVisible"];
+	NSNumber*   num = [_sharedDefaults objectForKey: @"UKMoosePanelVisible"];
 	if( !num || [num boolValue] )
 		[[mooseList window] makeKeyAndOrderFront: self];
 	
 	// Checkboxes:
-	NSNumber*   sspks = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseShowSpokenString"];
+	NSNumber*   sspks = [_sharedDefaults objectForKey: @"UKMooseShowSpokenString"];
 	showSpokenString = (sspks && [sspks boolValue]);
 	[showSpokenStringSwitch setState: showSpokenString];
 	
-	NSNumber*   sovms = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseSpeakOnVolumeMount"];
+	NSNumber*   sovms = [_sharedDefaults objectForKey: @"UKMooseSpeakOnVolumeMount"];
 	if( !sovms )
 	{
 		sovms = [NSNumber numberWithBool: YES];
-		[[NSUserDefaults standardUserDefaults] setObject: sovms forKey: @"UKMooseSpeakOnVolumeMount"];
+		[_sharedDefaults setObject: sovms forKey: @"UKMooseSpeakOnVolumeMount"];
 	}
 	speakOnVolumeMount = [sovms boolValue];
 	[speakOnVolMountSwitch setState: speakOnVolumeMount];
 
-	NSNumber*   soalqs = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseSpeakOnAppLaunchQuit"];
+	NSNumber*   soalqs = [_sharedDefaults objectForKey: @"UKMooseSpeakOnAppLaunchQuit"];
 	if( !soalqs )
 	{
 		soalqs = [NSNumber numberWithBool: YES];
-		[[NSUserDefaults standardUserDefaults] setObject: soalqs forKey: @"UKMooseSpeakOnAppLaunchQuit"];
+		[_sharedDefaults setObject: soalqs forKey: @"UKMooseSpeakOnAppLaunchQuit"];
 	}
 	speakOnAppLaunchQuit = [soalqs boolValue];
 	[speakOnAppLaunchQuitSwitch setState: speakOnAppLaunchQuit];
 	
-	NSNumber*   soacs = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseSpeakOnAppChange"];
+	NSNumber*   soacs = [_sharedDefaults objectForKey: @"UKMooseSpeakOnAppChange"];
 	if( !soacs )
 	{
 		soacs = [NSNumber numberWithBool: YES];
-		[[NSUserDefaults standardUserDefaults] setObject: soacs forKey: @"UKMooseSpeakOnAppChange"];
+		[_sharedDefaults setObject: soacs forKey: @"UKMooseSpeakOnAppChange"];
 	}
 	speakOnAppChange = [soacs boolValue];
 	[speakOnAppChangeSwitch setState: speakOnAppChange];
@@ -402,7 +404,7 @@ static BOOL		gIsSilenced = NO;
 {
 	// Make a backup of our prefs file if this is first startup of new version:
 	NSString*		currVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey: @"CFBundleVersion"];
-	NSString*		lastPrefVersion = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseLastPrefsVersion"];
+	NSString*		lastPrefVersion = [_sharedDefaults objectForKey: @"UKMooseLastPrefsVersion"];
 	if( !lastPrefVersion )
 		lastPrefVersion = @"";
 	if( ![lastPrefVersion isEqualToString: currVersion] )	// Compare version of Moose that last wrote prefs to ours:
@@ -419,7 +421,7 @@ static BOOL		gIsSilenced = NO;
 			[dfm copyPath: prefsFile toPath: backupFile handler: nil];	// We don't really care if this fails
 		
 		// Remember we already did a backup:
-		[[NSUserDefaults standardUserDefaults] setObject: currVersion forKey: @"UKMooseLastPrefsVersion"];
+		[_sharedDefaults setObject: currVersion forKey: @"UKMooseLastPrefsVersion"];
 	}
 	
 	// Force update of Moose, even when we can't say "hello":
@@ -486,22 +488,20 @@ static BOOL		gIsSilenced = NO;
 
 -(void) refreshSpeakHoursUI
 {
-    NSUserDefaults*     ud = [NSUserDefaults standardUserDefaults];
-    BOOL                state = [ud boolForKey: @"UKMooseSpeakTime"];
+    BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakTime"];
     [speakHoursSwitch setState: state];
     [speakHalfHoursSwitch setEnabled: state];
     [beAnallyRetentive setEnabled: state];
-    [speakHalfHoursSwitch setState: [ud boolForKey: @"UKMooseSpeakTimeOnHalfHours"]];
-    [beAnallyRetentive setState: [ud boolForKey: @"UKMooseSpeakTimeAnallyRetentive"]];
+    [speakHalfHoursSwitch setState: [_sharedDefaults boolForKey: @"UKMooseSpeakTimeOnHalfHours"]];
+    [beAnallyRetentive setState: [_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"]];
 }
 
 
 -(void) toggleSpeakHours: (id)sender
 {
-    NSUserDefaults*     ud = [NSUserDefaults standardUserDefaults];
-    BOOL                state = [ud boolForKey: @"UKMooseSpeakTime"];
+    BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakTime"];
     
-    [ud setBool: !state forKey: @"UKMooseSpeakTime"];
+    [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakTime"];
 	
     [speakHalfHoursSwitch setEnabled: !state];
     [beAnallyRetentive setEnabled: !state];
@@ -510,48 +510,43 @@ static BOOL		gIsSilenced = NO;
 
 -(void) toggleSpeakHalfHours: (id)sender
 {
-    NSUserDefaults*     ud = [NSUserDefaults standardUserDefaults];
-    BOOL                state = [ud boolForKey: @"UKMooseSpeakTimeOnHalfHours"];
+    BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakTimeOnHalfHours"];
     
-    [ud setBool: !state forKey: @"UKMooseSpeakTimeOnHalfHours"];
+    [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakTimeOnHalfHours"];
 }
 
 
 -(void) toggleAnallyRetentive: (id)sender
 {
-    NSUserDefaults*     ud = [NSUserDefaults standardUserDefaults];
-    BOOL                state = [ud boolForKey: @"UKMooseSpeakTimeAnallyRetentive"];
+    BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"];
     
-    [ud setBool: !state forKey: @"UKMooseSpeakTimeAnallyRetentive"];
+    [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakTimeAnallyRetentive"];
 }
 
 
 -(void) toggleSpeakVolumeMount: (id)sender
 {
-    NSUserDefaults*     ud = [NSUserDefaults standardUserDefaults];
-    BOOL                state = [ud boolForKey: @"UKMooseSpeakOnVolumeMount"];
+    BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakOnVolumeMount"];
     
-    [ud setBool: !state forKey: @"UKMooseSpeakOnVolumeMount"];
+    [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakOnVolumeMount"];
     speakOnVolumeMount = !state;
 }
 
 
 -(void) toggleSpeakAppLaunchQuit: (id)sender
 {
-    NSUserDefaults*     ud = [NSUserDefaults standardUserDefaults];
-    BOOL                state = [ud boolForKey: @"UKMooseSpeakOnAppLaunchQuit"];
+    BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakOnAppLaunchQuit"];
     
-    [ud setBool: !state forKey: @"UKMooseSpeakOnAppLaunchQuit"];
+    [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakOnAppLaunchQuit"];
     speakOnAppLaunchQuit = !state;
 }
 
 
 -(void) toggleSpeakAppChange: (id)sender
 {
-    NSUserDefaults*     ud = [NSUserDefaults standardUserDefaults];
-    BOOL                state = [ud boolForKey: @"UKMooseSpeakOnAppChange"];
+    BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakOnAppChange"];
     
-    [ud setBool: !state forKey: @"UKMooseSpeakOnAppChange"];
+    [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakOnAppChange"];
     speakOnAppChange = !state;
 }
 
@@ -559,9 +554,8 @@ static BOOL		gIsSilenced = NO;
 -(void) updateClockTimerFireTime: (NSTimer*)timer
 {
     NSCalendarDate* calDate = [NSDate distantFuture];
-    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    
-    if( [ud boolForKey: @"UKMooseSpeakTime"] )
+	
+    if( [_sharedDefaults boolForKey: @"UKMooseSpeakTime"] )
     {
         int             year;
 		unsigned int	month, day, hour, minute, second;
@@ -580,7 +574,7 @@ static BOOL		gIsSilenced = NO;
         int             minAdd = (randNum & 0x00000007),		// Low 3 bits: 0...7
                         secAdd = (randNum & 0x00000070) >> 4;	// 3 bits: 0...7
         
-		if( minute >= 30 || ![ud boolForKey: @"UKMooseSpeakTimeOnHalfHours"] )
+		if( minute >= 30 || ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeOnHalfHours"] )
         {
             minute = 0;
             hour++;
@@ -606,13 +600,13 @@ static BOOL		gIsSilenced = NO;
         else
             minute = 30;
 		
-        if( [ud boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
+        if( [_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
 			second = 0;
 		
 		calDate = [NSCalendarDate dateWithYear: year month: month day: day
 									hour: hour minute: minute second: second timeZone: zone];
         
-        if( ![ud boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
+        if( ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
 			calDate = [calDate dateByAddingYears: 0 months: 0 days: 0 hours: 0 minutes: minAdd seconds: secAdd];
     }
     else
@@ -701,7 +695,7 @@ static BOOL		gIsSilenced = NO;
 {
 	double		theVal = [sender doubleValue];
 	
-	[[NSUserDefaults standardUserDefaults] setObject: [NSNumber numberWithDouble: theVal] forKey: @"UKMooseSpeechDelay"];
+	[_sharedDefaults setObject: [NSNumber numberWithDouble: theVal] forKey: @"UKMooseSpeechDelay"];
 	
 	[speechDelayField setStringValue: [NSString stringWithFormat: @"Every %d min.", ((int)trunc(theVal /60.0))]];
 }
@@ -722,7 +716,7 @@ static BOOL		gIsSilenced = NO;
 {
 	showSpokenString = [sender state];
 	
-	[[NSUserDefaults standardUserDefaults] setObject: [NSNumber numberWithBool: showSpokenString] forKey: @"UKMooseShowSpokenString"];
+	[_sharedDefaults setObject: [NSNumber numberWithBool: showSpokenString] forKey: @"UKMooseShowSpokenString"];
 }
 
 
@@ -730,7 +724,7 @@ static BOOL		gIsSilenced = NO;
 {
     //UKLog(@"mooseControllerDidChange");
     
-	[[NSUserDefaults standardUserDefaults] setObject: [currentMoose filePath] forKey: @"UKCurrentMooseAnimationPath"];
+	[_sharedDefaults setObject: [currentMoose filePath] forKey: @"UKCurrentMooseAnimationPath"];
 	
     [self refreshShutUpBadge];
 	
