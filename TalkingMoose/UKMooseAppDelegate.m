@@ -260,7 +260,7 @@ static BOOL		gIsSilenced = NO;
 	speakOnAppChange = [soacs boolValue];
 	[speakOnAppChangeSwitch setState: speakOnAppChange];
 	
-	[_sharedDefaults synchronize];
+	[self reloadHelperSettings];
 	//UKLog(@"Loaded.");
 }
 
@@ -425,7 +425,7 @@ static BOOL		gIsSilenced = NO;
 		
 		// Remember we already did a backup:
 		[_sharedDefaults setObject: currVersion forKey: @"UKMooseLastPrefsVersion"];
-		[_sharedDefaults synchronize];
+		[self reloadHelperSettings];
 	}
 	
 	// Force update of Moose, even when we can't say "hello":
@@ -506,7 +506,7 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakTime"];
     
     [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakTime"];
-	[_sharedDefaults synchronize];
+	[self reloadHelperSettings];
 
     [speakHalfHoursSwitch setEnabled: !state];
     [beAnallyRetentive setEnabled: !state];
@@ -518,7 +518,7 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakTimeOnHalfHours"];
     
     [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakTimeOnHalfHours"];
-	[_sharedDefaults synchronize];
+	[self reloadHelperSettings];
 }
 
 
@@ -527,7 +527,7 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"];
     
     [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakTimeAnallyRetentive"];
-	[_sharedDefaults synchronize];
+	[self reloadHelperSettings];
 }
 
 
@@ -536,7 +536,7 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakOnVolumeMount"];
     
     [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakOnVolumeMount"];
-	[_sharedDefaults synchronize];
+	[self reloadHelperSettings];
     speakOnVolumeMount = !state;
 }
 
@@ -546,7 +546,7 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakOnAppLaunchQuit"];
     
     [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakOnAppLaunchQuit"];
-	[_sharedDefaults synchronize];
+	[self reloadHelperSettings];
     speakOnAppLaunchQuit = !state;
 }
 
@@ -556,7 +556,7 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakOnAppChange"];
     
     [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakOnAppChange"];
-	[_sharedDefaults synchronize];
+	[self reloadHelperSettings];
     speakOnAppChange = !state;
 }
 
@@ -640,9 +640,15 @@ static BOOL		gIsSilenced = NO;
 	double		theVal = [sender doubleValue];
 	
 	[_sharedDefaults setObject: [NSNumber numberWithDouble: theVal] forKey: @"UKMooseSpeechDelay"];
-	[_sharedDefaults synchronize];
+	[self reloadHelperSettings];
 
 	[speechDelayField setStringValue: [NSString stringWithFormat: @"Every %d min.", ((int)trunc(theVal /60.0))]];
+}
+
+
+-(NSURL *) helperURL
+{
+	return [[[[NSBundle.mainBundle.bundleURL URLByAppendingPathComponent: @"Contents"] URLByAppendingPathComponent: @"Library"] URLByAppendingPathComponent: @"LoginItems"] URLByAppendingPathComponent: @"MooseHelper.app"];
 }
 
 
@@ -650,8 +656,7 @@ static BOOL		gIsSilenced = NO;
 {
 	BOOL shouldLaunch = [sender state] == NSControlStateValueOn;
 	if (shouldLaunch) {
-		NSURL	*helperURL = [[[[NSBundle.mainBundle.bundleURL URLByAppendingPathComponent: @"Contents"] URLByAppendingPathComponent: @"Library"] URLByAppendingPathComponent: @"LoginItems"] URLByAppendingPathComponent: @"MooseHelper.app"];
-		LSRegisterURL((CFURLRef) helperURL, true);
+		LSRegisterURL((CFURLRef) self.helperURL, true);
 	}
 	SMLoginItemSetEnabled( (CFStringRef) UKHelperApplicationID, shouldLaunch );
 }
@@ -662,7 +667,21 @@ static BOOL		gIsSilenced = NO;
 	showSpokenString = [sender state];
 	
 	[_sharedDefaults setObject: [NSNumber numberWithBool: showSpokenString] forKey: @"UKMooseShowSpokenString"];
+	[self reloadHelperSettings];
+}
+
+
+-(BOOL) reloadHelperSettings
+{
 	[_sharedDefaults synchronize];
+
+	NSError *err = nil;
+	if (nil == [NSWorkspace.sharedWorkspace openURLs: @[[NSURL URLWithString: @"x-moose://settings/reload"]] withApplicationAtURL: self.helperURL options:NSWorkspaceLaunchAsync | NSWorkspaceLaunchWithoutActivation configuration:@{} error: &err]) {
+		NSLog(@"Error: Couldn't notify helper: %@", err);
+		return NO;
+	} else {
+		return YES;
+	}
 }
 
 
@@ -671,11 +690,11 @@ static BOOL		gIsSilenced = NO;
     //UKLog(@"mooseControllerDidChange");
     
 	[_sharedDefaults setObject: [currentMoose filePath] forKey: @"UKCurrentMooseAnimationPath"];
-	[_sharedDefaults synchronize];
+	[self reloadHelperSettings];
 
     [self refreshShutUpBadge];
 	
-	//UKLog(@"Moose controller changed to \"%@\".", [currentMoose filePath]);
+	UKLog(@"Moose controller changed to \"%@\".", [currentMoose filePath]);
 }
 
 

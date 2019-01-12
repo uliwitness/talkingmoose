@@ -212,6 +212,31 @@
 }
 
 
+-(void)application:(NSApplication *)application openURLs:(NSArray<NSURL *> *)urls
+{
+	for (NSURL *currURL in urls) {
+		UKLog(@"URL: %@", currURL);
+		if ([currURL.scheme caseInsensitiveCompare: @"x-moose"] == NSOrderedSame) {
+			UKLog(@"scheme match");
+			if ([currURL.host caseInsensitiveCompare: @"settings"] == NSOrderedSame) {
+				UKLog(@"settings");
+				if ([currURL.path caseInsensitiveCompare: @"/reload"] == NSOrderedSame) {
+					UKLog(@"reload");
+					[self activateMooseController];
+					[self refreshSettingsFromMainAppDefaults];
+				} else {
+					UKLog(@"\"%@\"", currURL.path);
+				}
+			} else {
+				UKLog(@"\"%@\" | \"%@\"", currURL.host, currURL.path);
+			}
+		} else {
+			UKLog(@"Unknown scheme \"%@\"", currURL.scheme);
+		}
+	}
+}
+
+
 -(void)	setScaleFactor: (float)sf
 {
 	scaleFactor = sf;
@@ -240,14 +265,20 @@
 
 -(void)	loadMooseControllers
 {
-	NSString*   currAnim = [_sharedDefaults objectForKey: @"UKCurrentMooseAnimationPath"];
-	
-	UKLog(@"Attempting to load animation %@", currAnim);
-	
 	// Load built-in animations and those in the two library folders:
 	[self loadAnimationsInFolder: @"~" UKUserAnimationsPath];
 	[self loadAnimationsInFolder: @"" UKUserAnimationsPath];
 	[self loadAnimationsInFolder: [[NSBundle mainBundle] pathForResource: @"Animations" ofType: nil]];
+	
+	[self activateMooseController];
+}
+
+
+-(void)	activateMooseController
+{
+	NSString*   currAnim = [_sharedDefaults objectForKey: @"UKCurrentMooseAnimationPath"];
+	
+	UKLog(@"Attempting to load animation %@", currAnim);
 	
 	// Activate the animation the prefs indicate we last used, or a default one if the one in prefs not found:
 	NSEnumerator*       enny = [mooseControllers objectEnumerator];

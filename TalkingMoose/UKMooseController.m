@@ -97,6 +97,13 @@
 -(NSString*)	filePath
 {
 	NSString*		path = [mooseInfo objectForKey: @"CONTENTSPATH"];
+	NSString		*builtInPath = [NSBundle.mainBundle pathForResource: @"Animations" ofType: @""];
+	if (![builtInPath hasSuffix: @"/"]) {
+		builtInPath = [builtInPath stringByAppendingString: @"/"];
+	}
+	if ([path hasPrefix: builtInPath]) {
+		path = [path substringFromIndex: builtInPath.length];
+	}
 	return [path stringByDeletingLastPathComponent];
 }
 

@@ -18,6 +18,19 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>3.6b4</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+			<key>CFBundleURLName</key>
+			<string>ULIMooseSettings</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>x-moose</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1000</string>
 	<key>LSApplicationCategoryType</key>
