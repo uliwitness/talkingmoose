@@ -40,6 +40,7 @@
 @implementation ULIMooseServiceDelegate
 
 - (BOOL)listener:(NSXPCListener *)listener shouldAcceptNewConnection:(NSXPCConnection *)newConnection {
+	UKLog(@"Someone is knocking...");
 	// This method is where the NSXPCListener configures, accepts, and resumes a new incoming NSXPCConnection.
 	
 	// Configure the connection.
@@ -91,6 +92,9 @@
 	NSTimeInterval							lastSpeakTime;
 	
 	NSUserDefaults							*mainAppDefaults;
+	
+	ULIMooseServiceDelegate 				*_xpcDelegate;
+	NSXPCListener 							*_xpcListener;
 }
 
 @property (weak) IBOutlet NSWindow *window;
@@ -146,6 +150,9 @@
 
 -(void) dealloc
 {
+	DESTROY(_xpcListener);
+	DESTROY(_xpcDelegate);
+	
 	DESTROY(recSpeechSynth);
 	
 	[[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver: self];
@@ -190,30 +197,26 @@
 	// Hide widgets on 10.2:
 	[windowWidgets setHidden: YES];
 	
-	[NSThread detachNewThreadSelector: @selector(xpcServiceThread) toTarget: self withObject: nil];
+	[self startXPCService];
 }
 
 
--(void) xpcServiceThread
+-(void) startXPCService
 {
 	UKLog(@"Starting xpcServiceThread");
 	
 	// Create the delegate for the service.
-	ULIMooseServiceDelegate *delegate = [ULIMooseServiceDelegate new];
+	_xpcDelegate = [ULIMooseServiceDelegate new];
 	
 	// Set up the one NSXPCListener for this service. It will handle all incoming connections.
-	NSXPCListener *listener = [NSXPCListener serviceListener];
-	listener.delegate = delegate;
+	NSString *serviceName = NSBundle.mainBundle.bundleIdentifier;
+	_xpcListener = [[NSXPCListener alloc] initWithMachServiceName: serviceName];
+	_xpcListener.delegate = _xpcDelegate;
 	
-	UKLog(@"Listener: %@ delegate %@", listener, delegate);
-
 	// Resuming the serviceListener starts this service. This method does not return.
-	[listener resume];
+	[_xpcListener resume];
 	
-	DESTROY(listener);
-	DESTROY(delegate);
-	
-	UKLog(@"Leaving xpcServiceThread");
+	UKLog(@"Service %@ started with listener: [%@] delegate [%@]", serviceName, _xpcListener, _xpcDelegate);
 }
 
 
@@ -980,7 +983,7 @@
 		
 		// Show/hide the window widgets if mouse is (not) in window:
 		BOOL    hideWidgets = !NSPointInRect( [NSEvent mouseLocation], [mooseWin frame] );
-		NSLog(@"hide widgets? %d", hideWidgets);
+		//UKLog(@"hide widgets? %d", hideWidgets);
 		if( hideWidgets != [windowWidgets isHidden] )
 			[windowWidgets setHidden: hideWidgets];
 	}

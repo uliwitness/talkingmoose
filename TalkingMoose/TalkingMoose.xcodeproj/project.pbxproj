@@ -137,7 +137,7 @@
 		55CD5BFA21E0197600B5E004 /* Animations in Resources */ = {isa = PBXBuildFile; fileRef = 3D87481E06CB0250007D365E /* Animations */; };
 		55CD5BFB21E0197E00B5E004 /* Phrases in Resources */ = {isa = PBXBuildFile; fileRef = 3D87498B06CB0252007D365E /* Phrases */; };
 		55CD5BFC21E019D300B5E004 /* NSImage+NiceScaling.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988D06B07F9E00FFE801 /* NSImage+NiceScaling.m */; };
-		55CD5C0021E0414B00B5E004 /* MooseHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55CD5BD321DFFDA700B5E004 /* MooseHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		55CD5C0021E0414B00B5E004 /* RCKXACKVZS.talkingmoose.com.thevoidsoftware.talkingmoose.macosx.helper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55CD5BD321DFFDA700B5E004 /* RCKXACKVZS.talkingmoose.com.thevoidsoftware.talkingmoose.macosx.helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		55DBFB290C175901007D400D /* UKMoosePhraseologyDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 55DBFB270C175901007D400D /* UKMoosePhraseologyDelegate.h */; };
 		55DBFB2A0C175901007D400D /* UKMoosePhraseologyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DBFB280C175901007D400D /* UKMoosePhraseologyDelegate.m */; };
 		55E27CA60E635104003A077C /* Blech.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 55E27CA50E635104003A077C /* Blech.m4a */; };
@@ -201,7 +201,7 @@
 			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
-				55CD5C0021E0414B00B5E004 /* MooseHelper.app in CopyFiles */,
+				55CD5C0021E0414B00B5E004 /* RCKXACKVZS.talkingmoose.com.thevoidsoftware.talkingmoose.macosx.helper.app in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +337,7 @@
 		55A66142110A63C200FE0723 /* NSBezierPathCappedBoxes.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = NSBezierPathCappedBoxes.m; path = ../UKDistributedView/UKFinderIconCell/NSBezierPathCappedBoxes.m; sourceTree = SOURCE_ROOT; };
 		55A66143110A63C200FE0723 /* UKFinderIconCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKFinderIconCell.h; path = ../UKDistributedView/UKFinderIconCell/UKFinderIconCell.h; sourceTree = SOURCE_ROOT; };
 		55A66144110A63C200FE0723 /* UKFinderIconCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKFinderIconCell.m; path = ../UKDistributedView/UKFinderIconCell/UKFinderIconCell.m; sourceTree = SOURCE_ROOT; };
-		55CD5BD321DFFDA700B5E004 /* MooseHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MooseHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		55CD5BD321DFFDA700B5E004 /* RCKXACKVZS.talkingmoose.com.thevoidsoftware.talkingmoose.macosx.helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RCKXACKVZS.talkingmoose.com.thevoidsoftware.talkingmoose.macosx.helper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55CD5BD521DFFDA700B5E004 /* ULIMooseHelperAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ULIMooseHelperAppDelegate.h; sourceTree = "<group>"; };
 		55CD5BD621DFFDA700B5E004 /* ULIMooseHelperAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ULIMooseHelperAppDelegate.m; sourceTree = "<group>"; };
 		55CD5BDB21DFFDAA00B5E004 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -468,7 +468,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Moose.app */,
-				55CD5BD321DFFDA700B5E004 /* MooseHelper.app */,
+				55CD5BD321DFFDA700B5E004 /* RCKXACKVZS.talkingmoose.com.thevoidsoftware.talkingmoose.macosx.helper.app */,
 				55FFBF5821EA0BE200FB3CA4 /* MooseService.xpc */,
 			);
 			name = Products;
@@ -779,7 +779,7 @@
 			);
 			name = MooseHelper;
 			productName = MooseHelper;
-			productReference = 55CD5BD321DFFDA700B5E004 /* MooseHelper.app */;
+			productReference = 55CD5BD321DFFDA700B5E004 /* RCKXACKVZS.talkingmoose.com.thevoidsoftware.talkingmoose.macosx.helper.app */;
 			productType = "com.apple.product-type.application";
 		};
 		55FFBF5721EA0BE200FB3CA4 /* MooseService */ = {
@@ -1371,8 +1371,8 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.macosx.helper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = RCKXACKVZS.talkingmoose.com.thevoidsoftware.talkingmoose.macosx.helper;
+				PRODUCT_NAME = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 			};
 			name = Debug;
 		};
@@ -1437,8 +1437,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.macosx.helper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = RCKXACKVZS.talkingmoose.com.thevoidsoftware.talkingmoose.macosx.helper;
+				PRODUCT_NAME = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 			};
 			name = Release;
 		};

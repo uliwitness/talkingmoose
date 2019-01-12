@@ -47,7 +47,7 @@
 
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
 #define UKUserPhrasesPath       "/Library/Application Support/Moose/Phrases"
-#define UKHelperApplicationID	@"com.thevoidsoftware.talkingmoose.macosx.helper"
+#define UKHelperApplicationID	@"RCKXACKVZS.talkingmoose.com.thevoidsoftware.talkingmoose.macosx.helper"
 #define MINIMUM_MOOSE_SIZE		48
 
 
@@ -107,7 +107,7 @@ static BOOL		gIsSilenced = NO;
 
 -(void) dealloc
 {
-	[_connectionToService suspend];
+	[_connectionToService invalidate];
 	DESTROY(_connectionToService);
 	
 	DESTROY(speakNowHotkey);
@@ -145,10 +145,7 @@ static BOOL		gIsSilenced = NO;
 
 -(void) refreshServiceConnection
 {
-//	if (!_connectionToService) {
-	[_connectionToService invalidate];
-	DESTROY(_connectionToService);
-	if ([NSRunningApplication runningApplicationsWithBundleIdentifier: UKHelperApplicationID].count > 0) {
+	if (!_connectionToService) {
 		_connectionToService = [[NSXPCConnection alloc] initWithServiceName: UKHelperApplicationID];
 		_connectionToService.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ULIMooseServiceProtocol)];
 		[_connectionToService resume];
@@ -671,7 +668,7 @@ static BOOL		gIsSilenced = NO;
 	}
 	SMLoginItemSetEnabled( (CFStringRef) UKHelperApplicationID, shouldLaunch );
 	
-	[self refreshServiceConnection];
+	//[self performSelector: @selector(refreshServiceConnection) withObject: nil afterDelay: 3.0];
 }
 
 
@@ -739,6 +736,9 @@ static BOOL		gIsSilenced = NO;
 	UKLog(@"App %@ launched", launchedApp);
 	if ( [launchedApp.bundleIdentifier isEqualToString: UKHelperApplicationID] ) {
 		[self.launchProgressSpinner stopAnimation: self];
+		[_connectionToService invalidate];
+		DESTROY(_connectionToService);
+		[self refreshServiceConnection];
 	}
 	
 	[self refreshShutUpBadge];
@@ -784,8 +784,9 @@ static BOOL		gIsSilenced = NO;
 	
 	[self refreshShutUpBadge];
 	
-	NSLog(@"Asking service %@ %p", _connectionToService, _connectionToService.remoteObjectProxy);
-	[(id<ULIMooseServiceProtocol>)_connectionToService.remoteObjectProxy upperCaseString: @"Moose service reply?" withReply:^(NSString *str) {
+	id<ULIMooseServiceProtocol> serviceProxy = [_connectionToService remoteObjectProxyWithErrorHandler:^(NSError *error) { NSLog(@"XPC error: %@", error); }];
+	NSLog(@"Asking service %@ %p", _connectionToService, serviceProxy);
+	[serviceProxy upperCaseString: @"Moose service reply?" withReply:^(NSString *str) {
 		NSLog(@"Service answered: %@", str);
 	}];
 }
