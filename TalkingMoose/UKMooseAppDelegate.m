@@ -46,9 +46,10 @@
 // -----------------------------------------------------------------------------
 
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
+#define STRINGIFY2(n)			@"" #n
+#define STRINGIFY(n)			STRINGIFY2(n)
 #define UKUserPhrasesPath       "/Library/Application Support/Moose/Phrases"
-#define UKHelperApplicationID	@"com.thevoidsoftware.talkingmoose.helper.macosx"
-#define UKApplicationGroupID	@"RCKXACKVZS.talkingmoose"
+#define UKHelperApplicationID	@"com.thevoidsoftware.talkingmoose.macosx.helper"
 #define MINIMUM_MOOSE_SIZE		48
 
 
@@ -71,7 +72,8 @@ static BOOL		gIsSilenced = NO;
 	if( self )
 	{
 		mooseControllers = [[NSMutableArray alloc] init];
-		_sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName: UKApplicationGroupID];
+		_sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName: STRINGIFY(UKApplicationGroupID)];
+		UKLog(@"%@: %@ %@", STRINGIFY(UKApplicationGroupID), _sharedDefaults, _sharedDefaults.dictionaryRepresentation);
 
 		// System-wide keyboard shortcuts:
 		speakNowHotkey = [[PTHotKey alloc] initWithName: @"Speak Now" target: self action: @selector(speakOnePhrase:) addToCenter: YES];
@@ -258,6 +260,7 @@ static BOOL		gIsSilenced = NO;
 	speakOnAppChange = [soacs boolValue];
 	[speakOnAppChangeSwitch setState: speakOnAppChange];
 	
+	[_sharedDefaults synchronize];
 	//UKLog(@"Loaded.");
 }
 
@@ -422,6 +425,7 @@ static BOOL		gIsSilenced = NO;
 		
 		// Remember we already did a backup:
 		[_sharedDefaults setObject: currVersion forKey: @"UKMooseLastPrefsVersion"];
+		[_sharedDefaults synchronize];
 	}
 	
 	// Force update of Moose, even when we can't say "hello":
@@ -502,7 +506,8 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakTime"];
     
     [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakTime"];
-	
+	[_sharedDefaults synchronize];
+
     [speakHalfHoursSwitch setEnabled: !state];
     [beAnallyRetentive setEnabled: !state];
 }
@@ -513,6 +518,7 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakTimeOnHalfHours"];
     
     [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakTimeOnHalfHours"];
+	[_sharedDefaults synchronize];
 }
 
 
@@ -521,6 +527,7 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"];
     
     [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakTimeAnallyRetentive"];
+	[_sharedDefaults synchronize];
 }
 
 
@@ -529,6 +536,7 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakOnVolumeMount"];
     
     [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakOnVolumeMount"];
+	[_sharedDefaults synchronize];
     speakOnVolumeMount = !state;
 }
 
@@ -538,6 +546,7 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakOnAppLaunchQuit"];
     
     [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakOnAppLaunchQuit"];
+	[_sharedDefaults synchronize];
     speakOnAppLaunchQuit = !state;
 }
 
@@ -547,73 +556,8 @@ static BOOL		gIsSilenced = NO;
     BOOL                state = [_sharedDefaults boolForKey: @"UKMooseSpeakOnAppChange"];
     
     [_sharedDefaults setBool: !state forKey: @"UKMooseSpeakOnAppChange"];
+	[_sharedDefaults synchronize];
     speakOnAppChange = !state;
-}
-
-
--(void) updateClockTimerFireTime: (NSTimer*)timer
-{
-    NSCalendarDate* calDate = [NSDate distantFuture];
-	
-    if( [_sharedDefaults boolForKey: @"UKMooseSpeakTime"] )
-    {
-        int             year;
-		unsigned int	month, day, hour, minute, second;
-        NSTimeZone*     zone;
-        calDate = [NSCalendarDate calendarDate];
-        
-        year = [calDate yearOfCommonEra];
-        month = [calDate monthOfYear];
-        day = [calDate dayOfMonth];
-        hour = [calDate hourOfDay];
-        minute = [calDate minuteOfHour];
-        second = [calDate secondOfMinute];
-        zone = [calDate timeZone];
-
-        unsigned int    randNum = (unsigned int) rand();
-        int             minAdd = (randNum & 0x00000007),		// Low 3 bits: 0...7
-                        secAdd = (randNum & 0x00000070) >> 4;	// 3 bits: 0...7
-        
-		if( minute >= 30 || ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeOnHalfHours"] )
-        {
-            minute = 0;
-            hour++;
-            
-			if( hour >= 24 )
-			{
-                hour = 0;
-				
-				// Add 1 day to the date:
-				calDate = [NSCalendarDate dateWithYear: year month: month day: day
-										hour: hour minute: minute second: second timeZone: zone];
-				calDate = [calDate dateByAddingYears: 0 months: 0 days: 1 hours: 0 minutes: 0 seconds: 0];
-
-				year = [calDate yearOfCommonEra];
-				month = [calDate monthOfYear];
-				day = [calDate dayOfMonth];
-				hour = [calDate hourOfDay];
-				minute = [calDate minuteOfHour];
-				second = [calDate secondOfMinute];
-				zone = [calDate timeZone];
-			}
-        }
-        else
-            minute = 30;
-		
-        if( [_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
-			second = 0;
-		
-		calDate = [NSCalendarDate dateWithYear: year month: month day: day
-									hour: hour minute: minute second: second timeZone: zone];
-        
-        if( ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
-			calDate = [calDate dateByAddingYears: 0 months: 0 days: 0 hours: 0 minutes: minAdd seconds: secAdd];
-    }
-    else
-        calDate = [NSCalendarDate distantFuture];
-    
-    [timer setFireDate: calDate];
-    //UKLog( @"Actual fire time: %@", [timer fireDate] );
 }
 
 
@@ -696,7 +640,8 @@ static BOOL		gIsSilenced = NO;
 	double		theVal = [sender doubleValue];
 	
 	[_sharedDefaults setObject: [NSNumber numberWithDouble: theVal] forKey: @"UKMooseSpeechDelay"];
-	
+	[_sharedDefaults synchronize];
+
 	[speechDelayField setStringValue: [NSString stringWithFormat: @"Every %d min.", ((int)trunc(theVal /60.0))]];
 }
 
@@ -717,6 +662,7 @@ static BOOL		gIsSilenced = NO;
 	showSpokenString = [sender state];
 	
 	[_sharedDefaults setObject: [NSNumber numberWithBool: showSpokenString] forKey: @"UKMooseShowSpokenString"];
+	[_sharedDefaults synchronize];
 }
 
 
@@ -725,7 +671,8 @@ static BOOL		gIsSilenced = NO;
     //UKLog(@"mooseControllerDidChange");
     
 	[_sharedDefaults setObject: [currentMoose filePath] forKey: @"UKCurrentMooseAnimationPath"];
-	
+	[_sharedDefaults synchronize];
+
     [self refreshShutUpBadge];
 	
 	//UKLog(@"Moose controller changed to \"%@\".", [currentMoose filePath]);

@@ -23,7 +23,6 @@
 		3D73E1F8088559F00067BEE3 /* window_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D73E1F7088559F00067BEE3 /* window_bg.png */; };
 		3D791E9A0798EBB3009BA042 /* tylerui_zoombox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D791E970798EBB3009BA042 /* tylerui_zoombox.png */; };
 		3D791E9B0798EBB3009BA042 /* tylerui_growbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D791E980798EBB3009BA042 /* tylerui_growbox.png */; };
-		3D8749A606CB0252007D365E /* Animations in Resources */ = {isa = PBXBuildFile; fileRef = 3D87481E06CB0250007D365E /* Animations */; };
 		3D8749A706CB0252007D365E /* Phrases in Resources */ = {isa = PBXBuildFile; fileRef = 3D87498B06CB0252007D365E /* Phrases */; };
 		3D8CABC90CE4F7970046B187 /* UKMouthShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D8CABC50CE4F7970046B187 /* UKMouthShape.h */; };
 		3D8CABCA0CE4F7970046B187 /* UKMouthShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CABC60CE4F7970046B187 /* UKMouthShape.m */; };
@@ -98,6 +97,8 @@
 		557FD0C20E56FB0C000A1A11 /* UKMooseDragAreaView.h in Headers */ = {isa = PBXBuildFile; fileRef = 557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */; };
 		557FD0C30E56FB0C000A1A11 /* UKMooseDragAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */; };
 		558FD4001115DE80008D69DC /* GoodbyeOldFriend.png in Resources */ = {isa = PBXBuildFile; fileRef = 558FD3FF1115DE80008D69DC /* GoodbyeOldFriend.png */; };
+		55991E2E21EA4A7D0016DAB9 /* Animations in Resources */ = {isa = PBXBuildFile; fileRef = 3D87481E06CB0250007D365E /* Animations */; };
+		55991E2F21EA4AC10016DAB9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D6439C50813BE0900B7779A /* Localizable.strings */; };
 		559D6D0016160B83001E1D91 /* UKCrashReporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559D6CFC16160B83001E1D91 /* UKCrashReporter.xib */; };
 		559D6D0116160B83001E1D91 /* UKSpeechSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559D6CFE16160B83001E1D91 /* UKSpeechSettingsView.xib */; };
 		55A660CB110A4F7700FE0723 /* UKWindowDraggingImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A660C9110A4F7700FE0723 /* UKWindowDraggingImageView.h */; };
@@ -820,6 +821,7 @@
 				55CD5BFA21E0197600B5E004 /* Animations in Resources */,
 				55CD5BF321E017AB00B5E004 /* UKCrashReporter.strings in Resources */,
 				55CD5BF821E018B900B5E004 /* tylerui_growbox.png in Resources */,
+				55991E2F21EA4AC10016DAB9 /* Localizable.strings in Resources */,
 				55ECF49721E062EE00792012 /* MooseAlphaIcon.icns in Resources */,
 				55CD5BFB21E0197E00B5E004 /* Phrases in Resources */,
 				55CD5BF721E018B600B5E004 /* tylerui_zoombox.png in Resources */,
@@ -833,7 +835,6 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				5BBD989206B07F9F00FFE801 /* MooseAlphaIcon.icns in Resources */,
-				3D8749A606CB0252007D365E /* Animations in Resources */,
 				3D8749A706CB0252007D365E /* Phrases in Resources */,
 				3DF412D00796A168002DE6EF /* MiniMoose.tiff in Resources */,
 				3DF412ED0796B9D0002DE6EF /* BandAid.tiff in Resources */,
@@ -841,6 +842,7 @@
 				3DF41D480797264E002DE6EF /* Moose.scriptSuite in Resources */,
 				3DF41D490797264E002DE6EF /* Moose.scriptTerminology in Resources */,
 				3D791E9A0798EBB3009BA042 /* tylerui_zoombox.png in Resources */,
+				55991E2E21EA4A7D0016DAB9 /* Animations in Resources */,
 				3D791E9B0798EBB3009BA042 /* tylerui_growbox.png in Resources */,
 				3D6439C60813BE0900B7779A /* Localizable.strings in Resources */,
 				3DA3554F0884740F00825D47 /* MoosePhraseFileIcon.icns in Resources */,
@@ -1102,7 +1104,6 @@
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1116,7 +1117,6 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.macosx;
 				PRODUCT_NAME = Moose;
@@ -1142,7 +1142,6 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1156,7 +1155,6 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.macosx;
 				PRODUCT_NAME = Moose;
@@ -1178,9 +1176,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEVELOPMENT_TEAM = RCKXACKVZS;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				GCC_VERSION = 4.0;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				OTHER_CFLAGS = "-DUKApplicationGroupID=\"$(TeamIdentifierPrefix)talkingmoose\"";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				USE_HEADERMAP = NO;
@@ -1194,9 +1192,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DEVELOPMENT_TEAM = RCKXACKVZS;
-				GCC_VERSION = 4.0;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				OTHER_CFLAGS = "-DUKApplicationGroupID=\"$(TeamIdentifierPrefix)talkingmoose\"";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				USE_HEADERMAP = NO;

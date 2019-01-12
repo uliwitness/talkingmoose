@@ -26,7 +26,8 @@
 
 
 #define UKMainApplicationID		@"com.thevoidsoftware.talkingmoose.macosx"
-#define UKApplicationGroupID	@"RCKXACKVZS.talkingmoose"
+#define STRINGIFY2(n)			@"" #n
+#define STRINGIFY(n)			STRINGIFY2(n)
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
 #define UKUserPhrasesPath       "/Library/Application Support/Moose/Phrases"
 #define MINIMUM_MOOSE_SIZE		48
@@ -80,7 +81,8 @@
 		srand((unsigned int)time(NULL));
 
 		mooseControllers = [[NSMutableArray alloc] init];
-		_sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName: UKApplicationGroupID];
+		_sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName: STRINGIFY(UKApplicationGroupID)];
+		UKLog(@"%@: %@ %@", STRINGIFY(UKApplicationGroupID), _sharedDefaults, _sharedDefaults.dictionaryRepresentation);
 		speechSynth = [[NSSpeechSynthesizer alloc] init];
 		recSpeechSynth = [[UKRecordedSpeechChannel alloc] init];
 		
@@ -175,15 +177,19 @@
 	}
 	
 	NSNumber*   sspks = [_sharedDefaults objectForKey: @"UKMooseShowSpokenString"];
+	UKLog(@"%@", sspks);
 	showSpokenString = (sspks && [sspks boolValue]);
 	
 	NSNumber*   sovms = [_sharedDefaults objectForKey: @"UKMooseSpeakOnVolumeMount"];
+	UKLog(@"%@", sovms);
 	speakOnVolumeMount = sovms == nil || [sovms boolValue]; // Defaults to on.
 	
 	NSNumber*   soalqs = [_sharedDefaults objectForKey: @"UKMooseSpeakOnAppLaunchQuit"];
+	UKLog(@"%@", soalqs);
 	speakOnAppLaunchQuit = soalqs == nil || [soalqs boolValue]; // Defaults to on.
 	
 	NSNumber*   soacs = [_sharedDefaults objectForKey: @"UKMooseSpeakOnAppChange"];
+	UKLog(@"%@", soacs);
 	speakOnAppChange = soacs == nil || [soacs boolValue]; // Defaults to on.
 	
 	if (phraseTimer) {
@@ -195,6 +201,7 @@
 	
 	// Speech channel:
 	NSDictionary*   settings = [_sharedDefaults objectForKey: @"UKSpeechChannelSettings"];
+	UKLog(@"%@", settings);
 	if( settings )
 	{
 		//UKLog(@"Loading Speech settings from Prefs.");
@@ -208,6 +215,7 @@
 -(void)	setScaleFactor: (float)sf
 {
 	scaleFactor = sf;
+	UKLog(@"scaleFactor: %f", scaleFactor);
 	
 	NSWindow    *wd = [imageView window];
 	NSRect      oldBox = [wd frame];
@@ -234,6 +242,8 @@
 {
 	NSString*   currAnim = [_sharedDefaults objectForKey: @"UKCurrentMooseAnimationPath"];
 	
+	UKLog(@"Attempting to load animation %@", currAnim);
+	
 	// Load built-in animations and those in the two library folders:
 	[self loadAnimationsInFolder: @"~" UKUserAnimationsPath];
 	[self loadAnimationsInFolder: @"" UKUserAnimationsPath];
@@ -259,8 +269,10 @@
 		x++;
 	}
 	
-	if( !foundMoose )	// Moose in prefs doesn't exist? Use default!
+	if( !foundMoose ) {	// Moose in prefs doesn't exist? Use default!
 		currMooseIndex = defaultMooseIndex;
+		UKLog(@"\tFalling back on animation %@", defaultMoose);
+	}
 	
 	currentMoose = mooseControllers[currMooseIndex];
 	[self mooseControllerDidChange];
@@ -926,7 +938,7 @@
 		
 		// Show/hide the window widgets if mouse is (not) in window:
 		BOOL    hideWidgets = !NSPointInRect( [NSEvent mouseLocation], [mooseWin frame] );
-		NSLog(@"hide widgets? %d", hideWidgets);
+		UKLog(@"hide widgets? %d", hideWidgets);
 		if( hideWidgets != [windowWidgets isHidden] )
 			[windowWidgets setHidden: hideWidgets];
 	}

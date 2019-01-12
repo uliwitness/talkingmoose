@@ -99,7 +99,6 @@
 -(void) setMooseSilenced: (BOOL)doSilence;
 -(BOOL) mooseSilenced;
 -(void) refreshShutUpBadge;
--(void) updateClockTimerFireTime: (NSTimer*)timer;
 -(void) refreshSpeakHoursUI;
 
 -(BOOL)	application: (NSApplication*)sender openFile: (NSString*)filename dontAskButAddToList: (NSMutableArray*)arr;
