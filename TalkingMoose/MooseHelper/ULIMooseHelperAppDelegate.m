@@ -25,6 +25,7 @@
 #import "UKApplicationListController.h"
 
 
+#define UKMainApplicationID		@"com.thevoidsoftware.talkingmoose.macosx"
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
 #define UKUserPhrasesPath       "/Library/Application Support/Moose/Phrases"
 #define MINIMUM_MOOSE_SIZE		48
@@ -57,6 +58,10 @@
 	BOOL									didSetDragAreaCursor;
 	UKRecordedSpeechChannel*				recSpeechSynth;
 	BOOL									isSilenced;
+	NSTimeInterval							speechDelay;
+	NSTimeInterval							lastSpeakTime;
+	
+	NSUserDefaults							*mainAppDefaults;
 }
 
 @property (weak) IBOutlet NSWindow *window;
@@ -71,29 +76,14 @@
 	self = [super init];
 	if( self )
 	{
-		speakOnAppChange = YES;
-		speakOnVolumeMount = YES;
-		speakOnAppLaunchQuit = YES;
-		showSpokenString = YES;
-		
 		srand((unsigned int)time(NULL));
-		
-		phraseTimer = [[UKIdleTimer alloc] initWithTimeInterval: 30];
-		[phraseTimer setDelegate: self];
-		mooseControllers = [[NSMutableArray alloc] init];
 
-		// Speech channel:
+		mooseControllers = [[NSMutableArray alloc] init];
+		mainAppDefaults = [[NSUserDefaults alloc] initWithSuiteName: UKMainApplicationID];
 		speechSynth = [[NSSpeechSynthesizer alloc] init];
-		NSDictionary*   settings = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKSpeechChannelSettings"];
-		if( settings )
-		{
-			//UKLog(@"Loading Speech settings from Prefs.");
-			[speechSynth setSettingsDictionary: settings];
-		}
-		else
-			; //UKLog(@"No Speech settings in Prefs.");
-		
 		recSpeechSynth = [[UKRecordedSpeechChannel alloc] init];
+		
+		[self refreshSettingsFromMainAppDefaults];
 
 		// Start listening for interesting user actions:
 		NSNotificationCenter*   nc = [[NSWorkspace sharedWorkspace] notificationCenter];
@@ -158,7 +148,7 @@
 		[(id)mooseWindow setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
 	
 	// Get window scale factor from Prefs:
-	float savedScaleFactor = [[NSUserDefaults standardUserDefaults] floatForKey: @"UKMooseScaleFactor"];
+	float savedScaleFactor = [mainAppDefaults floatForKey: @"UKMooseScaleFactor"];
 	if( savedScaleFactor <= 0 )
 		savedScaleFactor = 1;
 	
@@ -170,6 +160,47 @@
 	
 	// Hide widgets on 10.2:
 	[windowWidgets setHidden: YES];
+}
+
+
+-(void)	refreshSettingsFromMainAppDefaults
+{
+	// Delay:
+	NSNumber* delay = [mainAppDefaults objectForKey: @"UKMooseSpeechDelay"];
+	if( delay != nil ) {
+		speechDelay = [delay doubleValue];
+	} else {
+		speechDelay = 30.0;
+	}
+	
+	NSNumber*   sspks = [mainAppDefaults objectForKey: @"UKMooseShowSpokenString"];
+	showSpokenString = (sspks && [sspks boolValue]);
+	
+	NSNumber*   sovms = [mainAppDefaults objectForKey: @"UKMooseSpeakOnVolumeMount"];
+	speakOnVolumeMount = sovms == nil || [sovms boolValue]; // Defaults to on.
+	
+	NSNumber*   soalqs = [mainAppDefaults objectForKey: @"UKMooseSpeakOnAppLaunchQuit"];
+	speakOnAppLaunchQuit = soalqs == nil || [soalqs boolValue]; // Defaults to on.
+	
+	NSNumber*   soacs = [mainAppDefaults objectForKey: @"UKMooseSpeakOnAppChange"];
+	speakOnAppChange = soacs == nil || [soacs boolValue]; // Defaults to on.
+	
+	if (phraseTimer) {
+		[phraseTimer release];
+	}
+	phraseTimer = [[UKIdleTimer alloc] initWithTimeInterval: speechDelay];
+	[phraseTimer setDelegate: self];
+	
+	
+	// Speech channel:
+	NSDictionary*   settings = [mainAppDefaults objectForKey: @"UKSpeechChannelSettings"];
+	if( settings )
+	{
+		//UKLog(@"Loading Speech settings from Prefs.");
+		[speechSynth setSettingsDictionary: settings];
+	}
+	else
+		; //UKLog(@"No Speech settings in Prefs.");
 }
 
 
@@ -200,7 +231,7 @@
 
 -(void)	loadMooseControllers
 {
-	NSString*   currAnim = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKCurrentMooseAnimationPath"];
+	NSString*   currAnim = [mainAppDefaults objectForKey: @"UKCurrentMooseAnimationPath"];
 	
 	// Load built-in animations and those in the two library folders:
 	[self loadAnimationsInFolder: @"~" UKUserAnimationsPath];
@@ -262,7 +293,7 @@
 	[self mooseControllerAnimationDidChange: currentMoose];
 	
 	// Position Moose window:
-	NSString*	animPos = [[NSUserDefaults standardUserDefaults] objectForKey: @"UKMooseAnimPosition"];
+	NSString*	animPos = [mainAppDefaults objectForKey: @"UKMooseAnimPosition"];
 	if( animPos )
 	{
 		//UKLog(@"didFinishLaunching: Moose position will be set to: %@",animPos);
@@ -310,9 +341,9 @@
 {
 	NSString*		moosePosString = NSStringFromPoint( [[imageView window] frame].origin );
 	//UKLog( @"applicationWillTerminate: Saving position: %@", moosePosString );
-	[[NSUserDefaults standardUserDefaults] setObject: moosePosString forKey: @"UKMooseAnimPosition"];
-	[[NSUserDefaults standardUserDefaults] setObject: [speechSynth settingsDictionary] forKey: @"UKSpeechChannelSettings"];
-	[[NSUserDefaults standardUserDefaults] setFloat: [self scaleFactor] forKey: @"UKMooseScaleFactor"];
+	[mainAppDefaults setObject: moosePosString forKey: @"UKMooseAnimPosition"];
+	[mainAppDefaults setObject: [speechSynth settingsDictionary] forKey: @"UKSpeechChannelSettings"];
+	[mainAppDefaults setFloat: [self scaleFactor] forKey: @"UKMooseScaleFactor"];
 }
 
 
@@ -365,7 +396,7 @@
 -(void) updateClockTimerFireTime: (NSTimer*)timer
 {
 	NSCalendarDate* calDate = [NSDate distantFuture];
-	NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+	NSUserDefaults* ud = mainAppDefaults;
 	
 	if( [ud boolForKey: @"UKMooseSpeakTime"] )
 	{
@@ -632,12 +663,15 @@
 		if( !cmdDict )
 		{
 			self.appNapDeactivatingActivity = [[NSProcessInfo processInfo] beginActivityWithOptions: NSActivityBackground | NSActivityAutomaticTerminationDisabled | NSActivitySuddenTerminationDisabled reason: @"Moose speaking."];
+			UKLog(@"app nap = %@", self.appNapDeactivatingActivity);
 			
 			NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
 			BOOL	voiceCantDoPhonemes = [self voiceCantProvidePhonemesJudgingByAttributes: voiceAttrs];
 			
 			[currentMoose setSimulateMissingPhonemes: voiceCantDoPhonemes];
 			
+			lastSpeakTime = NSDate.timeIntervalSinceReferenceDate;
+
 			if( voiceCantDoPhonemes )
 				[currentMoose speechStartedWithoutPhonemes];
 			
@@ -673,6 +707,8 @@
 	{
 		UKLog(@"\tPlaying soundfile \"%@\"", args.firstObject);
 		self.appNapDeactivatingActivity = [[NSProcessInfo processInfo] beginActivityWithOptions: NSActivityBackground | NSActivityAutomaticTerminationDisabled | NSActivitySuddenTerminationDisabled reason: @"Moose speaking."];
+		UKLog(@"app nap = %@", self.appNapDeactivatingActivity);
+		lastSpeakTime = NSDate.timeIntervalSinceReferenceDate;
 		NSString*	fPath = [[NSBundle mainBundle] pathForSoundResource: args.firstObject];
 		[recSpeechSynth startSpeakingSoundFileAtPath: fPath];
 	}
@@ -695,6 +731,7 @@
 	if( mooseDisableCount == 0 && ![excludeApps appInListMatches] && ![excludeApps screenSaverRunning] )
 	{
 		self.appNapDeactivatingActivity = [[NSProcessInfo processInfo] beginActivityWithOptions: NSActivityBackground | NSActivityAutomaticTerminationDisabled | NSActivitySuddenTerminationDisabled reason: @"Moose speaking."];
+		UKLog(@"app nap = %@", self.appNapDeactivatingActivity);
 
 		NSDictionary*	voiceAttrs = [NSSpeechSynthesizer attributesForVoice: [speechSynth voice]];
 		BOOL	voiceCantDoPhonemes = [self voiceCantProvidePhonemesJudgingByAttributes: voiceAttrs];
@@ -703,6 +740,7 @@
 		if( voiceCantDoPhonemes )
 			[currentMoose speechStartedWithoutPhonemes];
 		
+		lastSpeakTime = NSDate.timeIntervalSinceReferenceDate;
 		[speechSynth startSpeakingString: currPhrase];
 		[self showSpeechBubbleWithString: currPhrase];
 		UKLog(@"Speaking: %@", currPhrase);
@@ -840,7 +878,6 @@
 	[currentMoose setDelegate: self];
 	[speechSynth setDelegate: currentMoose];
 	[recSpeechSynth setDelegate: currentMoose];
-	[[NSUserDefaults standardUserDefaults] setObject: [currentMoose filePath] forKey: @"UKCurrentMooseAnimationPath"];
 	
 	// Make sure widgets are in lower right:
 	[self pinWidgetsBoxToBotRight];
@@ -900,6 +937,8 @@
 
 - (void)speechSynthesizer:(NSSpeechSynthesizer *)sender didFinishSpeaking:(BOOL)finishedSpeaking
 {
+	lastSpeakTime = NSDate.timeIntervalSinceReferenceDate;
+	
 	[self hideMoose];
 	
 	if( terminateWhenFinished )
@@ -952,14 +991,14 @@
 
 -(void) applicationLaunchNotification:(NSNotification*)notif
 {
-	if( speakOnAppLaunchQuit )
+	if( speakOnAppLaunchQuit && (NSDate.timeIntervalSinceReferenceDate - lastSpeakTime) >= speechDelay )
 	{
 		NSRunningApplication 	*runningApp = notif.userInfo[NSWorkspaceApplicationKey];
 		NSString				*appName = runningApp.localizedName;
 		
 		if ([runningApp.bundleIdentifier isEqualToString: NSBundle.mainBundle.bundleIdentifier]) {
 			return; // Don't send messages for ourself.
-		} else if ([runningApp.bundleIdentifier isEqualToString: @"com.thevoidsoftware.talkingmoose.macosx"]) {
+		} else if ([runningApp.bundleIdentifier isEqualToString: UKMainApplicationID]) {
 			[self speakPhraseOnMainThreadFromGroup: @"LAUNCH SETUP" withFillerString: appName];
 		} else if (![appName isEqualToString: @"ScreenSaverEngine"]
 			&& ![appName isEqualToString: @"ScreenSaverEngin"]) {
@@ -972,14 +1011,14 @@
 
 -(void) applicationTerminationNotification:(NSNotification*)notif
 {
-	if( speakOnAppLaunchQuit )
+	if( speakOnAppLaunchQuit && (NSDate.timeIntervalSinceReferenceDate - lastSpeakTime) >= speechDelay )
 	{
 		NSRunningApplication 	*runningApp = notif.userInfo[NSWorkspaceApplicationKey];
 		NSString				*appName = runningApp.localizedName;
 		
 		if ([runningApp.bundleIdentifier isEqualToString: NSBundle.mainBundle.bundleIdentifier]) {
 			return; // Don't send messages for ourself.
-		} else if ([runningApp.bundleIdentifier isEqualToString: @"com.thevoidsoftware.talkingmoose.macosx"]) {
+		} else if ([runningApp.bundleIdentifier isEqualToString: UKMainApplicationID]) {
 			[self speakPhraseOnMainThreadFromGroup: @"QUIT SETUP" withFillerString: appName];
 		} else if (![appName isEqualToString: @"ScreenSaverEngine"]
 				   && ![appName isEqualToString: @"ScreenSaverEngin"]) {
@@ -993,12 +1032,12 @@
 -(void) applicationSwitchNotification:(NSNotification*)notif
 {
 	//UKLog(@"applicationSwitchNotification");
-	if( speakOnAppChange )
+	if( speakOnAppChange && (NSDate.timeIntervalSinceReferenceDate - lastSpeakTime) >= speechDelay )
 	{
 		NSRunningApplication *runningApp = notif.userInfo[NSWorkspaceApplicationKey];
 		if ([runningApp.bundleIdentifier isEqualToString: NSBundle.mainBundle.bundleIdentifier]) {
 			return; // Don't send messages for ourself.
-		} else if ([runningApp.bundleIdentifier isEqualToString: @"com.thevoidsoftware.talkingmoose.macosx"]) {
+		} else if ([runningApp.bundleIdentifier isEqualToString: UKMainApplicationID]) {
 			[self speakPhraseOnMainThreadFromGroup: @"LAUNCH SETUP" withFillerString: runningApp.localizedName];
 		} else {
 			[self speakPhraseOnMainThreadFromGroup: @"CHANGE APPLICATION" withFillerString: runningApp.localizedName];
@@ -1040,6 +1079,7 @@
 		[[imageView window] fadeOutWithDuration: 0.5];
 		[[speechBubbleView window] fadeOutWithDuration: 0.5];
 		self.appNapDeactivatingActivity = nil;
+		UKLog(@"app nap = %@", self.appNapDeactivatingActivity);
 	}
 }
 
