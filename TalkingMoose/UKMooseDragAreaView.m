@@ -7,6 +7,7 @@
 //
 
 #import "UKMooseDragAreaView.h"
+#import "UKHelperMacros.h"
 
 
 @implementation UKMooseDragAreaView
@@ -52,7 +53,7 @@
 
 -(void)	mouseDown: (NSEvent*)evt
 {
-	NSLog(@"foo");
+	UKLog(@"foo");
 	[target performSelector: action withObject: self];
 }
 
