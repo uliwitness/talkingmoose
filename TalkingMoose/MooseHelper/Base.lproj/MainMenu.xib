@@ -694,7 +694,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="123" height="111"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D53-Ck-93A" customClass="UKClickableImageView">
+                    <imageView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D53-Ck-93A" customClass="UKClickableImageView">
                         <rect key="frame" x="0.0" y="0.0" width="123" height="111"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="NSApplicationIcon" id="zV1-Os-4T8"/>
@@ -702,7 +702,7 @@
                             <action selector="mooseAnimationWindowClicked:" target="Voe-Tx-rLC" id="udg-zJ-gAD"/>
                         </connections>
                     </imageView>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MH7-HI-VYQ">
+                    <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MH7-HI-VYQ">
                         <rect key="frame" x="0.0" y="0.0" width="123" height="34"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <subviews>

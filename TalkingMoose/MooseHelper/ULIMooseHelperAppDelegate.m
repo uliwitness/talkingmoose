@@ -23,12 +23,41 @@
 #import "NSImage+NiceScaling.h"
 #import "NSWindow+Fade.h"
 #import "UKApplicationListController.h"
+#import "MooseService/ULIMooseServiceProtocol.h"
+#import "MooseService/ULIMooseService.h"
 
 
 #define UKMainApplicationID		@"com.thevoidsoftware.talkingmoose.macosx"
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
-#define UKUserPhrasesPath       "/Library/Application Support/Moose/Phrases"
+#define UKUserPhrasesPath      	"/Library/Application Support/Moose/Phrases"
 #define MINIMUM_MOOSE_SIZE		48
+
+
+
+@interface ULIMooseServiceDelegate : NSObject <NSXPCListenerDelegate>
+@end
+
+@implementation ULIMooseServiceDelegate
+
+- (BOOL)listener:(NSXPCListener *)listener shouldAcceptNewConnection:(NSXPCConnection *)newConnection {
+	// This method is where the NSXPCListener configures, accepts, and resumes a new incoming NSXPCConnection.
+	
+	// Configure the connection.
+	// First, set the interface that the exported object implements.
+	newConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ULIMooseServiceProtocol)];
+	
+	// Next, set the object that the connection exports. All messages sent on the connection to this service will be sent to the exported object to handle. The connection retains the exported object.
+	ULIMooseService *exportedObject = [ULIMooseService new];
+	newConnection.exportedObject = exportedObject;
+	
+	// Resuming the connection allows the system to deliver more incoming messages.
+	[newConnection resume];
+	
+	// Returning YES from this method tells the system that you have accepted this connection. If you want to reject the connection for some reason, call -invalidate on the connection and return NO.
+	return YES;
+}
+
+@end
 
 
 #pragma mark -
@@ -160,6 +189,30 @@
 	
 	// Hide widgets on 10.2:
 	[windowWidgets setHidden: YES];
+	
+	[NSThread detachNewThreadSelector: @selector(xpcServiceThread) toTarget: self withObject: nil];
+}
+
+
+-(void) xpcServiceThread
+{
+	UKLog(@"Starting xpcServiceThread");
+	
+	// Create the delegate for the service.
+	ULIMooseServiceDelegate *delegate = [ULIMooseServiceDelegate new];
+	
+	// Set up the one NSXPCListener for this service. It will handle all incoming connections.
+	NSXPCListener *listener = [NSXPCListener serviceListener];
+	listener.delegate = delegate;
+	
+	UKLog(@"Listener: %@ delegate %@", listener, delegate);
+
+	// Resuming the serviceListener starts this service. This method does not return.
+	[listener resume];
+	
+	[delegate release];
+	
+	UKLog(@"Leaving xpcServiceThread");
 }
 
 

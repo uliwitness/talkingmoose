@@ -16,7 +16,6 @@
 #import "UKPhraseDatabase.h"
 #import "NSImage+NiceScaling.h"
 #import "UKSpeechSettingsView.h"
-#import "UKIdleTimer.h"
 #import "UKBorderlessWindow.h"
 #import "NSArray+Color.h"
 #import "PTHotKey.h"
@@ -34,6 +33,7 @@
 #import "UKFinderIconCell.h"
 #import "UKHelperMacros.h"
 #import <ServiceManagement/ServiceManagement.h>
+#import "MooseService/ULIMooseServiceProtocol.h"
 
 #if DEBUG && 0
 #include <execinfo.h>
@@ -107,6 +107,9 @@ static BOOL		gIsSilenced = NO;
 
 -(void) dealloc
 {
+	[_connectionToService suspend];
+	DESTROY(_connectionToService);
+	
 	DESTROY(speakNowHotkey);
 	DESTROY(repeatLastPhraseHotkey);
 	DESTROY(silenceMooseHotkey);
@@ -135,6 +138,22 @@ static BOOL		gIsSilenced = NO;
     // Load settings from user defaults:
 	[self loadSettingsFromDefaultsIntoUI];
     [self refreshSpeakHoursUI];
+	
+	[self refreshServiceConnection];
+}
+
+
+-(void) refreshServiceConnection
+{
+	if (!_connectionToService) {
+//	[_connectionToService invalidate];
+//	DESTROY(_connectionToService);
+//	if ([NSRunningApplication runningApplicationsWithBundleIdentifier: UKHelperApplicationID].count > 0) {
+		_connectionToService = [[NSXPCConnection alloc] initWithServiceName: UKHelperApplicationID];
+		_connectionToService.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ULIMooseServiceProtocol)];
+		[_connectionToService resume];
+//	}
+	}
 }
 
 
@@ -556,73 +575,6 @@ static BOOL		gIsSilenced = NO;
 }
 
 
--(void) updateClockTimerFireTime: (NSTimer*)timer
-{
-    NSCalendarDate* calDate = [NSDate distantFuture];
-    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    
-    if( [ud boolForKey: @"UKMooseSpeakTime"] )
-    {
-        int             year;
-		unsigned int	month, day, hour, minute, second;
-        NSTimeZone*     zone;
-        calDate = [NSCalendarDate calendarDate];
-        
-        year = [calDate yearOfCommonEra];
-        month = [calDate monthOfYear];
-        day = [calDate dayOfMonth];
-        hour = [calDate hourOfDay];
-        minute = [calDate minuteOfHour];
-        second = [calDate secondOfMinute];
-        zone = [calDate timeZone];
-
-        unsigned int    randNum = (unsigned int) rand();
-        int             minAdd = (randNum & 0x00000007),		// Low 3 bits: 0...7
-                        secAdd = (randNum & 0x00000070) >> 4;	// 3 bits: 0...7
-        
-		if( minute >= 30 || ![ud boolForKey: @"UKMooseSpeakTimeOnHalfHours"] )
-        {
-            minute = 0;
-            hour++;
-            
-			if( hour >= 24 )
-			{
-                hour = 0;
-				
-				// Add 1 day to the date:
-				calDate = [NSCalendarDate dateWithYear: year month: month day: day
-										hour: hour minute: minute second: second timeZone: zone];
-				calDate = [calDate dateByAddingYears: 0 months: 0 days: 1 hours: 0 minutes: 0 seconds: 0];
-
-				year = [calDate yearOfCommonEra];
-				month = [calDate monthOfYear];
-				day = [calDate dayOfMonth];
-				hour = [calDate hourOfDay];
-				minute = [calDate minuteOfHour];
-				second = [calDate secondOfMinute];
-				zone = [calDate timeZone];
-			}
-        }
-        else
-            minute = 30;
-		
-        if( [ud boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
-			second = 0;
-		
-		calDate = [NSCalendarDate dateWithYear: year month: month day: day
-									hour: hour minute: minute second: second timeZone: zone];
-        
-        if( ![ud boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
-			calDate = [calDate dateByAddingYears: 0 months: 0 days: 0 hours: 0 minutes: minAdd seconds: secAdd];
-    }
-    else
-        calDate = [NSCalendarDate distantFuture];
-    
-    [timer setFireDate: calDate];
-    //UKLog( @"Actual fire time: %@", [timer fireDate] );
-}
-
-
 - (int)numberOfRowsInTableView:(NSTableView *)tableView
 {
 	return [mooseControllers count];
@@ -709,12 +661,18 @@ static BOOL		gIsSilenced = NO;
 
 -(void) takeLaunchAtLoginBoolFrom: (id)sender
 {
+	if ([NSRunningApplication runningApplicationsWithBundleIdentifier: UKHelperApplicationID].count == 0) {
+		[self.launchProgressSpinner startAnimation: self];
+	}
+	
 	BOOL shouldLaunch = [sender state] == NSControlStateValueOn;
 	if (shouldLaunch) {
 		NSURL	*helperURL = [[[[NSBundle.mainBundle.bundleURL URLByAppendingPathComponent: @"Contents"] URLByAppendingPathComponent: @"Library"] URLByAppendingPathComponent: @"LoginItems"] URLByAppendingPathComponent: @"MooseHelper.app"];
 		LSRegisterURL((CFURLRef) helperURL, true);
 	}
 	SMLoginItemSetEnabled( (CFStringRef) UKHelperApplicationID, shouldLaunch );
+	
+	[self refreshServiceConnection];
 }
 
 
@@ -778,23 +736,24 @@ static BOOL		gIsSilenced = NO;
 
 -(void) applicationLaunchNotification:(NSNotification*)notif
 {
-	if( speakOnAppLaunchQuit )
-	{
-		NSString*		appName = [[[[notif userInfo] objectForKey: @"NSApplicationName"] retain] autorelease];
-		
-		if( ![appName isEqualToString: @"ScreenSaverEngine"]
-			&& ![appName isEqualToString: @"ScreenSaverEngin"] )
-			[self speakPhraseOnMainThreadFromGroup: @"LAUNCH APPLICATION" withFillerString: appName];
+	NSRunningApplication *launchedApp = notif.userInfo[NSWorkspaceApplicationKey];
+	UKLog(@"App %@ launched", launchedApp);
+	if ( [launchedApp.bundleIdentifier isEqualToString: UKHelperApplicationID] ) {
+		[self.launchProgressSpinner stopAnimation: self];
 	}
+	
 	[self refreshShutUpBadge];
 }
 
 
 -(void) applicationTerminationNotification:(NSNotification*)notif
 {
+	NSRunningApplication *launchedApp = notif.userInfo[NSWorkspaceApplicationKey];
+	UKLog(@"App %@ terminated", launchedApp);
 	if( speakOnAppLaunchQuit )
 	{
 		NSString*		appName = [[[[notif userInfo] objectForKey: @"NSApplicationName"] retain] autorelease];
+		UKLog(@"App %@ launched", launchedApp);
 		if( ![appName isEqualToString: @"ScreenSaverEngine"]
 			&& ![appName isEqualToString: @"ScreenSaverEngin"] )
 		[self speakPhraseOnMainThreadFromGroup: @"QUIT APPLICATION" withFillerString: appName];
@@ -825,6 +784,11 @@ static BOOL		gIsSilenced = NO;
 	[self speakPhraseOnMainThreadFromGroup: @"LAUNCH SETUP" withFillerString: nil];
 	
 	[self refreshShutUpBadge];
+	
+	NSLog(@"Asking service %@ %p", _connectionToService, _connectionToService.remoteObjectProxy);
+	[(id<ULIMooseServiceProtocol>)_connectionToService.remoteObjectProxy upperCaseString: @"Moose service reply?" withReply:^(NSString *str) {
+		NSLog(@"Service answered: %@", str);
+	}];
 }
 
 -(void) applicationDidResignActive: (NSNotification *)notification
