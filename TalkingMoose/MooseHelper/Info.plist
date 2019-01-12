@@ -34,12 +34,12 @@
 	<string>NSApplication</string>
 	<key>XPCService</key>
 	<dict>
-		<key>ServiceType</key>
-		<string>User</string>
-		<key>RunLoopType</key>
-		<string>NSRunLoop</string>
 		<key>JoinExistingSession</key>
 		<true/>
+		<key>RunLoopType</key>
+		<string>NSRunLoop</string>
+		<key>ServiceType</key>
+		<string>User</string>
 	</dict>
 </dict>
 </plist>

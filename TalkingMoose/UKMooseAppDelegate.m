@@ -47,7 +47,7 @@
 
 #define UKUserAnimationsPath    "/Library/Application Support/Moose/Animations"
 #define UKUserPhrasesPath       "/Library/Application Support/Moose/Phrases"
-#define UKHelperApplicationID	@"com.thevoidsoftware.talkingmoose.helper.macosx"
+#define UKHelperApplicationID	@"com.thevoidsoftware.talkingmoose.macosx.helper"
 #define MINIMUM_MOOSE_SIZE		48
 
 
@@ -145,14 +145,13 @@ static BOOL		gIsSilenced = NO;
 
 -(void) refreshServiceConnection
 {
-	if (!_connectionToService) {
-//	[_connectionToService invalidate];
-//	DESTROY(_connectionToService);
-//	if ([NSRunningApplication runningApplicationsWithBundleIdentifier: UKHelperApplicationID].count > 0) {
+//	if (!_connectionToService) {
+	[_connectionToService invalidate];
+	DESTROY(_connectionToService);
+	if ([NSRunningApplication runningApplicationsWithBundleIdentifier: UKHelperApplicationID].count > 0) {
 		_connectionToService = [[NSXPCConnection alloc] initWithServiceName: UKHelperApplicationID];
 		_connectionToService.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ULIMooseServiceProtocol)];
 		[_connectionToService resume];
-//	}
 	}
 }
 

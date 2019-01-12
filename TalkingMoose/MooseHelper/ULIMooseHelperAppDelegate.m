@@ -210,7 +210,8 @@
 	// Resuming the serviceListener starts this service. This method does not return.
 	[listener resume];
 	
-	[delegate release];
+	DESTROY(listener);
+	DESTROY(delegate);
 	
 	UKLog(@"Leaving xpcServiceThread");
 }
