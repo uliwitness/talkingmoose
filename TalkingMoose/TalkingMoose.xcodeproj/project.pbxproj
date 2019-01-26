@@ -148,7 +148,6 @@
 		55F8CACA0E65F01C00DCF0D2 /* UKRecordedSpeechChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8CAC80E65F01C00DCF0D2 /* UKRecordedSpeechChannel.m */; };
 		55F8CB140E66043300DCF0D2 /* SpokenString.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55F8CB120E66043300DCF0D2 /* SpokenString.plist */; };
 		55F8CB150E66043300DCF0D2 /* SpokenString.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 55F8CB130E66043300DCF0D2 /* SpokenString.aiff */; };
-		55FFBF6821EA0D4200FB3CA4 /* ULIMooseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FFBF5C21EA0BE200FB3CA4 /* ULIMooseService.m */; };
 		5BBD987706B07F7900FFE801 /* UKSpeechSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD986D06B07F7800FFE801 /* UKSpeechSettingsView.m */; };
 		5BBD987806B07F7900FFE801 /* UKPhraseDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BBD986E06B07F7800FFE801 /* UKPhraseDatabase.h */; };
 		5BBD987906B07F7900FFE801 /* UKMooseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD986F06B07F7800FFE801 /* UKMooseController.m */; };
@@ -335,8 +334,6 @@
 		55F8CB120E66043300DCF0D2 /* SpokenString.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SpokenString.plist; sourceTree = "<group>"; };
 		55F8CB130E66043300DCF0D2 /* SpokenString.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = SpokenString.aiff; sourceTree = "<group>"; };
 		55FFBF5A21EA0BE200FB3CA4 /* ULIMooseServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ULIMooseServiceProtocol.h; sourceTree = "<group>"; };
-		55FFBF5B21EA0BE200FB3CA4 /* ULIMooseService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ULIMooseService.h; sourceTree = "<group>"; };
-		55FFBF5C21EA0BE200FB3CA4 /* ULIMooseService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ULIMooseService.m; sourceTree = "<group>"; };
 		5BBD986D06B07F7800FFE801 /* UKSpeechSettingsView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKSpeechSettingsView.m; path = ../UliKit/UKSpeechSettingsView.m; sourceTree = "<group>"; };
 		5BBD986E06B07F7800FFE801 /* UKPhraseDatabase.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKPhraseDatabase.h; sourceTree = SOURCE_ROOT; };
 		5BBD986F06B07F7800FFE801 /* UKMooseController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKMooseController.m; sourceTree = SOURCE_ROOT; };
@@ -658,8 +655,6 @@
 				55CD5BD521DFFDA700B5E004 /* ULIMooseHelperAppDelegate.h */,
 				55CD5BD621DFFDA700B5E004 /* ULIMooseHelperAppDelegate.m */,
 				55FFBF5A21EA0BE200FB3CA4 /* ULIMooseServiceProtocol.h */,
-				55FFBF5B21EA0BE200FB3CA4 /* ULIMooseService.h */,
-				55FFBF5C21EA0BE200FB3CA4 /* ULIMooseService.m */,
 				55CD5BDA21DFFDAA00B5E004 /* MainMenu.xib */,
 				55CD5BDD21DFFDAA00B5E004 /* Info.plist */,
 				55CD5BDE21DFFDAA00B5E004 /* main.m */,
@@ -935,7 +930,6 @@
 				55CD5BF221E0179800B5E004 /* NSWindow+Fade.m in Sources */,
 				553852A821E0E81E00AF7F69 /* UKApplicationListController.m in Sources */,
 				55CD5BE921DFFEB700B5E004 /* UKMooseMouthImageRep.m in Sources */,
-				55FFBF6821EA0D4200FB3CA4 /* ULIMooseService.m in Sources */,
 				55CD5BEC21DFFEFB00B5E004 /* NSFileManager+CreateDirectoriesForPath.m in Sources */,
 				55CD5BF021E00BD500B5E004 /* UKSpeechSettingsView.m in Sources */,
 				55CD5BFC21E019D300B5E004 /* NSImage+NiceScaling.m in Sources */,

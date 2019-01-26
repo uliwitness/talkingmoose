@@ -16,7 +16,7 @@
 {
 	NSString*	theString = [[[self evaluatedArguments] objectForKey: @""] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	if( [theString length] > 0 )
-		;//[(UKMooseAppDelegate*)[NSApp delegate] speakString: theString];
+		[(UKMooseAppDelegate*)[NSApp delegate] speakString: theString];
     
     return nil;
 }

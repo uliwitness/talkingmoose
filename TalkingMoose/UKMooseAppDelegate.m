@@ -73,7 +73,7 @@ static BOOL		gIsSilenced = NO;
 	{
 		mooseControllers = [[NSMutableArray alloc] init];
 		_sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName: STRINGIFY(UKApplicationGroupID)];
-		UKLog(@"%@: %@ %@", STRINGIFY(UKApplicationGroupID), _sharedDefaults, _sharedDefaults.dictionaryRepresentation);
+//		UKLog(@"%@: %@ %@", STRINGIFY(UKApplicationGroupID), _sharedDefaults, _sharedDefaults.dictionaryRepresentation);
 
 		// System-wide keyboard shortcuts:
 		speakNowHotkey = [[PTHotKey alloc] initWithName: @"Speak Now" target: self action: @selector(speakOnePhrase:) addToCenter: YES];
@@ -111,6 +111,7 @@ static BOOL		gIsSilenced = NO;
 
 -(void) dealloc
 {
+	DESTROY(_mooseHelper);
 	[_connectionToService invalidate];
 	DESTROY(_connectionToService);
 	
@@ -154,12 +155,13 @@ static BOOL		gIsSilenced = NO;
 		_connectionToService.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ULIMooseServiceProtocol)];
 		[_connectionToService resume];
 	}
+	_mooseHelper = [[_connectionToService remoteObjectProxyWithErrorHandler:^(NSError *error) { NSLog(@"XPC error: %@", error); }] retain];
 }
 
 
 -(IBAction)	orderFrontSecretAboutBox: (id)sender
 {
-	//[self speakPhraseFromGroup: @"SECRET ABOUT BOX"];
+	[_mooseHelper speakPhraseFromGroup: @"SECRET ABOUT BOX" withFillerString: @""];
 	[secretAboutBox makeKeyAndOrderFront: self];
 }
 
@@ -695,14 +697,15 @@ static BOOL		gIsSilenced = NO;
 -(BOOL) reloadHelperSettings
 {
 	[_sharedDefaults synchronize];
-
-	NSError *err = nil;
-	if (nil == [NSWorkspace.sharedWorkspace openURLs: @[[NSURL URLWithString: @"x-moose://settings/reload"]] withApplicationAtURL: self.helperURL options:NSWorkspaceLaunchAsync | NSWorkspaceLaunchWithoutActivation configuration:@{} error: &err]) {
-		NSLog(@"Error: Couldn't notify helper: %@", err);
-		return NO;
-	} else {
-		return YES;
-	}
+	[_mooseHelper reloadSettings];
+	
+//	NSError *err = nil;
+//	if (nil == [NSWorkspace.sharedWorkspace openURLs: @[[NSURL URLWithString: @"x-moose://settings/reload"]] withApplicationAtURL: self.helperURL options:NSWorkspaceLaunchAsync | NSWorkspaceLaunchWithoutActivation configuration:@{} error: &err]) {
+//		NSLog(@"Error: Couldn't notify helper: %@", err);
+//		return NO;
+//	} else {
+//		return YES;
+//	}
 }
 
 
@@ -733,7 +736,7 @@ static BOOL		gIsSilenced = NO;
 // Keys in dictionary: "Group" (required) and "Filler" (optional):
 -(void)	speakPhraseFromDictionary: (NSDictionary*)dict
 {
-	//[self speakPhraseFromGroup: [dict objectForKey: @"Group"] withFillerString: [dict objectForKey: @"Filler"]];
+	[_mooseHelper speakPhraseFromGroup: [dict objectForKey: @"Group"] withFillerString: [dict objectForKey: @"Filler"]];
 }
 
 
@@ -810,12 +813,6 @@ static BOOL		gIsSilenced = NO;
 	[self speakPhraseOnMainThreadFromGroup: @"LAUNCH SETUP" withFillerString: nil];
 	
 	[self refreshShutUpBadge];
-	
-	id<ULIMooseServiceProtocol> serviceProxy = [_connectionToService remoteObjectProxyWithErrorHandler:^(NSError *error) { NSLog(@"XPC error: %@", error); }];
-	NSLog(@"Asking service %@ %p", _connectionToService, serviceProxy);
-	[serviceProxy upperCaseString: @"Moose service reply?" withReply:^(NSString *str) {
-		NSLog(@"Service answered: %@", str);
-	}];
 }
 
 -(void) applicationDidResignActive: (NSNotification *)notification
@@ -826,11 +823,16 @@ static BOOL		gIsSilenced = NO;
 }
 
 
+-(void) speakString: (NSString *)msg
+{
+	[_mooseHelper speakString: msg];
+}
+
 @class UKSplotchChatterbot;
 
 -(void)		splotchChatterbot: (UKSplotchChatterbot*)sender gaveAnswer: (NSString*)theAnswer
 {
-	//[self speakString: theAnswer];
+	[self speakString: theAnswer];
 }
 
 -(NSString*)	randomPhraseForSplotchChatterbot: (UKSplotchChatterbot*)sender
@@ -854,24 +856,27 @@ void	UKLogBacktrace()
 }
 #endif
 
+-(void) speakPhraseFromGroup: (NSString *)group  withFillerString: (NSString *)filler
+{
+	[_mooseHelper speakPhraseFromGroup: group withFillerString: filler];
+}
+
 
 - (void)windowDidBecomeMain: (NSNotification*)notification
 {
-//    if( mooseDisableCount == 0 && ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] )
-//		[self speakPhraseFromGroup: @"LAUNCH SETUP"];
+	[self speakPhraseFromGroup: @"LAUNCH SETUP" withFillerString: @""];
 }
 
 
 - (void)windowDidResignMain: (NSNotification*)notification
 {
-//    if( mooseDisableCount == 0 && ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] )
-//		[self speakPhraseFromGroup: @"QUIT SETUP"];
+	[self speakPhraseFromGroup: @"QUIT SETUP" withFillerString: @""];
 }
 
 
 -(void)	moosePictClicked: (id)sender
 {
-	//[self speakPhraseFromGroup: @"MOOSE SETTINGS PICTURE CLICKED"];
+	[self speakPhraseFromGroup: @"MOOSE SETTINGS PICTURE CLICKED" withFillerString: @""];
 }
 
 @end

@@ -19,6 +19,8 @@
 @class	UKRecordedSpeechChannel;
 @class	UKClickableImageView;
 
+@protocol ULIMooseServiceProtocol;
+
 
 @interface UKMooseAppDelegate : NSObject
 {
@@ -57,6 +59,7 @@
     
 	NSXPCConnection							*_connectionToService;
     NSUserDefaults							*_sharedDefaults;
+	id<ULIMooseServiceProtocol> 			_mooseHelper;
 }
 
 @property (assign) IBOutlet NSProgressIndicator *launchProgressSpinner;
@@ -99,6 +102,9 @@
 -(BOOL) mooseSilenced;
 -(void) refreshShutUpBadge;
 -(void) refreshSpeakHoursUI;
+
+-(void) speakString: (NSString *)msg;
+-(void) speakPhraseFromGroup: (NSString *)group  withFillerString: (NSString *)filler;
 
 -(BOOL)	application: (NSApplication*)sender openFile: (NSString*)filename dontAskButAddToList: (NSMutableArray*)arr;
 

@@ -24,7 +24,6 @@
 #import "NSWindow+Fade.h"
 #import "UKApplicationListController.h"
 #import "ULIMooseServiceProtocol.h"
-#import "ULIMooseService.h"
 
 
 #define UKMainApplicationID		@"com.thevoidsoftware.talkingmoose.macosx"
@@ -35,37 +34,9 @@
 #define MINIMUM_MOOSE_SIZE		48
 
 
-
-@interface ULIMooseServiceDelegate : NSObject <NSXPCListenerDelegate>
-@end
-
-@implementation ULIMooseServiceDelegate
-
-- (BOOL)listener:(NSXPCListener *)listener shouldAcceptNewConnection:(NSXPCConnection *)newConnection {
-	UKLog(@"Someone is knocking...");
-	// This method is where the NSXPCListener configures, accepts, and resumes a new incoming NSXPCConnection.
-	
-	// Configure the connection.
-	// First, set the interface that the exported object implements.
-	newConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ULIMooseServiceProtocol)];
-	
-	// Next, set the object that the connection exports. All messages sent on the connection to this service will be sent to the exported object to handle. The connection retains the exported object.
-	ULIMooseService *exportedObject = [ULIMooseService new];
-	newConnection.exportedObject = exportedObject;
-	
-	// Resuming the connection allows the system to deliver more incoming messages.
-	[newConnection resume];
-	
-	// Returning YES from this method tells the system that you have accepted this connection. If you want to reject the connection for some reason, call -invalidate on the connection and return NO.
-	return YES;
-}
-
-@end
-
-
 #pragma mark -
 
-@interface ULIMooseHelperAppDelegate ()
+@interface ULIMooseHelperAppDelegate () <NSXPCListenerDelegate, ULIMooseServiceProtocol>
 {
 	NSMutableArray*							mooseControllers;		// List of all available moose controllers.
 	IBOutlet NSImageView*					imageView;				// Image view where current moose is displayed.
@@ -95,7 +66,6 @@
 	
     NSUserDefaults							*_sharedDefaults;
 	
-	ULIMooseServiceDelegate 				*_xpcDelegate;
 	NSXPCListener 							*_xpcListener;
 }
 
@@ -119,7 +89,7 @@
 		speechSynth = [[NSSpeechSynthesizer alloc] init];
 		recSpeechSynth = [[UKRecordedSpeechChannel alloc] init];
 		
-		[self refreshSettingsFromMainAppDefaults];
+		[self reloadSettings];
 
 		// Start listening for interesting user actions:
 		NSNotificationCenter*   nc = [[NSWorkspace sharedWorkspace] notificationCenter];
@@ -154,7 +124,6 @@
 -(void) dealloc
 {
 	DESTROY(_xpcListener);
-	DESTROY(_xpcDelegate);
 	
 	DESTROY(recSpeechSynth);
 	
@@ -208,22 +177,38 @@
 {
 	UKLog(@"Starting xpcServiceThread");
 	
-	// Create the delegate for the service.
-	_xpcDelegate = [ULIMooseServiceDelegate new];
-	
 	// Set up the one NSXPCListener for this service. It will handle all incoming connections.
 	NSString *serviceName = NSBundle.mainBundle.bundleIdentifier;
 	_xpcListener = [[NSXPCListener alloc] initWithMachServiceName: serviceName];
-	_xpcListener.delegate = _xpcDelegate;
+	_xpcListener.delegate = self;
 	
 	// Resuming the serviceListener starts this service. This method does not return.
 	[_xpcListener resume];
 	
-	UKLog(@"Service %@ started with listener: [%@] delegate [%@]", serviceName, _xpcListener, _xpcDelegate);
+	UKLog(@"Service %@ started with listener: [%@]", serviceName, _xpcListener);
 }
 
 
--(void)	refreshSettingsFromMainAppDefaults
+- (BOOL)listener:(NSXPCListener *)listener shouldAcceptNewConnection:(NSXPCConnection *)newConnection {
+	// This method is where the NSXPCListener configures, accepts, and resumes a new incoming NSXPCConnection.
+	
+	// Configure the connection.
+	// First, set the interface that the exported object implements.
+	newConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ULIMooseServiceProtocol)];
+	
+	// Next, set the object that the connection exports. All messages sent on the connection to this service will be sent to the exported object to handle. The connection retains the exported object.
+	id<ULIMooseServiceProtocol> exportedObject = (id<ULIMooseServiceProtocol>)NSApplication.sharedApplication.delegate;
+	newConnection.exportedObject = exportedObject;
+	
+	// Resuming the connection allows the system to deliver more incoming messages.
+	[newConnection resume];
+	
+	// Returning YES from this method tells the system that you have accepted this connection. If you want to reject the connection for some reason, call -invalidate on the connection and return NO.
+	return YES;
+}
+
+
+-(void)	reloadSettings
 {
 	// Delay:
 	NSNumber* delay = [_sharedDefaults objectForKey: @"UKMooseSpeechDelay"];
@@ -280,7 +265,7 @@
 				if ([currURL.path caseInsensitiveCompare: @"/reload"] == NSOrderedSame) {
 					UKLog(@"reload");
 					[self activateMooseController];
-					[self refreshSettingsFromMainAppDefaults];
+					[self reloadSettings];
 				} else {
 					UKLog(@"\"%@\"", currURL.path);
 				}
@@ -731,13 +716,16 @@
 
 -(BOOL) speakPhraseFromGroup: (NSString*)group
 {
-	return [self speakPhraseFromGroup: group withFillerString: nil];
+	return [self speakAndReturnIfPhraseFoundFromGroup: group withFillerString: nil];
 }
 
-
+-(void) speakPhraseFromGroup: (NSString*)group withFillerString: (NSString*)fill
+{
+	[self speakAndReturnIfPhraseFoundFromGroup: group withFillerString: fill];
+}
 // Speaks the next phrase from the specified group, optionally replacing any "%s" placeholders
 //	in that string with a filler string. Used to e.g. allow the Moose to say the name of a disk ejected.
--(BOOL) speakPhraseFromGroup: (NSString*)group withFillerString: (NSString*)fill
+-(BOOL) speakAndReturnIfPhraseFoundFromGroup: (NSString*)group withFillerString: (NSString*)fill
 {
 	UKLog(@"speakPhraseFromGroup: %@ withFillerString: %@", group, fill);
 	
@@ -907,7 +895,7 @@
 }
 
 
--(void) repeatLastPhrase: (id)sender
+-(void) repeatLastPhrase
 {
 	if( mooseDisableCount == 0 )
 	{
