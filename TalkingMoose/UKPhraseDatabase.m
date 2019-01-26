@@ -33,10 +33,15 @@
 		mooseVersionStr = [[mooseVersionStr componentsSeparatedByString: @"\n"] objectAtIndex: 0];	// First line only, in case we ever need to store other info.
 		BOOL		versionChanged = [@"" SVN_VERSION isEqualToString: mooseVersionStr] == NO;
 		
-		NSArray*	builtinPhrases = [fm directoryContentsAtPath: builtinPhrasePath];
-		int			x = 0, numFiles = [builtinPhrases count];
-		BOOL		success = YES;
-		for( x = 0; (x < numFiles) && success; x++)
+		BOOL success = YES;
+		NSError *err = nil;
+		NSArray *builtinPhrases = [fm contentsOfDirectoryAtPath: builtinPhrasePath error: &err];
+		if (!builtinPhrases) {
+			NSLog(@"Error finding built-in phrase list: %@", builtinPhrases);
+			success = NO;
+		}
+		NSUInteger numFiles = [builtinPhrases count];
+		for( NSUInteger x = 0; (x < numFiles) && success; x++)
 		{
 			NSString*	currFileName = [builtinPhrases objectAtIndex: x];
 			if( [currFileName characterAtIndex: 0] == '.' )	// Ignore any errant DS_Store etc.

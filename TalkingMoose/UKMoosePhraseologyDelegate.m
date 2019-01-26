@@ -143,7 +143,7 @@ NSInteger	UKPhraseFileSortFunction( id objA, id objB, void* context )
 
 - (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(int)row
 {
-	NS_DURING
+	@try {
 		if( tableView == phraseFileTable )
 		{
 			NSString*		ident = [tableColumn identifier];
@@ -158,24 +158,30 @@ NSInteger	UKPhraseFileSortFunction( id objA, id objB, void* context )
 				else
 					newPath = [object boolValue] ? [self phraseFolderPath] : [self deactivatedPhraseFolderPath];
 
-				if( ![[NSFileManager defaultManager] fileExistsAtPath: newPath] )
-					[[NSFileManager defaultManager] createDirectoryAtPath: newPath attributes: nil];
+				NSError * err = nil;
+				if (![NSFileManager.defaultManager fileExistsAtPath: newPath]) {
+					if (![NSFileManager.defaultManager createDirectoryAtPath: newPath withIntermediateDirectories: NO attributes: nil error: &err]) {
+						NSLog(@"Error %@ creating %@.", err, newPath);
+					}
+				}
 				
 				newPath = [newPath stringByAppendingPathComponent: [dict objectForKey: @"filename"]];
 				
 				//UKLog(@"%@ -> %@", oldPath, newPath);
 				
-				if( ![[NSFileManager defaultManager] movePath: oldPath toPath: newPath handler: nil] )
-					NS_VOIDRETURN;
-				else
+				if( ![NSFileManager.defaultManager moveItemAtPath: oldPath toPath: newPath error: &err] ) {
+					NSLog(@"Error %@ moving %@ to %@.", err, oldPath, newPath);
+					return;
+				} else {
 					[dict setObject: newPath forKey: @"path"];
+				}
 				
 				[dict setObject: object forKey: ident];
 			}
 		}
-	NS_HANDLER
-		UKLog(@"Error: %@",localException);
-	NS_ENDHANDLER
+	} @catch (NSException *localException) {
+		NSLog(@"Error moving phrase file: %@", localException);
+	}
 }
 
 
