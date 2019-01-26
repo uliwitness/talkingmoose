@@ -141,6 +141,9 @@
 {
 	UKCrashReporterCheckForCrash();
 	
+	ProcessSerialNumber myPSN = { 0, kCurrentProcess };
+	TransformProcessType( &myPSN, kProcessTransformToUIElementApplication );
+	
 	// Set up our moose window:
 	NSWindow*   mooseWindow = [imageView window];
 	
