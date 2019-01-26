@@ -13,7 +13,6 @@
 @class  UKMooseController;
 @class  UKPhraseDatabase;
 @class  UKSpeechSettingsView;
-@class  UKIdleTimer;
 @class  PTHotKey;
 @class  UKCarbonEventHandler;
 @class  UKMooseDragAreaView;
@@ -55,13 +54,15 @@
 	UKCarbonEventHandler*					appSwitchEventHandler;
 	IBOutlet NSTabView*						mainTabView;
 	IBOutlet NSPanel*						secretAboutBox;
-	
-	NSUserDefaults							*_sharedDefaults;
+    
+	NSXPCConnection							*_connectionToService;
+    NSUserDefaults							*_sharedDefaults;
 }
+
+@property (assign) IBOutlet NSProgressIndicator *launchProgressSpinner;
 
 -(IBAction)	orderFrontSecretAboutBox: (id)sender;
 
--(void) mooseControllerAnimationDidChange: (UKMooseController*)controller;
 -(void) mooseControllerDidChange;
 
 -(void) toggleSpeakHours: (id)sender;
@@ -76,8 +77,6 @@
 -(void)	loadSettingsFromDefaultsIntoUI;
 
 // Menu item actions:
--(void)	showSettingsWindow: (id)sender;
-
 -(void)	moosePictClicked: (id)sender;
 
 -(void) takeSpeechDelayFrom: (id)sender;

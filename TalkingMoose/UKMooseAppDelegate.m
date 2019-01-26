@@ -16,7 +16,6 @@
 #import "UKPhraseDatabase.h"
 #import "NSImage+NiceScaling.h"
 #import "UKSpeechSettingsView.h"
-#import "UKIdleTimer.h"
 #import "UKBorderlessWindow.h"
 #import "NSArray+Color.h"
 #import "PTHotKey.h"
@@ -33,6 +32,7 @@
 #import "UKClickableImageView.h"
 #import "UKFinderIconCell.h"
 #import "UKHelperMacros.h"
+#import "MooseHelper/ULIMooseServiceProtocol.h"
 #import <ServiceManagement/ServiceManagement.h>
 
 #if DEBUG && 0
@@ -49,7 +49,7 @@
 #define STRINGIFY2(n)			@"" #n
 #define STRINGIFY(n)			STRINGIFY2(n)
 #define UKUserPhrasesPath       "/Library/Application Support/Moose/Phrases"
-#define UKHelperApplicationID	@"com.thevoidsoftware.talkingmoose.macosx.helper"
+#define UKHelperApplicationID	@"" STRINGIFY(UKApplicationGroupID) ".talkingmoose.macosx.helper"
 #define MINIMUM_MOOSE_SIZE		48
 
 
@@ -111,6 +111,9 @@ static BOOL		gIsSilenced = NO;
 
 -(void) dealloc
 {
+	[_connectionToService invalidate];
+	DESTROY(_connectionToService);
+	
 	DESTROY(speakNowHotkey);
 	DESTROY(repeatLastPhraseHotkey);
 	DESTROY(silenceMooseHotkey);
@@ -139,6 +142,18 @@ static BOOL		gIsSilenced = NO;
     // Load settings from user defaults:
 	[self loadSettingsFromDefaultsIntoUI];
     [self refreshSpeakHoursUI];
+	
+	[self refreshServiceConnection];
+}
+
+
+-(void) refreshServiceConnection
+{
+	if (!_connectionToService) {
+		_connectionToService = [[NSXPCConnection alloc] initWithMachServiceName: UKHelperApplicationID options: 0];
+		_connectionToService.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ULIMooseServiceProtocol)];
+		[_connectionToService resume];
+	}
 }
 
 
@@ -648,17 +663,23 @@ static BOOL		gIsSilenced = NO;
 
 -(NSURL *) helperURL
 {
-	return [[[[NSBundle.mainBundle.bundleURL URLByAppendingPathComponent: @"Contents"] URLByAppendingPathComponent: @"Library"] URLByAppendingPathComponent: @"LoginItems"] URLByAppendingPathComponent: @"MooseHelper.app"];
+	return [[[[NSBundle.mainBundle.bundleURL URLByAppendingPathComponent: @"Contents"] URLByAppendingPathComponent: @"Library"] URLByAppendingPathComponent: @"LoginItems"] URLByAppendingPathComponent: UKHelperApplicationID ".app"];
 }
 
 
 -(void) takeLaunchAtLoginBoolFrom: (id)sender
 {
+	if ([NSRunningApplication runningApplicationsWithBundleIdentifier: UKHelperApplicationID].count == 0) {
+		[self.launchProgressSpinner startAnimation: self];
+	}
+	
 	BOOL shouldLaunch = [sender state] == NSControlStateValueOn;
 	if (shouldLaunch) {
 		LSRegisterURL((CFURLRef) self.helperURL, true);
 	}
 	SMLoginItemSetEnabled( (CFStringRef) UKHelperApplicationID, shouldLaunch );
+	
+	//[self performSelector: @selector(refreshServiceConnection) withObject: nil afterDelay: 3.0];
 }
 
 
@@ -738,23 +759,27 @@ static BOOL		gIsSilenced = NO;
 
 -(void) applicationLaunchNotification:(NSNotification*)notif
 {
-	if( speakOnAppLaunchQuit )
-	{
-		NSString*		appName = [[[[notif userInfo] objectForKey: @"NSApplicationName"] retain] autorelease];
-		
-		if( ![appName isEqualToString: @"ScreenSaverEngine"]
-			&& ![appName isEqualToString: @"ScreenSaverEngin"] )
-			[self speakPhraseOnMainThreadFromGroup: @"LAUNCH APPLICATION" withFillerString: appName];
+	NSRunningApplication *launchedApp = notif.userInfo[NSWorkspaceApplicationKey];
+	UKLog(@"App %@ launched", launchedApp);
+	if ( [launchedApp.bundleIdentifier isEqualToString: UKHelperApplicationID] ) {
+		[self.launchProgressSpinner stopAnimation: self];
+		[_connectionToService invalidate];
+		DESTROY(_connectionToService);
+		[self refreshServiceConnection];
 	}
+	
 	[self refreshShutUpBadge];
 }
 
 
 -(void) applicationTerminationNotification:(NSNotification*)notif
 {
+	NSRunningApplication *launchedApp = notif.userInfo[NSWorkspaceApplicationKey];
+	UKLog(@"App %@ terminated", launchedApp);
 	if( speakOnAppLaunchQuit )
 	{
 		NSString*		appName = [[[[notif userInfo] objectForKey: @"NSApplicationName"] retain] autorelease];
+		UKLog(@"App %@ launched", launchedApp);
 		if( ![appName isEqualToString: @"ScreenSaverEngine"]
 			&& ![appName isEqualToString: @"ScreenSaverEngin"] )
 		[self speakPhraseOnMainThreadFromGroup: @"QUIT APPLICATION" withFillerString: appName];
@@ -785,6 +810,12 @@ static BOOL		gIsSilenced = NO;
 	[self speakPhraseOnMainThreadFromGroup: @"LAUNCH SETUP" withFillerString: nil];
 	
 	[self refreshShutUpBadge];
+	
+	id<ULIMooseServiceProtocol> serviceProxy = [_connectionToService remoteObjectProxyWithErrorHandler:^(NSError *error) { NSLog(@"XPC error: %@", error); }];
+	NSLog(@"Asking service %@ %p", _connectionToService, serviceProxy);
+	[serviceProxy upperCaseString: @"Moose service reply?" withReply:^(NSString *str) {
+		NSLog(@"Service answered: %@", str);
+	}];
 }
 
 -(void) applicationDidResignActive: (NSNotification *)notification
