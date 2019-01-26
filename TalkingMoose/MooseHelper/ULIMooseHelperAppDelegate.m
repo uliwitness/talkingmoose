@@ -533,17 +533,10 @@
 		if( dateParts.minute >= 30 || ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeOnHalfHours"] )
 		{
 			dateParts.minute = 0;
-			dateParts.hour += 1;
+
+			calDate = [calendar dateByAddingUnit: NSCalendarUnitHour value: 1 toDate: calDate options: 0];
 			
-			if( dateParts.hour >= 24 )
-			{
-				dateParts.hour = 0;
-				
-				// Add 1 day to the date:
-				calDate = [calendar dateFromComponents: dateParts];
-				calDate = [calendar dateByAddingUnit: NSCalendarUnitHour value: 1 toDate: calDate options: NSCalendarWrapComponents];
-				dateParts = [calendar components: desiredUnits fromDate: calDate];
-			}
+			dateParts = [calendar components: desiredUnits fromDate: calDate];
 		}
 		else
 			dateParts.minute = 30;
@@ -554,8 +547,8 @@
 		calDate = [calendar dateFromComponents: dateParts];
 
 		if( ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] ) {
-			calDate = [calendar dateByAddingUnit: NSCalendarUnitMinute value: minAdd toDate: calDate options: NSCalendarWrapComponents];
-			calDate = [calendar dateByAddingUnit: NSCalendarUnitSecond value: secAdd toDate: calDate options: NSCalendarWrapComponents];
+			calDate = [calendar dateByAddingUnit: NSCalendarUnitMinute value: minAdd toDate: calDate options: 0];
+			calDate = [calendar dateByAddingUnit: NSCalendarUnitSecond value: secAdd toDate: calDate options: 0];
 		}
 	}
 	else
