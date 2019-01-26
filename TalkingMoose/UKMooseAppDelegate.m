@@ -155,6 +155,7 @@ static BOOL		gIsSilenced = NO;
 		[_connectionToService resume];
 	}
 	_mooseHelper = [[_connectionToService remoteObjectProxyWithErrorHandler:^(NSError *error) { NSLog(@"XPC error: %@", error); }] retain];
+	[_mooseHelper increaseHelperPriority: ^(){ UKLog(@"Helper informed us of shutdown."); }];
 }
 
 

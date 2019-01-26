@@ -14,6 +14,8 @@
 
 @protocol ULIMooseServiceProtocol
 
+-(void) increaseHelperPriority: (void(^)(void))callback;
+
 -(void)	reloadSettings;
 
 -(void) speakString: (NSString*)currPhrase;

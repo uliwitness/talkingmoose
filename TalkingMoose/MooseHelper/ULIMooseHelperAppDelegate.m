@@ -67,6 +67,7 @@
     NSUserDefaults							*_sharedDefaults;
 	
 	NSXPCListener 							*_xpcListener;
+	void									(^_xpcDoneCallback)(void);
 }
 
 @property (weak) IBOutlet NSWindow *window;
@@ -123,6 +124,7 @@
 
 -(void) dealloc
 {
+	DESTROY(_xpcDoneCallback);
 	DESTROY(_xpcListener);
 	
 	DESTROY(recSpeechSynth);
@@ -257,6 +259,12 @@
 	}
 	else
 		; //UKLog(@"No Speech settings in Prefs.");
+}
+
+
+-(void) increaseHelperPriority: (void(^)(void))callback
+{
+	_xpcDoneCallback = [callback retain];
 }
 
 
@@ -459,6 +467,10 @@
 	[_sharedDefaults setObject: moosePosString forKey: @"UKMooseAnimPosition"];
 	[_sharedDefaults setObject: [speechSynth settingsDictionary] forKey: @"UKSpeechChannelSettings"];
 	[_sharedDefaults setFloat: [self scaleFactor] forKey: @"UKMooseScaleFactor"];
+	
+	if (_xpcDoneCallback) {
+		_xpcDoneCallback();
+	}
 }
 
 
