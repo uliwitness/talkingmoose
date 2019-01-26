@@ -300,7 +300,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="3j3-h0-udt">
                                     <rect key="frame" x="1" y="1" width="154" height="454"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="20" id="1056">
                                             <rect key="frame" x="0.0" y="0.0" width="154" height="454"/>
@@ -354,7 +354,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <clipView key="contentView" id="O9I-AS-4HJ">
                                                         <rect key="frame" x="1" y="0.0" width="462" height="349"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="55" headerView="1039" id="245">
                                                                 <rect key="frame" x="0.0" y="0.0" width="462" height="324"/>
@@ -637,7 +637,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <clipView key="contentView" id="iBM-AH-Kvg">
                                                         <rect key="frame" x="1" y="0.0" width="462" height="417"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" autosaveColumns="NO" headerView="1042" id="459">
                                                                 <rect key="frame" x="0.0" y="0.0" width="462" height="392"/>
@@ -738,7 +738,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <clipView key="contentView" id="fJI-wq-pYm">
                                                         <rect key="frame" x="1" y="1" width="462" height="454"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" id="583">
                                                                 <rect key="frame" x="0.0" y="0.0" width="462" height="454"/>
@@ -984,14 +984,6 @@
                 <menuItem title="Silence, Moose!" id="407">
                     <connections>
                         <action selector="silenceMoose:" target="208" id="411"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="415">
-                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                </menuItem>
-                <menuItem title="Moose Settings..." id="416">
-                    <connections>
-                        <action selector="showSettingsWindow:" target="208" id="498"/>
                     </connections>
                 </menuItem>
             </items>

@@ -48,8 +48,6 @@
 		3DBE7C620B9E539800526251 /* UKSplotchFood.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DBE7C5F0B9E539800526251 /* UKSplotchFood.plist */; };
 		3DBE7C630B9E539800526251 /* UKSplotchLiquids.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DBE7C600B9E539800526251 /* UKSplotchLiquids.plist */; };
 		3DC2F8910798039800423F0A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC2F8900798039800423F0A /* Carbon.framework */; };
-		3DC7D50A090FC9B0009A2900 /* NSWindow+Fade.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC7D508090FC9B0009A2900 /* NSWindow+Fade.m */; };
-		3DC7D50B090FC9B0009A2900 /* NSWindow+Fade.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DC7D509090FC9B0009A2900 /* NSWindow+Fade.h */; };
 		3DDA3E8F0CD9FAE000FE033D /* UKHelperMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DDA3E8E0CD9FAE000FE033D /* UKHelperMacros.h */; };
 		3DDF4F3A09D6B9180033B811 /* UKCarbonEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DDF4F3809D6B9180033B811 /* UKCarbonEventHandler.h */; };
 		3DDF4F3B09D6B9180033B811 /* UKCarbonEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF4F3909D6B9180033B811 /* UKCarbonEventHandler.m */; };
@@ -129,7 +127,6 @@
 		55CD5BEF21DFFF1300B5E004 /* UKIdleTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988206B07F9E00FFE801 /* UKIdleTimer.m */; };
 		55CD5BF021E00BD500B5E004 /* UKSpeechSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD986D06B07F7800FFE801 /* UKSpeechSettingsView.m */; };
 		55CD5BF121E0178200B5E004 /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56781C0994F2D8008FDECF /* UKCrashReporter.m */; };
-		55CD5BF221E0179800B5E004 /* NSWindow+Fade.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC7D508090FC9B0009A2900 /* NSWindow+Fade.m */; };
 		55CD5BF321E017AB00B5E004 /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D567A170994FACB008FDECF /* UKCrashReporter.strings */; };
 		55CD5BF421E017BA00B5E004 /* UKCrashReporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559D6CFC16160B83001E1D91 /* UKCrashReporter.xib */; };
 		55CD5BF521E017EA00B5E004 /* UKSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B8010AA83246000D2302 /* UKSystemInfo.m */; };
@@ -249,8 +246,6 @@
 		3DBE7C5F0B9E539800526251 /* UKSplotchFood.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = UKSplotchFood.plist; sourceTree = "<group>"; };
 		3DBE7C600B9E539800526251 /* UKSplotchLiquids.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = UKSplotchLiquids.plist; sourceTree = "<group>"; };
 		3DC2F8900798039800423F0A /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		3DC7D508090FC9B0009A2900 /* NSWindow+Fade.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+Fade.m"; path = "../UliKit/NSWindow+Fade.m"; sourceTree = "<group>"; };
-		3DC7D509090FC9B0009A2900 /* NSWindow+Fade.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSWindow+Fade.h"; path = "../UliKit/NSWindow+Fade.h"; sourceTree = "<group>"; };
 		3DDA3E8E0CD9FAE000FE033D /* UKHelperMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKHelperMacros.h; path = ../UliKit/UKHelperMacros.h; sourceTree = SOURCE_ROOT; };
 		3DDF4F3809D6B9180033B811 /* UKCarbonEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKCarbonEventHandler.h; path = ../UliKit/UKCarbonEventHandler.h; sourceTree = SOURCE_ROOT; };
 		3DDF4F3909D6B9180033B811 /* UKCarbonEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKCarbonEventHandler.m; path = ../UliKit/UKCarbonEventHandler.m; sourceTree = SOURCE_ROOT; };
@@ -599,8 +594,6 @@
 				5BBD988606B07F9E00FFE801 /* NSArray+Color.m */,
 				5BBD988906B07F9E00FFE801 /* NSImage+NiceScaling.h */,
 				5BBD988D06B07F9E00FFE801 /* NSImage+NiceScaling.m */,
-				3DC7D509090FC9B0009A2900 /* NSWindow+Fade.h */,
-				3DC7D508090FC9B0009A2900 /* NSWindow+Fade.m */,
 			);
 			name = UliKit;
 			sourceTree = "<group>";
@@ -689,7 +682,6 @@
 				3DE61B450869B176002EC36A /* svn_version.h in Headers */,
 				3DA3544F08841AB400825D47 /* UKApplicationListController.h in Headers */,
 				3D05C45E08888A1600DA756A /* UKDocumentationController.h in Headers */,
-				3DC7D50B090FC9B0009A2900 /* NSWindow+Fade.h in Headers */,
 				3D56781F0994F2D8008FDECF /* UKCrashReporter.h in Headers */,
 				3DF9CB4309C741C800C7BBA8 /* PTHotKey.h in Headers */,
 				3DF9CB4509C741C800C7BBA8 /* PTHotKeyCenter.h in Headers */,
@@ -927,7 +919,6 @@
 				55CD5BE621DFFEA400B5E004 /* UKGroupFile.m in Sources */,
 				55CD5BE521DFFE9E00B5E004 /* UKPhraseDatabase.m in Sources */,
 				55CD5BEE21DFFF0A00B5E004 /* UKWindowDraggingImageView.m in Sources */,
-				55CD5BF221E0179800B5E004 /* NSWindow+Fade.m in Sources */,
 				553852A821E0E81E00AF7F69 /* UKApplicationListController.m in Sources */,
 				55CD5BE921DFFEB700B5E004 /* UKMooseMouthImageRep.m in Sources */,
 				55CD5BEC21DFFEFB00B5E004 /* NSFileManager+CreateDirectoriesForPath.m in Sources */,
@@ -967,7 +958,6 @@
 				3DE61AEE0869AC77002EC36A /* NSData+URLUserAgent.m in Sources */,
 				3DA3545008841AB400825D47 /* UKApplicationListController.m in Sources */,
 				3D05C45F08888A1600DA756A /* UKDocumentationController.m in Sources */,
-				3DC7D50A090FC9B0009A2900 /* NSWindow+Fade.m in Sources */,
 				3D56781E0994F2D8008FDECF /* UKCrashReporter.m in Sources */,
 				3DF9CB4409C741C800C7BBA8 /* PTHotKey.m in Sources */,
 				3DF9CB4609C741C800C7BBA8 /* PTHotKeyCenter.m in Sources */,

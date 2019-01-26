@@ -684,8 +684,9 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Moose" autorecalculatesKeyViewLoop="NO" hasShadow="NO" releasedWhenClosed="NO" animationBehavior="default" id="nFg-JB-1yx" userLabel="Moose" customClass="UKBorderlessWindow">
+        <window title="Moose" autorecalculatesKeyViewLoop="NO" deferred="NO" hasShadow="NO" releasedWhenClosed="NO" animationBehavior="none" id="nFg-JB-1yx" userLabel="Moose" customClass="UKBorderlessWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" stationary="YES" ignoresCycle="YES" fullScreenAuxiliary="YES" fullScreenDisallowsTiling="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="84" y="719" width="123" height="111"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>

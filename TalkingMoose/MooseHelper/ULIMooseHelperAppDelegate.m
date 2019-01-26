@@ -21,7 +21,7 @@
 #import "UKCrashReporter.h"
 #import "UKGroupFile.h"
 #import "NSImage+NiceScaling.h"
-#import "NSWindow+Fade.h"
+//#import "NSWindow+Fade.h"
 #import "UKApplicationListController.h"
 #import "ULIMooseServiceProtocol.h"
 
@@ -154,7 +154,8 @@
 	[mooseWindow setCanHide: NO];
 	[mooseWindow setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces | NSWindowCollectionBehaviorStationary | NSWindowCollectionBehaviorFullScreenAuxiliary | NSWindowCollectionBehaviorFullScreenDisallowsTiling];
 	[mooseWindow setAnimationBehavior: NSWindowAnimationBehaviorNone];
-	
+	[mooseWindow setAlphaValue: 1.0];
+
 	// Get window scale factor from Prefs:
 	float savedScaleFactor = [_sharedDefaults floatForKey: @"UKMooseScaleFactor"];
 	if( savedScaleFactor <= 0 )
@@ -451,7 +452,7 @@
 -(void) applicationWillTerminate: (NSNotification*)notif
 {
 	NSString*		moosePosString = NSStringFromPoint( [[imageView window] frame].origin );
-	//UKLog( @"applicationWillTerminate: Saving position: %@", moosePosString );
+	UKLog( @"applicationWillTerminate: Saving position: %@", moosePosString );
 	[_sharedDefaults setObject: moosePosString forKey: @"UKMooseAnimPosition"];
 	[_sharedDefaults setObject: [speechSynth settingsDictionary] forKey: @"UKSpeechChannelSettings"];
 	[_sharedDefaults setFloat: [self scaleFactor] forKey: @"UKMooseScaleFactor"];
@@ -910,6 +911,7 @@
 		[bubbleWin setFrame: bubbleFrame display: YES];
 		
 		[mooseWin addChildWindow: bubbleWin ordered: NSWindowAbove];
+		[bubbleWin display];
 	}
 	else {
 		[mooseWin removeChildWindow: bubbleWin];
@@ -970,7 +972,7 @@
 	wBox.size = [currentMoose size];
 	wBox.origin.y += oldWBox.size.height;	// These two pin it to upper left.
 	wBox.origin.y -= wBox.size.height;
-	//UKLog(@"mooseControllerDidChange (1): Old: %@ New: %@", NSStringFromRect([mooseWindow frame]), NSStringFromRect(wBox));
+	UKLog(@"mooseControllerDidChange (1): Old: %@ New: %@", NSStringFromRect([mooseWindow frame]), NSStringFromRect(wBox));
 	[mooseWindow setFrame: wBox display: YES];
 	[currentMoose setGlobalFrame: wBox];
 #else
@@ -982,7 +984,7 @@
 	wdBox.origin = [mooseWindow frame].origin;
 	wdBox.size = wdSize;
 	wdBox = [mooseWindow constrainFrameRect: wdBox toScreen: [mooseWindow screen]];
-	//UKLog(@"mooseControllerDidChange (2): Old: %@ New: %@", NSStringFromRect([mooseWindow frame]), NSStringFromRect(wdBox));
+	UKLog(@"mooseControllerDidChange (2): Old: %@ New: %@", NSStringFromRect([mooseWindow frame]), NSStringFromRect(wdBox));
 	[mooseWindow setFrame: wdBox display: YES];
 	[currentMoose setGlobalFrame: wdBox];
 #endif
@@ -997,7 +999,7 @@
 	
 	[self mooseControllerAnimationDidChange: currentMoose];
 	
-	//UKLog(@"Moose controller changed to \"%@\".", [currentMoose filePath]);
+	UKLog(@"Moose controller changed to \"%@\".", [currentMoose filePath]);
 }
 
 
@@ -1026,10 +1028,10 @@
 -(void) mooseControllerAnimationDidChange: (UKMooseController*)mc
 {
 	NSImage*		currImg = [mc image];
-	NSImage*		iconImg = [currImg scaledImageToFitSize: NSMakeSize(128,128)];
 	NSWindow*		mooseWin = [imageView window];
 	
-	[NSApp setApplicationIconImage: iconImg];
+//	NSImage*		iconImg = [currImg scaledImageToFitSize: NSMakeSize(128,128)];
+//	[NSApp setApplicationIconImage: iconImg];
 	if( [mooseWin isVisible] )
 	{
 		[imageView setImage: currImg];
@@ -1042,6 +1044,8 @@
 		if( hideWidgets != [windowWidgets isHidden] )
 			[windowWidgets setHidden: hideWidgets];
 	}
+	
+	UKLog(@"moose position: %@ (%@ %@ %@ %f %p)", NSStringFromRect(mooseWin.frame), mooseWin.isVisible ? @"visible" : @"HIDDEN", mooseWin.isOnActiveSpace ? @"on this space" : @"ON INACTIVE SPACE", mooseWin.occlusionState == NSWindowOcclusionStateVisible ? @"not occluded" : @"OCCLUDED", mooseWin.alphaValue, mooseWin);
 	
 	//UKLog(@"mooseControllerAnimationDidChange:");
 }
@@ -1210,6 +1214,8 @@
 	
 	if( mooseVisibleCount == 1 )
 	{
+		[NSApplication.sharedApplication unhideWithoutActivation];
+		
 		// Make sure it's onscreen:
 		NSRect		oldMooseFrame = [mooseWin frame],
 		mooseFrame = oldMooseFrame;

@@ -21,8 +21,7 @@
 #import "PTHotKey.h"
 #import "PTKeyComboPanel.h"
 #import "NSFileManager+CreateDirectoriesForPath.h"
-#import "NSWindow+Fade.h"
-//#import "UKUIElement.h"
+//#import "NSWindow+Fade.h"
 #include <Carbon/Carbon.h>
 #import "UKCarbonEventHandler.h"
 #import "UKMooseDragAreaView.h"
@@ -838,6 +837,24 @@ static BOOL		gIsSilenced = NO;
 -(NSString*)	randomPhraseForSplotchChatterbot: (UKSplotchChatterbot*)sender
 {
 	return [phraseDB randomPhraseFromGroup: @"PAUSE"];
+}
+
+
+-(IBAction) silenceMoose: (id)sender
+{
+	[self setMooseSilenced: self.mooseSilenced];
+}
+
+
+-(IBAction) speakOnePhrase: (id)sender
+{
+	[_mooseHelper speakPhraseFromGroup:@"PAUSE" withFillerString:@""];
+}
+
+
+-(IBAction)repeatLastPhrase:(id)sender
+{
+	[_mooseHelper repeatLastPhrase];
 }
 
 
