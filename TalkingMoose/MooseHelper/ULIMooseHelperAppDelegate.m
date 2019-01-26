@@ -23,8 +23,8 @@
 #import "NSImage+NiceScaling.h"
 #import "NSWindow+Fade.h"
 #import "UKApplicationListController.h"
-#import "MooseService/ULIMooseServiceProtocol.h"
-#import "MooseService/ULIMooseService.h"
+#import "ULIMooseServiceProtocol.h"
+#import "ULIMooseService.h"
 
 
 #define UKMainApplicationID		@"com.thevoidsoftware.talkingmoose.macosx"

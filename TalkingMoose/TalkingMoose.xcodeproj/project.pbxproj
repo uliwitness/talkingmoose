@@ -147,9 +147,6 @@
 		55F8CACA0E65F01C00DCF0D2 /* UKRecordedSpeechChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8CAC80E65F01C00DCF0D2 /* UKRecordedSpeechChannel.m */; };
 		55F8CB140E66043300DCF0D2 /* SpokenString.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55F8CB120E66043300DCF0D2 /* SpokenString.plist */; };
 		55F8CB150E66043300DCF0D2 /* SpokenString.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 55F8CB130E66043300DCF0D2 /* SpokenString.aiff */; };
-		55FFBF5D21EA0BE200FB3CA4 /* ULIMooseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FFBF5C21EA0BE200FB3CA4 /* ULIMooseService.m */; };
-		55FFBF5F21EA0BE200FB3CA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FFBF5E21EA0BE200FB3CA4 /* main.m */; };
-		55FFBF6321EA0BE200FB3CA4 /* MooseService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 55FFBF5821EA0BE200FB3CA4 /* MooseService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		55FFBF6821EA0D4200FB3CA4 /* ULIMooseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FFBF5C21EA0BE200FB3CA4 /* ULIMooseService.m */; };
 		5BBD987706B07F7900FFE801 /* UKSpeechSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD986D06B07F7800FFE801 /* UKSpeechSettingsView.m */; };
 		5BBD987806B07F7900FFE801 /* UKPhraseDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BBD986E06B07F7800FFE801 /* UKPhraseDatabase.h */; };
@@ -185,13 +182,6 @@
 			remoteGlobalIDString = 55CD5BD221DFFDA700B5E004;
 			remoteInfo = MooseHelper;
 		};
-		55FFBF6121EA0BE200FB3CA4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 55FFBF5721EA0BE200FB3CA4;
-			remoteInfo = MooseService;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -211,7 +201,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
 			dstSubfolderSpec = 16;
 			files = (
-				55FFBF6321EA0BE200FB3CA4 /* MooseService.xpc in Embed XPC Services */,
 			);
 			name = "Embed XPC Services";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,12 +342,9 @@
 		55F8CAC80E65F01C00DCF0D2 /* UKRecordedSpeechChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKRecordedSpeechChannel.m; sourceTree = "<group>"; };
 		55F8CB120E66043300DCF0D2 /* SpokenString.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SpokenString.plist; sourceTree = "<group>"; };
 		55F8CB130E66043300DCF0D2 /* SpokenString.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = SpokenString.aiff; sourceTree = "<group>"; };
-		55FFBF5821EA0BE200FB3CA4 /* MooseService.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = MooseService.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		55FFBF5A21EA0BE200FB3CA4 /* ULIMooseServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ULIMooseServiceProtocol.h; sourceTree = "<group>"; };
 		55FFBF5B21EA0BE200FB3CA4 /* ULIMooseService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ULIMooseService.h; sourceTree = "<group>"; };
 		55FFBF5C21EA0BE200FB3CA4 /* ULIMooseService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ULIMooseService.m; sourceTree = "<group>"; };
-		55FFBF5E21EA0BE200FB3CA4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		55FFBF6021EA0BE200FB3CA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BBD986D06B07F7800FFE801 /* UKSpeechSettingsView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKSpeechSettingsView.m; path = ../UliKit/UKSpeechSettingsView.m; sourceTree = "<group>"; };
 		5BBD986E06B07F7800FFE801 /* UKPhraseDatabase.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKPhraseDatabase.h; sourceTree = SOURCE_ROOT; };
 		5BBD986F06B07F7800FFE801 /* UKMooseController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKMooseController.m; sourceTree = SOURCE_ROOT; };
@@ -387,13 +373,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		55CD5BD021DFFDA700B5E004 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		55FFBF5521EA0BE200FB3CA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -469,7 +448,6 @@
 			children = (
 				8D1107320486CEB800E47090 /* Moose.app */,
 				55CD5BD321DFFDA700B5E004 /* RCKXACKVZS.talkingmoose.com.thevoidsoftware.talkingmoose.macosx.helper.app */,
-				55FFBF5821EA0BE200FB3CA4 /* MooseService.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -483,7 +461,6 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				55CD5BD421DFFDA700B5E004 /* MooseHelper */,
-				55FFBF5921EA0BE200FB3CA4 /* MooseService */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -688,24 +665,15 @@
 			children = (
 				55CD5BD521DFFDA700B5E004 /* ULIMooseHelperAppDelegate.h */,
 				55CD5BD621DFFDA700B5E004 /* ULIMooseHelperAppDelegate.m */,
+				55FFBF5A21EA0BE200FB3CA4 /* ULIMooseServiceProtocol.h */,
+				55FFBF5B21EA0BE200FB3CA4 /* ULIMooseService.h */,
+				55FFBF5C21EA0BE200FB3CA4 /* ULIMooseService.m */,
 				55CD5BDA21DFFDAA00B5E004 /* MainMenu.xib */,
 				55CD5BDD21DFFDAA00B5E004 /* Info.plist */,
 				55CD5BDE21DFFDAA00B5E004 /* main.m */,
 				55CD5BE021DFFDAB00B5E004 /* MooseHelper.entitlements */,
 			);
 			path = MooseHelper;
-			sourceTree = "<group>";
-		};
-		55FFBF5921EA0BE200FB3CA4 /* MooseService */ = {
-			isa = PBXGroup;
-			children = (
-				55FFBF5A21EA0BE200FB3CA4 /* ULIMooseServiceProtocol.h */,
-				55FFBF5B21EA0BE200FB3CA4 /* ULIMooseService.h */,
-				55FFBF5C21EA0BE200FB3CA4 /* ULIMooseService.m */,
-				55FFBF5E21EA0BE200FB3CA4 /* main.m */,
-				55FFBF6021EA0BE200FB3CA4 /* Info.plist */,
-			);
-			path = MooseService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -782,23 +750,6 @@
 			productReference = 55CD5BD321DFFDA700B5E004 /* RCKXACKVZS.talkingmoose.com.thevoidsoftware.talkingmoose.macosx.helper.app */;
 			productType = "com.apple.product-type.application";
 		};
-		55FFBF5721EA0BE200FB3CA4 /* MooseService */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 55FFBF6421EA0BE200FB3CA4 /* Build configuration list for PBXNativeTarget "MooseService" */;
-			buildPhases = (
-				55FFBF5421EA0BE200FB3CA4 /* Sources */,
-				55FFBF5521EA0BE200FB3CA4 /* Frameworks */,
-				55FFBF5621EA0BE200FB3CA4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MooseService;
-			productName = MooseService;
-			productReference = 55FFBF5821EA0BE200FB3CA4 /* MooseService.xpc */;
-			productType = "com.apple.product-type.xpc-service";
-		};
 		8D1107260486CEB800E47090 /* Moose */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3DBAA7240880496A0035E83A /* Build configuration list for PBXNativeTarget "Moose" */;
@@ -816,7 +767,6 @@
 			);
 			dependencies = (
 				55CD5BFF21E0414300B5E004 /* PBXTargetDependency */,
-				55FFBF6221EA0BE200FB3CA4 /* PBXTargetDependency */,
 			);
 			name = Moose;
 			productInstallPath = "$(HOME)/Applications";
@@ -843,11 +793,6 @@
 								enabled = 1;
 							};
 						};
-					};
-					55FFBF5721EA0BE200FB3CA4 = {
-						CreatedOnToolsVersion = 10.1;
-						DevelopmentTeam = RCKXACKVZS;
-						ProvisioningStyle = Automatic;
 					};
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = RCKXACKVZS;
@@ -881,7 +826,6 @@
 			targets = (
 				8D1107260486CEB800E47090 /* Moose */,
 				55CD5BD221DFFDA700B5E004 /* MooseHelper */,
-				55FFBF5721EA0BE200FB3CA4 /* MooseService */,
 			);
 		};
 /* End PBXProject section */
@@ -899,13 +843,6 @@
 				55CD5BFB21E0197E00B5E004 /* Phrases in Resources */,
 				55CD5BF721E018B600B5E004 /* tylerui_zoombox.png in Resources */,
 				55CD5BDC21DFFDAA00B5E004 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		55FFBF5621EA0BE200FB3CA4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,15 +958,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		55FFBF5421EA0BE200FB3CA4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				55FFBF5F21EA0BE200FB3CA4 /* main.m in Sources */,
-				55FFBF5D21EA0BE200FB3CA4 /* ULIMooseService.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1087,11 +1015,6 @@
 			isa = PBXTargetDependency;
 			target = 55CD5BD221DFFDA700B5E004 /* MooseHelper */;
 			targetProxy = 55CD5BFE21E0414300B5E004 /* PBXContainerItemProxy */;
-		};
-		55FFBF6221EA0BE200FB3CA4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 55FFBF5721EA0BE200FB3CA4 /* MooseService */;
-			targetProxy = 55FFBF6121EA0BE200FB3CA4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1442,125 +1365,6 @@
 			};
 			name = Release;
 		};
-		55FFBF6521EA0BE200FB3CA4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = RCKXACKVZS;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = MooseService/Info.plist;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.MooseService;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		55FFBF6621EA0BE200FB3CA4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = RCKXACKVZS;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = MooseService/Info.plist;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.MooseService;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1587,15 +1391,6 @@
 			buildConfigurations = (
 				55CD5BE121DFFDAB00B5E004 /* Debug */,
 				55CD5BE221DFFDAB00B5E004 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		55FFBF6421EA0BE200FB3CA4 /* Build configuration list for PBXNativeTarget "MooseService" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				55FFBF6521EA0BE200FB3CA4 /* Debug */,
-				55FFBF6621EA0BE200FB3CA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

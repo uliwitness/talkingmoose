@@ -45,7 +45,7 @@
 	<key>CFBundleHelpBookFolder</key>
 	<string>Moose Help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>Uli's Moose Help</string>
+	<string>Uli&apos;s Moose Help</string>
 	<key>CFBundleIconFile</key>
 	<string>MooseAlphaIcon</string>
 	<key>CFBundleIdentifier</key>
@@ -70,5 +70,22 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>CFBundleName</key>
+	<array>
+		<dict>
+			<key>NSMessage</key>
+			<string></string>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+			</dict>
+		</dict>
+	</array>
+	<key>XPCService</key>
+	<dict>
+		<key>ServiceType</key>
+		<string>Application</string>
+	</dict>
 </dict>
 </plist>

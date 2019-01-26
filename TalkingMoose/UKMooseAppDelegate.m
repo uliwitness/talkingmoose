@@ -32,8 +32,8 @@
 #import "UKClickableImageView.h"
 #import "UKFinderIconCell.h"
 #import "UKHelperMacros.h"
+#import "MooseHelper/ULIMooseServiceProtocol.h"
 #import <ServiceManagement/ServiceManagement.h>
-#import "MooseService/ULIMooseServiceProtocol.h"
 
 #if DEBUG && 0
 #include <execinfo.h>
