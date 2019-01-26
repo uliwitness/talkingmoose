@@ -550,17 +550,17 @@
 	
 	// Composite the parts into the image:
 	[img lockFocus];
-		[bgImage compositeToPoint: zeroPoint operation: NSCompositingOperationCopy];
-		[baseImg compositeToPoint: zeroPoint operation: NSCompositingOperationSourceOver];
-		[mouthImg compositeToPoint: mouthImgPos operation: NSCompositingOperationSourceOver];
-		[eyesImg compositeToPoint: eyeImgPos operation: NSCompositingOperationSourceOver];
+	[bgImage drawAtPoint: zeroPoint fromRect: NSZeroRect operation: NSCompositingOperationCopy fraction: 1.0];
+		[baseImg drawAtPoint: zeroPoint fromRect: NSZeroRect operation: NSCompositingOperationSourceOver fraction: 1.0];
+		[mouthImg drawAtPoint: mouthImgPos fromRect: NSZeroRect operation: NSCompositingOperationSourceOver fraction: 1.0];
+		[eyesImg drawAtPoint: eyeImgPos fromRect: NSZeroRect operation: NSCompositingOperationSourceOver fraction: 1.0];
         if( badgeImage )
         {
             NSPoint pos;
             NSSize  siz = [badgeImage size];
             pos.x = truncf((imgSize.width /2) -(siz.width /2));
             pos.y = truncf((imgSize.height /2) -(siz.height /2));
-            [badgeImage compositeToPoint: pos operation: NSCompositingOperationSourceOver];
+            [badgeImage drawAtPoint: pos fromRect: NSZeroRect operation: NSCompositingOperationSourceOver fraction: 1.0];
         }
 	[img unlockFocus];
     
@@ -573,11 +573,11 @@
 			[shad setShadowOffset: NSMakeSize(SHDW_HEIGHT,-SHDW_WIDTH)];
 			[shad setShadowBlurRadius: SHDW_BLUR];
 			[shad set];
-			[img dissolveToPoint: pos fraction: 1.0];
+			[img drawAtPoint: pos fromRect: NSZeroRect operation: NSCompositingOperationSourceOver fraction: 1.0];
 			[NSGraphicsContext restoreGraphicsState];
 			
             // Draw image on top of shadow:
-            [img compositeToPoint: pos operation: NSCompositingOperationSourceOver];
+            [img drawAtPoint: pos fromRect: NSZeroRect operation: NSCompositingOperationSourceOver fraction: 1.0];
         [newImg unlockFocus];
         
         // Replace old cached image with the new one:

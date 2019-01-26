@@ -57,8 +57,6 @@
 		3DF412D00796A168002DE6EF /* MiniMoose.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3DF412CF0796A168002DE6EF /* MiniMoose.tiff */; };
 		3DF412ED0796B9D0002DE6EF /* BandAid.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3DF412EC0796B9D0002DE6EF /* BandAid.tiff */; };
 		3DF413B10796FE2F002DE6EF /* MooseAnim.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3DF413B00796FE2F002DE6EF /* MooseAnim.icns */; };
-		3DF413D307970106002DE6EF /* NSFileManager+CreateDirectoriesForPath.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF413D107970106002DE6EF /* NSFileManager+CreateDirectoriesForPath.h */; };
-		3DF413D407970106002DE6EF /* NSFileManager+CreateDirectoriesForPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF413D207970106002DE6EF /* NSFileManager+CreateDirectoriesForPath.m */; };
 		3DF41D480797264E002DE6EF /* Moose.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 3DF41D460797264E002DE6EF /* Moose.scriptSuite */; };
 		3DF41D490797264E002DE6EF /* Moose.scriptTerminology in Resources */ = {isa = PBXBuildFile; fileRef = 3DF41D470797264E002DE6EF /* Moose.scriptTerminology */; };
 		3DF41EE90797466B002DE6EF /* UKSpeakStringCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF41EE70797466B002DE6EF /* UKSpeakStringCommand.h */; };
@@ -119,7 +117,6 @@
 		55CD5BE921DFFEB700B5E004 /* UKMooseMouthImageRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CABC80CE4F7970046B187 /* UKMooseMouthImageRep.m */; };
 		55CD5BEA21DFFEBA00B5E004 /* UKMouthShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CABC60CE4F7970046B187 /* UKMouthShape.m */; };
 		55CD5BEB21DFFEF600B5E004 /* UKBorderlessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD98A006B07FE500FFE801 /* UKBorderlessWindow.m */; };
-		55CD5BEC21DFFEFB00B5E004 /* NSFileManager+CreateDirectoriesForPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF413D207970106002DE6EF /* NSFileManager+CreateDirectoriesForPath.m */; };
 		55CD5BED21DFFF0300B5E004 /* UKClickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988C06B07F9E00FFE801 /* UKClickableImageView.m */; };
 		55CD5BEE21DFFF0A00B5E004 /* UKWindowDraggingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A660CA110A4F7700FE0723 /* UKWindowDraggingImageView.m */; };
 		55CD5BEF21DFFF1300B5E004 /* UKIdleTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD988206B07F9E00FFE801 /* UKIdleTimer.m */; };
@@ -253,8 +250,6 @@
 		3DF412CF0796A168002DE6EF /* MiniMoose.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniMoose.tiff; sourceTree = "<group>"; };
 		3DF412EC0796B9D0002DE6EF /* BandAid.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = BandAid.tiff; sourceTree = "<group>"; };
 		3DF413B00796FE2F002DE6EF /* MooseAnim.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MooseAnim.icns; sourceTree = "<group>"; };
-		3DF413D107970106002DE6EF /* NSFileManager+CreateDirectoriesForPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+CreateDirectoriesForPath.h"; path = "../UliKit/NSFileManager+CreateDirectoriesForPath.h"; sourceTree = "<group>"; };
-		3DF413D207970106002DE6EF /* NSFileManager+CreateDirectoriesForPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+CreateDirectoriesForPath.m"; path = "../UliKit/NSFileManager+CreateDirectoriesForPath.m"; sourceTree = "<group>"; };
 		3DF41D460797264E002DE6EF /* Moose.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = Moose.scriptSuite; sourceTree = "<group>"; };
 		3DF41D470797264E002DE6EF /* Moose.scriptTerminology */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = Moose.scriptTerminology; sourceTree = "<group>"; };
 		3DF41EE70797466B002DE6EF /* UKSpeakStringCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKSpeakStringCommand.h; sourceTree = "<group>"; };
@@ -543,8 +538,6 @@
 				3DA3544E08841AB400825D47 /* UKApplicationListController.m */,
 				3D34C68808785BDD000189DD /* UKUIElement.h */,
 				3D34C68908785BDD000189DD /* UKUIElement.m */,
-				3DF413D107970106002DE6EF /* NSFileManager+CreateDirectoriesForPath.h */,
-				3DF413D207970106002DE6EF /* NSFileManager+CreateDirectoriesForPath.m */,
 				5BBD989F06B07FE500FFE801 /* UKBorderlessWindow.h */,
 				5BBD98A006B07FE500FFE801 /* UKBorderlessWindow.m */,
 				3DE18FFF0A275D750040D274 /* NSScreen+ScreenAtPoint.h */,
@@ -667,7 +660,6 @@
 				5BBD989606B07F9F00FFE801 /* NSImage+NiceScaling.h in Headers */,
 				5BBD989806B07F9F00FFE801 /* UKGroupFile.h in Headers */,
 				5BBD98A106B07FE600FFE801 /* UKBorderlessWindow.h in Headers */,
-				3DF413D307970106002DE6EF /* NSFileManager+CreateDirectoriesForPath.h in Headers */,
 				3DF41EE90797466B002DE6EF /* UKSpeakStringCommand.h in Headers */,
 				3DF41F3707974CAE002DE6EF /* UKSpeakRandomPhraseCommand.h in Headers */,
 				3DF41F7307975218002DE6EF /* UKDisableSpeechCommand.h in Headers */,
@@ -914,7 +906,6 @@
 				55CD5BEE21DFFF0A00B5E004 /* UKWindowDraggingImageView.m in Sources */,
 				553852A821E0E81E00AF7F69 /* UKApplicationListController.m in Sources */,
 				55CD5BE921DFFEB700B5E004 /* UKMooseMouthImageRep.m in Sources */,
-				55CD5BEC21DFFEFB00B5E004 /* NSFileManager+CreateDirectoriesForPath.m in Sources */,
 				55CD5BF021E00BD500B5E004 /* UKSpeechSettingsView.m in Sources */,
 				55CD5BFC21E019D300B5E004 /* NSImage+NiceScaling.m in Sources */,
 				55CD5BE721DFFEAC00B5E004 /* UKMooseDragAreaView.m in Sources */,
@@ -943,7 +934,6 @@
 				5BBD989906B07F9F00FFE801 /* UKClickableImageView.m in Sources */,
 				5BBD989A06B07F9F00FFE801 /* NSImage+NiceScaling.m in Sources */,
 				5BBD98A206B07FE600FFE801 /* UKBorderlessWindow.m in Sources */,
-				3DF413D407970106002DE6EF /* NSFileManager+CreateDirectoriesForPath.m in Sources */,
 				3DF41EEA0797466B002DE6EF /* UKSpeakStringCommand.m in Sources */,
 				3DF41F3607974CAE002DE6EF /* UKSpeakRandomPhraseCommand.m in Sources */,
 				3DF41F7507975218002DE6EF /* UKEnableSpeechCommand.m in Sources */,

@@ -25,8 +25,11 @@
 		NSString*		stdPhrasePath = [@"~/Library/Application Support/Moose/Standard Phrases" stringByExpandingTildeInPath];
 		NSString*		stdPhrasePathOff = [@"~/Library/Application Support/Moose/Standard Phrases (Off)" stringByExpandingTildeInPath];
 		NSString*		builtinPhrasePath = [[NSBundle mainBundle] pathForResource: @"Phrases" ofType: nil];
-		if( ![fm fileExistsAtPath: stdPhrasePath] )
-			[fm createDirectoriesForPath: stdPhrasePath];
+		if( ![fm fileExistsAtPath: stdPhrasePath] ) {
+			if (![fm createDirectoryAtPath: stdPhrasePath withIntermediateDirectories: NO attributes: @{} error: &theError]) {
+				NSLog(@"Error %@ creating directory %@", theError, stdPhrasePath);
+			}
+		}
 		
 		NSString*	mooseVersionPath = [stdPhrasePath stringByAppendingPathComponent: @"mooseversion"];
 		NSString*	mooseVersionStr = [NSString stringWithContentsOfFile: mooseVersionPath encoding: NSUTF8StringEncoding error: &theError];

@@ -20,7 +20,6 @@
 #import "NSArray+Color.h"
 #import "PTHotKey.h"
 #import "PTKeyComboPanel.h"
-#import "NSFileManager+CreateDirectoriesForPath.h"
 //#import "NSWindow+Fade.h"
 #include <Carbon/Carbon.h>
 #import "UKCarbonEventHandler.h"
@@ -294,22 +293,35 @@ static BOOL		gIsSilenced = NO;
 	NSString*	title = NSLocalizedString(@"Install these files?",@"Multiple Install Question Title");
 	NSString*   msg = NSLocalizedString(@"You have opened animation/phrase files with the Moose. Do you want to install them on your computer so the Moose will use them from now on?",@"Multiple Install Question Message");
 
-	if( NSRunInformationalAlertPanel( title, @"%@", NSLocalizedString(@"Yes",@""), NSLocalizedString(@"No",@""), @"", msg ) == NSOKButton )
-	{
-		NSEnumerator*	enny = [filenames objectEnumerator];
-		NSString*		currFilename = nil;
-		NSMutableArray*	installedFileNames = [NSMutableArray array];
-		
-		while( (currFilename = [enny nextObject]) )
-			[self application: sender openFile: currFilename dontAskButAddToList: installedFileNames];
-		
-		msg = NSLocalizedString(@"The following files have been installed:\n\n%@\n\nDo you want to open the Moose panel so you can examine/activate them?",@"Multiple Install Success Message");
-		msg = [NSString stringWithFormat: msg, [installedFileNames componentsJoinedByString: @"\n"]];
-		title = [NSString stringWithFormat: NSLocalizedString(@"%d Files Installed.",@""), [installedFileNames count]];
-		
-		if( NSRunInformationalAlertPanel( title, @"%@", NSLocalizedString(@"Yes",@""), NSLocalizedString(@"No",@""), @"", msg ) == NSOKButton )
-			[[mooseList window] makeKeyAndOrderFront: self];
-	}
+	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+	alert.messageText = title;
+	alert.informativeText = msg;
+	[alert addButtonWithTitle: NSLocalizedString(@"Install",@"")];
+	[alert addButtonWithTitle: NSLocalizedString(@"Cancel",@"")];
+	
+	[alert beginSheetModalForWindow: mooseList.window completionHandler: ^(NSModalResponse returnCode) {
+		if (returnCode == NSModalResponseOK) {
+			NSEnumerator*	enny = [filenames objectEnumerator];
+			NSString*		currFilename = nil;
+			NSMutableArray*	installedFileNames = [NSMutableArray array];
+			
+			while( (currFilename = [enny nextObject]) )
+				[self application: sender openFile: currFilename dontAskButAddToList: installedFileNames];
+			
+			NSString *successMsg = NSLocalizedString(@"The following files have been installed:\n\n%@",@"Multiple Install Success Message");
+			successMsg = [NSString stringWithFormat: successMsg, [installedFileNames componentsJoinedByString: @"\n"]];
+			NSString *successTitle = [NSString stringWithFormat: NSLocalizedString(@"%d Files Installed.",@""), [installedFileNames count]];
+			
+			NSAlert *successAlert = [[[NSAlert alloc] init] autorelease];
+			successAlert.messageText = successTitle;
+			successAlert.informativeText = successMsg;
+			[successAlert addButtonWithTitle: NSLocalizedString(@"OK",@"")];
+
+			[successAlert beginSheetModalForWindow: mooseList.window completionHandler: ^(NSModalResponse returnCode) {
+				[mooseList.window makeKeyAndOrderFront: self];
+			}];
+		}
+	}];
 }
 
 
@@ -324,8 +336,13 @@ static BOOL		gIsSilenced = NO;
 	NSString*	title = NSLocalizedString(@"Install this file?",@"Install Question Title");
 	NSString*   msg = NSLocalizedString(@"You have opened an animation/phrase file with the Moose. Do you want to install it on your computer so the Moose will use it from now on?",@"Install Question Message");
 
-	if( NSRunInformationalAlertPanel( title, @"%@", NSLocalizedString(@"Yes",@""), NSLocalizedString(@"No",@""), @"", msg ) == NSOKButton )
-	{
+	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+	alert.messageText = title;
+	alert.informativeText = msg;
+	[alert addButtonWithTitle: NSLocalizedString(@"Install",@"")];
+	[alert addButtonWithTitle: NSLocalizedString(@"Cancel",@"")];
+	
+	if ([alert runModal] == NSModalResponseOK) {
 		return [self application: sender openFile: filename dontAskButAddToList: nil];
 	}
 	else
@@ -380,16 +397,20 @@ static BOOL		gIsSilenced = NO;
     
     if( dirToCopyTo != nil )
     {
-        if( ![[NSFileManager defaultManager] createDirectoriesForPath: dirToCopyTo] )
+		NSError * err = nil;
+		if( ![NSFileManager.defaultManager createDirectoryAtPath: dirToCopyTo withIntermediateDirectories: NO attributes: @{} error: &err] ) {
+			NSLog(@"Error %@ creating directory %@:", err, dirToCopyTo);
             return NO;
+		}
         
 		NSString*	itemName = [[NSFileManager defaultManager] displayNameAtPath: filename];
         dirToCopyTo = [dirToCopyTo stringByAppendingPathComponent: [filename lastPathComponent]];
         
-		if( [[NSFileManager defaultManager] fileExistsAtPath: dirToCopyTo] )
-			[[NSFileManager defaultManager] removeFileAtPath: dirToCopyTo handler: nil];
+		if( [[NSFileManager defaultManager] fileExistsAtPath: dirToCopyTo] ) {
+			[[NSFileManager defaultManager] removeItemAtPath: dirToCopyTo error: &err];
+		}
 		
-        if( [[NSFileManager defaultManager] copyPath: filename toPath: dirToCopyTo handler: nil] )
+        if( [[NSFileManager defaultManager] copyItemAtPath: filename toPath: dirToCopyTo error: &err] )
         {
 			if( isAnimation )
 				[self loadAnimationAtPath: dirToCopyTo andReload: YES];
@@ -400,11 +421,18 @@ static BOOL		gIsSilenced = NO;
 				[arr addObject: [NSString stringWithFormat: @"%@ (%@)", itemName, itemKindName]];
 			else
 			{
-				NSString*   msg = NSLocalizedString(@"The %@ \"%@\" has been installed. Do you want to open the Moose panel so you can examine/activate it?",@"Install Success Message");
+				NSString *title = NSLocalizedString(@"Installation successful.",@"");
+				NSString *msg = NSLocalizedString(@"The %@ \"%@\" has been installed.",@"Install Success Message");
 				msg = [NSString stringWithFormat: msg, itemKindName, itemName];
-				if( NSRunInformationalAlertPanel( NSLocalizedString(@"Installation successful.",@""), @"%@",
-						NSLocalizedString(@"Yes",@""), NSLocalizedString(@"No",@""), @"", msg ) == NSOKButton )
-					[[mooseList window] makeKeyAndOrderFront: self];
+				
+				NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+				alert.messageText = title;
+				alert.informativeText = msg;
+				[alert addButtonWithTitle: NSLocalizedString(@"OK",@"")];
+				
+				[alert beginSheetModalForWindow: mooseList.window completionHandler: ^(NSModalResponse returnCode) {
+					[mooseList.window makeKeyAndOrderFront: self];
+				}];
 			}
         }
     }
@@ -428,6 +456,7 @@ static BOOL		gIsSilenced = NO;
 		lastPrefVersion = @"";
 	if( ![lastPrefVersion isEqualToString: currVersion] )	// Compare version of Moose that last wrote prefs to ours:
 	{
+		NSError *err = nil;
 		NSString*		prefsFile = [[NSString stringWithFormat: @"~/Library/Preferences/%@.plist", [[NSBundle mainBundle] bundleIdentifier]] stringByExpandingTildeInPath];
 		NSString*		backupFile = [prefsFile stringByAppendingString: @".backup"];
 		NSFileManager*	dfm = [NSFileManager defaultManager];
@@ -435,9 +464,9 @@ static BOOL		gIsSilenced = NO;
 		
 		// Copy prefs file to a backup file:
 		if( [dfm fileExistsAtPath: backupFile] )
-			goOn = [dfm removeFileAtPath: backupFile handler: nil];
+			goOn = [dfm removeItemAtPath: backupFile error: &err];
 		if( goOn )
-			[dfm copyPath: prefsFile toPath: backupFile handler: nil];	// We don't really care if this fails
+			[dfm copyItemAtPath:prefsFile toPath: backupFile error: &err];	// We don't really care if this fails
 		
 		// Remember we already did a backup:
 		[_sharedDefaults setObject: currVersion forKey: @"UKMooseLastPrefsVersion"];
@@ -456,13 +485,11 @@ static BOOL		gIsSilenced = NO;
 
 -(void) loadAnimationsInFolder: (NSString*)folder
 {
+	NSError *err = nil;
 	NSString*			animFolder = [folder stringByExpandingTildeInPath];
-	NSEnumerator*		enny = [[[NSFileManager defaultManager] directoryContentsAtPath: animFolder] objectEnumerator];
-	NSString*			currPath = nil;
 	UKMooseController*  newController = nil;
 	
-	while( (currPath = [enny nextObject]) )
-	{
+	for (NSString *currPath in [NSFileManager.defaultManager contentsOfDirectoryAtPath: animFolder error: &err]) {
 		if( [currPath characterAtIndex:0] == '.' )
 			continue;
 		if( ![[currPath pathExtension] isEqualToString: @"nose"] )
@@ -785,13 +812,11 @@ static BOOL		gIsSilenced = NO;
 -(void) applicationSwitchNotification:(NSNotification*)notif
 {
 	//UKLog(@"applicationSwitchNotification");
-	if( speakOnAppChange )
-	{
+	if( speakOnAppChange ) {
 		// Don't speak if we're switching to this app, so the two methods bwlow get their shot:
-		NSDictionary*	activeAppDict = [[NSWorkspace sharedWorkspace] activeApplication];
-		if( ![[activeAppDict objectForKey: @"NSApplicationPath"] isEqualToString: [[NSBundle mainBundle] bundlePath]] )
-		{
-			NSString*		appName = [[[activeAppDict objectForKey: @"NSApplicationName"] retain] autorelease];
+		NSRunningApplication *activeApp = [NSWorkspace.sharedWorkspace frontmostApplication];
+		if (![activeApp.bundleURL.path isEqualToString: NSBundle.mainBundle.bundlePath]) {
+			NSString *appName = [[activeApp.localizedName retain] autorelease];
 			[self speakPhraseOnMainThreadFromGroup: @"CHANGE APPLICATION" withFillerString: appName];
 		}
 	}

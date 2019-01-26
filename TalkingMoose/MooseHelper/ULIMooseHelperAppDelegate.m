@@ -464,12 +464,10 @@
 
 -(void) loadAnimationsInFolder: (NSString*)folder
 {
-	NSString*			animFolder = [folder stringByExpandingTildeInPath];
-	NSEnumerator*		enny = [[[NSFileManager defaultManager] directoryContentsAtPath: animFolder] objectEnumerator];
-	NSString*			currPath = nil;
+	NSError *err = nil;
+	NSString *animFolder = [folder stringByExpandingTildeInPath];
 	
-	while( (currPath = [enny nextObject]) )
-	{
+	for (NSString * currPath in [NSFileManager.defaultManager contentsOfDirectoryAtPath: animFolder error: &err]) {
 		if( [currPath characterAtIndex:0] == '.' )
 			continue;
 		if( ![[currPath pathExtension] isEqualToString: @"nose"] )
@@ -510,100 +508,90 @@
 
 -(void) updateClockTimerFireTime: (NSTimer*)timer
 {
-	NSCalendarDate* calDate = [NSDate distantFuture];
+	NSDate* calDate = nil;
 	
 	if( [_sharedDefaults boolForKey: @"UKMooseSpeakTime"] )
 	{
-		int             year;
-		unsigned int	month, day, hour, minute, second;
-		NSTimeZone*     zone;
-		calDate = [NSCalendarDate calendarDate];
+		NSCalendarUnit desiredUnits =	NSCalendarUnitEra |
+										NSCalendarUnitYear |
+										NSCalendarUnitMonth |
+										NSCalendarUnitDay |
+										NSCalendarUnitHour |
+										NSCalendarUnitMinute |
+										NSCalendarUnitSecond |
+										NSCalendarUnitCalendar |
+										NSCalendarUnitTimeZone;
 		
-		year = [calDate yearOfCommonEra];
-		month = [calDate monthOfYear];
-		day = [calDate dayOfMonth];
-		hour = [calDate hourOfDay];
-		minute = [calDate minuteOfHour];
-		second = [calDate secondOfMinute];
-		zone = [calDate timeZone];
+		calDate = NSDate.date;
+		NSCalendar *calendar = NSCalendar.currentCalendar;
+		NSDateComponents *dateParts = [calendar components: desiredUnits fromDate: calDate];
 		
 		unsigned int    randNum = (unsigned int) rand();
 		int             minAdd = (randNum & 0x00000007),		// Low 3 bits: 0...7
 		secAdd = (randNum & 0x00000070) >> 4;	// 3 bits: 0...7
 		
-		if( minute >= 30 || ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeOnHalfHours"] )
+		if( dateParts.minute >= 30 || ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeOnHalfHours"] )
 		{
-			minute = 0;
-			hour++;
+			dateParts.minute = 0;
+			dateParts.hour += 1;
 			
-			if( hour >= 24 )
+			if( dateParts.hour >= 24 )
 			{
-				hour = 0;
+				dateParts.hour = 0;
 				
 				// Add 1 day to the date:
-				calDate = [NSCalendarDate dateWithYear: year month: month day: day
-												  hour: hour minute: minute second: second timeZone: zone];
-				calDate = [calDate dateByAddingYears: 0 months: 0 days: 1 hours: 0 minutes: 0 seconds: 0];
-				
-				year = [calDate yearOfCommonEra];
-				month = [calDate monthOfYear];
-				day = [calDate dayOfMonth];
-				hour = [calDate hourOfDay];
-				minute = [calDate minuteOfHour];
-				second = [calDate secondOfMinute];
-				zone = [calDate timeZone];
+				calDate = [calendar dateFromComponents: dateParts];
+				calDate = [calendar dateByAddingUnit: NSCalendarUnitHour value: 1 toDate: calDate options: NSCalendarWrapComponents];
+				dateParts = [calendar components: desiredUnits fromDate: calDate];
 			}
 		}
 		else
-			minute = 30;
+			dateParts.minute = 30;
 		
 		if( [_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
-			second = 0;
+			dateParts.second = 0;
 		
-		calDate = [NSCalendarDate dateWithYear: year month: month day: day
-										  hour: hour minute: minute second: second timeZone: zone];
-		
-		if( ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
-			calDate = [calDate dateByAddingYears: 0 months: 0 days: 0 hours: 0 minutes: minAdd seconds: secAdd];
+		calDate = [calendar dateFromComponents: dateParts];
+
+		if( ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] ) {
+			calDate = [calendar dateByAddingUnit: NSCalendarUnitMinute value: minAdd toDate: calDate options: NSCalendarWrapComponents];
+			calDate = [calendar dateByAddingUnit: NSCalendarUnitSecond value: secAdd toDate: calDate options: NSCalendarWrapComponents];
+		}
 	}
 	else
-		calDate = [NSCalendarDate distantFuture];
+		calDate = [NSDate distantFuture];
 	
 	[timer setFireDate: calDate];
-	//UKLog( @"Actual fire time: %@", [timer fireDate] );
+	UKLog( @"Actual fire time: %@", [timer fireDate] );
 }
 
 
 -(void) halfHourElapsed: (NSTimer*)timer
 {
-	NS_DURING
 	NSAutoreleasePool*	pool = [[NSAutoreleasePool alloc] init];
 	
-	if( !speechSynth )
-		[NSException raise: @"UKHalfHourElapsedNoChannel" format: @"Speech channel is NIL in halfHourElapsed:"];
+	if( !speechSynth ) {
+		NSLog(@"Speech channel is NIL in halfHourElapsed.");
+		return;
+	}
 	
 	if( ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] )
 	{
 		NSString*			timeFmtStr = @"%I:%M";
-		if( !timeFmtStr )
-			[NSException raise: @"UKHalfHourElapsedNoTimeFmtStr" format: @"Time Format String is NIL in halfHourElapsed:"];
-		NSDateFormatter*    form = [[[NSDateFormatter alloc] initWithDateFormat: timeFmtStr allowNaturalLanguage: NO] autorelease];
-		if( !form )
-			[NSException raise: @"UKHalfHourElapsedNoDateFrm" format: @"Date Formatter is NIL in halfHourElapsed:"];
+		NSDateFormatter*    form = [[[NSDateFormatter alloc] init] autorelease];
+		form.dateFormat = timeFmtStr;
+		NSString*			timeStr = [form stringForObjectValue: NSDate.date];
+		if( timeStr ) {
+			[self speakPhraseFromGroup: @"TIME ANNOUNCEMENT" withFillerString: timeStr];
+		} else {
+			NSLog(@"Time String is NIL in halfHourElapsed.");
+		}
 		
-		NSString*			timeStr = [form stringForObjectValue: [NSDate date]];
-		if( !timeStr )
-			[NSException raise: @"UKHalfHourElapsedNoTimeStr" format: @"Time String is NIL in halfHourElapsed:"];
-		[self speakPhraseFromGroup: @"TIME ANNOUNCEMENT" withFillerString: timeStr];
-		
-		//UKLog( @"Speaking time: %@", timeStr );
+		UKLog( @"Speaking time: %@", timeStr );
 	}
 	[self updateClockTimerFireTime: timer];
 	
 	[pool release];
-	NS_HANDLER
-	NSLog(@"Error during time announcement: %@", localException);
-	NS_ENDHANDLER
 }
 
 
@@ -652,9 +640,9 @@
 	
 	while( YES )
 	{
-		currEvt = [NSApp nextEventMatchingMask: NSLeftMouseUpMask | NSLeftMouseDraggedMask
+		currEvt = [NSApp nextEventMatchingMask: NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDragged
 									 untilDate: [NSDate distantFuture] inMode: NSEventTrackingRunLoopMode dequeue: YES];
-		if( currEvt && [currEvt type] == NSLeftMouseUp )
+		if( currEvt && [currEvt type] == NSEventTypeLeftMouseUp )
 			break;
 		
 		oldBox.size.width += [currEvt deltaX];
@@ -703,13 +691,13 @@
 	
 	while( true )
 	{
-		evt = [NSApp nextEventMatchingMask: (NSLeftMouseUpMask | NSLeftMouseDraggedMask)
+		evt = [NSApp nextEventMatchingMask: (NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDragged)
 								 untilDate: [NSDate distantFuture] inMode: NSEventTrackingRunLoopMode
 								   dequeue:YES];
 		if( !evt )
 			continue;
 		
-		if( [evt type] == NSLeftMouseUp )
+		if( [evt type] == NSEventTypeLeftMouseUp )
 			break;
 		
 		mousePos = [NSEvent mouseLocation];
@@ -879,7 +867,7 @@
 		
 		[speechBubbleView setString: [NSSpeechSynthesizer prettifyString: currPhrase]];
 		//[[speechBubbleView textStorage] setAttributes: attrs range: NSMakeRange(0,[currPhrase length])];
-		[speechBubbleView setAlignment: NSCenterTextAlignment];
+		[speechBubbleView setAlignment: NSTextAlignmentCenter];
 		
 		[speechBubbleView setMinSize: NSMakeSize(16,16)];
 		[speechBubbleView setMaxSize: NSMakeSize(300,10000)];
@@ -1020,7 +1008,7 @@
 -(void) mooseControllerSpeechStart: (UKMooseController*)mc
 {
 	NSRect		wBox = [[imageView window] frame];
-	wBox.origin = [[imageView window] convertBaseToScreen: [imageView convertPoint: NSZeroPoint toView: nil]];
+	wBox.origin = [imageView.window convertPointToScreen: [imageView convertPoint: NSZeroPoint toView: nil]];
 	[currentMoose setGlobalFrame: wBox];
 	
 	UKLog(@"About to call showMoose");
