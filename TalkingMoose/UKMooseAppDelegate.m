@@ -146,7 +146,7 @@ static BOOL		gIsSilenced = NO;
 -(void) refreshServiceConnection
 {
 	if (!_connectionToService) {
-		_connectionToService = [[NSXPCConnection alloc] initWithServiceName: UKHelperApplicationID];
+		_connectionToService = [[NSXPCConnection alloc] initWithMachServiceName: UKHelperApplicationID options: 0];
 		_connectionToService.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ULIMooseServiceProtocol)];
 		[_connectionToService resume];
 	}
