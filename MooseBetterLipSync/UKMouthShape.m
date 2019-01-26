@@ -121,14 +121,12 @@ static NSPoint	UKLocalPointForRect( NSPoint origPos, NSSize internalSize, NSRect
 -(id)	initWithContentsOfFile: (NSString*)fpath
 {
 	NSData*					fdata = [NSData dataWithContentsOfFile: fpath];
-	NSString*				errStr = nil;
+	NSError*				errStr = nil;
 	NSPropertyListFormat	format = NSPropertyListOpenStepFormat;
-	NSDictionary*			dict = [NSPropertyListSerialization propertyListFromData: fdata
-										mutabilityOption: NSPropertyListImmutable
-										format: &format errorDescription: &errStr];
-	if( errStr )
-	{
-		[errStr release];
+	NSDictionary*			dict = [NSPropertyListSerialization propertyListWithData: fdata
+										options: NSPropertyListImmutable
+										format: &format error: &errStr];
+	if( errStr ) {
 		return nil;
 	}
 	
@@ -138,14 +136,12 @@ static NSPoint	UKLocalPointForRect( NSPoint origPos, NSSize internalSize, NSRect
 
 -(id)	initWithData: (NSData*)fdata
 {
-	NSString*				errStr = nil;
+	NSError*				errStr = nil;
 	NSPropertyListFormat	format = NSPropertyListBinaryFormat_v1_0;
-	NSDictionary*			dict = [NSPropertyListSerialization propertyListFromData: fdata
-										mutabilityOption: NSPropertyListImmutable
-										format: &format errorDescription: &errStr];
-	if( errStr )
-	{
-		[errStr release];
+	NSDictionary*			dict = [NSPropertyListSerialization propertyListWithData: fdata
+										options: NSPropertyListImmutable
+										format: &format error: &errStr];
+	if( errStr ) {
 		return nil;
 	}
 	
@@ -164,7 +160,7 @@ static NSPoint	UKLocalPointForRect( NSPoint origPos, NSSize internalSize, NSRect
 }
 
 
--(int)	countPoints
+-(NSUInteger)	countPoints
 {
 	return numPoints;
 }
@@ -207,14 +203,13 @@ static NSPoint	UKLocalPointForRect( NSPoint origPos, NSSize internalSize, NSRect
 -(NSData*)			dataRepresentation
 {
 	NSDictionary*		dict = [self dictionaryRepresentation];
-	NSString*			errStr = nil;
-	NSData*				fdata = [NSPropertyListSerialization dataFromPropertyList: dict
-											format: NSPropertyListBinaryFormat_v1_0
-											errorDescription: &errStr];
+	NSError*			errStr = nil;
+	NSData*				fdata = [NSPropertyListSerialization dataWithPropertyList: dict
+											format: NSPropertyListBinaryFormat_v1_0 options: 0
+											error: &errStr];
 	if( errStr )
 	{
 		UKLog(@"Error: %@",errStr);
-		[errStr release];
 		return nil;
 	}
 	
@@ -224,7 +219,7 @@ static NSPoint	UKLocalPointForRect( NSPoint origPos, NSSize internalSize, NSRect
 
 -(void)	addCurvePoint: (NSPoint)pos inRect: (NSRect)box
 {
-	NSAssert1( numPoints < (MAX_POINTS-1), @"Can't add point, already have %d", numPoints );
+	NSAssert1( numPoints < (MAX_POINTS-1), @"Can't add point, already have %lu", (unsigned long)numPoints );
 	
 	points[numPoints].pos = UKLocalPointForRect(pos,imageSize,box);
 	points[numPoints].isHardCorner = NO;
@@ -233,7 +228,7 @@ static NSPoint	UKLocalPointForRect( NSPoint origPos, NSSize internalSize, NSRect
 
 -(void)	addCornerPoint: (NSPoint)pos inRect: (NSRect)box
 {
-	NSAssert1( numPoints < (MAX_POINTS-1), @"Can't add point, already have %d", numPoints );
+	NSAssert1( numPoints < (MAX_POINTS-1), @"Can't add point, already have %lu", (unsigned long)numPoints );
 	
 	points[numPoints].pos = UKLocalPointForRect(pos,imageSize,box);
 	points[numPoints].isHardCorner = YES;
@@ -307,7 +302,7 @@ static NSPoint	UKLocalPointForRect( NSPoint origPos, NSSize internalSize, NSRect
 		[[NSGraphicsContext currentContext] saveGraphicsState];
 		
 		[path setClip];
-		[img drawInRect: box fromRect: NSZeroRect operation: NSCompositeCopy fraction: 1.0];
+		[img drawInRect: box fromRect: NSZeroRect operation: NSCompositingOperationCopy fraction: 1.0];
 		
 		[[NSGraphicsContext currentContext] restoreGraphicsState];
 	}
@@ -348,10 +343,9 @@ static NSPoint	UKLocalPointForRect( NSPoint origPos, NSSize internalSize, NSRect
 }
 
 
--(int)	pointClicked: (NSPoint)clickPos inRect: (NSRect)box
+-(NSUInteger)	pointClicked: (NSPoint)clickPos inRect: (NSRect)box
 {
-	int		x = 0;
-	for( x = (numPoints -1); x >= 0; x-- )
+	for( NSUInteger x = (numPoints -1); x >= 0; x-- )
 	{
 		NSBezierPath*	theHandle = NULL;
 		NSPoint			currPoint = UKExternalPointForRect(points[x].pos,imageSize,box);

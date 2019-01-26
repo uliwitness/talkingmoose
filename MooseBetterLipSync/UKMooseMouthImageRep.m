@@ -217,8 +217,8 @@
 	{
 		img = [[[NSImage alloc] initWithSize: [self size]] autorelease];
 		[img lockFocus];
-			[self compositeToPoint: NSZeroPoint operation: NSCompositeCopy];
-			[otherImage compositeToPoint: NSZeroPoint operation: NSCompositeSourceAtop fraction: perc];
+			[self compositeToPoint: NSZeroPoint operation: NSCompositingOperationCopy];
+			[otherImage compositeToPoint: NSZeroPoint operation: NSCompositingOperationSourceAtop fraction: perc];
 		[img unlockFocus];
 	}
 	

@@ -53,7 +53,7 @@ enum
 -(NSDictionary*)	dictionaryRepresentation;
 -(NSData*)			dataRepresentation;
 
--(int)				countPoints;
+-(NSUInteger)		countPoints;
 -(void)				addCurvePoint: (NSPoint)pos inRect: (NSRect)box;
 -(void)				addCornerPoint: (NSPoint)pos inRect: (NSRect)box;
 -(NSPoint)			positionOfPointAtIndex: (int)idx inRect: (NSRect)box;
@@ -63,7 +63,7 @@ enum
 
 -(void)				drawInRect: (NSRect)box displayArea: (NSRect)dirtyRect insideImage: (NSImage*)img;
 -(void)				drawPointsInRect: (NSRect)box displayArea: (NSRect) dirtyRect;
--(int)				pointClicked: (NSPoint)clickPos inRect: (NSRect)box;
+-(NSUInteger)		pointClicked: (NSPoint)clickPos inRect: (NSRect)box;
 
 -(NSBezierPath*)	pathInRect: (NSRect)box;
 

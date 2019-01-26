@@ -550,17 +550,17 @@
 	
 	// Composite the parts into the image:
 	[img lockFocus];
-		[bgImage compositeToPoint: zeroPoint operation: NSCompositeCopy];
-		[baseImg compositeToPoint: zeroPoint operation: NSCompositeSourceOver];
-		[mouthImg compositeToPoint: mouthImgPos operation: NSCompositeSourceOver];
-		[eyesImg compositeToPoint: eyeImgPos operation: NSCompositeSourceOver];
+		[bgImage compositeToPoint: zeroPoint operation: NSCompositingOperationCopy];
+		[baseImg compositeToPoint: zeroPoint operation: NSCompositingOperationSourceOver];
+		[mouthImg compositeToPoint: mouthImgPos operation: NSCompositingOperationSourceOver];
+		[eyesImg compositeToPoint: eyeImgPos operation: NSCompositingOperationSourceOver];
         if( badgeImage )
         {
             NSPoint pos;
             NSSize  siz = [badgeImage size];
             pos.x = truncf((imgSize.width /2) -(siz.width /2));
             pos.y = truncf((imgSize.height /2) -(siz.height /2));
-            [badgeImage compositeToPoint: pos operation: NSCompositeSourceOver];
+            [badgeImage compositeToPoint: pos operation: NSCompositingOperationSourceOver];
         }
 	[img unlockFocus];
     
@@ -577,7 +577,7 @@
 			[NSGraphicsContext restoreGraphicsState];
 			
             // Draw image on top of shadow:
-            [img compositeToPoint: pos operation: NSCompositeSourceOver];
+            [img compositeToPoint: pos operation: NSCompositingOperationSourceOver];
         [newImg unlockFocus];
         
         // Replace old cached image with the new one:
