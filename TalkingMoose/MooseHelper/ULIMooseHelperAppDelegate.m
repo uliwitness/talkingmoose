@@ -152,8 +152,8 @@
 	[mooseWindow setLevel: kCGOverlayWindowLevel];
 	[mooseWindow setHidesOnDeactivate: NO];
 	[mooseWindow setCanHide: NO];
-	if( [mooseWindow respondsToSelector: @selector(setCollectionBehavior:)] )
-		[(id)mooseWindow setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
+	[mooseWindow setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces | NSWindowCollectionBehaviorStationary | NSWindowCollectionBehaviorFullScreenAuxiliary | NSWindowCollectionBehaviorFullScreenDisallowsTiling];
+	[mooseWindow setAnimationBehavior: NSWindowAnimationBehaviorNone];
 	
 	// Get window scale factor from Prefs:
 	float savedScaleFactor = [_sharedDefaults floatForKey: @"UKMooseScaleFactor"];
@@ -172,6 +172,8 @@
 	[self startXPCService];
 }
 
+
+#pragma mark - XPC -
 
 -(void) startXPCService
 {
@@ -279,6 +281,9 @@
 }
 
 
+#pragma mark - Properties -
+
+
 -(void)	setScaleFactor: (float)sf
 {
 	scaleFactor = sf;
@@ -318,6 +323,11 @@
 
 -(void)	activateMooseController
 {
+	if (currentMoose) {
+		currentMoose.delegate = nil;
+		currentMoose.dontIdleAnimate = YES;
+	}
+	
 	NSString*   currAnim = [_sharedDefaults objectForKey: @"UKCurrentMooseAnimationPath"];
 	
 	UKLog(@"Attempting to load animation %@", currAnim);
@@ -348,6 +358,9 @@
 	}
 	
 	currentMoose = mooseControllers[currMooseIndex];
+	currentMoose.delegate = self;
+	currentMoose.dontIdleAnimate = NO;
+	
 	[self mooseControllerDidChange];
 }
 
@@ -837,11 +850,11 @@
 
 -(void) showSpeechBubbleWithString: (NSString*)currPhrase
 {
+	NSWindow*		bubbleWin = [speechBubbleView window];
+	NSWindow*		mooseWin = [imageView window];
 	if( showSpokenString )
 	{
 		//UKLog(@"About to position.");
-		NSWindow*		bubbleWin = [speechBubbleView window];
-		NSWindow*		mooseWin = [imageView window];
 		NSRect			mooseFrame = [mooseWin frame];
 		NSRect			bubbleFrame = [bubbleWin frame];
 		//NSDictionary*   attrs = [NSDictionary dictionaryWithObjectsAndKeys: [[NSColor whiteColor] colorWithAlphaComponent: 0.8], NSBackgroundColorAttributeName, nil];
@@ -881,17 +894,15 @@
 			bubbleFrame = visibleBubbleFrame;
 		
 		// Actually assign frame we found and display Moose:
+		UKLog(@"bubbleWindow frame: %@", NSStringFromRect(bubbleFrame));
 		[bubbleWin setFrame: bubbleFrame display: YES];
-		/*if( fadeInOut )
-		 [bubbleWin fadeInWithDuration: 0.5];
-		 else
-		 [bubbleWin orderFrontRegardless];*/
-		//UKLog(@"Positioned at %@ for moose frame %@.",NSStringFromRect( bubbleFrame ),NSStringFromRect( mooseFrame ));
 		
 		[mooseWin addChildWindow: bubbleWin ordered: NSWindowAbove];
 	}
-	else
-		;//UKLog(@"showSpokenString == false");
+	else {
+		[mooseWin removeChildWindow: bubbleWin];
+		[bubbleWin orderOut: self];
+	}
 }
 
 
@@ -915,7 +926,8 @@
 		if( showSpokenString )
 		{
 			[speechBubbleView setString: currPhrase];
-			[[speechBubbleView window] fadeInWithDuration: 0.5];
+			//[[speechBubbleView window] fadeInWithDuration: 0.5];
+			[speechBubbleView.window orderFront: self];
 		}
 	}
 }
@@ -1200,9 +1212,12 @@
 			;//UKLog(@"no need to constrain rect %@.",NSStringFromRect( mooseFrame ));
 		
 		// Now actually show the Moose window:
-		[mooseWin fadeInWithDuration: 0.5];
-		if( showSpokenString )
-			[[speechBubbleView window] fadeInWithDuration: 0.5];
+//		[mooseWin fadeInWithDuration: 0.5];
+		[mooseWin orderFront: self];
+		if( showSpokenString ) {
+//			[[speechBubbleView window] fadeInWithDuration: 0.5];
+			[speechBubbleView.window orderFront: self];
+		}
 		//[currentMoose setDontIdleAnimate: NO];
 		[self pinWidgetsBoxToBotRight];
 	}

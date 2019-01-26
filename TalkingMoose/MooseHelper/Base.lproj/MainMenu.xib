@@ -684,7 +684,7 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Moose" autorecalculatesKeyViewLoop="NO" hasShadow="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="nFg-JB-1yx" userLabel="Moose" customClass="UKBorderlessWindow">
+        <window title="Moose" autorecalculatesKeyViewLoop="NO" hasShadow="NO" releasedWhenClosed="NO" animationBehavior="default" id="nFg-JB-1yx" userLabel="Moose" customClass="UKBorderlessWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="84" y="719" width="123" height="111"/>
@@ -746,7 +746,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" ambiguous="YES" id="Lh5-9g-PKW">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="478"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView ambiguous="YES" editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" smartInsertDelete="YES" id="YzW-Hu-FKw">
                                     <rect key="frame" x="0.0" y="0.0" width="213" height="478"/>
