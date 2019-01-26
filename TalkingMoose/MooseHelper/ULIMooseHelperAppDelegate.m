@@ -271,6 +271,18 @@
 				} else {
 					UKLog(@"\"%@\"", currURL.path);
 				}
+			} else if ([currURL.host caseInsensitiveCompare: @"speak"] == NSOrderedSame) {
+				NSString *msg = @"";
+				if ([msg hasPrefix:@"/"]) {
+					msg = [msg substringFromIndex: 1];
+				}
+				[self speakString: msg];
+			} else if ([currURL.host caseInsensitiveCompare: @"speak-group"] == NSOrderedSame) {
+				NSString *msg = @"";
+				if ([msg hasPrefix:@"/"]) {
+					msg = [msg substringFromIndex: 1];
+				}
+				[self speakPhraseFromGroup: msg withFillerString: @""];
 			} else {
 				UKLog(@"\"%@\" | \"%@\"", currURL.host, currURL.path);
 			}
