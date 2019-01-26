@@ -1192,8 +1192,10 @@
 	{
 		//[currentMoose setDontIdleAnimate: NO];
 		//UKLog( @"\tHit zero. Fading out." );
-		[[imageView window] fadeOutWithDuration: 0.5];
-		[[speechBubbleView window] fadeOutWithDuration: 0.5];
+		[imageView.window orderOut: self];
+		[speechBubbleView.window orderOut: self];
+//		[[imageView window] fadeOutWithDuration: 0.5];
+//		[[speechBubbleView window] fadeOutWithDuration: 0.5];
 		self.appNapDeactivatingActivity = nil;
 		UKLog(@"app nap = %@", self.appNapDeactivatingActivity);
 	}
