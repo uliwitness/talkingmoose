@@ -53,8 +53,6 @@
 		3DDF4F3B09D6B9180033B811 /* UKCarbonEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF4F3909D6B9180033B811 /* UKCarbonEventHandler.m */; };
 		3DE190010A275D750040D274 /* NSScreen+ScreenAtPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE18FFF0A275D750040D274 /* NSScreen+ScreenAtPoint.h */; };
 		3DE190020A275D750040D274 /* NSScreen+ScreenAtPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE190000A275D750040D274 /* NSScreen+ScreenAtPoint.m */; };
-		3DE61AED0869AC77002EC36A /* NSData+URLUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE61AEB0869AC77002EC36A /* NSData+URLUserAgent.h */; };
-		3DE61AEE0869AC77002EC36A /* NSData+URLUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE61AEC0869AC77002EC36A /* NSData+URLUserAgent.m */; };
 		3DE61B450869B176002EC36A /* svn_version.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE61B440869B176002EC36A /* svn_version.h */; };
 		3DF412D00796A168002DE6EF /* MiniMoose.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3DF412CF0796A168002DE6EF /* MiniMoose.tiff */; };
 		3DF412ED0796B9D0002DE6EF /* BandAid.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3DF412EC0796B9D0002DE6EF /* BandAid.tiff */; };
@@ -251,8 +249,6 @@
 		3DDF4F3909D6B9180033B811 /* UKCarbonEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKCarbonEventHandler.m; path = ../UliKit/UKCarbonEventHandler.m; sourceTree = SOURCE_ROOT; };
 		3DE18FFF0A275D750040D274 /* NSScreen+ScreenAtPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSScreen+ScreenAtPoint.h"; path = "../UliKit/NSScreen+ScreenAtPoint.h"; sourceTree = SOURCE_ROOT; };
 		3DE190000A275D750040D274 /* NSScreen+ScreenAtPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSScreen+ScreenAtPoint.m"; path = "../UliKit/NSScreen+ScreenAtPoint.m"; sourceTree = SOURCE_ROOT; };
-		3DE61AEB0869AC77002EC36A /* NSData+URLUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSData+URLUserAgent.h"; path = "../UliKit/NSData+URLUserAgent.h"; sourceTree = "<group>"; };
-		3DE61AEC0869AC77002EC36A /* NSData+URLUserAgent.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSData+URLUserAgent.m"; path = "../UliKit/NSData+URLUserAgent.m"; sourceTree = "<group>"; };
 		3DE61B440869B176002EC36A /* svn_version.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = svn_version.h; sourceTree = "<group>"; };
 		3DF412CF0796A168002DE6EF /* MiniMoose.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MiniMoose.tiff; sourceTree = "<group>"; };
 		3DF412EC0796B9D0002DE6EF /* BandAid.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = BandAid.tiff; sourceTree = "<group>"; };
@@ -588,8 +584,6 @@
 		3D1575B7071BEAA5008183E8 /* UliKit */ = {
 			isa = PBXGroup;
 			children = (
-				3DE61AEB0869AC77002EC36A /* NSData+URLUserAgent.h */,
-				3DE61AEC0869AC77002EC36A /* NSData+URLUserAgent.m */,
 				5BBD988306B07F9E00FFE801 /* NSArray+Color.h */,
 				5BBD988606B07F9E00FFE801 /* NSArray+Color.m */,
 				5BBD988906B07F9E00FFE801 /* NSImage+NiceScaling.h */,
@@ -678,7 +672,6 @@
 				3DF41F3707974CAE002DE6EF /* UKSpeakRandomPhraseCommand.h in Headers */,
 				3DF41F7307975218002DE6EF /* UKDisableSpeechCommand.h in Headers */,
 				3DF41F7407975218002DE6EF /* UKEnableSpeechCommand.h in Headers */,
-				3DE61AED0869AC77002EC36A /* NSData+URLUserAgent.h in Headers */,
 				3DE61B450869B176002EC36A /* svn_version.h in Headers */,
 				3DA3544F08841AB400825D47 /* UKApplicationListController.h in Headers */,
 				3D05C45E08888A1600DA756A /* UKDocumentationController.h in Headers */,
@@ -955,7 +948,6 @@
 				3DF41F3607974CAE002DE6EF /* UKSpeakRandomPhraseCommand.m in Sources */,
 				3DF41F7507975218002DE6EF /* UKEnableSpeechCommand.m in Sources */,
 				3DF41F7607975218002DE6EF /* UKDisableSpeechCommand.m in Sources */,
-				3DE61AEE0869AC77002EC36A /* NSData+URLUserAgent.m in Sources */,
 				3DA3545008841AB400825D47 /* UKApplicationListController.m in Sources */,
 				3D05C45F08888A1600DA756A /* UKDocumentationController.m in Sources */,
 				3D56781E0994F2D8008FDECF /* UKCrashReporter.m in Sources */,

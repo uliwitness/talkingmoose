@@ -136,14 +136,12 @@
 
 +(BOOL) canInitWithData: (NSData*)data
 {
-	NSPropertyListFormat			parsedFormat = NSPropertyListBinaryFormat_v1_0;
-	NSString*						errStr = nil;
-	NSDictionary*					commands = [NSPropertyListSerialization propertyListFromData: data
-													mutabilityOption: NSPropertyListImmutable
-													format: &parsedFormat errorDescription: &errStr];
-	if( errStr || !commands )
-	{
-		[errStr release];
+	NSPropertyListFormat parsedFormat = NSPropertyListBinaryFormat_v1_0;
+	NSError *errStr = nil;
+	NSDictionary *commands = [NSPropertyListSerialization propertyListWithData: data
+													options: NSPropertyListImmutable
+													format: &parsedFormat error: &errStr];
+	if( errStr || !commands ) {
 		return NO;
 	}
 	
@@ -163,15 +161,9 @@
 }
 
 
-+(NSArray*) imageUnfilteredFileTypes
++(NSArray*) imageUnfilteredTypes
 {
-    return [NSArray arrayWithObject: @"mooseMouth"];
-}
-
-
-+(NSArray*) imageUnfilteredPasteboardTypes
-{
-    return [NSArray array];
+    return [NSArray arrayWithObject: @"com.thevoidsoftware.mooseMouth"];
 }
 
 @end
@@ -217,8 +209,8 @@
 	{
 		img = [[[NSImage alloc] initWithSize: [self size]] autorelease];
 		[img lockFocus];
-			[self compositeToPoint: NSZeroPoint operation: NSCompositingOperationCopy];
-			[otherImage compositeToPoint: NSZeroPoint operation: NSCompositingOperationSourceAtop fraction: perc];
+			[self drawAtPoint: NSZeroPoint fromRect: NSZeroRect operation: NSCompositingOperationCopy fraction: 1.0];
+			[otherImage drawAtPoint: NSZeroPoint fromRect: NSZeroRect operation: NSCompositingOperationSourceAtop fraction: perc];
 		[img unlockFocus];
 	}
 	

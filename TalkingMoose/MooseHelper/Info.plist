@@ -49,5 +49,29 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.image</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Moose Mouth Shape Graphic</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.thevoidsoftware.mooseMouth</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mooseMouth</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>image/x-mooseMouth</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

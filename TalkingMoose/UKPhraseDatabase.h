@@ -6,12 +6,12 @@
 //  Copyright (c) 2004 M. Uli Kusterer. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 @class  UKGroupFile;
 
 
-@interface UKPhraseDatabase : NSObject
+@interface UKPhraseDatabase : NSObject <NSOutlineViewDataSource>
 {
 	UKGroupFile*	phraseFiles;
 	NSString*		mostRecentPhrase;

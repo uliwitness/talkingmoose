@@ -69,7 +69,7 @@
 
 -(void)	spendTime: (NSTimer*)tim
 {
-	int numPhonemeEntries = [phonemes count];
+	NSUInteger numPhonemeEntries = [phonemes count];
 	if( !phonemes || currListEntryIdx < 0 || currListEntryIdx >= numPhonemeEntries )
 	{
 		currListEntryIdx = -1;

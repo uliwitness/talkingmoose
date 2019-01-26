@@ -693,18 +693,10 @@ static BOOL		gIsSilenced = NO;
 }
 
 
--(BOOL) reloadHelperSettings
+-(void) reloadHelperSettings
 {
 	[_sharedDefaults synchronize];
 	[_mooseHelper reloadSettings];
-	
-//	NSError *err = nil;
-//	if (nil == [NSWorkspace.sharedWorkspace openURLs: @[[NSURL URLWithString: @"x-moose://settings/reload"]] withApplicationAtURL: self.helperURL options:NSWorkspaceLaunchAsync | NSWorkspaceLaunchWithoutActivation configuration:@{} error: &err]) {
-//		NSLog(@"Error: Couldn't notify helper: %@", err);
-//		return NO;
-//	} else {
-//		return YES;
-//	}
 }
 
 

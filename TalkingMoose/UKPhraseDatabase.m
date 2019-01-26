@@ -153,16 +153,15 @@
 }
 
 
-- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item
+-(id) outlineView: (NSOutlineView *)outlineView child: (NSInteger)index ofItem: (id)item
 {
-	if( item == nil )
-	{
-		NSArray*	items = [[phraseFiles dictionary] allValues];
+	if( item == nil ) {
+		NSArray*	items = phraseFiles.dictionary.allValues;
         
 		return [items objectAtIndex: index];
-	}
-	else
+	} else {
 		return [item objectAtIndex: index];
+	}
 }
 
 
@@ -175,12 +174,13 @@
 }
 
 
-- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+-(NSInteger) outlineView: (NSOutlineView *)outlineView numberOfChildrenOfItem: (id)item
 {
-	if( item == nil )
-		return [[[phraseFiles dictionary] allKeys] count];
-	else
+	if( item == nil ) {
+		return phraseFiles.dictionary.allKeys.count;
+	} else {
 		return [item count];
+	}
 }
 
 
