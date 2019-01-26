@@ -85,7 +85,7 @@
 
 		mooseControllers = [[NSMutableArray alloc] init];
 		_sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName: STRINGIFY(UKApplicationGroupID)];
-		UKLog(@"%@: %@ %@", STRINGIFY(UKApplicationGroupID), _sharedDefaults, _sharedDefaults.dictionaryRepresentation);
+		//UKLog(@"%@: %@ %@", STRINGIFY(UKApplicationGroupID), _sharedDefaults, _sharedDefaults.dictionaryRepresentation);
 		speechSynth = [[NSSpeechSynthesizer alloc] init];
 		recSpeechSynth = [[UKRecordedSpeechChannel alloc] init];
 		
@@ -734,9 +734,9 @@
 }
 
 
--(BOOL) speakOnePhrase: (id)sender
+-(IBAction) speakOnePhrase: (id)sender
 {
-	return [self speakPhraseFromGroup: @"PAUSE"];
+	[self speakPhraseFromGroup: @"PAUSE"];
 }
 
 
@@ -1045,7 +1045,7 @@
 			[windowWidgets setHidden: hideWidgets];
 	}
 	
-	UKLog(@"moose position: %@ (%@ %@ %@ %f %p)", NSStringFromRect(mooseWin.frame), mooseWin.isVisible ? @"visible" : @"HIDDEN", mooseWin.isOnActiveSpace ? @"on this space" : @"ON INACTIVE SPACE", mooseWin.occlusionState == NSWindowOcclusionStateVisible ? @"not occluded" : @"OCCLUDED", mooseWin.alphaValue, mooseWin);
+	UKLog(@"moose position: %@ (%@ %@ %@ %f %p)", NSStringFromRect(mooseWin.frame), mooseWin.isVisible ? @"visible" : @"HIDDEN", mooseWin.isOnActiveSpace ? @"on this space" : @"ON INACTIVE SPACE", ((mooseWin.occlusionState & NSWindowOcclusionStateVisible) ? @"not occluded" : @"OCCLUDED"), mooseWin.alphaValue, mooseWin);
 	
 	//UKLog(@"mooseControllerAnimationDidChange:");
 }
