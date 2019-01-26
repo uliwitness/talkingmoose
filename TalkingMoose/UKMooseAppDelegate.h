@@ -6,14 +6,15 @@
 //  Copyright (c) 2004 M. Uli Kusterer. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "UKApplicationListController.h"
+#import <Foundation/Foundation.h>
 
 
 @class  UKMooseController;
 @class  UKPhraseDatabase;
 @class  UKSpeechSettingsView;
 @class  PTHotKey;
+@class	SRRecorderControl;
 @class  UKCarbonEventHandler;
 @class  UKMooseDragAreaView;
 @class	UKRecordedSpeechChannel;
@@ -29,11 +30,11 @@
 	IBOutlet UKSpeechSettingsView*			speechSets;				// Prefs GUI for speech channel.
 	NSMutableArray*							mooseControllers;		// List of all available moose controllers.
 	UKMooseController*						currentMoose;			// Moose controller currently in use.
-	IBOutlet NSTextField*					speakNowHKField;
+	IBOutlet SRRecorderControl				*speakNowHKField;
 	PTHotKey*								speakNowHotkey;			// Global "speak random phrase" shortcut.
-	IBOutlet NSTextField*					repeatLastPhraseHKField;
+	IBOutlet SRRecorderControl				*repeatLastPhraseHKField;
 	PTHotKey*								repeatLastPhraseHotkey; // Global "repeat last phrase" hotkey.
-	IBOutlet NSTextField*					silenceMooseHKField;
+	IBOutlet SRRecorderControl				*silenceMooseHKField;
 	PTHotKey*								silenceMooseHotkey;		// Global "shut up, moose!" hotkey.
 	IBOutlet NSSlider*						speechDelaySlider;		// Slider for controlling how often to speak.
 	IBOutlet NSTextField*					speechDelayField;		// Field displaying delay as a number.
@@ -85,10 +86,6 @@
 -(void) takeSpeechDelayFrom: (id)sender;
 -(void) takeLaunchAtLoginBoolFrom: (id)sender;
 -(void) takeShowSpokenStringBoolFrom: (id)sender;
-
--(void) changeSpeakOnePhraseHotkey: (id)sender;
--(void) changeRepeatLastPhraseHotkey: (id)sender;
--(void) changeSilenceMooseHotkey: (id)sender;
 
 -(void) loadAnimationsInFolder: (NSString*)folder;
 -(UKMooseController*) loadAnimationAtPath: (NSString*)animationPath andReload: (BOOL)reloadList;

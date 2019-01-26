@@ -71,23 +71,12 @@
 		3DF5B7F20AA830D1000D2302 /* plus-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5B7EF0AA830D1000D2302 /* plus-8.png */; };
 		3DF5B8030AA83246000D2302 /* UKSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B8010AA83246000D2302 /* UKSystemInfo.m */; };
 		3DF5B8040AA83246000D2302 /* UKSystemInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF5B8020AA83246000D2302 /* UKSystemInfo.h */; };
-		3DF9CB4309C741C800C7BBA8 /* PTHotKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF9CB3709C741C800C7BBA8 /* PTHotKey.h */; };
-		3DF9CB4409C741C800C7BBA8 /* PTHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF9CB3809C741C800C7BBA8 /* PTHotKey.m */; };
-		3DF9CB4509C741C800C7BBA8 /* PTHotKeyCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF9CB3909C741C800C7BBA8 /* PTHotKeyCenter.h */; };
-		3DF9CB4609C741C800C7BBA8 /* PTHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF9CB3A09C741C800C7BBA8 /* PTHotKeyCenter.m */; };
-		3DF9CB4709C741C800C7BBA8 /* PTKeyBroadcaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF9CB3B09C741C800C7BBA8 /* PTKeyBroadcaster.h */; };
-		3DF9CB4809C741C800C7BBA8 /* PTKeyBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF9CB3C09C741C800C7BBA8 /* PTKeyBroadcaster.m */; };
-		3DF9CB4909C741C800C7BBA8 /* PTKeyCodeTranslator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF9CB3D09C741C800C7BBA8 /* PTKeyCodeTranslator.h */; };
-		3DF9CB4A09C741C800C7BBA8 /* PTKeyCodeTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF9CB3E09C741C800C7BBA8 /* PTKeyCodeTranslator.m */; };
-		3DF9CB4B09C741C800C7BBA8 /* PTKeyCombo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF9CB3F09C741C800C7BBA8 /* PTKeyCombo.h */; };
-		3DF9CB4C09C741C800C7BBA8 /* PTKeyCombo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF9CB4009C741C800C7BBA8 /* PTKeyCombo.m */; };
-		3DF9CB4D09C741C800C7BBA8 /* PTKeyComboPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF9CB4109C741C800C7BBA8 /* PTKeyComboPanel.h */; };
-		3DF9CB4E09C741C800C7BBA8 /* PTKeyComboPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF9CB4209C741C800C7BBA8 /* PTKeyComboPanel.m */; };
-		3DF9CB5309C7422800C7BBA8 /* PTKeyCodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DF9CB4F09C7422800C7BBA8 /* PTKeyCodes.plist */; };
-		3DF9CB5409C7422800C7BBA8 /* PTKeyComboPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF9CB5109C7422800C7BBA8 /* PTKeyComboPanel.nib */; };
-		3DF9CB5A09C7423600C7BBA8 /* PTKeyboardIcon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 3DF9CB5909C7423600C7BBA8 /* PTKeyboardIcon.tiff */; };
 		553852A821E0E81E00AF7F69 /* UKApplicationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3544E08841AB400825D47 /* UKApplicationListController.m */; };
 		553E5081161496C100272749 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553E5080161496C100272749 /* ServiceManagement.framework */; };
+		555C2D5D21FCED02001B1C2C /* PTHotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555C2D5421FCEC20001B1C2C /* PTHotKey.framework */; };
+		555C2D5E21FCED02001B1C2C /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555C2D5221FCEC20001B1C2C /* ShortcutRecorder.framework */; };
+		555C2D6021FCED22001B1C2C /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 555C2D5221FCEC20001B1C2C /* ShortcutRecorder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		555C2D6121FCED22001B1C2C /* PTHotKey.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 555C2D5421FCEC20001B1C2C /* PTHotKey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		556BA53821FC729800123C79 /* RCKXACKVZS.com.thevoidsoftware.talkingmoose.macosx.helper.app in Copy Login Agent */ = {isa = PBXBuildFile; fileRef = 55CD5BD321DFFDA700B5E004 /* RCKXACKVZS.com.thevoidsoftware.talkingmoose.macosx.helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		557FD0C20E56FB0C000A1A11 /* UKMooseDragAreaView.h in Headers */ = {isa = PBXBuildFile; fileRef = 557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */; };
 		557FD0C30E56FB0C000A1A11 /* UKMooseDragAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */; };
@@ -167,6 +156,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		555C2D5121FCEC20001B1C2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 555C2D4B21FCEC20001B1C2C /* ShortcutRecorder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 939837800DA42965007F53F3;
+			remoteInfo = ShortcutRecorder.framework;
+		};
+		555C2D5321FCEC20001B1C2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 555C2D4B21FCEC20001B1C2C /* ShortcutRecorder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E273122E1349EC9000A84433;
+			remoteInfo = PTHotKey.framework;
+		};
+		555C2D5521FCEC20001B1C2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 555C2D4B21FCEC20001B1C2C /* ShortcutRecorder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D6B2468180304DE00CE1142;
+			remoteInfo = Demo;
+		};
+		555C2D5721FCEC4A001B1C2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 555C2D4B21FCEC20001B1C2C /* ShortcutRecorder.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9398377F0DA42965007F53F3;
+			remoteInfo = ShortcutRecorder.framework;
+		};
+		555C2D5921FCEC4A001B1C2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 555C2D4B21FCEC20001B1C2C /* ShortcutRecorder.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E273122D1349EC9000A84433;
+			remoteInfo = PTHotKey.framework;
+		};
 		55CD5BFE21E0414300B5E004 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -177,6 +201,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		555C2D5F21FCED0D001B1C2C /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				555C2D6021FCED22001B1C2C /* ShortcutRecorder.framework in Copy Frameworks */,
+				555C2D6121FCED22001B1C2C /* PTHotKey.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		55CD5BFD21E0411C00B5E004 /* Copy Login Agent */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,29 +300,9 @@
 		3DF5B7F00AA830D1000D2302 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = English; path = "../UliKit/English.lproj/plus-8.png"; sourceTree = SOURCE_ROOT; };
 		3DF5B8010AA83246000D2302 /* UKSystemInfo.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = UKSystemInfo.m; path = ../UliKit/UKSystemInfo.m; sourceTree = SOURCE_ROOT; };
 		3DF5B8020AA83246000D2302 /* UKSystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = UKSystemInfo.h; path = ../UliKit/UKSystemInfo.h; sourceTree = SOURCE_ROOT; };
-		3DF9CB3709C741C800C7BBA8 /* PTHotKey.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PTHotKey.h; path = ../HotKeysLib3/PTHotKeysLib/src/PTHotKey.h; sourceTree = "<group>"; };
-		3DF9CB3809C741C800C7BBA8 /* PTHotKey.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PTHotKey.m; path = ../HotKeysLib3/PTHotKeysLib/src/PTHotKey.m; sourceTree = "<group>"; };
-		3DF9CB3909C741C800C7BBA8 /* PTHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PTHotKeyCenter.h; path = ../HotKeysLib3/PTHotKeysLib/src/PTHotKeyCenter.h; sourceTree = "<group>"; };
-		3DF9CB3A09C741C800C7BBA8 /* PTHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PTHotKeyCenter.m; path = ../HotKeysLib3/PTHotKeysLib/src/PTHotKeyCenter.m; sourceTree = "<group>"; };
-		3DF9CB3B09C741C800C7BBA8 /* PTKeyBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PTKeyBroadcaster.h; path = ../HotKeysLib3/PTHotKeysLib/src/PTKeyBroadcaster.h; sourceTree = "<group>"; };
-		3DF9CB3C09C741C800C7BBA8 /* PTKeyBroadcaster.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PTKeyBroadcaster.m; path = ../HotKeysLib3/PTHotKeysLib/src/PTKeyBroadcaster.m; sourceTree = "<group>"; };
-		3DF9CB3D09C741C800C7BBA8 /* PTKeyCodeTranslator.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PTKeyCodeTranslator.h; path = ../HotKeysLib3/PTHotKeysLib/src/PTKeyCodeTranslator.h; sourceTree = "<group>"; };
-		3DF9CB3E09C741C800C7BBA8 /* PTKeyCodeTranslator.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PTKeyCodeTranslator.m; path = ../HotKeysLib3/PTHotKeysLib/src/PTKeyCodeTranslator.m; sourceTree = "<group>"; };
-		3DF9CB3F09C741C800C7BBA8 /* PTKeyCombo.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PTKeyCombo.h; path = ../HotKeysLib3/PTHotKeysLib/src/PTKeyCombo.h; sourceTree = "<group>"; };
-		3DF9CB4009C741C800C7BBA8 /* PTKeyCombo.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PTKeyCombo.m; path = ../HotKeysLib3/PTHotKeysLib/src/PTKeyCombo.m; sourceTree = "<group>"; };
-		3DF9CB4109C741C800C7BBA8 /* PTKeyComboPanel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PTKeyComboPanel.h; path = ../HotKeysLib3/PTHotKeysLib/src/PTKeyComboPanel.h; sourceTree = "<group>"; };
-		3DF9CB4209C741C800C7BBA8 /* PTKeyComboPanel.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PTKeyComboPanel.m; path = ../HotKeysLib3/PTHotKeysLib/src/PTKeyComboPanel.m; sourceTree = "<group>"; };
-		3DF9CB5009C7422800C7BBA8 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = English; path = ../HotKeysLib3/PTHotKeysLib/res/English.lproj/PTKeyCodes.plist; sourceTree = SOURCE_ROOT; };
-		3DF9CB5209C7422800C7BBA8 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = ../HotKeysLib3/PTHotKeysLib/res/English.lproj/PTKeyComboPanel.nib; sourceTree = SOURCE_ROOT; };
-		3DF9CB5909C7423600C7BBA8 /* PTKeyboardIcon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PTKeyboardIcon.tiff; path = ../HotKeysLib3/PTHotKeysLib/res/PTKeyboardIcon.tiff; sourceTree = "<group>"; };
-		3DF9CB5B09C7424800C7BBA8 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = French; path = ../HotKeysLib3/PTHotKeysLib/res/French.lproj/PTKeyCodes.plist; sourceTree = SOURCE_ROOT; };
-		3DF9CB5C09C7424800C7BBA8 /* French */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = French; path = ../HotKeysLib3/PTHotKeysLib/res/French.lproj/PTKeyComboPanel.nib; sourceTree = SOURCE_ROOT; };
-		3DF9CB6809C7425700C7BBA8 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = German; path = ../HotKeysLib3/PTHotKeysLib/res/German.lproj/PTKeyCodes.plist; sourceTree = SOURCE_ROOT; };
-		3DF9CB6909C7425700C7BBA8 /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = ../HotKeysLib3/PTHotKeysLib/res/German.lproj/PTKeyComboPanel.nib; sourceTree = SOURCE_ROOT; };
-		3DF9CB7209C7426800C7BBA8 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Japanese; path = ../HotKeysLib3/PTHotKeysLib/res/Japanese.lproj/PTKeyCodes.plist; sourceTree = SOURCE_ROOT; };
-		3DF9CB7309C7426800C7BBA8 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = ../HotKeysLib3/PTHotKeysLib/res/Japanese.lproj/PTKeyComboPanel.nib; sourceTree = SOURCE_ROOT; };
 		553E5080161496C100272749 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = ../../../../../System/Library/Frameworks/ServiceManagement.framework; sourceTree = "<group>"; };
 		5543C2DB112822D600783ABE /* make_git_version_header.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = make_git_version_header.sh; path = ../UliKit/make_git_version_header.sh; sourceTree = SOURCE_ROOT; };
+		555C2D4B21FCEC20001B1C2C /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = ../ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = "<group>"; };
 		557FD0C00E56FB0C000A1A11 /* UKMooseDragAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMooseDragAreaView.h; sourceTree = "<group>"; };
 		557FD0C10E56FB0C000A1A11 /* UKMooseDragAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMooseDragAreaView.m; sourceTree = "<group>"; };
 		558FD3FF1115DE80008D69DC /* GoodbyeOldFriend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoodbyeOldFriend.png; sourceTree = "<group>"; };
@@ -358,6 +374,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				555C2D5D21FCED02001B1C2C /* PTHotKey.framework in Frameworks */,
+				555C2D5E21FCED02001B1C2C /* ShortcutRecorder.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				3DC2F8910798039800423F0A /* Carbon.framework in Frameworks */,
 				3D8CABFE0CE5C97B0046B187 /* ApplicationServices.framework in Frameworks */,
@@ -390,7 +408,6 @@
 				55F8CAC80E65F01C00DCF0D2 /* UKRecordedSpeechChannel.m */,
 				3D8CABCD0CE4F79A0046B187 /* MouthShapes */,
 				3DF41F3A07974CB8002DE6EF /* AppleScriptCommands */,
-				3D1575AA071BE9E2008183E8 /* PTHotKeys */,
 				3D1575B1071BEA73008183E8 /* UliKit */,
 			);
 			name = Classes;
@@ -438,6 +455,7 @@
 				55CD5BD421DFFDA700B5E004 /* MooseHelper */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				555C2D4B21FCEC20001B1C2C /* ShortcutRecorder.xcodeproj */,
 			);
 			name = CocoaMoose;
 			sourceTree = "<group>";
@@ -472,7 +490,6 @@
 				3DA3554E0884740F00825D47 /* MoosePhraseFileIcon.icns */,
 				559D6CFC16160B83001E1D91 /* UKCrashReporter.xib */,
 				559D6CFE16160B83001E1D91 /* UKSpeechSettingsView.xib */,
-				3DF412A607969BAD002DE6EF /* PTHotKeys */,
 				3D87481C06CB022D007D365E /* UKSplotchSynonyms.plist */,
 				3D874E2506CC14C5007D365E /* UKSplotchMainDictionary.plist */,
 				3DBE7C2C0B9E499400526251 /* UKSplotchPlaces.plist */,
@@ -507,25 +524,6 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3D1575AA071BE9E2008183E8 /* PTHotKeys */ = {
-			isa = PBXGroup;
-			children = (
-				3DF9CB3809C741C800C7BBA8 /* PTHotKey.m */,
-				3DF9CB3709C741C800C7BBA8 /* PTHotKey.h */,
-				3DF9CB3909C741C800C7BBA8 /* PTHotKeyCenter.h */,
-				3DF9CB3A09C741C800C7BBA8 /* PTHotKeyCenter.m */,
-				3DF9CB3B09C741C800C7BBA8 /* PTKeyBroadcaster.h */,
-				3DF9CB3C09C741C800C7BBA8 /* PTKeyBroadcaster.m */,
-				3DF9CB3D09C741C800C7BBA8 /* PTKeyCodeTranslator.h */,
-				3DF9CB3E09C741C800C7BBA8 /* PTKeyCodeTranslator.m */,
-				3DF9CB3F09C741C800C7BBA8 /* PTKeyCombo.h */,
-				3DF9CB4009C741C800C7BBA8 /* PTKeyCombo.m */,
-				3DF9CB4109C741C800C7BBA8 /* PTKeyComboPanel.h */,
-				3DF9CB4209C741C800C7BBA8 /* PTKeyComboPanel.m */,
-			);
-			name = PTHotKeys;
 			sourceTree = "<group>";
 		};
 		3D1575B1071BEA73008183E8 /* UliKit */ = {
@@ -604,16 +602,6 @@
 			name = "Auto-Generated";
 			sourceTree = "<group>";
 		};
-		3DF412A607969BAD002DE6EF /* PTHotKeys */ = {
-			isa = PBXGroup;
-			children = (
-				3DF9CB4F09C7422800C7BBA8 /* PTKeyCodes.plist */,
-				3DF9CB5109C7422800C7BBA8 /* PTKeyComboPanel.nib */,
-				3DF9CB5909C7423600C7BBA8 /* PTKeyboardIcon.tiff */,
-			);
-			name = PTHotKeys;
-			sourceTree = "<group>";
-		};
 		3DF41F3A07974CB8002DE6EF /* AppleScriptCommands */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +615,16 @@
 				3DF41F7107975218002DE6EF /* UKEnableSpeechCommand.m */,
 			);
 			name = AppleScriptCommands;
+			sourceTree = "<group>";
+		};
+		555C2D4C21FCEC20001B1C2C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				555C2D5221FCEC20001B1C2C /* ShortcutRecorder.framework */,
+				555C2D5421FCEC20001B1C2C /* PTHotKey.framework */,
+				555C2D5621FCEC20001B1C2C /* Demo.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		55CD5BD421DFFDA700B5E004 /* MooseHelper */ = {
@@ -668,12 +666,6 @@
 				3DA3544F08841AB400825D47 /* UKApplicationListController.h in Headers */,
 				3D05C45E08888A1600DA756A /* UKDocumentationController.h in Headers */,
 				3D56781F0994F2D8008FDECF /* UKCrashReporter.h in Headers */,
-				3DF9CB4309C741C800C7BBA8 /* PTHotKey.h in Headers */,
-				3DF9CB4509C741C800C7BBA8 /* PTHotKeyCenter.h in Headers */,
-				3DF9CB4709C741C800C7BBA8 /* PTKeyBroadcaster.h in Headers */,
-				3DF9CB4909C741C800C7BBA8 /* PTKeyCodeTranslator.h in Headers */,
-				3DF9CB4B09C741C800C7BBA8 /* PTKeyCombo.h in Headers */,
-				3DF9CB4D09C741C800C7BBA8 /* PTKeyComboPanel.h in Headers */,
 				3D55636B09CB4E7B002608B2 /* UKAboutBox.h in Headers */,
 				3DDF4F3A09D6B9180033B811 /* UKCarbonEventHandler.h in Headers */,
 				3DE190010A275D750040D274 /* NSScreen+ScreenAtPoint.h in Headers */,
@@ -725,10 +717,13 @@
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				3D3A1FEF09B1E1A800FB2B56 /* Build Helpbook */,
 				55CD5BFD21E0411C00B5E004 /* Copy Login Agent */,
+				555C2D5F21FCED0D001B1C2C /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				555C2D5821FCEC4A001B1C2C /* PBXTargetDependency */,
+				555C2D5A21FCEC4A001B1C2C /* PBXTargetDependency */,
 				55CD5BFF21E0414300B5E004 /* PBXTargetDependency */,
 			);
 			name = Moose;
@@ -785,6 +780,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CocoaMoose */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 555C2D4C21FCEC20001B1C2C /* Products */;
+					ProjectRef = 555C2D4B21FCEC20001B1C2C /* ShortcutRecorder.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Moose */,
@@ -792,6 +793,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		555C2D5221FCEC20001B1C2C /* ShortcutRecorder.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ShortcutRecorder.framework;
+			remoteRef = 555C2D5121FCEC20001B1C2C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		555C2D5421FCEC20001B1C2C /* PTHotKey.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PTHotKey.framework;
+			remoteRef = 555C2D5321FCEC20001B1C2C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		555C2D5621FCEC20001B1C2C /* Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Demo.app;
+			remoteRef = 555C2D5521FCEC20001B1C2C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		55CD5BD121DFFDA700B5E004 /* Resources */ = {
@@ -832,9 +857,6 @@
 				3D05C3F5088875CD00DA756A /* Credits.html in Resources */,
 				3D05C49D0888C68C00DA756A /* Moose Help in Resources */,
 				3D567A190994FACB008FDECF /* UKCrashReporter.strings in Resources */,
-				3DF9CB5309C7422800C7BBA8 /* PTKeyCodes.plist in Resources */,
-				3DF9CB5409C7422800C7BBA8 /* PTKeyComboPanel.nib in Resources */,
-				3DF9CB5A09C7423600C7BBA8 /* PTKeyboardIcon.tiff in Resources */,
 				3DF5B7F10AA830D1000D2302 /* minus-8.png in Resources */,
 				3DF5B7F20AA830D1000D2302 /* plus-8.png in Resources */,
 				3DBE7AC80B9E279400526251 /* UKSplotchSynonyms.plist in Resources */,
@@ -941,12 +963,6 @@
 				3DA3545008841AB400825D47 /* UKApplicationListController.m in Sources */,
 				3D05C45F08888A1600DA756A /* UKDocumentationController.m in Sources */,
 				3D56781E0994F2D8008FDECF /* UKCrashReporter.m in Sources */,
-				3DF9CB4409C741C800C7BBA8 /* PTHotKey.m in Sources */,
-				3DF9CB4609C741C800C7BBA8 /* PTHotKeyCenter.m in Sources */,
-				3DF9CB4809C741C800C7BBA8 /* PTKeyBroadcaster.m in Sources */,
-				3DF9CB4A09C741C800C7BBA8 /* PTKeyCodeTranslator.m in Sources */,
-				3DF9CB4C09C741C800C7BBA8 /* PTKeyCombo.m in Sources */,
-				3DF9CB4E09C741C800C7BBA8 /* PTKeyComboPanel.m in Sources */,
 				3D55636A09CB4E7B002608B2 /* UKAboutBox.m in Sources */,
 				3DDF4F3B09D6B9180033B811 /* UKCarbonEventHandler.m in Sources */,
 				3DE190020A275D750040D274 /* NSScreen+ScreenAtPoint.m in Sources */,
@@ -969,6 +985,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		555C2D5821FCEC4A001B1C2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ShortcutRecorder.framework;
+			targetProxy = 555C2D5721FCEC4A001B1C2C /* PBXContainerItemProxy */;
+		};
+		555C2D5A21FCEC4A001B1C2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PTHotKey.framework;
+			targetProxy = 555C2D5921FCEC4A001B1C2C /* PBXContainerItemProxy */;
+		};
 		55CD5BFF21E0414300B5E004 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 55CD5BD221DFFDA700B5E004 /* MooseHelper */;
@@ -1007,28 +1033,6 @@
 				3DF5B7F00AA830D1000D2302 /* English */,
 			);
 			name = "plus-8.png";
-			sourceTree = "<group>";
-		};
-		3DF9CB4F09C7422800C7BBA8 /* PTKeyCodes.plist */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3DF9CB5009C7422800C7BBA8 /* English */,
-				3DF9CB5B09C7424800C7BBA8 /* French */,
-				3DF9CB6809C7425700C7BBA8 /* German */,
-				3DF9CB7209C7426800C7BBA8 /* Japanese */,
-			);
-			name = PTKeyCodes.plist;
-			sourceTree = "<group>";
-		};
-		3DF9CB5109C7422800C7BBA8 /* PTKeyComboPanel.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3DF9CB5209C7422800C7BBA8 /* English */,
-				3DF9CB5C09C7424800C7BBA8 /* French */,
-				3DF9CB6909C7425700C7BBA8 /* German */,
-				3DF9CB7309C7426800C7BBA8 /* Japanese */,
-			);
-			name = PTKeyComboPanel.nib;
 			sourceTree = "<group>";
 		};
 		559D6CFC16160B83001E1D91 /* UKCrashReporter.xib */ = {
@@ -1093,6 +1097,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks/";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.macosx;
@@ -1133,6 +1138,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks/";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.macosx;
@@ -1155,6 +1161,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEVELOPMENT_TEAM = RCKXACKVZS;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
@@ -1172,6 +1179,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DEVELOPMENT_TEAM = RCKXACKVZS;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OTHER_CFLAGS = "-DUKApplicationGroupID=\"$(TeamIdentifierPrefix)com.thevoidsoftware\"";

@@ -496,7 +496,7 @@
 -(void) setMooseSilenced: (BOOL)doSilence
 {
 	if( isSilenced != doSilence )
-		[self silenceMoose: self];
+		[self toggleSilenceMoose];
 }
 
 
@@ -595,7 +595,7 @@
 }
 
 
--(IBAction)	interruptMoose: (id)sender
+-(void)	interruptMoose
 {
 	[speechSynth stopSpeaking];
 	[recSpeechSynth stopSpeaking];
@@ -621,7 +621,7 @@
 		return;
 	}
 	
-	[self interruptMoose: self];
+	[self interruptMoose];
 }
 
 
@@ -938,7 +938,7 @@
 }
 
 
--(void) silenceMoose: (id)sender
+-(void) toggleSilenceMoose
 {
 	if( isSilenced )
 		mooseDisableCount--;
@@ -946,7 +946,7 @@
 		mooseDisableCount++;
 	
 	isSilenced = !isSilenced;
-	[self interruptMoose: self];
+	[self interruptMoose];
 }
 
 
@@ -1036,7 +1036,7 @@
 			[windowWidgets setHidden: hideWidgets];
 	}
 	
-	UKLog(@"moose position: %@ (%@ %@ %@ %f %p)", NSStringFromRect(mooseWin.frame), mooseWin.isVisible ? @"visible" : @"HIDDEN", mooseWin.isOnActiveSpace ? @"on this space" : @"ON INACTIVE SPACE", ((mooseWin.occlusionState & NSWindowOcclusionStateVisible) ? @"not occluded" : @"OCCLUDED"), mooseWin.alphaValue, mooseWin);
+//	UKLog(@"moose position: %@ (%@ %@ %@ %f %p)", NSStringFromRect(mooseWin.frame), mooseWin.isVisible ? @"visible" : @"HIDDEN", mooseWin.isOnActiveSpace ? @"on this space" : @"ON INACTIVE SPACE", ((mooseWin.occlusionState & NSWindowOcclusionStateVisible) ? @"not occluded" : @"OCCLUDED"), mooseWin.alphaValue, mooseWin);
 	
 	//UKLog(@"mooseControllerAnimationDidChange:");
 }

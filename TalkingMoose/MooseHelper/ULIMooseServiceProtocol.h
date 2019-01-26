@@ -22,4 +22,8 @@
 
 -(void) repeatLastPhrase;
 
+-(void) toggleSilenceMoose;
+
+-(void)	interruptMoose;
+
 @end

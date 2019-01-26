@@ -18,11 +18,7 @@
 #import "UKSpeechSettingsView.h"
 #import "UKBorderlessWindow.h"
 #import "NSArray+Color.h"
-#import "PTHotKey.h"
-#import "PTKeyComboPanel.h"
 //#import "NSWindow+Fade.h"
-#include <Carbon/Carbon.h>
-#import "UKCarbonEventHandler.h"
 #import "UKMooseDragAreaView.h"
 #import "UKMooseMouthImageRep.h"
 #import "UKGroupFile.h"
@@ -32,6 +28,10 @@
 #import "UKHelperMacros.h"
 #import "MooseHelper/ULIMooseServiceProtocol.h"
 #import <ServiceManagement/ServiceManagement.h>
+#import <ShortcutRecorder/ShortcutRecorder.h>
+#import <PTHotKey/HotKey.h>
+#import <Carbon/Carbon.h>
+#import "UKCarbonEventHandler.h"
 
 #if DEBUG && 0
 #include <execinfo.h>
@@ -58,6 +58,12 @@
 static BOOL		gIsSilenced = NO;
 
 
+@interface UKMooseAppDelegate () <SRRecorderControlDelegate>
+
+
+@end
+
+
 @implementation UKMooseAppDelegate
 
 // -----------------------------------------------------------------------------
@@ -74,10 +80,27 @@ static BOOL		gIsSilenced = NO;
 //		UKLog(@"%@: %@ %@", STRINGIFY(UKApplicationGroupID), _sharedDefaults, _sharedDefaults.dictionaryRepresentation);
 
 		// System-wide keyboard shortcuts:
-		speakNowHotkey = [[PTHotKey alloc] initWithName: @"Speak Now" target: self action: @selector(speakOnePhrase:) addToCenter: YES];
-		repeatLastPhraseHotkey = [[PTHotKey alloc] initWithName: @"Repeat Last Phrase" target: self action: @selector(repeatLastPhrase:) addToCenter: YES];
-		silenceMooseHotkey = [[PTHotKey alloc] initWithName: @"Silence, Moose!" target: self action: @selector(silenceMoose:) addToCenter: YES];
+		NSDictionary *plistCombo = [_sharedDefaults objectForKey: @"ULISpeakNowHotkeyPlist"];
+		speakNowHotkey = [[PTHotKey hotKeyWithIdentifier: @"com.thevoidsoftware.talkingmoose.speak-now"
+											   keyCombo: plistCombo
+												 target: self
+												 action:@selector(speakOnePhrase:)] retain];
+		[PTHotKeyCenter.sharedCenter registerHotKey: speakNowHotkey];
 		
+		plistCombo = [_sharedDefaults objectForKey: @"ULIRepeatLastPhraseHotkeyPlist"];
+		repeatLastPhraseHotkey = [[PTHotKey hotKeyWithIdentifier: @"com.thevoidsoftware.talkingmoose.repeat"
+											   keyCombo: plistCombo
+												 target: self
+												 action:@selector(repeatLastPhrase:)] retain];
+		[PTHotKeyCenter.sharedCenter registerHotKey: repeatLastPhraseHotkey];
+
+		plistCombo = [_sharedDefaults objectForKey: @"ULISilenceMooseHotkeyPlist"];
+		silenceMooseHotkey = [[PTHotKey hotKeyWithIdentifier: @"com.thevoidsoftware.talkingmoose.silence"
+													   keyCombo: plistCombo
+														 target: self
+														 action:@selector(toggleSilenceMoose:)] retain];
+		[PTHotKeyCenter.sharedCenter registerHotKey: silenceMooseHotkey];
+
 		// Install Carbon event handler for app switches:
 		appSwitchEventHandler = [[UKCarbonEventHandler alloc] initWithEventClass: kEventClassApplication kind: kEventAppFrontSwitched];
 		
@@ -221,9 +244,9 @@ static BOOL		gIsSilenced = NO;
 	//UKLog(@"About to Load.");
 	
     // Hotkey shortcut edit fields:
-	[speakNowHKField setStringValue: [speakNowHotkey stringValue]];
-	[repeatLastPhraseHKField setStringValue: [repeatLastPhraseHotkey stringValue]];
-	[silenceMooseHKField setStringValue: [silenceMooseHotkey stringValue]];
+	[speakNowHKField setObjectValue: [_sharedDefaults objectForKey: @"ULISpeakNowHotkeyPlist"]];
+	[repeatLastPhraseHKField setObjectValue: [_sharedDefaults objectForKey: @"ULIRepeatLastPhraseHotkeyPlist"]];
+	[silenceMooseHKField setObjectValue: [_sharedDefaults objectForKey: @"ULISilenceMooseHotkeyPlist"]];
 	
     // "Launch at startup" checkbox:
 	NSString				*bundleID = UKHelperApplicationID;
@@ -653,28 +676,36 @@ static BOOL		gIsSilenced = NO;
     [currentMoose setBadgeImage: (gIsSilenced || [excludeApps appInListMatches]) ? shutUpImg : nil];
 }
 
-
--(void) changeSpeakOnePhraseHotkey: (id)sender
+- (void)shortcutRecorderDidEndRecording: (SRRecorderControl *)aRecorder
 {
-	[[PTKeyComboPanel sharedPanel] runModalForHotKey: speakNowHotkey];
-	[speakNowHotkey writeToStandardDefaults];
-	[speakNowHKField setStringValue: [speakNowHotkey stringValue]];
-}
-
-
--(void) changeRepeatLastPhraseHotkey: (id)sender
-{
-	[[PTKeyComboPanel sharedPanel] runModalForHotKey: repeatLastPhraseHotkey];
-	[repeatLastPhraseHotkey writeToStandardDefaults];
-	[repeatLastPhraseHKField setStringValue: [repeatLastPhraseHotkey stringValue]];
-}
-
-
--(void) changeSilenceMooseHotkey: (id)sender
-{
-	[[PTKeyComboPanel sharedPanel] runModalForHotKey: silenceMooseHotkey];
-	[silenceMooseHotkey writeToStandardDefaults];
-	[silenceMooseHKField setStringValue: [silenceMooseHotkey stringValue]];
+	if (aRecorder == speakNowHKField) {
+		[PTHotKeyCenter.sharedCenter unregisterHotKey: speakNowHotkey];
+		DESTROY(speakNowHotkey);
+		[_sharedDefaults setObject: aRecorder.objectValue forKey: @"ULISpeakNowHotkeyPlist"];
+		speakNowHotkey = [[PTHotKey hotKeyWithIdentifier: @"com.thevoidsoftware.talkingmoose.speak-now"
+												   keyCombo: aRecorder.objectValue
+													 target: self
+													 action:@selector(speakOnePhrase:)] retain];
+		[PTHotKeyCenter.sharedCenter registerHotKey: speakNowHotkey];
+	} else if (aRecorder == repeatLastPhraseHKField) {
+		[PTHotKeyCenter.sharedCenter unregisterHotKey: repeatLastPhraseHotkey];
+		DESTROY(repeatLastPhraseHotkey);
+		[_sharedDefaults setObject: aRecorder.objectValue forKey: @"ULIRepeatLastPhraseHotkeyPlist"];
+		repeatLastPhraseHotkey = [[PTHotKey hotKeyWithIdentifier: @"com.thevoidsoftware.talkingmoose.repeat"
+													  keyCombo: aRecorder.objectValue
+														target: self
+														action:@selector(repeatLastPhrase:)] retain];
+		[PTHotKeyCenter.sharedCenter registerHotKey: repeatLastPhraseHotkey];
+	} else if (aRecorder == silenceMooseHKField) {
+		[PTHotKeyCenter.sharedCenter unregisterHotKey: silenceMooseHotkey];
+		DESTROY(silenceMooseHotkey);
+		[_sharedDefaults setObject: aRecorder.objectValue forKey: @"ULISilenceMooseHotkeyPlist"];
+		silenceMooseHotkey = [[PTHotKey hotKeyWithIdentifier: @"com.thevoidsoftware.talkingmoose.silence"
+												  keyCombo: aRecorder.objectValue
+													target: self
+													action:@selector(toggleSilenceMoose:)] retain];
+		[PTHotKeyCenter.sharedCenter registerHotKey: silenceMooseHotkey];
+	}
 }
 
 
@@ -859,7 +890,8 @@ static BOOL		gIsSilenced = NO;
 
 -(IBAction) silenceMoose: (id)sender
 {
-	[self setMooseSilenced: self.mooseSilenced];
+	gIsSilenced = !gIsSilenced;
+	[_mooseHelper toggleSilenceMoose];
 }
 
 

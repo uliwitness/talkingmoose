@@ -1,7 +1,6 @@
 TO DO!
 -> More intuitive window widgets and drag areas. Maybe at top in regular OS X look?
 -> Detect printing and speak special phrases then.
--> Adopt LSSharedList for login items setting.
 -> Watch certain folders (Trash, Downloads) with a kqueue so we can talk about what user's doing.
 -> Splotch needs to implement @response@ etc.
 -> Remove question marks etc. from wildcard matches.
