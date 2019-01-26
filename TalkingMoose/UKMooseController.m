@@ -595,8 +595,12 @@
 		{
 			//UKLog(@"finished speaking. (2)");
 			isSpeaking = NO;
-			if( delegate && [delegate respondsToSelector: @selector(speechSynthesizer:didFinishSpeaking:)] )
-				[delegate speechSynthesizer: nil didFinishSpeaking: YES];
+			if( delegate && [delegate respondsToSelector: @selector(speechSynthesizer:didFinishSpeaking:)] ) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+				[delegate speechSynthesizer: nil didFinishSpeaking: YES]; // fine for now, should prolly switch to our own callback instead of reusing speech synthesizer's in the future.
+#pragma clang diagnostic pop
+			}
 			[self changeMouthImageToPhoneme: 0];
 		}
 		else
@@ -677,8 +681,12 @@
 	{
 		int	currPhoneme = (rand() % 42);
 		[self changeMouthImageToPhoneme: currPhoneme];
-		if( [delegate respondsToSelector: @selector(speechSynthesizer:willSpeakPhoneme:)] )
-			[delegate speechSynthesizer: nil willSpeakPhoneme: currPhoneme];
+		if ([delegate respondsToSelector: @selector(speechSynthesizer:willSpeakPhoneme:)]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
+			[delegate speechSynthesizer: nil willSpeakPhoneme: currPhoneme]; // fine for now, should prolly switch to our own callback instead of reusing speech synthesizer's in the future.
+#pragma clang diagnostic pop
+		}
 		lastPhonemeTime = [NSDate timeIntervalSinceReferenceDate];
 	}
 	
