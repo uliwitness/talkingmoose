@@ -510,8 +510,7 @@
 {
 	NSDate* calDate = nil;
 	
-	if( [_sharedDefaults boolForKey: @"UKMooseSpeakTime"] )
-	{
+	if( [_sharedDefaults boolForKey: @"UKMooseSpeakTime"] ) {
 		NSCalendarUnit desiredUnits =	NSCalendarUnitEra |
 										NSCalendarUnitYear |
 										NSCalendarUnitMonth |
@@ -526,26 +525,20 @@
 		NSCalendar *calendar = NSCalendar.currentCalendar;
 		NSDateComponents *dateParts = [calendar components: desiredUnits fromDate: calDate];
 		
+		if( [_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] ) {
+			calDate = [calendar dateByAddingUnit: NSCalendarUnitSecond value: -dateParts.second toDate: calDate options: 0]; // 0 the seconds.
+		}
+		
 		unsigned int    randNum = (unsigned int) rand();
 		int             minAdd = (randNum & 0x00000007),		// Low 3 bits: 0...7
 		secAdd = (randNum & 0x00000070) >> 4;	// 3 bits: 0...7
 		
-		if( dateParts.minute >= 30 || ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeOnHalfHours"] )
-		{
-			dateParts.minute = 0;
-
-			calDate = [calendar dateByAddingUnit: NSCalendarUnitHour value: 1 toDate: calDate options: 0];
-			
-			dateParts = [calendar components: desiredUnits fromDate: calDate];
+		if( dateParts.minute >= 30 || ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeOnHalfHours"] ) {
+			calDate = [calendar dateByAddingUnit: NSCalendarUnitMinute value: 60 - dateParts.minute toDate: calDate options: 0]; // Go to next hour.
+		} else {
+			calDate = [calendar dateByAddingUnit: NSCalendarUnitMinute value: 30 - dateParts.minute toDate: calDate options: 0]; // Go to half hour.
 		}
-		else
-			dateParts.minute = 30;
 		
-		if( [_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] )
-			dateParts.second = 0;
-		
-		calDate = [calendar dateFromComponents: dateParts];
-
 		if( ![_sharedDefaults boolForKey: @"UKMooseSpeakTimeAnallyRetentive"] ) {
 			calDate = [calendar dateByAddingUnit: NSCalendarUnitMinute value: minAdd toDate: calDate options: 0];
 			calDate = [calendar dateByAddingUnit: NSCalendarUnitSecond value: secAdd toDate: calDate options: 0];
@@ -570,9 +563,9 @@
 	
 	if( ![speechSynth isSpeaking] && ![recSpeechSynth isSpeaking] )
 	{
-		NSString*			timeFmtStr = @"%I:%M";
 		NSDateFormatter*    form = [[[NSDateFormatter alloc] init] autorelease];
-		form.dateFormat = timeFmtStr;
+		form.dateStyle = NSDateFormatterNoStyle;
+		form.timeStyle = NSDateFormatterShortStyle;
 		NSString*			timeStr = [form stringForObjectValue: NSDate.date];
 		if( timeStr ) {
 			[self speakPhraseFromGroup: @"TIME ANNOUNCEMENT" withFillerString: timeStr];
@@ -1073,7 +1066,9 @@
 {
 	if( speakOnVolumeMount )
 	{
-		NSString*		volName = [[[notif userInfo] objectForKey: @"NSDevicePath"] lastPathComponent];
+		NSLog(@"volumeMount = %@", notif.userInfo);
+		NSString*		volName = [[notif.userInfo objectForKey: @"NSDevicePath"] lastPathComponent];
+		volName = [NSFileManager.defaultManager displayNameAtPath: volName];
 		[self speakPhraseOnMainThreadFromGroup: @"INSERT DISK" withFillerString: volName];
 	}
 }
@@ -1083,7 +1078,9 @@
 {
 	if( speakOnVolumeMount )
 	{
-		NSString*		volName = [[[notif userInfo] objectForKey: @"NSDevicePath"] lastPathComponent];
+		NSLog(@"volumeUnmount = %@", notif.userInfo);
+		NSString*		volName = [[notif.userInfo objectForKey: @"NSDevicePath"] lastPathComponent];
+		volName = [NSFileManager.defaultManager displayNameAtPath: volName];
 		[self speakPhraseOnMainThreadFromGroup: @"EJECT DISK" withFillerString: volName];
 	}
 }
