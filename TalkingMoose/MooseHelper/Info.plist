@@ -35,8 +35,6 @@
 	<string>1000</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.entertainment</string>
-	<key>LSBackgroundOnly</key>
-	<false/>
 	<key>LSGetAppDiedEvents</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
@@ -49,6 +47,8 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>LSUIElement</key>
+	<true/>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

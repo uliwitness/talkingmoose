@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -693,6 +693,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55CD5BE321DFFDAB00B5E004 /* Build configuration list for PBXNativeTarget "MooseHelper" */;
 			buildPhases = (
+				55DECA1C2809DD6400B56785 /* Build Version Header */,
 				55CD5BCF21DFFDA700B5E004 /* Sources */,
 				55CD5BD021DFFDA700B5E004 /* Frameworks */,
 				55CD5BD121DFFDA700B5E004 /* Resources */,
@@ -912,6 +913,25 @@
 			shellPath = /bin/bash;
 			shellScript = "open -a /Developer/Applications/Utilities/Help\\ Indexer.app \"${BUILD_DIR}/${BUILD_STYLE}/${PRODUCT_NAME}.app/Contents/Resources/Moose Help/\"\nsleep 2\nosascript -e 'tell application \"Help Indexer\" to quit'";
 		};
+		55DECA1C2809DD6400B56785 /* Build Version Header */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Version Header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "cd \"${SRCROOT}\"\n\"${PROJECT_DIR}/../UliKit/make_git_version_header.sh\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1097,7 +1117,10 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks/";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks/",
+				);
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.macosx;
@@ -1138,7 +1161,10 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks/";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks/",
+				);
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thevoidsoftware.talkingmoose.macosx;
@@ -1254,7 +1280,10 @@
 					"$(PROJECT_DIR)/",
 				);
 				INFOPLIST_FILE = MooseHelper/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1321,7 +1350,10 @@
 					"$(PROJECT_DIR)/",
 				);
 				INFOPLIST_FILE = MooseHelper/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = RCKXACKVZS.com.thevoidsoftware.talkingmoose.macosx.helper;
