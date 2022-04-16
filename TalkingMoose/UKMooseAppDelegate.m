@@ -768,8 +768,9 @@ static BOOL		gIsSilenced = NO;
 	UKLog(@"%@", settings);
 	if( settings )
 	{
-		//UKLog(@"Loading Speech settings from Prefs.");
+		UKLog(@"Loading Speech settings from Prefs.");
 		[speechSynth setSettingsDictionary: settings];
+		[speechSets reflectVoiceInUI: nil];
 	}
 	else
 		; //UKLog(@"No Speech settings in Prefs.");
