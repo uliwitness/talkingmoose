@@ -844,14 +844,16 @@
 	NSWindow*		mooseWin = [imageView window];
 	if( showSpokenString )
 	{
-		//UKLog(@"About to position.");
+		UKLog(@"About to position.");
 		NSRect			mooseFrame = [mooseWin frame];
 		NSRect			bubbleFrame = [bubbleWin frame];
 		NSDictionary*   attrs = [NSDictionary dictionaryWithObjectsAndKeys: [[NSColor systemYellowColor] colorWithAlphaComponent: 0.8], NSBackgroundColorAttributeName, [NSColor textBackgroundColor], NSForegroundColorAttributeName, nil];
 		
 		[mooseWin removeChildWindow: bubbleWin];
 		
-		[speechBubbleView setString: [NSSpeechSynthesizer prettifyString: currPhrase]];
+		NSString *prettifiedPhrase = [NSSpeechSynthesizer prettifyString: currPhrase];
+		[speechBubbleView setString: prettifiedPhrase];
+		UKLog(@"Phrase for speech bubble: %@", prettifiedPhrase);
 		[[speechBubbleView textStorage] setAttributes: attrs range: NSMakeRange(0,[currPhrase length])];
 		[speechBubbleView setAlignment: NSTextAlignmentCenter];
 		
@@ -888,9 +890,11 @@
 		[bubbleWin setFrame: bubbleFrame display: YES];
 		
 		[mooseWin addChildWindow: bubbleWin ordered: NSWindowAbove];
+		[speechBubbleView setNeedsDisplay: YES];
 		[bubbleWin display];
 	}
 	else {
+		UKLog(@"Hiding speech bubble window.");
 		[mooseWin removeChildWindow: bubbleWin];
 		[bubbleWin orderOut: self];
 	}
