@@ -847,12 +847,12 @@
 		//UKLog(@"About to position.");
 		NSRect			mooseFrame = [mooseWin frame];
 		NSRect			bubbleFrame = [bubbleWin frame];
-		//NSDictionary*   attrs = [NSDictionary dictionaryWithObjectsAndKeys: [[NSColor whiteColor] colorWithAlphaComponent: 0.8], NSBackgroundColorAttributeName, nil];
+		NSDictionary*   attrs = [NSDictionary dictionaryWithObjectsAndKeys: [[NSColor systemYellowColor] colorWithAlphaComponent: 0.8], NSBackgroundColorAttributeName, [NSColor textBackgroundColor], NSForegroundColorAttributeName, nil];
 		
 		[mooseWin removeChildWindow: bubbleWin];
 		
 		[speechBubbleView setString: [NSSpeechSynthesizer prettifyString: currPhrase]];
-		//[[speechBubbleView textStorage] setAttributes: attrs range: NSMakeRange(0,[currPhrase length])];
+		[[speechBubbleView textStorage] setAttributes: attrs range: NSMakeRange(0,[currPhrase length])];
 		[speechBubbleView setAlignment: NSTextAlignmentCenter];
 		
 		[speechBubbleView setMinSize: NSMakeSize(16,16)];

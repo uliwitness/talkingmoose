@@ -26,7 +26,7 @@
 		NSString*		stdPhrasePathOff = [@"~/Library/Application Support/Moose/Standard Phrases (Off)" stringByExpandingTildeInPath];
 		NSString*		builtinPhrasePath = [[NSBundle mainBundle] pathForResource: @"Phrases" ofType: nil];
 		if( ![fm fileExistsAtPath: stdPhrasePath] ) {
-			if (![fm createDirectoryAtPath: stdPhrasePath withIntermediateDirectories: NO attributes: @{} error: &theError]) {
+			if (![fm createDirectoryAtPath: stdPhrasePath withIntermediateDirectories: YES attributes: @{} error: &theError]) {
 				NSLog(@"Error %@ creating directory %@", theError, stdPhrasePath);
 			}
 		}

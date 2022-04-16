@@ -30,6 +30,7 @@
 	IBOutlet UKSpeechSettingsView*			speechSets;				// Prefs GUI for speech channel.
 	NSMutableArray*							mooseControllers;		// List of all available moose controllers.
 	UKMooseController*						currentMoose;			// Moose controller currently in use.
+	NSSpeechSynthesizer*					speechSynth;			// The synthesizer the current moose is lip-syncing with.
 	IBOutlet SRRecorderControl				*speakNowHKField;
 	PTHotKey*								speakNowHotkey;			// Global "speak random phrase" shortcut.
 	IBOutlet SRRecorderControl				*repeatLastPhraseHKField;

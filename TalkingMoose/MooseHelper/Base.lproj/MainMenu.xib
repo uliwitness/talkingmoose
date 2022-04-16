@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -607,7 +608,7 @@
                             <menuItem title="Show Sidebar" keyEquivalent="s" id="kIP-vf-haE">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
-                                    <action selector="toggleSourceList:" target="-1" id="iwa-gc-5KM"/>
+                                    <action selector="toggleSidebar:" target="-1" id="iwa-gc-5KM"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
@@ -657,13 +658,14 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="139" y="136"/>
         </menu>
         <window title="Moose" autorecalculatesKeyViewLoop="NO" deferred="NO" hasShadow="NO" releasedWhenClosed="NO" animationBehavior="none" id="nFg-JB-1yx" userLabel="Moose" customClass="UKBorderlessWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES"/>
             <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" stationary="YES" ignoresCycle="YES" fullScreenAuxiliary="YES" fullScreenDisallowsTiling="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="84" y="719" width="123" height="111"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
             <value key="minSize" type="size" width="102.724" height="20"/>
             <view key="contentView" id="VFQ-kB-l5q">
                 <rect key="frame" x="0.0" y="0.0" width="123" height="111"/>
@@ -710,7 +712,7 @@
             <windowStyleMask key="styleMask" titled="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="228" y="323" width="213" height="484"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
             <value key="minSize" type="size" width="59" height="56"/>
             <view key="contentView" id="r8m-iW-IMP">
                 <rect key="frame" x="0.0" y="0.0" width="213" height="484"/>
@@ -719,21 +721,21 @@
                     <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4e-gy-KmR">
                         <rect key="frame" x="0.0" y="5" width="213" height="478"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <clipView key="contentView" ambiguous="YES" id="Lh5-9g-PKW">
+                        <clipView key="contentView" id="Lh5-9g-PKW">
                             <rect key="frame" x="0.0" y="0.0" width="213" height="478"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView ambiguous="YES" editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" smartInsertDelete="YES" id="YzW-Hu-FKw">
+                                <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" smartInsertDelete="YES" id="YzW-Hu-FKw">
                                     <rect key="frame" x="0.0" y="0.0" width="213" height="478"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="0.75153374669999995" alpha="0.94999998809999997" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
                                     <size key="minSize" width="213" height="478"/>
                                     <size key="maxSize" width="426" height="10000000"/>
                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 </textView>
                             </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="0.75153374669999995" alpha="0.94999998809999997" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="FfN-IG-Ayb">
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
@@ -746,6 +748,7 @@
                     </scrollView>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="-280" y="220"/>
         </window>
         <customObject id="bJM-YP-mke" userLabel="UKPhraseDatabase" customClass="UKPhraseDatabase"/>
         <customObject id="8lC-5I-1Jg" customClass="ULIApplicationList"/>

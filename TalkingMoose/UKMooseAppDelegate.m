@@ -63,6 +63,9 @@ static BOOL		gIsSilenced = NO;
 
 @end
 
+@interface UKMooseAppDelegate (UKSpeechSettings) <UKSpeechSettingsViewDelegate>
+
+@end
 
 @implementation UKMooseAppDelegate
 
@@ -76,6 +79,7 @@ static BOOL		gIsSilenced = NO;
 	if( self )
 	{
 		mooseControllers = [[NSMutableArray alloc] init];
+		speechSynth = [[NSSpeechSynthesizer alloc] init];
 		_sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName: STRINGIFY(UKApplicationGroupID)];
 //		UKLog(@"%@: %@ %@", STRINGIFY(UKApplicationGroupID), _sharedDefaults, _sharedDefaults.dictionaryRepresentation);
 
@@ -137,6 +141,7 @@ static BOOL		gIsSilenced = NO;
 	DESTROY(_connectionToService);
 	
 	DESTROY(speakNowHotkey);
+	DESTROY(speechSynth);
 	DESTROY(repeatLastPhraseHotkey);
 	DESTROY(silenceMooseHotkey);
 	
@@ -156,6 +161,8 @@ static BOOL		gIsSilenced = NO;
 -(void) awakeFromNib
 {
 	UKCrashReporterCheckForCrash();
+	
+	speechSets.speechSynthesizer = speechSynth;
 		
 	[mainTabView selectTabViewItemAtIndex: 0];
 	
@@ -755,6 +762,17 @@ static BOOL		gIsSilenced = NO;
 {
 	[_sharedDefaults synchronize];
 	[_mooseHelper reloadSettings];
+	
+	// Speech channel:
+	NSDictionary*   settings = [_sharedDefaults objectForKey: @"UKSpeechChannelSettings"];
+	UKLog(@"%@", settings);
+	if( settings )
+	{
+		//UKLog(@"Loading Speech settings from Prefs.");
+		[speechSynth setSettingsDictionary: settings];
+	}
+	else
+		; //UKLog(@"No Speech settings in Prefs.");
 }
 
 
@@ -786,6 +804,11 @@ static BOOL		gIsSilenced = NO;
 -(void)	speakPhraseFromDictionary: (NSDictionary*)dict
 {
 	[_mooseHelper speakPhraseFromGroup: [dict objectForKey: @"Group"] withFillerString: [dict objectForKey: @"Filler"]];
+}
+
+
+-(void) applicationWillTerminate: (NSNotification*)notif {
+	[_sharedDefaults setObject: [speechSynth settingsDictionary] forKey: @"UKSpeechChannelSettings"];
 }
 
 
@@ -943,6 +966,16 @@ void	UKLogBacktrace()
 -(void)	moosePictClicked: (id)sender
 {
 	[self speakPhraseFromGroup: @"MOOSE SETTINGS PICTURE CLICKED" withFillerString: @""];
+}
+
+@end
+
+
+@implementation UKMooseAppDelegate (UKSpeechSettings)
+
+-(void) settingsChangedInSpeechSettingsView:(UKSpeechSettingsView *)sender {
+	[_sharedDefaults setObject: [speechSynth settingsDictionary] forKey: @"UKSpeechChannelSettings"];
+	[_sharedDefaults synchronize];
 }
 
 @end
